@@ -1,0 +1,7 @@
+﻿namespace Journey.Services.Mapping
+{
+    // ReSharper disable once UnusedTypeParameter
+    public interface IMapTo<T>
+    {
+    }
+}

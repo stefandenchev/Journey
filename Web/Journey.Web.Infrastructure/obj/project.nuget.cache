@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tiu4GC9KVO7Vf1sE5/tVXUGHhn1QLB95HcJS64+Z81lPspZHLDDQiGlHqa6SK9N3NvfEzcbJ5UWMafiR7/sT/g==",
+  "success": true,
+  "projectFilePath": "D:\\Journey\\Web\\Journey.Web.Infrastructure\\Journey.Web.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\AORUS\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\AORUS\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512"
+  ],
+  "logs": []
+}

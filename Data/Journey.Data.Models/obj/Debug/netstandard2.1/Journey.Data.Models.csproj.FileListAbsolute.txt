@@ -1,0 +1,12 @@
+D:\Journey\Data\Journey.Data.Models\bin\Debug\netstandard2.1\Journey.Data.Models.deps.json
+D:\Journey\Data\Journey.Data.Models\bin\Debug\netstandard2.1\Journey.Data.Models.dll
+D:\Journey\Data\Journey.Data.Models\bin\Debug\netstandard2.1\Journey.Data.Models.pdb
+D:\Journey\Data\Journey.Data.Models\bin\Debug\netstandard2.1\Journey.Data.Common.dll
+D:\Journey\Data\Journey.Data.Models\bin\Debug\netstandard2.1\Journey.Data.Common.pdb
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.csprojAssemblyReference.cache
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.AssemblyInfoInputs.cache
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.AssemblyInfo.cs
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.csproj.CoreCompileInputs.cache
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.csproj.CopyComplete
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.dll
+D:\Journey\Data\Journey.Data.Models\obj\Debug\netstandard2.1\Journey.Data.Models.pdb

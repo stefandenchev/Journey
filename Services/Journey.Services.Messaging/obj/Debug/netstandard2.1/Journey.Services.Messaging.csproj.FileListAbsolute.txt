@@ -1,0 +1,9 @@
+D:\Journey\Services\Journey.Services.Messaging\bin\Debug\netstandard2.1\Journey.Services.Messaging.deps.json
+D:\Journey\Services\Journey.Services.Messaging\bin\Debug\netstandard2.1\Journey.Services.Messaging.dll
+D:\Journey\Services\Journey.Services.Messaging\bin\Debug\netstandard2.1\Journey.Services.Messaging.pdb
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.csprojAssemblyReference.cache
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.AssemblyInfoInputs.cache
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.AssemblyInfo.cs
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.csproj.CoreCompileInputs.cache
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.dll
+D:\Journey\Services\Journey.Services.Messaging\obj\Debug\netstandard2.1\Journey.Services.Messaging.pdb

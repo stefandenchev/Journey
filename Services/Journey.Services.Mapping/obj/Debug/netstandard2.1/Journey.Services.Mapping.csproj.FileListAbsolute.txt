@@ -1,0 +1,9 @@
+D:\Journey\Services\Journey.Services.Mapping\bin\Debug\netstandard2.1\Journey.Services.Mapping.deps.json
+D:\Journey\Services\Journey.Services.Mapping\bin\Debug\netstandard2.1\Journey.Services.Mapping.dll
+D:\Journey\Services\Journey.Services.Mapping\bin\Debug\netstandard2.1\Journey.Services.Mapping.pdb
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.csprojAssemblyReference.cache
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.AssemblyInfoInputs.cache
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.AssemblyInfo.cs
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.csproj.CoreCompileInputs.cache
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.dll
+D:\Journey\Services\Journey.Services.Mapping\obj\Debug\netstandard2.1\Journey.Services.Mapping.pdb

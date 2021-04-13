@@ -1,0 +1,9 @@
+D:\Journey\Journey.Common\bin\Debug\netstandard2.1\Journey.Common.deps.json
+D:\Journey\Journey.Common\bin\Debug\netstandard2.1\Journey.Common.dll
+D:\Journey\Journey.Common\bin\Debug\netstandard2.1\Journey.Common.pdb
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.csprojAssemblyReference.cache
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.AssemblyInfoInputs.cache
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.AssemblyInfo.cs
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.csproj.CoreCompileInputs.cache
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.dll
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.pdb
