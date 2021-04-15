@@ -4,12 +4,10 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #fff;
     text-align: left;
-
-    background: #0F2027; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    background: #202D3B;
 }
 
 .carousel-control-prev {
@@ -20,8 +18,147 @@
     margin-right: -100px;
 }
 
-.navbar {
-    background: #0F2027; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.navbar-light {
+    background: #1A232B;
 }
+
+.footer {
+    position: absolute;
+    background: #1A232B;
+}
+
+.navbar-brand {
+    color: white !important
+}
+
+.carousel-inner .carousel-item > img {
+    -webkit-animation: zoom 20s;
+    -o-animation: zoom 20s;
+    animation: zoom 20s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(1, 1);
+    }
+
+    to {
+        -webkit-transform: scale(1.15, 1.15);
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(1, 1);
+    }
+
+    to {
+        transform: scale(1.15, 1.15);
+    }
+}
+
+
+nav a {
+    transition: 0.3s ease;
+    color: white;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+    .dropdown-submenu:hover > a:after {
+        border-left-color: #fff;
+    }
+
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+
+
+/* The sidebar menu */
+/*.sidenav {
+    height: 100%;*/ /* Full-height: remove this if you want "auto" height */
+    /*width: 160px;*/ /* Set the width of the sidebar */
+    /*position: fixed;*/ /* Fixed Sidebar (stay in place on scroll) */
+    /*z-index: 1;*/ /* Stay on top */
+    /*top: 60px;*/ /* Stay at the top */
+    /*bottom: 100px;
+    left: 0;
+    background-color: #202D3B;
+    overflow-x: hidden;*/ /* Disable horizontal scroll */
+    /*padding-top: 20px;
+}*/
+
+    /* The navigation menu links */
+    /*.sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }*/
+
+        /* When you mouse over the navigation links, change their color */
+        /*.sidenav a:hover {
+            color: #f1f1f1;
+        }*/
+
+/* Style page content */
+/*.main {
+    margin-left: 160px;*/ /* Same as the width of the sidebar */
+    /*padding: 0px 10px;
+}*/
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+/*@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}*/
+
