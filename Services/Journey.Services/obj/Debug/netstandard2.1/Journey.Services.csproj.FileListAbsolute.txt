@@ -1,6 +1,7 @@
 D:\Journey\Services\Journey.Services\bin\Debug\netstandard2.1\Journey.Services.deps.json
 D:\Journey\Services\Journey.Services\bin\Debug\netstandard2.1\Journey.Services.dll
 D:\Journey\Services\Journey.Services\bin\Debug\netstandard2.1\Journey.Services.pdb
+D:\Journey\Services\Journey.Services\obj\Debug\netstandard2.1\Journey.Services.csprojAssemblyReference.cache
 D:\Journey\Services\Journey.Services\obj\Debug\netstandard2.1\Journey.Services.AssemblyInfoInputs.cache
 D:\Journey\Services\Journey.Services\obj\Debug\netstandard2.1\Journey.Services.AssemblyInfo.cs
 D:\Journey\Services\Journey.Services\obj\Debug\netstandard2.1\Journey.Services.csproj.CoreCompileInputs.cache

@@ -1,2 +1,0 @@
-# Journey
- Game Store
