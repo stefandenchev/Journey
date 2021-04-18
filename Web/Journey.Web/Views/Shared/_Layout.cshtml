@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 
+    <link rel="stylesheet" href="~/assets/css/godlike.css">
+
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
 </head>
@@ -30,6 +32,16 @@
                     <partial name="_LoginPartial" />
 
                     @*search bar here*@
+                    <div class="nk-widget">
+                        <div class="container">
+                            <form action="" class="nk-form nk-form-style-1" novalidate="novalidate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
+                                    <label for="searchInput"><i class="ion-ios-search"></i></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                     <ul class="navbar-nav flex-grow-1">
 
@@ -56,20 +68,20 @@
                                         <li><a class="dropdown-item" href="#">Others</a></li>
 
                                         @*
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>*@
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                </ul>
+                            </li>*@
 
 
 
@@ -108,12 +120,15 @@
         </div>
     </footer>
 
+
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    
 
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>

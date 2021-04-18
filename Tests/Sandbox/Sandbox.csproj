@@ -36,7 +36,6 @@
     <ProjectReference Include="..\..\Journey.Common\Journey.Common.csproj" />
     <ProjectReference Include="..\..\Data\Journey.Data.Common\Journey.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Journey.Data.Models\Journey.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Data\Journey.Data\Journey.Data.csproj" />
     <ProjectReference Include="..\..\Services\Journey.Services.Data\Journey.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\Journey.Services.Mapping\Journey.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\Journey.Services.Messaging\Journey.Services.Messaging.csproj" />
