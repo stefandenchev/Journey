@@ -2,14 +2,14 @@
 {
     using System.Collections.Generic;
 
-    public class Genre
+    using Journey.Data.Common.Models;
+
+    public class Genre : BaseDeletableModel<int>
     {
         public Genre()
         {
             this.Games = new HashSet<Game>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

@@ -525,7 +525,14 @@
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj": {
+                "projectPath": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj"
+              },
+              "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj": {
+                "projectPath": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -538,6 +545,10 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.15.0, )"
+            },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
               "suppressParent": "All",

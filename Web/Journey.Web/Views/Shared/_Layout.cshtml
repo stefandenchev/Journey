@@ -17,8 +17,6 @@
 
     <header>
 
-
-
         <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand mb-0 h1" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
@@ -91,7 +89,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -103,13 +101,12 @@
 
     </header>
 
-    <div class="container">
+    <div class="container-fluid">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
-
 
 
 

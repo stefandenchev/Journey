@@ -24,13 +24,23 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
-
         public DbSet<Game> Games { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
         public DbSet<Publisher> Publishers { get; set; }
+
+        public DbSet<Language> Languages { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<Video> Videos { get; set; }
+
+        public DbSet<GameLanguage> GamesLanguages { get; set; }
+
+        public DbSet<GameTag> GamesTags { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -79,6 +89,11 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
+            builder.Entity<Game>()
+              .HasOne(g => g.Video)
+              .WithOne(i => i.Game)
+              .HasForeignKey<Video>(x => x.Id);
+
             builder.HasDefaultSchema("17114092");
         }
 
@@ -103,13 +118,13 @@
             foreach (var entry in changedEntries)
             {
                 var entity = (IAuditInfo)entry.Entity;
-                if (entry.State == EntityState.Added && entity.CreatedOn == default)
+                if (entry.State == EntityState.Added && entity.CreatedOn_17114092 == default)
                 {
-                    entity.CreatedOn = DateTime.UtcNow;
+                    entity.CreatedOn_17114092 = DateTime.UtcNow;
                 }
                 else
                 {
-                    entity.ModifiedOn = DateTime.UtcNow;
+                    entity.ModifiedOn_17114092 = DateTime.UtcNow;
                 }
             }
         }

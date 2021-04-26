@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\Journey.Services.Mapping\Journey.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
+
 </Project>

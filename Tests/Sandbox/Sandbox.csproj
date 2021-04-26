@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Journey.Data\Journey.Data.csproj" />
     <ProjectReference Include="..\..\Journey.Common\Journey.Common.csproj" />
     <ProjectReference Include="..\..\Data\Journey.Data.Common\Journey.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Journey.Data.Models\Journey.Data.Models.csproj" />

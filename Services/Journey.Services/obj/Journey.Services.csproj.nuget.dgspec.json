@@ -4,14 +4,14 @@
     "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj": {}
   },
   "projects": {
-    "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj": {
+    "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj",
-        "projectName": "Journey.Services",
-        "projectPath": "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj",
+        "projectUniqueName": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj",
+        "projectName": "Journey.Data.Common",
+        "projectPath": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj",
         "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
-        "outputPath": "D:\\Journey\\Services\\Journey.Services\\obj\\",
+        "outputPath": "D:\\Journey\\Data\\Journey.Data.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,153 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.312, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj",
+        "projectName": "Journey.Data.Models",
+        "projectPath": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj",
+        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Journey\\Data\\Journey.Data.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj": {
+                "projectPath": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.312, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj",
+        "projectName": "Journey.Services",
+        "projectPath": "D:\\Journey\\Services\\Journey.Services\\Journey.Services.csproj",
+        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Journey\\Services\\Journey.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj": {
+                "projectPath": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj"
+              },
+              "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj": {
+                "projectPath": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.15.0, )"
+            },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
               "suppressParent": "All",
