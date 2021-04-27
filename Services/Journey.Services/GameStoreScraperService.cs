@@ -15,6 +15,7 @@
     using Journey.Data.Models;
     using Journey.Services.Models;
 
+    // ACTUAL ABOMINATION, SCROLL AT YOUR OWN PERIL
     public class GameStoreScraperService : IGameStoreScraperService
     {
         private readonly IConfiguration config;
@@ -28,6 +29,7 @@
         private readonly IRepository<GameLanguage> gamesLanguagesRepository;
         private readonly IRepository<GameTag> gamesTagsRepository;
         private readonly IRepository<Image> imagesRepository;
+        private readonly IRepository<GameGenre> gamesGenresRepository;
 
         public GameStoreScraperService(
             IDeletableEntityRepository<Genre> genresRepository,
@@ -37,7 +39,8 @@
             IDeletableEntityRepository<Game> gamesRepository,
             IRepository<GameLanguage> gamesLanguagesRepository,
             IRepository<GameTag> gamesTagsRepository,
-            IRepository<Image> imagesRepository)
+            IRepository<Image> imagesRepository,
+            IRepository<GameGenre> gamesGenresRepository)
         {
             this.genresRepository = genresRepository;
             this.tagsRepository = tagsRepository;
@@ -47,6 +50,7 @@
             this.gamesLanguagesRepository = gamesLanguagesRepository;
             this.gamesTagsRepository = gamesTagsRepository;
             this.imagesRepository = imagesRepository;
+            this.gamesGenresRepository = gamesGenresRepository;
 
             this.config = Configuration.Default.WithDefaultLoader();
             this.context = BrowsingContext.New(this.config);
@@ -56,19 +60,19 @@
         {
             var concurrentBag = new ConcurrentBag<GameStoreDto>();
 
-/*            Parallel.For(1000, count, (i) =>
-            {
-                try
-                {
-                    var game = this.GetGame(i);
-                    concurrentBag.Add(game);
-                }
-                catch
-                {
-                }
-            });*/
+            /*            Parallel.For(6700, count, (i) =>
+                        {
+                            try
+                            {
+                                var game = this.GetGame(i);
+                                concurrentBag.Add(game);
+                            }
+                            catch
+                            {
+                            }
+                        });*/
 
-            for (int i = 6700; i < 6700 + count; i++)
+            for (int i = 1; i < count; i++)
             {
                 try
                 {
@@ -82,7 +86,6 @@
 
             foreach (var game in concurrentBag)
             {
-                var genreId = await this.GetOrCreateGenreAsync(game.Genre);
                 var publisherId = await this.GetOrCreatePublisherAsync(game.Publisher);
 
                 var gameExists = this.gamesRepository
@@ -98,7 +101,6 @@
                 {
                     Title = game.Title,
                     Description = game.Description,
-                    GenreId = genreId,
                     PublisherId = publisherId,
                     ReleaseDate = DateTime.ParseExact(game.ReleaseDate, "M/d/yyyy", CultureInfo.InvariantCulture),
                     Drm = game.Drm,
@@ -113,11 +115,25 @@
                 var image = new Image
                 {
                     GameId = newGame.Id,
-                    OriginalUrl = this.mainImage.OriginalUrl,
+                    OriginalUrl = game.Images[0].OriginalUrl,
                 };
 
                 await this.imagesRepository.AddAsync(image);
                 await this.imagesRepository.SaveChangesAsync();
+
+                foreach (var item in game.Genres)
+                {
+                    var genreId = await this.GetOrGenreAsync(item.Name);
+
+                    var gameGenre = new GameGenre
+                    {
+                        GameId = newGame.Id,
+                        GenreId = genreId,
+                    };
+
+                    await this.gamesGenresRepository.AddAsync(gameGenre);
+                    await this.gamesGenresRepository.SaveChangesAsync();
+                }
 
                 foreach (var item in game.Languages)
                 {
@@ -146,7 +162,6 @@
                     await this.gamesTagsRepository.AddAsync(gameTag);
                     await this.gamesTagsRepository.SaveChangesAsync();
                 }
-
             }
         }
 
@@ -210,7 +225,7 @@
             return publisher.Id;
         }
 
-        private async Task<int> GetOrCreateGenreAsync(string genreName)
+        private async Task<int> GetOrGenreAsync(string genreName)
         {
             var genre = this.genresRepository
                 .AllAsNoTracking()
@@ -218,7 +233,7 @@
 
             if (genre == null)
             {
-                genre = new Genre()
+                genre = new Genre
                 {
                     Name = genreName,
                 };
@@ -229,8 +244,6 @@
 
             return genre.Id;
         }
-
-        Image mainImage = new Image();
 
         private GameStoreDto GetGame(int id)
         {
@@ -243,8 +256,9 @@
                 || document.DocumentElement.OuterHtml.Contains("Product Discontinued")
                 || document.DocumentElement.OuterHtml.Contains("Featured & Specials")
                 || document.DocumentElement.InnerHtml.Contains(".local-player > source")
-                || document.DocumentElement.OuterHtml.Contains("DLC")
-                || document.DocumentElement.OuterHtml.Contains("Genres"))
+                || document.DocumentElement.InnerHtml.Contains("Partial Nudity")
+                || document.DocumentElement.InnerHtml.Contains("Sexual Themes")
+                || document.DocumentElement.OuterHtml.Contains("DLC"))
             {
                 throw new InvalidOperationException();
             }
@@ -252,6 +266,7 @@
             var game = new GameStoreDto();
 
             game.Images = new List<Image>();
+            game.Genres = new List<Genre>();
 
             // NAME
             var name = document.QuerySelectorAll("#core-guts-title");
@@ -270,11 +285,41 @@
             game.ReleaseDate = actualDate;
 
             // GENRE
-            var actualGenre = detailElements[1].TextContent[5..];
-            game.Genre = actualGenre;
+            var genreRow = detailElements[1].TextContent;
+
+            string actualGenre = null;
+            string[] actualGenres = null;
+
+            if (genreRow.Contains(","))
+            {
+                actualGenres = detailElements[1].TextContent[6..].Split(", ", StringSplitOptions.RemoveEmptyEntries);
+                foreach (var currentGenre in actualGenres)
+                {
+                    Genre genre = new Genre
+                    {
+                        Name = currentGenre,
+                    };
+
+                    game.Genres.Add(genre);
+                }
+            }
+            else
+            {
+                actualGenre = detailElements[1].TextContent[5..];
+                Genre genre = new Genre
+                {
+                    Name = actualGenre,
+                };
+                game.Genres.Add(genre);
+            }
 
             // PUBLISHER
             var actualPublisher = detailElements[2].TextContent[9..];
+            if (actualPublisher == string.Empty)
+            {
+                throw new InvalidOperationException();
+            }
+
             game.Publisher = actualPublisher;
 
             // DRM
@@ -299,11 +344,19 @@
                 }
             }
 
-            // LANGUAGES
             var actualLanguages = detailElements[5].TextContent[9..].Split();
 
             foreach (var lang in actualLanguages)
             {
+                if (lang == string.Empty || lang == "-"
+                    || lang == "Portuguese-Braazil" || lang == "Russina"
+                    || lang.Contains("Traditional") || lang.Contains("all")
+                    || lang.Contains("rights") || lang.Contains("reserved")
+                    || lang == "Simplified")
+                {
+                    continue;
+                }
+
                 game.Languages.Add(lang);
             }
 
@@ -339,12 +392,14 @@
             // IMAGE
             var main = document.QuerySelector("#detail-badge > div.boxhole.img16x9 > img").GetAttribute("src");
 
-            this.mainImage.OriginalUrl = "https://www.wingamestore.com" + main;
+            Image image = new Image
+            {
+                OriginalUrl = "https://www.wingamestore.com" + main,
+            };
 
-            game.Images.Add(this.mainImage);
+            game.Images.Add(image);
 
             return game;
-
         }
     }
 }

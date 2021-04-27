@@ -16,11 +16,11 @@
 
         public string Description { get; set; }
 
-        public string Genre { get; set; }
-
         public string Publisher { get; set; }
 
         public string ReleaseDate { get; set; }
+
+        public List<Genre> Genres { get; set; }
 
         public List<string> Languages { get; set; }
 

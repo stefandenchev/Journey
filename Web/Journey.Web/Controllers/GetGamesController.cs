@@ -21,10 +21,9 @@
 
         public async Task<IActionResult> Add()
         {
-            await this.gameStoreScraperService.PopulateDbAsync(100);
+            await this.gameStoreScraperService.PopulateDbAsync(12500);
 
             return this.View();
         }
-
     }
 }
