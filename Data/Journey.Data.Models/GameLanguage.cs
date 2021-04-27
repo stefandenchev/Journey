@@ -2,10 +2,8 @@
 {
     using Journey.Data.Common.Models;
 
-    public class GameLanguage
+    public class GameLanguage : BaseModel<int>
     {
-        public int Id { get; set; }
-
         public int GameId { get; set; }
 
         public virtual Game Game { get; set; }

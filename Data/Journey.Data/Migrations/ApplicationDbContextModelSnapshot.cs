@@ -205,11 +205,17 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -227,11 +233,17 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -249,8 +261,14 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
@@ -344,6 +362,27 @@ namespace Journey.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("DateOfChange_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OperationType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TableName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs_17114092");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>

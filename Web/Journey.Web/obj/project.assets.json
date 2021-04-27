@@ -3006,7 +3006,8 @@
         "dependencies": {
           "Journey.Data.Common": "1.0.0",
           "Journey.Data.Models": "1.0.0",
-          "Journey.Services.Mapping": "1.0.0"
+          "Journey.Services.Mapping": "1.0.0",
+          "Journey.Web.ViewModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Journey.Services.Data.dll": {}

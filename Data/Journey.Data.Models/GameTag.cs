@@ -2,10 +2,8 @@
 {
     using Journey.Data.Common.Models;
 
-    public class GameTag
+    public class GameTag : BaseModel<int>
     {
-        public int Id { get; set; }
-
         public int GameId { get; set; }
 
         public Game Game { get; set; }

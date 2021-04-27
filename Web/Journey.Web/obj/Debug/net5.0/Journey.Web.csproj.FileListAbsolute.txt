@@ -463,6 +463,7 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.dll
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\ref\Journey.Web.dll
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.pdb
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.genruntimeconfig.cache
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Game\GameDetails.cshtml.g.cs
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\AngleSharp.dll
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\GetGames\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\GameDetails.cshtml.g.cs

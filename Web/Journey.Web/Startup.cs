@@ -9,6 +9,7 @@
     using Journey.Data.Repositories;
     using Journey.Data.Seeding;
     using Journey.Services;
+    using Journey.Services.Data;
     using Journey.Services.Mapping;
     using Journey.Services.Messaging;
     using Journey.Web.ViewModels;
@@ -65,6 +66,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IGameStoreScraperService, GameStoreScraperService>();
+            services.AddTransient<IGamesService, GamesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

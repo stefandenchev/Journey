@@ -382,6 +382,20 @@
         "runtime": {
           "bin/placeholder/Journey.Services.Mapping.dll": {}
         }
+      },
+      "Journey.Web.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Journey.Data.Models": "1.0.0",
+          "Journey.Services.Mapping": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Journey.Web.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Journey.Web.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -1190,6 +1204,11 @@
       "type": "project",
       "path": "../Journey.Services.Mapping/Journey.Services.Mapping.csproj",
       "msbuildProject": "../Journey.Services.Mapping/Journey.Services.Mapping.csproj"
+    },
+    "Journey.Web.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../../Web/Journey.Web.ViewModels/Journey.Web.ViewModels.csproj",
+      "msbuildProject": "../../Web/Journey.Web.ViewModels/Journey.Web.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1197,6 +1216,7 @@
       "Journey.Data.Common >= 1.0.0",
       "Journey.Data.Models >= 1.0.0",
       "Journey.Services.Mapping >= 1.0.0",
+      "Journey.Web.ViewModels >= 1.0.0",
       "StyleCop.Analyzers >= 1.2.0-beta.312"
     ]
   },
@@ -1235,6 +1255,9 @@
             },
             "D:\\Journey\\Services\\Journey.Services.Mapping\\Journey.Services.Mapping.csproj": {
               "projectPath": "D:\\Journey\\Services\\Journey.Services.Mapping\\Journey.Services.Mapping.csproj"
+            },
+            "D:\\Journey\\Web\\Journey.Web.ViewModels\\Journey.Web.ViewModels.csproj": {
+              "projectPath": "D:\\Journey\\Web\\Journey.Web.ViewModels\\Journey.Web.ViewModels.csproj"
             }
           }
         }

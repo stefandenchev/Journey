@@ -44,6 +44,8 @@
 
         public DbSet<GameGenre> GamesGenres { get; set; }
 
+        public DbSet<Log> Logs_17114092 { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

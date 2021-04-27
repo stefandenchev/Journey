@@ -133,9 +133,16 @@ nk-widget{
     font-size: 1.8em;
     font-size: 1.7em;
     background: #37b549;
+    float: right !important;
 }
 
+.nk-image-box-title {
+    font-size: 1rem;
+}
 
+.badge bg-dark{
+    float: right !important;
+}
 
 /* The sidebar menu */
 /*.sidenav {

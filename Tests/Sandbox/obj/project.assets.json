@@ -1897,7 +1897,8 @@
         "dependencies": {
           "Journey.Data.Common": "1.0.0",
           "Journey.Data.Models": "1.0.0",
-          "Journey.Services.Mapping": "1.0.0"
+          "Journey.Services.Mapping": "1.0.0",
+          "Journey.Web.ViewModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Journey.Services.Data.dll": {}
@@ -1930,6 +1931,20 @@
         },
         "runtime": {
           "bin/placeholder/Journey.Services.Messaging.dll": {}
+        }
+      },
+      "Journey.Web.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Journey.Data.Models": "1.0.0",
+          "Journey.Services.Mapping": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Journey.Web.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Journey.Web.ViewModels.dll": {}
         }
       }
     }
@@ -6760,6 +6775,11 @@
       "type": "project",
       "path": "../../Services/Journey.Services.Messaging/Journey.Services.Messaging.csproj",
       "msbuildProject": "../../Services/Journey.Services.Messaging/Journey.Services.Messaging.csproj"
+    },
+    "Journey.Web.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../../Web/Journey.Web.ViewModels/Journey.Web.ViewModels.csproj",
+      "msbuildProject": "../../Web/Journey.Web.ViewModels/Journey.Web.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {

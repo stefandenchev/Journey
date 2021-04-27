@@ -60,7 +60,7 @@
         {
             var concurrentBag = new ConcurrentBag<GameStoreDto>();
 
-            /*            Parallel.For(6700, count, (i) =>
+            /*Parallel.For(6700, count, (i) =>
                         {
                             try
                             {
@@ -70,7 +70,7 @@
                             catch
                             {
                             }
-                        });*/
+             });*/
 
             for (int i = 1; i < count; i++)
             {

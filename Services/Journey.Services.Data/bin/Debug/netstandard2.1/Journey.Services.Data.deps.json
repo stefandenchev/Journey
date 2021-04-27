@@ -12,6 +12,7 @@
           "Journey.Data.Common": "1.0.0",
           "Journey.Data.Models": "1.0.0",
           "Journey.Services.Mapping": "1.0.0",
+          "Journey.Web.ViewModels": "1.0.0",
           "StyleCop.Analyzers": "1.2.0-beta.312"
         },
         "runtime": {
@@ -338,6 +339,15 @@
         "runtime": {
           "Journey.Services.Mapping.dll": {}
         }
+      },
+      "Journey.Web.ViewModels/1.0.0": {
+        "dependencies": {
+          "Journey.Data.Models": "1.0.0",
+          "Journey.Services.Mapping": "1.0.0"
+        },
+        "runtime": {
+          "Journey.Web.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -568,6 +578,11 @@
       "sha512": ""
     },
     "Journey.Services.Mapping/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Journey.Web.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

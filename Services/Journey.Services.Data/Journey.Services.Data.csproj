@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Journey.Data.Common\Journey.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Journey.Data.Models\Journey.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\Journey.Web.ViewModels\Journey.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Journey.Services.Mapping\Journey.Services.Mapping.csproj" />
   </ItemGroup>
 
