@@ -20,12 +20,20 @@
             this.gamesService = gamesService;
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
+            const int itemsPerPage = 12;
             var viewModel = new GamesListViewModel
             {
+                ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Games = this.gamesService.GetAll(id, 12),
+                GamesCount = this.gamesService.GetCount(),
+                Games = this.gamesService.GetAll<GameInListViewModel>(id, 12),
             };
 
             return this.View(viewModel);

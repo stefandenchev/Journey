@@ -1,10 +1,40 @@
 ﻿@model GamesListViewModel
 @{
-    this.ViewData["Title"] = "All Games";
+    this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber;
 }
 
 <div class="nk-gap-1"></div>
 <h1>All Games</h1>
+
+<div class="nk-pagination nk-pagination-center">
+    <a asp-action="All" asp-route-id="@Model.PreviousPageNumber" class="nk-pagination-prev @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
+        <span class="nk-icon-arrow-left"></span>
+    </a>
+    <nav>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <a asp-action="All" asp-route-id="@i">@i</a>
+            }
+        }
+
+        <a class="nk-pagination-current-white" href="#">@Model.PageNumber</a>
+
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <a asp-action="All" asp-route-id="@i">@i</a>
+            }
+        }
+
+    </nav>
+    <a asp-action="All" asp-route-id="@Model.NextPageNumber" class="nk-pagination-next @if (!Model.HasNextPage) { <text>disabled</text> } ">
+        <span class="nk-icon-arrow-right"></span>
+    </a>
+</div>
+
 <hr />
 
 <div class="container">
@@ -16,10 +46,10 @@
             <div class="col-md-6 col-lg-4">
                 <div class="nk-image-box-3">
                     <a href="#" class="nk-image-box-link"></a>
-                    <img src="@game.ImageUrl" data-from='1.1' alt="">
+                    <img src="@game.ImageUrl" data-from='1.1' alt="...">
                     <div class="nk-image-box-overlay nk-image-box-bottom">
                         <div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -33,15 +63,6 @@
     </div>
 </div>
 
-<div class="nk-gap-3"></div>
-
-
-<div class="nk-pagination nk-pagination-center">
-    <nav>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a class="nk-pagination-current-white" href="#">3</a>
-        <a href="#">4</a>
-    </nav>
-</div>
-
+<div class="nk-gap-1"></div>
+<hr />
+<partial name="_PagingPartial" model="@Model" />

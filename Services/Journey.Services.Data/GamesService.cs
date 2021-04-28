@@ -5,6 +5,7 @@
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
+    using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
 
     public class GamesService : IGamesService
@@ -16,21 +17,21 @@
             this.gamesRepository = gamesRepository;
         }
 
-        public IEnumerable<GameInListViewModel> GetAll(int page, int itemsPerPage = 12)
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
             var games = this.gamesRepository.AllAsNoTracking()
-                .OrderByDescending(x => x.Id)
+                .OrderBy(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(x => new GameInListViewModel
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Price = x.Price,
-                    ImageUrl = x.Images.FirstOrDefault().OriginalUrl,
-                }).ToList();
+                .To<T>()
+                .ToList();
 
             return games;
+        }
+
+        public int GetCount()
+        {
+            return this.gamesRepository.All().Count();
         }
     }
 }
