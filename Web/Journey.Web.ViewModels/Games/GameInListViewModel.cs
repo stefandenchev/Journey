@@ -20,7 +20,8 @@
         {
             configuration.CreateMap<Game, GameInListViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
-                opt.MapFrom(x => x.Images.FirstOrDefault().OriginalUrl));
+                opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots"))
+                .OriginalUrl));
         }
     }
 }

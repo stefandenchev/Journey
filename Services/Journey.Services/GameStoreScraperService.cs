@@ -112,14 +112,17 @@
                 await this.gamesRepository.AddAsync(newGame);
                 await this.gamesRepository.SaveChangesAsync();
 
-                var image = new Image
+                foreach (var currentImage in game.Images)
                 {
-                    GameId = newGame.Id,
-                    OriginalUrl = game.Images[0].OriginalUrl,
-                };
+                    var image = new Image
+                    {
+                        GameId = newGame.Id,
+                        OriginalUrl = currentImage.OriginalUrl,
+                    };
 
-                await this.imagesRepository.AddAsync(image);
-                await this.imagesRepository.SaveChangesAsync();
+                    await this.imagesRepository.AddAsync(image);
+                    await this.imagesRepository.SaveChangesAsync();
+                }
 
                 foreach (var item in game.Genres)
                 {
@@ -163,6 +166,26 @@
                     await this.gamesTagsRepository.SaveChangesAsync();
                 }
             }
+        }
+
+        private async Task<string> GetOrCreateImageAsync(string imageUrl)
+        {
+            var image = this.imagesRepository
+                .AllAsNoTracking()
+                .FirstOrDefault(x => x.OriginalUrl == imageUrl);
+
+            if (image == null)
+            {
+                image = new Image
+                {
+                    OriginalUrl = imageUrl,
+                };
+
+                await this.imagesRepository.AddAsync(image);
+                await this.imagesRepository.SaveChangesAsync();
+            }
+
+            return image.OriginalUrl;
         }
 
         private async Task<int> GetOrCreateLanguageAsync(string languageName)
@@ -389,7 +412,7 @@
             // URL
             game.OriginalUrl = $"https://www.wingamestore.com/product/{id}";
 
-            // IMAGE
+            // MAIN IMAGE
             var main = document.QuerySelector("#detail-badge > div.boxhole.img16x9 > img").GetAttribute("src");
 
             Image image = new Image
@@ -398,6 +421,23 @@
             };
 
             game.Images.Add(image);
+
+            // IMAGES
+            var images = document.QuerySelectorAll("#roundabout > li > a > img");
+
+            string imageResult = null;
+
+            foreach (var item in images)
+            {
+                imageResult = item.GetAttribute("src");
+
+                Image image2 = new Image
+                {
+                    OriginalUrl = "https://www.wingamestore.com" + imageResult,
+                };
+
+                game.Images.Add(image2);
+            }
 
             return game;
         }

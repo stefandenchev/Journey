@@ -29,6 +29,15 @@
             return games;
         }
 
+        public T GetById<T>(int id)
+        {
+            var game = this.gamesRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+
+            return game;
+        }
+
         public int GetCount()
         {
             return this.gamesRepository.All().Count();

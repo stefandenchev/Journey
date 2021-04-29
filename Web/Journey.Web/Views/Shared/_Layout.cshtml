@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 
-    <link rel="stylesheet" href="~/assets/css/godlike.css">
+    <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
 
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
@@ -121,13 +121,12 @@
     }
 
 
-
-
-    <footer class="footer text-muted">
+    <footer class="footer">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

@@ -5,6 +5,7 @@
     using Journey.Data;
     using Journey.Services.Data;
     using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Games;
     using Microsoft.AspNetCore.Mvc;
 
     public class GamesController : Controller
@@ -37,6 +38,13 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var game = this.gamesService.GetById<SingleGameViewModel>(id);
+
+            return this.View(game);
         }
     }
 }

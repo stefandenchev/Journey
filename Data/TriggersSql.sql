@@ -14,6 +14,13 @@ AS
 	SELECT 'Games', 'INSERT', GETDATE() FROM inserted i
 GO
 
+CREATE TRIGGER tr_OnGameDeleteAddLogRecord
+ON [17114092].Games FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Games', 'DELETE', GETDATE() FROM deleted d
+GO
+
 -- GENRE
 CREATE TRIGGER tr_OnGenreUpdateAddLogRecord
 ON [17114092].Genres FOR UPDATE
@@ -28,6 +35,13 @@ ON [17114092].Genres FOR INSERT
 AS
 	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
 	SELECT 'Genres', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnGenreDeleteAddLogRecord
+ON [17114092].Genres FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Genres', 'DELETE', GETDATE() FROM deleted d
 GO
 
 -- LANGUAGE
@@ -46,6 +60,13 @@ AS
 	SELECT 'Languages', 'INSERT', GETDATE() FROM inserted i
 GO
 
+CREATE TRIGGER tr_OnLanguageDeleteAddLogRecord
+ON [17114092].Languages FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Languages', 'DELETE', GETDATE() FROM deleted d
+GO
+
 -- TAG
 CREATE TRIGGER tr_OnTagUpdateAddLogRecord
 ON [17114092].Tags FOR UPDATE
@@ -60,6 +81,13 @@ ON [17114092].Tags FOR INSERT
 AS
 	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
 	SELECT 'Tags', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnTagDeleteAddLogRecord
+ON [17114092].Tags FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Tags', 'DELETE', GETDATE() FROM deleted d
 GO
 
 -- PUBLISHER
@@ -78,6 +106,13 @@ AS
 	SELECT 'Publishers', 'INSERT', GETDATE() FROM inserted i
 GO
 
+CREATE TRIGGER tr_OnPublisherDeleteAddLogRecord
+ON [17114092].Publishers FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Publishers', 'DELETE', GETDATE() FROM deleted d
+GO
+
 -- GAMEGENRE
 CREATE TRIGGER tr_OnGameGenreUpdateAddLogRecord
 ON [17114092].GamesGenres FOR UPDATE
@@ -92,6 +127,13 @@ ON [17114092].GamesGenres FOR INSERT
 AS
 	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
 	SELECT 'GamesGenres', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnGameGenreDeleteAddLogRecord
+ON [17114092].GamesGenres FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'GamesGenres', 'DELETE', GETDATE() FROM deleted d
 GO
 
 -- GAMELANGUAGE
@@ -110,6 +152,13 @@ AS
 	SELECT 'GamesLanguages', 'INSERT', GETDATE() FROM inserted i
 GO
 
+CREATE TRIGGER tr_OnGameLanguageDeleteAddLogRecord
+ON [17114092].GamesLanguages FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'GamesLanguages', 'DELETE', GETDATE() FROM deleted d
+GO
+
 -- GAMETAG
 CREATE TRIGGER tr_OnGameTagUpdateAddLogRecord
 ON [17114092].GamesTags FOR UPDATE
@@ -124,4 +173,34 @@ ON [17114092].GamesTags FOR INSERT
 AS
 	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
 	SELECT 'GamesTags', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnGameTagDeleteAddLogRecord
+ON [17114092].GamesTags FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'GamesTags', 'DELETE', GETDATE() FROM deleted d
+GO
+
+-- IMAGE
+CREATE TRIGGER tr_OnImageUpdateAddLogRecord
+ON [17114092].Images FOR UPDATE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Images', 'UPDATE', GETDATE() FROM inserted i
+		JOIN deleted d ON i.Id = d.Id
+GO
+
+CREATE TRIGGER tr_OnImageInsertAddLogRecord
+ON [17114092].Images FOR INSERT
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Images', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnImageDeleteAddLogRecord
+ON [17114092].Images FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Images', 'DELETE', GETDATE() FROM deleted d
 GO
