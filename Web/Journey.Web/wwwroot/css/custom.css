@@ -20,7 +20,7 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     background: rgba(0,0,0,0.1);
     border-radius: 3px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 1.1em;
+    font-size: 1.0em;
     color: #eee;
     height: 34px;
 }
@@ -188,8 +188,13 @@ nk-widget{
 }
 
 
+#requiretextssingle-win > tbody > tr > td > div {
+    white-space: pre-wrap;
+}
 
-
+body > header > nav > div > a.navbar-brand {
+    font-family: 'Zen Dots', cursive;
+}
 
 
 

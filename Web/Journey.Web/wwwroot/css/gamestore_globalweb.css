@@ -4580,7 +4580,7 @@ select {
     height: 26px;
     padding-top: 0;
     padding-bottom: 0;
-    font-size: 13px;
+    font-size: 1.0em;
 }
 
 .slimform textarea {
@@ -4616,7 +4616,7 @@ select {
     }
 
     .uniform input[type='text'], .uniform input[type='email'], .uniform input[type='password'], .uniform select, .uniform textarea {
-        width: 95%;
+        width: 100%;
     }
 
     .uniform input[type='password'] {
@@ -5435,7 +5435,7 @@ div.whereisit {
     width: 290px;
     width: 100%;
     padding-left: 10px;
-    font-size: 15px;
+    font-size: 1.0em;
     border-radius: 3px;
     background: rgba(255,255,255,0.9);
     color: #555;

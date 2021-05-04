@@ -9128,7 +9128,7 @@ select.form-control[multiple] option {
     display: inline-block;
     width: auto;
     padding: 11px 15px;
-    font-size: 1em;
+    font-size: 1.0em;
     font-weight: 400;
     line-height: 1.2;
     vertical-align: middle;
