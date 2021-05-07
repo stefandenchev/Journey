@@ -71,20 +71,20 @@
                                         <li><a class="dropdown-item" href="#">Others</a></li>
 
                                         @*
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>*@
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                            </ul>
+                        </li>*@
 
                                     </ul>
                                 </li>
@@ -98,10 +98,10 @@
                         </li>
 
                         @*@if (this.User.IsInRole())
-                            {*@
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Games" asp-action="Create">Add New Game</a>
-                        </li>
+                        {*@
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Games" asp-action="Create">Add New Game</a>
+                            </li>
                         @*}*@
 
 
@@ -112,7 +112,13 @@
 
     </header>
 
-    @if (this.Path.ToString().Contains("Identity"))
+@*    @if (ViewData["Title"].ToString().Contains("Home"))
+    {*@
+
+                @this.RenderBody()
+
+@*    }
+    else
     {
         <div class="container">
             <partial name="_CookieConsentPartial" />
@@ -120,19 +126,8 @@
                 @this.RenderBody()
             </main>
         </div>
-    }
-    else
-    {
+    }*@
 
-
-        <div class="container-fluid">
-            <partial name="_CookieConsentPartial" />
-            <main role="main" class="pb-3">
-                @this.RenderBody()
-            </main>
-        </div>
-
-    }
 
     <footer class="footer">
         <div class="container">
