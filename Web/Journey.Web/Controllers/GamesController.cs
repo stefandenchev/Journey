@@ -1,5 +1,8 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System.Linq;
+
+    using Journey.Data;
     using Journey.Services.Data;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
@@ -7,30 +10,15 @@
 
     public class GamesController : Controller
     {
+        private readonly ApplicationDbContext dbContext;
         private readonly IGamesService gamesService;
 
         public GamesController(
+            ApplicationDbContext dbContext,
             IGamesService gamesService)
         {
+            this.dbContext = dbContext;
             this.gamesService = gamesService;
-        }
-
-        public IActionResult Create()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(CreateGameInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            // Create recipe using service method
-            // Redirect to recipe info page
-            return this.Redirect("/");
         }
 
         public IActionResult All(int id = 1)

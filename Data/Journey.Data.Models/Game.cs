@@ -44,5 +44,7 @@
         public string RecommendedRequirements { get; set; }
 
         public decimal Price { get; set; }
+
+        public string OriginalUrl { get; set; }
     }
 }
