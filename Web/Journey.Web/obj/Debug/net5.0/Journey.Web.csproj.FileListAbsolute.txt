@@ -154,7 +154,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Data.DataSetExtensions.d
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Data.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Contracts.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Debug.dll
-D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.DiagnosticSource.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.EventLog.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.FileVersionInfo.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Process.dll
@@ -468,7 +467,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\GetGames\Index.cshtml.g.
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_PagingPartial.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\ById.cshtml.g.cs
-<<<<<<< HEAD
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\Create.cshtml.g.cs
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
@@ -944,13 +942,3 @@ C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\J
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\ref\Journey.Web.dll
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.pdb
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.genruntimeconfig.cache
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
-=======
->>>>>>> parent of 33d31a1 (Started on Adding a Game)

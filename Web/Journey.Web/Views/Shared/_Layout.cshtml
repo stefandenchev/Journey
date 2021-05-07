@@ -15,8 +15,7 @@
 
 
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
-
-
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -55,7 +54,7 @@
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/Games/All">All Games</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Games" asp-action="All">All Games</a></li>
                                 <li><a class="dropdown-item" href="#">Pre-Order</a></li>
 
                                 <li class="dropdown-divider"></li>
@@ -72,27 +71,24 @@
                                         <li><a class="dropdown-item" href="#">Others</a></li>
 
                                         @*
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>*@
-
-
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                            </ul>
+                        </li>*@
 
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
 
                         <li class="nav-item">
 
@@ -100,6 +96,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+                        @*@if (this.User.IsInRole())
+                        {*@
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Games" asp-action="Create">Add New Game</a>
+                            </li>
+                        @*}*@
+
+
                     </ul>
                 </div>
             </div>
@@ -107,15 +112,12 @@
 
     </header>
 
-    @if (ViewData["Title"].ToString() == "Home")
-    {
-        <div class="container-fluid">
-            <partial name="_CookieConsentPartial" />
-            <main role="main" class="pb-3">
+@*    @if (ViewData["Title"].ToString().Contains("Home"))
+    {*@
+
                 @this.RenderBody()
-            </main>
-        </div>
-    }
+
+@*    }
     else
     {
         <div class="container">
@@ -124,7 +126,7 @@
                 @this.RenderBody()
             </main>
         </div>
-    }
+    }*@
 
 
     <footer class="footer">
@@ -143,6 +145,8 @@
 
     <script src="~/assets/js/gamestore_globalweb.js"></script>
     <script src="~/assets/js/gamestore_subs_detail.js"></script>
+
+    <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
 
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>

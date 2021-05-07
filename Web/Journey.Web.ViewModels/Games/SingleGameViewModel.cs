@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
+
     using AutoMapper;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
@@ -44,6 +46,23 @@
                .ForMember(x => x.MainImage, opt =>
                opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots"))
                .OriginalUrl));
+        }
+
+        public string EditDescription(string description)
+        {
+            var regex = new Regex(@"(?s).*?[.?!](?:\s.*?[.?!]){0,2}");
+
+            var matches = regex.Matches(description);
+
+            StringBuilder sb = new();
+
+            foreach (var match in matches)
+            {
+                sb.AppendLine(match.ToString());
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
     }
 }
