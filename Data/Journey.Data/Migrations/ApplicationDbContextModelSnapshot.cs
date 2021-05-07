@@ -168,9 +168,6 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OriginalUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 

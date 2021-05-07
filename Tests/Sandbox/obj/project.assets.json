@@ -6802,7 +6802,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AORUS\\.nuget\\packages\\": {}
+    "C:\\Users\\Stormlight\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6810,11 +6810,11 @@
       "projectUniqueName": "D:\\Journey\\Tests\\Sandbox\\Sandbox.csproj",
       "projectName": "Sandbox",
       "projectPath": "D:\\Journey\\Tests\\Sandbox\\Sandbox.csproj",
-      "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
       "outputPath": "D:\\Journey\\Tests\\Sandbox\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

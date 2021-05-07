@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qCbzqVoK5xW/gsUfgCHPahtXIum9ogz6EuF6zE/abpLObzX2Tz553Zvl8vivawKqQraU67ZETFKwJ1DLOhpUUA==",
+  "dgSpecHash": "c0Tb9a9quwekKJHZqGzqy8z6gRU4XT3tZi0FZfamq9BDyyO8klJkWJCxmHligWbwX+ZF8Zq+kEvE8Kgeoqdo+g==",
   "success": true,
   "projectFilePath": "D:\\Journey\\Web\\Journey.Web.Infrastructure\\Journey.Web.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\AORUS\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
-    "C:\\Users\\AORUS\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512"
+    "C:\\Users\\Stormlight\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512"
   ],
   "logs": []
 }

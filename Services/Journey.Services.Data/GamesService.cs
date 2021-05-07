@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
@@ -20,7 +21,20 @@
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
             var games = this.gamesRepository.AllAsNoTracking()
-                .OrderBy(x => x.Id)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return games;
+        }
+
+        public IEnumerable<T> GetAllByPublisher<T>(int page, int publisherId, int itemsPerPage = 12)
+        {
+            var games = this.gamesRepository.AllAsNoTracking()
+                .Where(x => x.Publisher.Id == publisherId)
+                .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
@@ -42,10 +56,5 @@
         {
             return this.gamesRepository.All().Count();
         }
-
-/*        public string SplitRequirements()
-        {
-            var words = new List<string> { "falcon", "wood", "sky", "water" };
-        }*/
     }
 }

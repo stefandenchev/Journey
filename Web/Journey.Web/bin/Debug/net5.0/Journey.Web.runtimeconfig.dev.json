@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\AORUS\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\AORUS\\.nuget\\packages"
+      "C:\\Users\\Stormlight\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Stormlight\\.nuget\\packages"
     ]
   }
 }

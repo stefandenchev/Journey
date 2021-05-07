@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj",
         "projectName": "Journey.Data.Common",
         "projectPath": "D:\\Journey\\Data\\Journey.Data.Common\\Journey.Data.Common.csproj",
-        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
         "outputPath": "D:\\Journey\\Data\\Journey.Data.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,11 +76,11 @@
         "projectUniqueName": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj",
         "projectName": "Journey.Data.Models",
         "projectPath": "D:\\Journey\\Data\\Journey.Data.Models\\Journey.Data.Models.csproj",
-        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
         "outputPath": "D:\\Journey\\Data\\Journey.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -146,11 +146,11 @@
         "projectUniqueName": "D:\\Journey\\Services\\Journey.Services.Data\\Journey.Services.Data.csproj",
         "projectName": "Journey.Services.Data",
         "projectPath": "D:\\Journey\\Services\\Journey.Services.Data\\Journey.Services.Data.csproj",
-        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
         "outputPath": "D:\\Journey\\Services\\Journey.Services.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -221,11 +221,11 @@
         "projectUniqueName": "D:\\Journey\\Services\\Journey.Services.Mapping\\Journey.Services.Mapping.csproj",
         "projectName": "Journey.Services.Mapping",
         "projectPath": "D:\\Journey\\Services\\Journey.Services.Mapping\\Journey.Services.Mapping.csproj",
-        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
         "outputPath": "D:\\Journey\\Services\\Journey.Services.Mapping\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -287,11 +287,11 @@
         "projectUniqueName": "D:\\Journey\\Web\\Journey.Web.ViewModels\\Journey.Web.ViewModels.csproj",
         "projectName": "Journey.Web.ViewModels",
         "projectPath": "D:\\Journey\\Web\\Journey.Web.ViewModels\\Journey.Web.ViewModels.csproj",
-        "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
         "outputPath": "D:\\Journey\\Web\\Journey.Web.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

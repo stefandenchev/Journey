@@ -154,7 +154,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Data.DataSetExtensions.d
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Data.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Contracts.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Debug.dll
-D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.DiagnosticSource.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.EventLog.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.FileVersionInfo.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Diagnostics.Process.dll
@@ -468,3 +467,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\GetGames\Index.cshtml.g.
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_PagingPartial.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\ById.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\Create.cshtml.g.cs
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

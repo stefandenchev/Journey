@@ -8844,7 +8844,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AORUS\\.nuget\\packages\\": {}
+    "C:\\Users\\Stormlight\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -8852,11 +8852,11 @@
       "projectUniqueName": "D:\\Journey\\Tests\\Journey.Services.Data.Tests\\Journey.Services.Data.Tests.csproj",
       "projectName": "Journey.Services.Data.Tests",
       "projectPath": "D:\\Journey\\Tests\\Journey.Services.Data.Tests\\Journey.Services.Data.Tests.csproj",
-      "packagesPath": "C:\\Users\\AORUS\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Stormlight\\.nuget\\packages\\",
       "outputPath": "D:\\Journey\\Tests\\Journey.Services.Data.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\AORUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Stormlight\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
