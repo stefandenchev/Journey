@@ -470,3 +470,8 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\ById.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\Create.cshtml.g.cs
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
