@@ -1,12 +1,69 @@
-﻿@model Journey.Web.ViewModels.Games.CreateGameInputModel
+﻿@model Journey.Web.ViewModels.Games.Create.CreateGameInputModel
 
-<h1>Add new game</h1>
+@{ this.ViewData["Title"] = "Add New Game";
+    var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var languageItems = this.Model.LanguagesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var tagItems = this.Model.TagsItems.Select(x => new SelectListItem(x.Value, x.Key)); }
+
+<div class="col-md-6 offset-3">
+    <h1>@this.ViewData["Title"]</h1>
 
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="Title" ></label>
-        <label asp-for="Title" class ="form-control"></label>
-        <span asp-validation-for="Title"></span>
-    </div>
-</form>
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ReleaseDate"></label>
+            <input asp-for="ReleaseDate" class="form-control" value=0 />
+            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GenreId"></label>
+            <select asp-for="GenreId" class="form-control" asp-items="genreItems"></select>
+            <span asp-validation-for="GenreId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group-language">
+            <label asp-for="LanguagesItems"></label>
+            <select asp-for="LanguagesItems" class="form-control" asp-items="languageItems" rows="15"></select>
+            <span asp-validation-for="LanguagesItems" class="text-danger"></span>
+        </div>
+
+        <div class="form-group-tag">
+            <label asp-for="TagsItems"></label>
+            <select asp-for="TagsItems" class="form-control" asp-items="tagItems" rows="15"></select>
+            <span asp-validation-for="TagsItems" class="text-danger"></span>
+        </div>
+
+        @*        <div id="LanguagesContainer">
+            <label asp-for="Languages"></label>
+            <a class="btn btn-success" onclick="AddMoreLanguages()">+</a>
+        </div>*@
+
+        <input type="submit" class="btn btn-primary" />
+    </form>
+
+</div>
+
+@*@section Scripts{
+    <script>
+        var languageIndex = 0;
+        function AddMoreLanguages() {
+            $("#LanguagesContainer").append("<div class='form-control-language'>Name: <input type='text' name='Languages[" + languageIndex + "].Name' /></div>");
+            languageIndex++;
+        }
+    </script>
+}*@

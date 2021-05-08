@@ -35,7 +35,11 @@ body > div.container > main > div.container > div > div > div.card-body > h5 {
     text-overflow: ellipsis;
 }
 
-input.text, input[type='text'], input[type='email'], input[type='password'], input[type='file'], textarea {
+div.validation-summary-errors {
+    color: #d9534f
+}
+
+input.text, input[type='text'], input[type='email'], input[type='password'], input[type='file'], input[type='date'], textarea.form-control, .form-control {
     border: solid 1px rgba(255,255,255,0.1);
     padding: 5px 7px;
     background: rgba(0,0,0,0.1);
@@ -43,7 +47,23 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1.0em;
     color: #eee;
-    height: 34px;
+}
+
+#LanguagesItems, #TagsItems {
+    height: 105px;
+    margin-bottom: 15px;
+}
+
+#LanguagesContainer > label {
+    margin-bottom: 20px;
+}
+
+.btn.btn-primary {
+    margin-top: 20px;
+}
+
+div.form-control-language {
+    margin-bottom: 5px;
 }
 
 .carousel-control-prev {
@@ -227,50 +247,3 @@ body > header > nav > div > a.navbar-brand {
 #detail-main > h3 {
     margin: 0
 }
-
-
-
-/* The sidebar menu */
-/*.sidenav {
-    height: 100%;*/ /* Full-height: remove this if you want "auto" height */
-/*width: 160px;*/ /* Set the width of the sidebar */
-/*position: fixed;*/ /* Fixed Sidebar (stay in place on scroll) */
-/*z-index: 1;*/ /* Stay on top */
-/*top: 60px;*/ /* Stay at the top */
-/*bottom: 100px;
-    left: 0;
-    background-color: #202D3B;
-    overflow-x: hidden;*/ /* Disable horizontal scroll */
-/*padding-top: 20px;
-}*/
-
-/* The navigation menu links */
-/*.sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-    }*/
-
-/* When you mouse over the navigation links, change their color */
-/*.sidenav a:hover {
-            color: #f1f1f1;
-        }*/
-
-/* Style page content */
-/*.main {
-    margin-left: 160px;*/ /* Same as the width of the sidebar */
-/*padding: 0px 10px;
-}*/
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-/*@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-        .sidenav a {
-            font-size: 18px;
-        }
-}*/

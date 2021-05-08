@@ -67,6 +67,9 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IGameStoreScraperService, GameStoreScraperService>();
             services.AddTransient<IGamesService, GamesService>();
+            services.AddTransient<IGenresService, GenresService>();
+            services.AddTransient<ILanguagesService, LanguagesService>();
+            services.AddTransient<ITagsService, TagsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

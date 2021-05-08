@@ -942,3 +942,4 @@ C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\J
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\ref\Journey.Web.dll
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.pdb
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.genruntimeconfig.cache
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout - Identity.cshtml.g.cs

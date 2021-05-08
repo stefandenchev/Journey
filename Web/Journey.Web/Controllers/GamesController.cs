@@ -3,21 +3,36 @@
     using Journey.Services.Data;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
+    using Journey.Web.ViewModels.Games.Create;
     using Microsoft.AspNetCore.Mvc;
 
     public class GamesController : Controller
     {
         private readonly IGamesService gamesService;
+        private readonly IGenresService genresService;
+        private readonly ILanguagesService languagesService;
+        private readonly ITagsService tagsService;
 
         public GamesController(
-            IGamesService gamesService)
+            IGamesService gamesService,
+            IGenresService genresService,
+            ILanguagesService languagesService,
+            ITagsService tagsService)
         {
             this.gamesService = gamesService;
+            this.genresService = genresService;
+            this.languagesService = languagesService;
+            this.tagsService = tagsService;
         }
 
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new CreateGameInputModel();
+            viewModel.GenresItems = this.genresService.GetAllAsKeyValuePairs();
+            viewModel.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
+            viewModel.TagsItems = this.tagsService.GetAllAsKeyValuePairs();
+
+            return this.View(viewModel);
         }
 
         [HttpPost]
@@ -25,7 +40,8 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                input.GenresItems = this.genresService.GetAllAsKeyValuePairs();
+                return this.View(input);
             }
 
             // Create recipe using service method

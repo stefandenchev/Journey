@@ -9092,9 +9092,9 @@ input.form-control {
     height: auto;
 }
 
-select.form-control {
+/*select.form-control {
     padding: 6px 20px;
-}
+}*/
 
 select.form-control option {
     color: #000;

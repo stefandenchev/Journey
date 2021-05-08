@@ -43,9 +43,5 @@
             return this.gamesRepository.All().Count();
         }
 
-/*        public string SplitRequirements()
-        {
-            var words = new List<string> { "falcon", "wood", "sky", "water" };
-        }*/
     }
 }

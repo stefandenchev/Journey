@@ -3,6 +3,7 @@
     this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber;
 }
 
+<div class="container">
 <div class="nk-gap-1"></div>
 <h1>All Games</h1>
 
@@ -10,7 +11,6 @@
 
 <hr />
 
-<div class="container">
     <div class="row vertical-gap lg-gap">
 
         @foreach (var game in this.Model.Games)
