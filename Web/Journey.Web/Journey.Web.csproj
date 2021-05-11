@@ -53,4 +53,8 @@
     <ProjectReference Include="..\Journey.Web.Infrastructure\Journey.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Journey.Web.ViewModels\Journey.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\games\" />
+  </ItemGroup>
 </Project>

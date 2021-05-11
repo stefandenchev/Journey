@@ -20,15 +20,13 @@
 
         public string ReleaseDate { get; set; }
 
-        public List<Genre> Genres { get; set; }
+        public string Genre { get; set; }
 
         public List<string> Languages { get; set; }
 
         public List<string> Tags { get; set; }
 
         public List<Image> Images { get; set; }
-
-        public string Video { get; set; }
 
         public string Drm { get; set; }
 

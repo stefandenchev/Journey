@@ -1,16 +1,28 @@
 ﻿namespace Journey.Web.Controllers
 {
     using System.Diagnostics;
-
+    using Journey.Services.Data;
     using Journey.Web.ViewModels;
-
+    using Journey.Web.ViewModels.Games.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IGamesService gamesService;
+
+        public HomeController(IGamesService gamesService)
+        {
+            this.gamesService = gamesService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new LatestReleasesViewModel
+            {
+                Games = this.gamesService.GetLatest<GameInListViewModel>(),
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

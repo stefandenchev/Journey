@@ -113,29 +113,6 @@ AS
 	SELECT 'Publishers', 'DELETE', GETDATE() FROM deleted d
 GO
 
--- GAMEGENRE
-CREATE TRIGGER tr_OnGameGenreUpdateAddLogRecord
-ON [17114092].GamesGenres FOR UPDATE
-AS
-	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
-	SELECT 'GamesGenres', 'UPDATE', GETDATE() FROM inserted i
-		JOIN deleted d ON i.Id = d.Id
-GO
-
-CREATE TRIGGER tr_OnGameGenreInsertAddLogRecord
-ON [17114092].GamesGenres FOR INSERT
-AS
-	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
-	SELECT 'GamesGenres', 'INSERT', GETDATE() FROM inserted i
-GO
-
-CREATE TRIGGER tr_OnGameGenreDeleteAddLogRecord
-ON [17114092].GamesGenres FOR DELETE
-AS
-	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
-	SELECT 'GamesGenres', 'DELETE', GETDATE() FROM deleted d
-GO
-
 -- GAMELANGUAGE
 CREATE TRIGGER tr_OnGameLanguageUpdateAddLogRecord
 ON [17114092].GamesLanguages FOR UPDATE

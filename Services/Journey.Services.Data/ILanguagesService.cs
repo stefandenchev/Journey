@@ -4,6 +4,6 @@
 
     public interface ILanguagesService
     {
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }
 }

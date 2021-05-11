@@ -1,0 +1,24 @@
+﻿@model Journey.Web.ViewModels.Games.Home.LatestReleasesViewModel
+
+<h1 id="LatestGamesTitle">Latest Releases</h1>
+<hr />
+<div id="tile-view" class="blockcontent resp4">
+    <div id="tile-results">
+        <ul id="latest-releases" class="products">
+
+            @foreach (var game in this.Model.Games)
+            {
+
+<li class="product">
+    <div class="tilebox-main">
+        <span class="boxshot" title="@game.Title">
+            <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+        </span>
+        <a class="atitle" href="https://www.wingamestore.com/product/12085/The-Outer-Worlds-Peril-on-Gorgon-Epic/">@game.Title</a>
+        <div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" href="https://www.wingamestore.com/buy/12085/" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>
+    </div>
+</li>
+}
+        </ul>
+    </div>
+</div>

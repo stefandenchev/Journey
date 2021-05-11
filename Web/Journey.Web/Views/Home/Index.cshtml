@@ -1,7 +1,15 @@
 ﻿@using Journey.Common
-@{
-    this.ViewData["Title"] = "Home";
-}
+@model Journey.Web.ViewModels.Games.Home.LatestReleasesViewModel
+@{ this.ViewData["Title"] = "Home"; }
+
+<link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
+<link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
+
+<link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+
+<script type="text/javascript" src="/includes_uglified/gamestore_globalweb.js" cssn="fd4a236e2d03448a893f433951aee008a93d"></script>
+<script type="text/javascript" src="/includes_uglified/gamestore_subs_detail.js"></script>
 
 @*<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 *@
@@ -30,6 +38,12 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    </div>
+</div>
+
+<div class="container" id="latest">
+    <partial name="_LatestPartial" model="@Model" />
+</div>
+
+
 
 

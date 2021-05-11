@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
 
     using AngleSharp;
+    using AngleSharp.Dom;
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Models;
@@ -29,7 +30,6 @@
         private readonly IRepository<GameLanguage> gamesLanguagesRepository;
         private readonly IRepository<GameTag> gamesTagsRepository;
         private readonly IRepository<Image> imagesRepository;
-        private readonly IRepository<GameGenre> gamesGenresRepository;
 
         public GameStoreScraperService(
             IDeletableEntityRepository<Genre> genresRepository,
@@ -39,8 +39,7 @@
             IDeletableEntityRepository<Game> gamesRepository,
             IRepository<GameLanguage> gamesLanguagesRepository,
             IRepository<GameTag> gamesTagsRepository,
-            IRepository<Image> imagesRepository,
-            IRepository<GameGenre> gamesGenresRepository)
+            IRepository<Image> imagesRepository)
         {
             this.genresRepository = genresRepository;
             this.tagsRepository = tagsRepository;
@@ -50,7 +49,6 @@
             this.gamesLanguagesRepository = gamesLanguagesRepository;
             this.gamesTagsRepository = gamesTagsRepository;
             this.imagesRepository = imagesRepository;
-            this.gamesGenresRepository = gamesGenresRepository;
 
             this.config = Configuration.Default.WithDefaultLoader();
             this.context = BrowsingContext.New(this.config);
@@ -60,7 +58,7 @@
         {
             var concurrentBag = new ConcurrentBag<GameStoreDto>();
 
-            /*Parallel.For(6700, count, (i) =>
+            Parallel.For(1, count, (i) =>
                         {
                             try
                             {
@@ -70,9 +68,9 @@
                             catch
                             {
                             }
-             });*/
+             });
 
-            for (int i = 1; i < count; i++)
+/*            for (int i = 6900; i < count; i++)
             {
                 try
                 {
@@ -82,11 +80,12 @@
                 catch
                 {
                 }
-            }
+            }*/
 
             foreach (var game in concurrentBag)
             {
                 var publisherId = await this.GetOrCreatePublisherAsync(game.Publisher);
+                var genreId = await this.GetOrCreateGenreAsync(game.Genre);
 
                 var gameExists = this.gamesRepository
                     .AllAsNoTracking()
@@ -102,11 +101,13 @@
                     Title = game.Title,
                     Description = game.Description,
                     PublisherId = publisherId,
+                    GenreId = genreId,
                     ReleaseDate = DateTime.ParseExact(game.ReleaseDate, "M/d/yyyy", CultureInfo.InvariantCulture),
                     Drm = game.Drm,
                     MininumRequirements = game.MininumRequirements,
                     RecommendedRequirements = game.RecommendedRequirements,
                     Price = game.Price,
+                    OriginalUrl = game.OriginalUrl,
                 };
 
                 await this.gamesRepository.AddAsync(newGame);
@@ -124,19 +125,6 @@
                     await this.imagesRepository.SaveChangesAsync();
                 }
 
-                foreach (var item in game.Genres)
-                {
-                    var genreId = await this.GetOrGenreAsync(item.Name);
-
-                    var gameGenre = new GameGenre
-                    {
-                        GameId = newGame.Id,
-                        GenreId = genreId,
-                    };
-
-                    await this.gamesGenresRepository.AddAsync(gameGenre);
-                    await this.gamesGenresRepository.SaveChangesAsync();
-                }
 
                 foreach (var item in game.Languages)
                 {
@@ -248,7 +236,7 @@
             return publisher.Id;
         }
 
-        private async Task<int> GetOrGenreAsync(string genreName)
+        private async Task<int> GetOrCreateGenreAsync(string genreName)
         {
             var genre = this.genresRepository
                 .AllAsNoTracking()
@@ -266,6 +254,49 @@
             }
 
             return genre.Id;
+        }
+
+        private string Stringify(INode node)
+        {
+            switch (node.NodeType)
+            {
+                case NodeType.Text:
+                    return node.TextContent;
+
+                case NodeType.Element:
+                    if (node.HasChildNodes)
+                    {
+                        var sb = new StringBuilder();
+                        var isElement = false;
+
+                        foreach (var child in node.ChildNodes)
+                        {
+                            var isPreviousElement = isElement;
+                            var content = this.Stringify(child);
+                            isElement = child.NodeType == NodeType.Element;
+
+                            if (!string.IsNullOrEmpty(content) && isElement && isPreviousElement)
+                            {
+                                sb.Append(' ');
+                            }
+
+                            sb.Append(content);
+                        }
+
+                        return sb.ToString();
+                    }
+
+                    switch (node.NodeName.ToLowerInvariant())
+                    {
+                        case "br": return "\n";
+                    }
+
+                    goto default;
+
+                default:
+                    return string.Empty;
+
+            }
         }
 
         private GameStoreDto GetGame(int id)
@@ -289,7 +320,6 @@
             var game = new GameStoreDto();
 
             game.Images = new List<Image>();
-            game.Genres = new List<Genre>();
 
             // NAME
             var name = document.QuerySelectorAll("#core-guts-title");
@@ -311,20 +341,17 @@
             var genreRow = detailElements[1].TextContent;
 
             string actualGenre = null;
-            string[] actualGenres = null;
 
             if (genreRow.Contains(","))
             {
-                actualGenres = detailElements[1].TextContent[6..].Split(", ", StringSplitOptions.RemoveEmptyEntries);
-                foreach (var currentGenre in actualGenres)
-                {
-                    Genre genre = new Genre
-                    {
-                        Name = currentGenre,
-                    };
+                actualGenre = detailElements[1].TextContent[6..].Split(", ", StringSplitOptions.RemoveEmptyEntries)[0];
 
-                    game.Genres.Add(genre);
-                }
+                Genre genre = new Genre
+                {
+                    Name = actualGenre,
+                };
+
+                game.Genre = genre.Name;
             }
             else
             {
@@ -333,7 +360,7 @@
                 {
                     Name = actualGenre,
                 };
-                game.Genres.Add(genre);
+                game.Genre = genre.Name;
             }
 
             // PUBLISHER
@@ -390,8 +417,8 @@
             decimal finalPrice = decimal.Parse(priceWithoutCurrency);
             game.Price = finalPrice;
 
-            // DESCRIPTION
-            var description = document.QuerySelectorAll(".section.txtlists")
+            // OLD DESCRIPTION
+/*            var description = document.QuerySelectorAll(".section.txtlists")
                 .Select(x => x.TextContent)
                 .ToList();
             StringBuilder sb = new StringBuilder();
@@ -399,11 +426,23 @@
             foreach (var item in description)
             {
                 sb.AppendLine(item);
+                sb.AppendLine();
             }
 
-            game.Description = sb.ToString().TrimEnd();
+            game.Description = sb.ToString().TrimEnd();*/
 
-            // REQUIREMENTS
+            // NEW DESCRIPTION
+            var description = document.QuerySelectorAll(".section.txtlists");
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var node in description)
+            {
+                sb.AppendLine(this.Stringify(node));
+            }
+
+            game.Description = sb.ToString();
+
+             // REQUIREMENTS
             var requirements = document.QuerySelectorAll(".valign-t > .split > .side");
 
             game.MininumRequirements = requirements[0].TextContent[8..];
@@ -438,6 +477,17 @@
 
                 game.Images.Add(image2);
             }
+
+            // VIDEO
+            /*            var video = document.QuerySelectorAll("#roundabout > li.video.lslide > div > video");
+
+                        if (!(video == null))
+                        {
+                            Video video = new Video
+                            {
+                                OriginalUrl = "https://www.wingamestore.com" + main,
+                            };
+                        }*/
 
             return game;
         }

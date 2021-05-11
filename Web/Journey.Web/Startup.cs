@@ -70,6 +70,7 @@
             services.AddTransient<IGenresService, GenresService>();
             services.AddTransient<ILanguagesService, LanguagesService>();
             services.AddTransient<ITagsService, TagsService>();
+            services.AddTransient<IPublishersService, PublishersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

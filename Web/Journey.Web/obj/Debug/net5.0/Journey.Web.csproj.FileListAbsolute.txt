@@ -43,7 +43,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Conne
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Connections.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Extensions.dll
-D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Features.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpOverrides.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpsPolicy.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Identity.dll
@@ -123,7 +122,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.ObjectPool
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.dll
-D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Primitives.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.WebEncoders.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.JSInterop.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\Microsoft.Net.Http.Headers.dll
@@ -181,7 +179,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.FileSystem.Primitives
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.FileSystem.Watcher.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.IsolatedStorage.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.MemoryMappedFiles.dll
-D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.Pipelines.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.Pipes.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.IO.UnmanagedMemoryStream.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\refs\System.Linq.dll
@@ -943,3 +940,7 @@ C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\J
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.pdb
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.genruntimeconfig.cache
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout - Identity.cshtml.g.cs
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_LatestPartial.cshtml.g.cs

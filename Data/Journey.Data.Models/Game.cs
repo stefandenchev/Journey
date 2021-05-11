@@ -12,7 +12,6 @@
             this.Languages = new HashSet<GameLanguage>();
             this.Tags = new HashSet<GameTag>();
             this.Images = new HashSet<Image>();
-            this.Genres = new HashSet<GameGenre>();
         }
 
         public string Title { get; set; }
@@ -25,7 +24,9 @@
 
         public DateTime ReleaseDate { get; set; }
 
-        public virtual ICollection<GameGenre> Genres { get; set; }
+        public int GenreId { get; set; }
+
+        public virtual Genre Genre { get; set; }
 
         public virtual ICollection<GameLanguage> Languages { get; set; }
 
@@ -33,11 +34,7 @@
 
         public virtual ICollection<Image> Images { get; set; }
 
-        public int VideoId { get; set; }
-
-        public virtual Video Video { get; set; }
-
-        public string Drm { get; set; }
+        public string Drm { get; set; } = "Steam";
 
         public string MininumRequirements { get; set; }
 

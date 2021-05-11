@@ -159,6 +159,9 @@ namespace Journey.Data.Migrations
                     b.Property<string>("Drm")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -186,44 +189,15 @@ namespace Journey.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VideoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.GameGenre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("CreatedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("GamesGenres");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.GameLanguage", b =>
@@ -319,6 +293,9 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
@@ -326,6 +303,9 @@ namespace Journey.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OriginalUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UploadName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -443,36 +423,6 @@ namespace Journey.Data.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.Video", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OriginalUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Videos");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -579,32 +529,21 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
-                    b.HasOne("Journey.Data.Models.Publisher", "Publisher")
-                        .WithMany("Games")
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.GameGenre", b =>
-                {
-                    b.HasOne("Journey.Data.Models.Game", "Game")
-                        .WithMany("Genres")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Journey.Data.Models.Genre", "Genre")
                         .WithMany("Games")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Game");
+                    b.HasOne("Journey.Data.Models.Publisher", "Publisher")
+                        .WithMany("Games")
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.GameLanguage", b =>
@@ -651,17 +590,6 @@ namespace Journey.Data.Migrations
                         .WithMany("Images")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.Video", b =>
-                {
-                    b.HasOne("Journey.Data.Models.Game", "Game")
-                        .WithOne("Video")
-                        .HasForeignKey("Journey.Data.Models.Video", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -729,15 +657,11 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
-                    b.Navigation("Genres");
-
                     b.Navigation("Images");
 
                     b.Navigation("Languages");
 
                     b.Navigation("Tags");
-
-                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Genre", b =>

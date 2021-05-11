@@ -8,11 +8,11 @@
     {
         public Genre()
         {
-            this.Games = new HashSet<GameGenre>();
+            this.Games = new HashSet<Game>();
         }
 
         public string Name { get; set; }
 
-        public ICollection<GameGenre> Games { get; set; }
+        public ICollection<Game> Games { get; set; }
     }
 }

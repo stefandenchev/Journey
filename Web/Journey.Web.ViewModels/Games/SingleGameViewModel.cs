@@ -20,7 +20,7 @@
 
         public DateTime ReleaseDate { get; set; }
 
-        public virtual IEnumerable<GenresViewModel> Genres { get; set; }
+        public string GenreName { get; set; }
 
         public string PublisherName { get; set; }
 
@@ -40,15 +40,26 @@
 
         public decimal Price { get; set; }
 
+        public string OriginalUrl { get; set; }
+
+        public virtual IEnumerable<GameInListViewModel> GamesBySamePublisher { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Game, SingleGameViewModel>()
+/*            configuration.CreateMap<Game, SingleGameViewModel>()
                .ForMember(x => x.MainImage, opt =>
                opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots"))
-               .OriginalUrl));
+               .OriginalUrl));*/
+
+            configuration.CreateMap<Game, SingleGameViewModel>()
+               .ForMember(x => x.MainImage, opt =>
+               opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl != null ?
+               x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :
+               "/images/games/" + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension));
+
         }
 
-        public string EditDescription(string description)
+/*        public string EditDescription(string description)
         {
             var regex = new Regex(@"(?s).*?[.?!](?:\s.*?[.?!]){0,2}");
 
@@ -63,6 +74,6 @@
             }
 
             return sb.ToString();
-        }
+        }*/
     }
 }

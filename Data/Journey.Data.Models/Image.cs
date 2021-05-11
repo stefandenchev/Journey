@@ -18,5 +18,9 @@
         public virtual Game Game { get; set; }
 
         public string OriginalUrl { get; set; }
+
+        public string UploadName { get; set; }
+
+        public string Extension { get; set; }
     }
 }

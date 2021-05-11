@@ -1,42 +1,34 @@
 ﻿@model GamesListViewModel
-@{
-    this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber;
-}
+@{ this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber; }
+
 
 <div class="container">
-<div class="nk-gap-1"></div>
-<h1>All Games</h1>
+    <div class="nk-gap-1"></div>
+    <h1>All Games</h1>
 
-<partial name="_PagingPartial" model="@Model" />
+    <partial name="_PagingPartial" model="@Model" />
 
-<hr />
+    <hr />
+    <div id="tile-view" class="blockcontent resp4">
+        <div id="tile-results">
+            <ul id="" class="products">
 
-    <div class="row vertical-gap lg-gap">
-
-        @foreach (var game in this.Model.Games)
-        {
-
-            <div class="col-md-6 col-lg-4">
-                <div class="nk-image-box-3">
-                    <a asp-action="ById" asp-route-id="@game.Id" class="nk-image-box-link"></a>
-                    <img src="@game.ImageUrl" data-from='1.1' alt="...">
-                    <div class="nk-image-box-overlay nk-image-box-bottom">
-                        <div>
-
+                @foreach (var game in this.Model.Games)
+                {
+                    <li class="product">
+                        <div class="tilebox-main">
+                            <span class="boxshot" title="@game.Title">
+                                <a class="boxhole img16x9" a asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                            </span>
+                            <a class="atitle" href="https://www.wingamestore.com/product/12085/The-Outer-Worlds-Peril-on-Gorgon-Epic/">@game.Title</a>
+                            <div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" href="https://www.wingamestore.com/buy/12085/" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="nk-image-box-title h5">@game.Title</h5>
-                    <span class="badge bg-dark float-right">$@game.Price</span>
-                </div>
-            </div>
-        }
-
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
 
-<div class="nk-gap-1"></div>
-<hr />
-<partial name="_PagingPartial" model="@Model" />
+
 

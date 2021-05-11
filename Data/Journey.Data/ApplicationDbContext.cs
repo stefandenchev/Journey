@@ -36,13 +36,9 @@
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<Video> Videos { get; set; }
-
         public DbSet<GameLanguage> GamesLanguages { get; set; }
 
         public DbSet<GameTag> GamesTags { get; set; }
-
-        public DbSet<GameGenre> GamesGenres { get; set; }
 
         public DbSet<Log> Logs_17114092 { get; set; }
 
@@ -92,11 +88,6 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-
-            builder.Entity<Game>()
-              .HasOne(g => g.Video)
-              .WithOne(i => i.Game)
-              .HasForeignKey<Video>(x => x.Id);
 
             builder.HasDefaultSchema("17114092");
         }

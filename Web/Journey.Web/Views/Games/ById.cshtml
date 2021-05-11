@@ -26,9 +26,9 @@
 
                 <div class="boxhole img16x9" title="@Model.Title"><img src="@Model.MainImage" /></div>
                 <div id="price-bar" class="wabit">
-                    <div class="normal"><span class="price"><em><i>$</i>@Model.Price</em></span></div>
+                    <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
-                <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="/images_boxshots/240x135/dragon-ball-xenoverse-2-1548950464.jpg" data-hov="Add to Cart" href="https://www.wingamestore.com/buy/7025/" rel="nofollow"><label><i class="fas fa-cart-plus"></i>   Add to Cart</label><span class="hovit"></span></a></div>
+                <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="/images_boxshots/240x135/dragon-ball-xenoverse-2-1548950464.jpg" data-hov="Add to Cart" href="https://www.wingamestore.com/buy/7025/" rel="nofollow"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
                 <div id="dual-bar">
                     <div id="wish-bar"><a id="wishlist-btn" class="btn wish-action" data-pid="@Model.Id" data-onhref="https://www.wingamestore.com/myaccount-wishlist/" data-offhref="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/?AddProductToWishList=7025" data-offtxt="Wish It" data-ontxt="On List" href="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/?AddProductToWishList=7025" rel="nofollow"><label><i class="fas fa-heart"></i> Add to Wishlist</label></a><a id="wishlist-btn-drop" class="wish-action hide" data-mbtn="wishlist-btn" href="#" rel="nofollow">X</a></div>
                 </div>
@@ -41,20 +41,55 @@
 
                     <ul id="roundabout" class="lightSlider lsGrab lSSlide" style="width: 9867px; height: 421px; padding-bottom: 0%; transform: translate3d(-3036px, 0px, 0px);">
 
-                        @foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+
+                        @if (Model.OriginalUrl == null)
                         {
-                            <li class="shot lslide active" relid="@Model.Id" data-thumb="@image.OriginalUrl" style="width: 749px; margin-right: 10px;"><a rel="shots" href="@image.OriginalUrl" class="cboxElement"><img src="@image.OriginalUrl"></a></li>
+                            foreach (var image in Model.Images)
+                            {
+                                if (image.UploadName.Contains("cover"))
+                                {
+                                    continue;
+                                }
+                                string imagePath = Url.Content("~/images/games/" + image.Id + "." + image.Extension);
+
+
+                                <li class="shot lslide active" relid="@Model.Id" data-thumb="@imagePath" style="width: 749px; margin-right: 10px;"><a rel="shots" href="@imagePath" class="cboxElement"><img src="@imagePath"></a></li>
+                            }
+                         }
+                        
+                        else
+                        {
+                            foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+                            {
+                                <li class="shot lslide active" relid="@Model.Id" data-thumb="@image.OriginalUrl" style="width: 749px; margin-right: 10px;"><a rel="shots" href="@image.OriginalUrl" class="cboxElement"><img src="@image.OriginalUrl"></a></li>
+                            }
                         }
+
+
+
                     </ul>
                 </div>
 
-                <ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 400ms; width: 1640.67px; transform: translate3d(-189.25px, 0px, 0px);">
-                    @foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+                @*<ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 400ms; width: 1640.67px; transform: translate3d(-189.25px, 0px, 0px);">
+
+                    @if (Model.OriginalUrl == null)
                     {
-                        <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
+                        foreach (var image in Model.Images)
+                        {
+                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
+                        }
                     }
 
-                </ul>
+                    else
+                    {
+                       foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+                        {
+                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
+                        }
+                    }
+
+
+                </ul>*@
             </div>
         </div>
 
@@ -69,20 +104,8 @@
                             <td>@Model.ReleaseDate.ToShortDateString()</td>
                         </tr>
                         <tr>
-                            @if (Model.Genres.Count() > 1)
-                            {
-                                <th>Genres</th>
-                            }
-                            else
-                            {
-                                <th>Genre</th>
-                            }
-                            <td>
-                                @foreach (var genre in Model.Genres)
-                                {
-                                    <a href="https://www.wingamestore.com/category/1/Action/">@genre.GenreName</a>
-                                }
-                            </td>
+                            <th>Genre</th>
+                            <td>@Model.GenreName</td>
                         </tr>
                         <tr>
                             <th>Publisher</th>
@@ -128,14 +151,12 @@
             <h3>Description</h3>
             <div id="textinfo-section">
 
-                @Model.EditDescription(Model.Description)
+                @Model.Description
 
             </div>
         </div>
 
         <div id="detail-sysreqs" class="boxed raft">
-
-
 
             <h3 id="requirements-section">Requirements</h3><div class="section wabit">
                 <table id="requiretextssingle-win" class="reqtextstable platform-win" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -162,7 +183,6 @@
                     {
                         <tbody><tr><td class="valign-t" valign="top"><ul><li>Requires a Ubisoft Account to play Windows version.</li></ul></td></tr></tbody>
                     }
-
 
                 </table>
             </div><center></center>

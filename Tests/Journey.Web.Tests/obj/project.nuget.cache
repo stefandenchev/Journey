@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ptzOxlrw37N5XFrDNmMC2sl41CjHWzNNzbdzPbeW1h5bhGkAH1U4heXpTrYEcvPX3P0CyK/5UCqKaqSxzksNSA==",
+  "dgSpecHash": "ocogdb1ORf1hm07JsvZ3Ff0k48J3uFSOQXHI84m1fgvYDDz6KHSpQBVClVaBIJby1TWR0r8BqbjT/oyAHx6CaA==",
   "success": true,
   "projectFilePath": "D:\\Journey\\Tests\\Journey.Web.Tests\\Journey.Web.Tests.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.4\\microsoft.aspnetcore.cryptography.keyderivation.5.0.4.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.1\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.5\\microsoft.aspnetcore.http.features.5.0.5.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.4\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.4.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.4\\microsoft.aspnetcore.identity.ui.5.0.4.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.1\\microsoft.aspnetcore.mvc.razor.extensions.5.0.1.nupkg.sha512",
@@ -67,7 +68,7 @@
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.extensions.logging.eventsource\\5.0.0\\microsoft.extensions.logging.eventsource.5.0.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\5.0.0\\microsoft.extensions.options.configurationextensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.identity.client\\4.14.0\\microsoft.identity.client.4.14.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\5.6.0\\microsoft.identitymodel.jsonwebtokens.5.6.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.identitymodel.logging\\5.6.0\\microsoft.identitymodel.logging.5.6.0.nupkg.sha512",

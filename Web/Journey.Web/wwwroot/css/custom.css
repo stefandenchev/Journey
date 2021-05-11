@@ -8,9 +8,9 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #fff;
+    color: #C5C3C0;
     text-align: left;
-    background: #202D3B;
+    background: #1B2939;
 }
 
 h1,
@@ -28,11 +28,8 @@ h6,
     font-family: "Motiva Sans", Sans-serif;
 }
 
-body > div.container > main > div.container > div > div > div.card-body > h5 {
-    width: 290px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.form-control, .form-control-language{
+    margin-bottom: 15px;
 }
 
 div.validation-summary-errors {
@@ -49,6 +46,8 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     color: #eee;
 }
 
+
+
 #LanguagesItems, #TagsItems {
     height: 105px;
     margin-bottom: 15px;
@@ -60,6 +59,7 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
 
 .btn.btn-primary {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 div.form-control-language {
@@ -74,8 +74,30 @@ div.form-control-language {
     margin-right: -100px;
 }
 
+li.nav-item {
+    padding-left: 35px
+}
+
 .navbar-light {
-    background: #1A232B;
+    background: #171A21;
+}
+
+nav a {
+    transition: 0.3s ease;
+    color: #C5C3C0;
+}
+
+.nav-link {
+    color: #C5C3C0 !important;
+}
+
+    .nav-link:hover, .nav-item:hover, .nav-link.text-light:hover {
+        color: #fff !important;
+        font-weight:500
+    }
+
+.navbar-brand {
+    color: #C5C3C0 !important
 }
 
 footer.footer {
@@ -83,11 +105,13 @@ footer.footer {
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    background: #1A232B;
+    background: #171A21;
+    margin-top: 10em;
+    bottom: 0px;
 }
 
-.navbar-brand {
-    color: white !important
+#tile-view{
+    margin-bottom: 80px !important;
 }
 
 .carousel-inner .carousel-item > img {
@@ -117,15 +141,13 @@ footer.footer {
 }
 
 
-nav a {
-    transition: 0.3s ease;
-    color: white;
+#latest {
+    padding-top: 45px;
 }
 
-.nav-link {
-    color: white !important;
+#LatestGamesTitle{
+    text-align:center
 }
-
 
 .dropdown-submenu {
     position: relative;
@@ -229,7 +251,7 @@ nk-widget {
 
 
 #requiretextssingle-win > tbody > tr > td > div {
-    white-space: pre-wrap;
+    white-space: pre-line;
 }
 
 #textinfo-section {
@@ -246,4 +268,12 @@ body > header > nav > div > a.navbar-brand {
 
 #detail-main > h3 {
     margin: 0
+}
+
+a.atitle{
+    font-size:15px !important;
+}
+
+#carouselHome{
+    width: 100% !important;
 }

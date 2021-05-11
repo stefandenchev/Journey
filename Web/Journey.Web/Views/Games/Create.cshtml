@@ -3,19 +3,31 @@
 @{ this.ViewData["Title"] = "Add New Game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
     var languageItems = this.Model.LanguagesItems.Select(x => new SelectListItem(x.Value, x.Key));
-    var tagItems = this.Model.TagsItems.Select(x => new SelectListItem(x.Value, x.Key)); }
+    var tagItems = this.Model.TagsItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key)); }
 
 <div class="col-md-6 offset-3">
     <h1>@this.ViewData["Title"]</h1>
 
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
 
-        <div class="form-group">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+        <div class="row">
+            <div class="col-10">
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -32,26 +44,54 @@
 
         <div class="form-group">
             <label asp-for="GenreId"></label>
-            <select asp-for="GenreId" class="form-control" asp-items="genreItems"></select>
+            <select asp-for="GenreId" class="form-control" asp-items="genreItems">
+                <option value="">Select genre</option>
+            </select>
             <span asp-validation-for="GenreId" class="text-danger"></span>
         </div>
 
+        <div class="form-group">
+            <label asp-for="PublisherId"></label>
+            <select asp-for="PublisherId" class="form-control" asp-items="publisherItems">
+                <option value="">Select publisher</option>
+            </select>
+            <span asp-validation-for="PublisherId" class="text-danger"></span>
+        </div>
+
         <div class="form-group-language">
-            <label asp-for="LanguagesItems"></label>
-            <select asp-for="LanguagesItems" class="form-control" asp-items="languageItems" rows="15"></select>
-            <span asp-validation-for="LanguagesItems" class="text-danger"></span>
+            <label asp-for="Languages"></label>
+            <select asp-for="Languages" class="form-control" asp-items="languageItems"></select>
+            <span asp-validation-for="Languages" class="text-danger"></span>
         </div>
 
         <div class="form-group-tag">
-            <label asp-for="TagsItems"></label>
-            <select asp-for="TagsItems" class="form-control" asp-items="tagItems" rows="15"></select>
-            <span asp-validation-for="TagsItems" class="text-danger"></span>
+            <label asp-for="Tags"></label>
+            <select asp-for="Tags" class="form-control" asp-items="tagItems"></select>
+            <span asp-validation-for="Tags" class="text-danger"></span>
         </div>
 
-        @*        <div id="LanguagesContainer">
-            <label asp-for="Languages"></label>
-            <a class="btn btn-success" onclick="AddMoreLanguages()">+</a>
-        </div>*@
+        <div class="row">
+            <div class="col">
+                <div class="form-group md-col-md-6">
+                    <label asp-for="MininumRequirements"></label>
+                    <textarea asp-for="MininumRequirements" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="MininumRequirements" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group md-col-md-6">
+                    <label asp-for="RecommendedRequirements"></label>
+                    <textarea asp-for="RecommendedRequirements" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="RecommendedRequirements" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Images"></label>
+            <input asp-for="Images" class="form-control" />
+            <span asp-validation-for="Images" class="text-danger"></span>
+        </div>
 
         <input type="submit" class="btn btn-primary" />
     </form>
@@ -59,11 +99,11 @@
 </div>
 
 @*@section Scripts{
-    <script>
-        var languageIndex = 0;
-        function AddMoreLanguages() {
-            $("#LanguagesContainer").append("<div class='form-control-language'>Name: <input type='text' name='Languages[" + languageIndex + "].Name' /></div>");
-            languageIndex++;
-        }
-    </script>
-}*@
+        <script>
+            var languageIndex = 0;
+            function AddMoreLanguages() {
+                $("#LanguagesContainer").append("<div class='form-control-language'>Name: <input type='text' name='Languages[" + languageIndex + "].Name' /></div>");
+                languageIndex++;
+            }
+        </script>
+    }*@
