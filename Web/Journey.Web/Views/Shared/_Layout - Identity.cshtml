@@ -45,7 +45,7 @@
                             <form action="" class="nk-form nk-form-style-1" novalidate="novalidate">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
-                                    <label for="searchInput"><i class="ion-ios-search"></i></label>
+                                    <label for="searchInput"></label>
                                 </div>
                             </form>
                         </div>
@@ -67,13 +67,13 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="#">Browse Genres</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Adventure</a></li>
-                                        <li><a class="dropdown-item" href="#">RPG</a></li>
-                                        <li><a class="dropdown-item" href="#">Racing</a></li>
-                                        <li><a class="dropdown-item" href="#">Shooter</a></li>
-                                        <li><a class="dropdown-item" href="#">Strategy</a></li>
-                                        <li><a class="dropdown-item" href="#">Others</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Action">Action</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Adventure">Adventure</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Racing">Racing</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Shooters">Shooters</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Simulation">Simulation</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Strategy">Strategy</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Others">Others</a></li>
 
                                         @*
                                             <li class="dropdown-submenu">
@@ -95,9 +95,7 @@
                                 </li>
                             </ul>
 
-                        <li class="nav-item">
 
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>

@@ -62,10 +62,6 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 20px;
 }
 
-div.form-control-language {
-    margin-bottom: 5px;
-}
-
 .carousel-control-prev {
     margin-left: -100px;
 }
@@ -101,6 +97,16 @@ nav a {
 }
 
 footer.footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #171A21;
+    margin-top: 10em;
+    bottom: 0px;
+}
+
+#footer {
     position: absolute !important;
     bottom: 0 !important;
     left: 0 !important;
@@ -277,3 +283,9 @@ a.atitle{
 #carouselHome{
     width: 100% !important;
 }
+
+#cookieConsent > a {
+    color: #e08821;
+}
+
+

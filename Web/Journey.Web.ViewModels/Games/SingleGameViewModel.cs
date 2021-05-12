@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
 
     using AutoMapper;
     using Journey.Data.Models;
@@ -46,17 +44,11 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-/*            configuration.CreateMap<Game, SingleGameViewModel>()
-               .ForMember(x => x.MainImage, opt =>
-               opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots"))
-               .OriginalUrl));*/
-
             configuration.CreateMap<Game, SingleGameViewModel>()
                .ForMember(x => x.MainImage, opt =>
                opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl != null ?
                x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :
                "/images/games/" + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension));
-
         }
 
 /*        public string EditDescription(string description)

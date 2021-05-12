@@ -3,14 +3,14 @@
     using System;
     using System.Threading.Tasks;
 
-    using Journey.Services.Data;
+    using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
-    public class GamesController : Controller
+    public class GamesController : BaseController
     {
         private readonly IGamesService gamesService;
         private readonly IGenresService genresService;

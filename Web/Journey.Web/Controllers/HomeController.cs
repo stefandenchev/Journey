@@ -1,7 +1,8 @@
 ﻿namespace Journey.Web.Controllers
 {
     using System.Diagnostics;
-    using Journey.Services.Data;
+
+    using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games.Home;
     using Microsoft.AspNetCore.Mvc;

@@ -1,8 +1,8 @@
-﻿namespace Journey.Services.Data
+﻿namespace Journey.Services.Data.Interfaces
 {
     using System.Collections.Generic;
 
-    public interface IPublishersService
+    public interface IGenresService
     {
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }

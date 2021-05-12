@@ -1,39 +1,40 @@
-﻿@model GamesListViewModel
-@{ this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber; }
+﻿@model Journey.Web.ViewModels.Search.SearchListViewModel
+@{
+    ViewData["Title"] = "Search Results";
+    this.Layout = "/Views/Shared/_Layout.cshtml";
+}
 
-    <link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
-    <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+<link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
+<link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
+<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
 <div class="container">
-    <div class="nk-gap-1"></div>
-    <h1>All Games</h1>
+
+    <h1>@ViewData["Title"]</h1>
+    <h4>@this.Model.Games.Count() matching games</h4>
 
     <partial name="_PagingPartial" model="@Model" />
 
     <hr />
     <div id="tile-view" class="blockcontent resp4">
         <div id="tile-results">
-            <ul id="" class="products">
+            <ul id="latest-releases" class="products">
 
                 @foreach (var game in this.Model.Games)
                 {
+
                     <li class="product">
                         <div class="tilebox-main">
                             <span class="boxshot" title="@game.Title">
-                                <a class="boxhole img16x9" a asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                                <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
-                            <a class="atitle" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
+                            <a class="atitle" href="https://www.wingamestore.com/product/12085/The-Outer-Worlds-Peril-on-Gorgon-Epic/">@game.Title</a>
                             <div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" href="https://www.wingamestore.com/buy/12085/" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>
                         </div>
                     </li>
                 }
             </ul>
         </div>
+        
     </div>
 </div>
-
-
-
-//<i class="fas fa-cart-plus"></i>

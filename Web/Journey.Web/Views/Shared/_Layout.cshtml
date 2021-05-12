@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 
-    <link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
-
     <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -44,10 +41,10 @@
                     @*search bar here*@
                     <div class="nk-widget">
                         <div class="container">
-                            <form action="" class="nk-form nk-form-style-1" novalidate="novalidate">
+                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-controller="Search" asp-action="Results" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
-                                    <label for="searchInput"><i class="ion-ios-search"></i></label>
+                                    <label for="searchInput"></label>
                                 </div>
                             </form>
                         </div>
@@ -69,13 +66,15 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="#">Browse Genres</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Adventure</a></li>
-                                        <li><a class="dropdown-item" href="#">RPG</a></li>
-                                        <li><a class="dropdown-item" href="#">Racing</a></li>
-                                        <li><a class="dropdown-item" href="#">Shooter</a></li>
-                                        <li><a class="dropdown-item" href="#">Strategy</a></li>
-                                        <li><a class="dropdown-item" href="#">Others</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Action">Action</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Adventure">Adventure</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Racing">Racing</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Shooters">Shooters</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Simulation">Simulation</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Strategy">Strategy</a></li>
+                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Others">Others</a></li>
+
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-fragment="Strategy">Strategy</a></li>
 
                                         @*
                                             <li class="dropdown-submenu">
@@ -97,9 +96,9 @@
                                 </li>
                             </ul>
 
-@*                        <li class="nav-item">
+                            @*                        <li class="nav-item">
 
-                        </li>*@
+                                </li>*@
 
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -130,7 +129,7 @@
 
 
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

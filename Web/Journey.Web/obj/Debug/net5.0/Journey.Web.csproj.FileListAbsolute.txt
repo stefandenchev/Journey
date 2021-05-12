@@ -944,3 +944,5 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.d
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\System.IO.Pipelines.dll
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_LatestPartial.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Results.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Genre.cshtml.g.cs

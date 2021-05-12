@@ -10,6 +10,7 @@
     using Journey.Data.Seeding;
     using Journey.Services;
     using Journey.Services.Data;
+    using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
     using Journey.Services.Messaging;
     using Journey.Web.ViewModels;
@@ -71,6 +72,7 @@
             services.AddTransient<ILanguagesService, LanguagesService>();
             services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<IPublishersService, PublishersService>();
+            services.AddTransient<ISearchService, SearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

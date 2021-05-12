@@ -1,4 +1,4 @@
-﻿namespace Journey.Services.Data
+﻿namespace Journey.Services.Data.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

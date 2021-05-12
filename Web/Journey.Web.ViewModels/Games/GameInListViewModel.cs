@@ -19,6 +19,8 @@
 
         public DateTime ReleaseDate { get; set; }
 
+        public string GenreName { get; set; }
+
         /*public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, GameInListViewModel>()

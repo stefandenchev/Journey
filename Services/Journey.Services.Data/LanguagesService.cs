@@ -5,6 +5,7 @@
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
+    using Journey.Services.Data.Interfaces;
 
     public class LanguagesService : ILanguagesService
     {

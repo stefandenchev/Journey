@@ -8,6 +8,7 @@
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
+    using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels.Games.Create;
 
