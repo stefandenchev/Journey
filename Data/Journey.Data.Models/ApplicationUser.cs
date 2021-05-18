@@ -1,5 +1,4 @@
-﻿// ReSharper disable VirtualMemberCallInConstructor
-namespace Journey.Data.Models
+﻿namespace Journey.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,12 +17,14 @@ namespace Journey.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
-        // Audit info
+        public int ShoppingCartId { get; set; }
+
+        public ShoppingCart ShoppingCart { get; set; }
+
         public DateTime CreatedOn_17114092 { get; set; }
 
         public DateTime? ModifiedOn_17114092 { get; set; }
 
-        // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }

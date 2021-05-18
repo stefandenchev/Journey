@@ -1,6 +1,6 @@
 ﻿@model PagingViewModel
 
-<div class="nk-pagination nk-pagination-center">
+<div class="nk-pagination nk-pagination-center" id="paginationMain">
     <a asp-action="All" asp-route-id="@Model.PreviousPageNumber" class="nk-pagination-prev @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
         <span class="nk-icon-arrow-left"></span>
     </a>

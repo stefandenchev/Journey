@@ -14,7 +14,7 @@
 
     public class GamesService : IGamesService
     {
-        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
+        private readonly string[] allowedExtensions = new[] { "jpg", "jpeg", "png" };
 
         private readonly IDeletableEntityRepository<Game> gamesRepository;
         private readonly IRepository<GameLanguage> gameLanguagesRepository;
@@ -88,7 +88,7 @@
             await this.gamesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 16)
         {
             var games = this.gamesRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)

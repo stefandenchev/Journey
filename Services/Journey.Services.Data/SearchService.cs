@@ -10,16 +10,16 @@
 
     public class SearchService : ISearchService
     {
-        private readonly IDeletableEntityRepository<Game> gameRepository;
+        private readonly IDeletableEntityRepository<Game> gamesRepository;
 
-        public SearchService(IDeletableEntityRepository<Game> gameRepository)
+        public SearchService(IDeletableEntityRepository<Game> gamesRepository)
         {
-            this.gameRepository = gameRepository;
+            this.gamesRepository = gamesRepository;
         }
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.gameRepository.All().To<T>().ToList();
+            return this.gamesRepository.All().To<T>().ToList();
         }
     }
 }

@@ -9,12 +9,6 @@
 <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
-<script type="text/javascript" src="/includes_uglified/gamestore_globalweb.js" cssn="fd4a236e2d03448a893f433951aee008a93d"></script>
-<script type="text/javascript" src="/includes_uglified/gamestore_subs_detail.js"></script>
-
-
-
-
 
 <div id="core-rib" class="contained">
     <section id="core-guts" class="stringy fatty">
@@ -28,9 +22,9 @@
                 <div id="price-bar" class="wabit">
                     <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
-                <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="/images_boxshots/240x135/dragon-ball-xenoverse-2-1548950464.jpg" data-hov="Add to Cart" href="https://www.wingamestore.com/buy/7025/" rel="nofollow"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
-                <div id="dual-bar">
-                    <div id="wish-bar"><a id="wishlist-btn" class="btn wish-action" data-pid="@Model.Id" data-onhref="https://www.wingamestore.com/myaccount-wishlist/" data-offhref="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/?AddProductToWishList=7025" data-offtxt="Wish It" data-ontxt="On List" href="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/?AddProductToWishList=7025" rel="nofollow"><label><i class="fas fa-heart"></i> Add to Wishlist</label></a><a id="wishlist-btn-drop" class="wish-action hide" data-mbtn="wishlist-btn" href="#" rel="nofollow">X</a></div>
+                <div>
+                    <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
+
                 </div>
             </div>
         </div>
@@ -55,8 +49,8 @@
 
                                 <li class="shot lslide active" relid="@Model.Id" data-thumb="@imagePath" style="width: 749px; margin-right: 10px;"><a rel="shots" href="@imagePath" class="cboxElement"><img src="@imagePath"></a></li>
                             }
-                         }
-                        
+                        }
+
                         else
                         {
                             foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
@@ -105,11 +99,11 @@
                         </tr>
                         <tr>
                             <th>Genre</th>
-                            <td>@Model.GenreName</td>
+                            <td><a asp-controller="Search" asp-action="Genre" asp-route-g="@Model.GenreName">@Model.GenreName</a></td>
                         </tr>
                         <tr>
                             <th>Publisher</th>
-                            <td><a href="https://www.wingamestore.com/publisher/912/BANDAI-NAMCO-Entertainment/">@Model.PublisherName</a></td>
+                            <td><a asp-controller="Search" asp-action="Publisher" asp-route-p="@Model.PublisherName">@Model.PublisherName</a></td>
                         </tr>
                         <tr>
                             <th>DRM</th>
@@ -144,7 +138,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <span class="non-humans"><a href="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/" title="Windows Game of DRAGON BALL XENOVERSE 2"><img src="/images/icon-platform-lt-win.png" width="12" height="12" /></a></span>
+
             </div>
         </div>
         <div id="detail-main" class="boxed raft">
@@ -186,133 +180,49 @@
 
                 </table>
             </div><center></center>
-        </div><div id="detail-rrc" class="boxed raft">
-            <h3 id="reviews-section">Reviews &amp; Comments</h3><div id="detail-reviews" class="wabit">
-                <div id="side-ratings">
-                    <div id="slide-wrap">
-                        <div id="ratings-average-container"><div id="ratings-average"><div class="numbox rc0">0</div><div class="starbox"><span class="stars-lg notyet"><img src="/images/stars/star-lg-grey.png" srcset="/images/stars/star-lg-grey@2x.png 2x" alt="" title="Not Yet Rated" /><img src="/images/stars/star-lg-grey.png" srcset="/images/stars/star-lg-grey@2x.png 2x" alt="" title="Not Yet Rated" /><img src="/images/stars/star-lg-grey.png" srcset="/images/stars/star-lg-grey@2x.png 2x" alt="" title="Not Yet Rated" /><img src="/images/stars/star-lg-grey.png" srcset="/images/stars/star-lg-grey@2x.png 2x" alt="" title="Not Yet Rated" /><img src="/images/stars/star-lg-grey.png" srcset="/images/stars/star-lg-grey@2x.png 2x" alt="" title="Not Yet Rated" /></span></div><div class="numratings">From 0 Shoppers</div></div><div id="ratings-breakout" data-rc1="0%" data-rc2="0%" data-rc3="0%" data-rc4="0%" data-rc5="0%"><table border="0" cellspacing="0" cellpadding="0" width="100%" class="nomargin nopad"> <tr><td class="ml align-l" align="left">5<img src="/images/stars/star-sm-grey.png" srcset="/images/stars/star-sm-grey@2x.png 2x" alt="" title="5 star"></td>	<td class="bar align-l"><div><span class="rc5">&nbsp;</span></div></td>	<td class="mr align-r" align="right">0</td></tr><tr><td class="ml align-l" align="left">4<img src="/images/stars/star-sm-grey.png" srcset="/images/stars/star-sm-grey@2x.png 2x" alt="" title="4 star"></td>	<td class="bar align-l"><div><span class="rc4">&nbsp;</span></div></td>	<td class="mr align-r" align="right">0</td></tr><tr><td class="ml align-l" align="left">3<img src="/images/stars/star-sm-grey.png" srcset="/images/stars/star-sm-grey@2x.png 2x" alt="" title="3 star"></td>	<td class="bar align-l"><div><span class="rc3">&nbsp;</span></div></td>	<td class="mr align-r" align="right">0</td></tr><tr><td class="ml align-l" align="left">2<img src="/images/stars/star-sm-grey.png" srcset="/images/stars/star-sm-grey@2x.png 2x" alt="" title="2 star"></td>	<td class="bar align-l"><div><span class="rc2">&nbsp;</span></div></td>	<td class="mr align-r" align="right">0</td></tr><tr><td class="ml align-l" align="left">1<img src="/images/stars/star-sm-grey.png" srcset="/images/stars/star-sm-grey@2x.png 2x" alt="" title="1 star"></td>	<td class="bar align-l"><div><span class="rc1">&nbsp;</span></div></td>	<td class="mr align-r" align="right">0</td></tr></table></div></div>
-                        <div id="rating-select" class="js-show"><label id="id_rating-result-7025" class="rating-result" data-deflabel="">Select Your Rating</label><ul id="id_rating-widget-7025" class="rating-widget" data-pid="7025" data-qid="713656" data-cur="0"><li><a href="#submit-rating-1" rel="nofollow">&nbsp;</a></li><li><a href="#submit-rating-2" rel="nofollow">&nbsp;</a></li><li><a href="#submit-rating-3" rel="nofollow">&nbsp;</a></li><li><a href="#submit-rating-4" rel="nofollow">&nbsp;</a></li><li><a href="#submit-rating-5" rel="nofollow">&nbsp;</a></li></ul><noscript>Turn On Javascript</noscript></div>
-                        <div id="review-status" class="js-show"><a class="btn-small review-allowed open-review-form">Submit a review...</a></div><sub class="flipr click-area"></sub>
-                    </div>
-                </div>
 
-                <div id="shopper-reviews" class="section">
 
-                    <div class="noreviews t3 light">No reviews to list at this time.</div>
-                    <div class="noreviews-write t3 light txtlinks">
-                        Be the first to <a class="open-review-form txt alert-on-req" href="#" rel="nofollow">submit a review</a>!
-                    </div>
-                </div>
-
-                <div id="review-btns"></div><div class="hidden">
-                    <div id="write-review" class="wabit">
-                        <form id="id_SubmitReviewForm" class="standard ffocus" method="post" action="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/">
-                            <input id="id_ReviewRating" type="hidden" name="rating" value="0" />
-                            <input type="hidden" name="pid" value="7025" />
-                            <input type="hidden" name="non-js" value="" />
-                            <input type="hidden" name="edit" value="" />
-                            <input type="hidden" name="write" value="" />
-                            <input type="hidden" name="keychain" value="ufeb4Q-tgvhT3-bRIAuy" />
-                            <input type="hidden" name="act_SubmitReview" value="" />
-
-                            <div id="special-message-incbox" class="initially-hidden"></div>
-                            <div id="review-form-errors" class="initially-hidden">
-                                <div class="errormsg">
-                                    <span class="rating message"><br>Don't forget to select your rating!<br></span>
-                                    <span class="titletxt message">Please enter a review title for your submission.<br></span>
-                                    <span class="bodytxt message">You must write a full review to submit. Use the forum for questions or discussions.<br></span>
-                                </div>
-                            </div>
-
-                            <div id="review-form">
-                                <table border="0" cellspacing="0" cellpadding="0">
-                                    <tbody>
-                                        <tr>
-                                            <td class="ravatar valign-t" rowspan="2"><img class="avatar" src="/images_avatars/letters/violet/s.png" width="50" height="50" alt="" title="" /></td>
-                                            <td class="rrating"><div id="rewards-note" title="Earn reward points by writing reviews for games you purchase on WinGameStore!">Not purchased</div><div id="shopper-name">Stefan Denchev</div><div id="review-rating-select"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rtitle"><input id="review-title" type="text" name="tgvhT3" value="" placeholder="review title" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rbody" colspan="2"><textarea id="review-text" name="bRIAuy" rows="6"></textarea></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rreqs align-c wabit" colspan="2">
-                                                <label id="review-textreq">10 word minimum</label>
-                                                <label id="review-togglerules"><a class="txt" href="#">Rules &amp; Regulations</a></label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rbtns align-c" colspan="2">
-                                                <input class="formsubmit btn-small" type="submit" name="btn_SubmitReview" value="Submit Review">
-                                                <a class="formsubmit btn-small" href="https://www.wingamestore.com/product/7025/DRAGON-BALL-XENOVERSE-2/" data-act="act_SubmitReview">Submit Review</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </form>
-                        <div id="review-rules-block">
-                            Rules &amp; Regulations for writing an approved review:
-                            <ul class="normal">
-                                <li>No excessive profanity, vulgar or abusive language.</li>
-                                <li>Write reviews about the GAME at hand, not something else.</li>
-                                <li>Negative reviews stating a game no longer works on a new OS, will be deleted.</li>
-                                <li>Do not attack the store or another shopper's opinion.</li>
-                                <li>Do not ask for help or support (please use support for questions).</li>
-                                <li>No spamming (game reviews must be about the GAME).</li>
-                            </ul>
-                            WinGameStore reserves the right to alter or reject any review for reasons above or otherwise.
-                            Abuse of the game review system will result in privileges revoked to rate and submit reviews.
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
 
         </div>
 
-        <div id="detail-others" class="antiboxed runt">
-            <h3>More By <a class="txt" href="https://www.wingamestore.com/publisher/912/BANDAI-NAMCO-Entertainment/" title="More By BANDAI NAMCO Entertainment">BANDAI NAMCO Entertainment</a></h3>
-            <ul class="hotprods-wide">
-                <li>
-                    <div class="boxhole img16x9" title="TEKKEN 7 - Season Pass"><img src="/images_boxshots/240x135/tekken-7-season-pass-1548950674.jpg" srcset="/images_boxshots/master/tekken-7-season-pass-1548950674.jpg 512w,/images_boxshots/352x198/tekken-7-season-pass-1548950674.jpg 352w,/images_boxshots/256x144/tekken-7-season-pass-1548950674.jpg 256w,/images_boxshots/240x135/tekken-7-season-pass-1548950674.jpg 240w,/images_boxshots/128x72/tekken-7-season-pass-1548950674.jpg 128w" sizes="160px" alt="TEKKEN 7 - Season Pass" class="boxpid-7401" /></div>
-                    <div class="baseflap"><span class="prodtitle">TEKKEN 7 - Season Pass</span><span class="costblock"><span class="price"><em><i>$</i>24.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/7401/TEKKEN-7-Season-Pass/" title="TEKKEN 7 - Season Pass">TEKKEN 7 - Season Pass</a>
-                </li>
-                <li>
-                    <div class="boxhole img16x9" title="SWORD ART ONLINE Alicization Lycoris Deluxe Edition"><img src="/images_boxshots/240x135/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg" srcset="/images_boxshots/master/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg 512w,/images_boxshots/352x198/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg 352w,/images_boxshots/256x144/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg 256w,/images_boxshots/240x135/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg 240w,/images_boxshots/128x72/sword-art-online-alicization-lycoris-deluxe-edition-1594667239.jpg 128w" sizes="160px" alt="SWORD ART ONLINE Alicization Lycoris Deluxe Edition" class="boxpid-11812" /></div>
-                    <div class="baseflap"><span class="prodtitle">SWORD ART ONLINE Alicization Lycoris Deluxe Edition</span><span class="costblock"><span class="price"><em><i>$</i>104.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/11812/SWORD-ART-ONLINE-Alicization-Lycoris-Deluxe-Edition/" title="SWORD ART ONLINE Alicization Lycoris Deluxe Edition">SWORD ART ONLINE Alicization Lycoris Deluxe Edition</a>
-                </li>
-                <li>
-                    <div class="boxhole img16x9" title="Tales of Zestiria"><img src="/images_boxshots/240x135/tales-of-zestiria-1548950810.jpg" srcset="/images_boxshots/master/tales-of-zestiria-1548950810.jpg 512w,/images_boxshots/352x198/tales-of-zestiria-1548950810.jpg 352w,/images_boxshots/256x144/tales-of-zestiria-1548950810.jpg 256w,/images_boxshots/240x135/tales-of-zestiria-1548950810.jpg 240w,/images_boxshots/128x72/tales-of-zestiria-1548950810.jpg 128w" sizes="160px" alt="Tales of Zestiria" class="boxpid-7650" /></div>
-                    <div class="baseflap"><span class="prodtitle">Tales of Zestiria</span><span class="costblock"><span class="price"><em><i>$</i>49.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/7650/Tales-of-Zestiria/" title="Tales of Zestiria">Tales of Zestiria</a>
-                </li>
-                <li>
-                    <div class="boxhole img16x9" title="SD Gundam G Generation Cross Rays - Deluxe Edition"><img src="/images_boxshots/240x135/sd-gundam-g-generation-cross-rays-1572354679.jpg" srcset="/images_boxshots/master/sd-gundam-g-generation-cross-rays-1572354679.jpg 512w,/images_boxshots/352x198/sd-gundam-g-generation-cross-rays-1572354679.jpg 352w,/images_boxshots/256x144/sd-gundam-g-generation-cross-rays-1572354679.jpg 256w,/images_boxshots/240x135/sd-gundam-g-generation-cross-rays-1572354679.jpg 240w,/images_boxshots/128x72/sd-gundam-g-generation-cross-rays-1572354679.jpg 128w" sizes="160px" alt="SD Gundam G Generation Cross Rays - Deluxe Edition" class="boxpid-11057" /></div>
-                    <div class="baseflap"><span class="prodtitle">SD Gundam G Generation Cross Rays - Deluxe Edition</span><span class="costblock"><span class="price"><span class="percentoff">-40<i>%</i></span><span class="was"><i>$</i>74.99</span><em><i>$</i>44.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/11057/SD-Gundam-G-Generation-Cross-Rays-Deluxe-Edition/" title="SD Gundam G Generation Cross Rays - Deluxe Edition">SD Gundam G Generation Cross Rays - Deluxe Edition</a>
-                </li>
-                <li>
-                    <div class="boxhole img16x9" title="DARK SOULS™ III - Season Pass"><img src="/images_boxshots/240x135/dark-soulstm-iii-season-pass-1552456546.jpg" srcset="/images_boxshots/master/dark-soulstm-iii-season-pass-1552456546.jpg 512w,/images_boxshots/352x198/dark-soulstm-iii-season-pass-1552456546.jpg 352w,/images_boxshots/256x144/dark-soulstm-iii-season-pass-1552456546.jpg 256w,/images_boxshots/240x135/dark-soulstm-iii-season-pass-1552456546.jpg 240w,/images_boxshots/128x72/dark-soulstm-iii-season-pass-1552456546.jpg 128w" sizes="160px" alt="DARK SOULS™ III - Season Pass" class="boxpid-6988" /></div>
-                    <div class="baseflap"><span class="prodtitle">DARK SOULS™ III - Season Pass</span><span class="costblock"><span class="price"><em><i>$</i>24.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/6988/DARK-SOULS-III-Season-Pass/" title="DARK SOULS™ III - Season Pass">DARK SOULS™ III - Season Pass</a>
-                </li>
-                <li>
-                    <div class="boxhole img16x9" title="DRAGON BALL XENOVERSE 2 Super Pass"><img src="/images_boxshots/240x135/dragon-ball-xenoverse-2-super-pass-1557341458.jpg" srcset="/images_boxshots/master/dragon-ball-xenoverse-2-super-pass-1557341458.jpg 512w,/images_boxshots/352x198/dragon-ball-xenoverse-2-super-pass-1557341458.jpg 352w,/images_boxshots/256x144/dragon-ball-xenoverse-2-super-pass-1557341458.jpg 256w,/images_boxshots/240x135/dragon-ball-xenoverse-2-super-pass-1557341458.jpg 240w,/images_boxshots/128x72/dragon-ball-xenoverse-2-super-pass-1557341458.jpg 128w" sizes="160px" alt="DRAGON BALL XENOVERSE 2 Super Pass" class="boxpid-9985" /></div>
-                    <div class="baseflap"><span class="prodtitle">DRAGON BALL XENOVERSE 2 Super Pass</span><span class="costblock"><span class="price"><span class="percentoff">-50<i>%</i></span><span class="was"><i>$</i>29.99</span><em><i>$</i>14.99</em></span></span></div>
-                    <a class="overclick rad3" href="https://www.wingamestore.com/product/9985/DRAGON-BALL-XENOVERSE-2-Super-Pass/" title="DRAGON BALL XENOVERSE 2 Super Pass">DRAGON BALL XENOVERSE 2 Super Pass</a>
-                </li>
-            </ul>
-        </div>
+        @*<partial name="_SamePublisherPartial" />*@
+        <vc:same-publisher-games-list publisher-name="@Model.PublisherName" current-game="@Model.Title"></vc:same-publisher-games-list>
 
-
-
+        
 
     </section>
 </div>
+
+
+
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">Order - @Model.Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="order-form" asp-controller="Games" asp-action="Order" method="post">
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Id" name="gameId" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="complete-order-button">Complete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#complete-order-button').click(function () {
+        $('#order-form').submit();
+    });
+</script>

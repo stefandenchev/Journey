@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class SearchListViewModel : PagingViewModel
+    public class SearchListViewModel
     {
         public IEnumerable<GameInListViewModel> Games { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿namespace Journey.Web.Controllers
+﻿namespace Journey.Web.Controllers.Scraper
 {
     using System.Threading.Tasks;
 

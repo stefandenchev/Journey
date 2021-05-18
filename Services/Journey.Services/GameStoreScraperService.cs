@@ -478,17 +478,6 @@
                 game.Images.Add(image2);
             }
 
-            // VIDEO
-            /*            var video = document.QuerySelectorAll("#roundabout > li.video.lslide > div > video");
-
-                        if (!(video == null))
-                        {
-                            Video video = new Video
-                            {
-                                OriginalUrl = "https://www.wingamestore.com" + main,
-                            };
-                        }*/
-
             return game;
         }
     }

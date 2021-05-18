@@ -67,13 +67,13 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="#">Browse Genres</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Action">Action</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Adventure">Adventure</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Racing">Racing</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Shooters">Shooters</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Simulation">Simulation</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Strategy">Strategy</a></li>
-                                        <li><a class="dropdown-item" href="/Search/Genre?genre=Others">Others</a></li>
+
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
 
                                         @*
                                             <li class="dropdown-submenu">
@@ -125,7 +125,7 @@
 
 
 
-    <footer class="footer">
+    <footer class="footer" id="footerMain">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
@@ -136,11 +136,10 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="~/assets/js/gamestore_globalweb.js"></script>
-    <script src="~/assets/js/gamestore_subs_detail.js"></script>
+
 
     <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
 

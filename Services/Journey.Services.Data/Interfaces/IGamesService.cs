@@ -7,7 +7,7 @@
 
     public interface IGamesService
     {
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 16);
 
         IEnumerable<T> GetLatest<T>(int count = 12);
 

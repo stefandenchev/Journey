@@ -365,6 +365,72 @@ namespace Journey.Data.Migrations
                     b.ToTable("Logs_17114092");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Order", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IssuerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IssuerId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("IssuerId1");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.OrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderStatus");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
@@ -392,6 +458,26 @@ namespace Journey.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Publishers");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Tag", b =>
@@ -595,6 +681,42 @@ namespace Journey.Data.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Order", b =>
+                {
+                    b.HasOne("Journey.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "Issuer")
+                        .WithMany("Orders")
+                        .HasForeignKey("IssuerId1");
+
+                    b.HasOne("Journey.Data.Models.OrderStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("Issuer");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("Journey.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Journey.Data.Models.ApplicationRole", null)
@@ -651,6 +773,8 @@ namespace Journey.Data.Migrations
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("Roles");
                 });

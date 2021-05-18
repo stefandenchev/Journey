@@ -7,6 +7,7 @@
     using AutoMapper;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Search;
 
     public class SingleGameViewModel : IMapFrom<Game>, IHaveCustomMappings
     {
@@ -39,8 +40,6 @@
         public decimal Price { get; set; }
 
         public string OriginalUrl { get; set; }
-
-        public virtual IEnumerable<GameInListViewModel> GamesBySamePublisher { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

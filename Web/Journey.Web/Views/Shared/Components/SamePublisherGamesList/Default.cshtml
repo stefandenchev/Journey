@@ -1,0 +1,27 @@
+﻿@model Journey.Web.ViewModels.Games.Home.ViewComponents.SamePublisherGamesListViewModel
+
+<div id="detail-others" class="antiboxed runt">
+    <h3>
+        More By
+        <a class="txt" asp-controller="Search" asp-action="Publisher" asp-route-p="@Model.PublisherName">@Model.PublisherName</a>
+    </h3>
+    @if (this.Model.Games.Count() > 0)
+    {
+        <ul class="hotprods-wide">
+            @foreach (var game in this.Model.Games)
+            {
+                <li>
+                    <div class="boxhole img16x9" title="@game.Title"><img src="" srcset="@game.ImageUrl" sizes="160px" alt="@game.Title" /></div>
+                    <div class="baseflap"><span class="prodtitle">@game.Title</span><span class="costblock"><span class="price"><em><i>$</i>@game.Price</em></span></span></div>
+                    <a class="overclick rad3" asp-action="ById" asp-route-id="@game.Id" title="@game.Title">@game.Title</a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div>No other games by @Model.PublisherName</div>
+    }
+
+
+</div>

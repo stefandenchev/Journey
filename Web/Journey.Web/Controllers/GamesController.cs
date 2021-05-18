@@ -7,6 +7,7 @@
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
@@ -35,7 +36,7 @@
             this.environment = environment;
         }
 
-        /*[Authorize]*/
+        [Authorize]
         public IActionResult Create()
         {
             var viewModel = new CreateGameInputModel();
@@ -48,7 +49,7 @@
         }
 
         [HttpPost]
-        /*[Authorize]*/
+        [Authorize]
         public async Task<IActionResult> Create(CreateGameInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -75,7 +76,7 @@
                 return this.View(input);
             }
 
-            this.TempData["Message"] = "Recipe added successfully.";
+            this.TempData["Message"] = "Game added successfully.";
 
             return this.RedirectToAction("All");
         }
@@ -87,13 +88,13 @@
                 return this.NotFound();
             }
 
-            const int itemsPerPage = 12;
+            const int itemsPerPage = 16;
             var viewModel = new GamesListViewModel
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 GamesCount = this.gamesService.GetCount(),
-                Games = this.gamesService.GetAll<GameInListViewModel>(id, 12),
+                Games = this.gamesService.GetAll<GameInListViewModel>(id, 16),
             };
 
             return this.View(viewModel);
@@ -105,5 +106,6 @@
 
             return this.View(game);
         }
+
     }
 }

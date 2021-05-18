@@ -21,6 +21,8 @@
 
         public string GenreName { get; set; }
 
+        public string PublisherName { get; set; }
+
         /*public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, GameInListViewModel>()

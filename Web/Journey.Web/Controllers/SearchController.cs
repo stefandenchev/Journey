@@ -39,7 +39,8 @@
                 viewModel = new SearchListViewModel
                 {
                     Games = this.searchService.GetAll<GameInListViewModel>()
-                    .Where(x => x.Title.ToLower().Contains(s.ToLower())),
+                    .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                    .OrderBy(x => x.Title),
                 };
             }
 
@@ -47,13 +48,28 @@
         }
 
         [HttpGet]
-        public IActionResult Genre(string genre)
+        public IActionResult Genre(string g)
         {
             var viewModel = new GenreListViewModel
             {
-                GenreName = genre,
+                GenreName = g,
                 Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.GenreName == genre),
+                .Where(x => x.GenreName == g)
+                .OrderBy(x => x.Title),
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Publisher(string p)
+        {
+            var viewModel = new PublisherListViewModel
+            {
+                PublisherName = p,
+                Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.PublisherName == p)
+                .OrderBy(x => x.Title),
             };
 
             return this.View(viewModel);
