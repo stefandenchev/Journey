@@ -106,6 +106,5 @@
 
             return this.View(game);
         }
-
     }
 }

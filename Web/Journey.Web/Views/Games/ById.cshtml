@@ -22,10 +22,7 @@
                 <div id="price-bar" class="wabit">
                     <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
-                <div>
-                    <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
-
-                </div>
+                <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Orders" asp-action="AddToCart" asp-route-g="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
             </div>
         </div>
 
@@ -186,7 +183,6 @@
 
         </div>
 
-        @*<partial name="_SamePublisherPartial" />*@
         <vc:same-publisher-games-list publisher-name="@Model.PublisherName" current-game="@Model.Title"></vc:same-publisher-games-list>
 
         

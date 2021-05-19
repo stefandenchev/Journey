@@ -279,10 +279,6 @@ a.atitle{
     padding: 0 !important;
 }
 
-#cookieConsent > a {
-    color: #e08821;
-}
-
 a {
     color: #e08821;
 }
@@ -301,3 +297,11 @@ body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
 
 }
 
+#cart-icon-main:hover{
+    background: #304052;
+    border-radius: 50%;
+}
+.dropdown-item:hover {
+    color: #e6e6ff;
+    background: #304052
+}

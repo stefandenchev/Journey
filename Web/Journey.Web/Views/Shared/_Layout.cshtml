@@ -38,6 +38,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
 
+                    <div class="nav-item">
+                        <a class="nav-link text-light" id="cart-icon-main" asp-area="" asp-controller="Home" asp-action="Privacy"><label><img src="~/images/icon-header-cart.png"/></label></a>
+                    </div>
+
                     @*search bar here*@
                     <div class="nk-widget">
                         <div class="container">
@@ -53,7 +57,7 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Store
                             </a>
 
@@ -75,36 +79,12 @@
                                         <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
                                         <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
 
-                                        @*
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                                </ul>
-                                            </li>*@
-
                                     </ul>
                                 </li>
                             </ul>
 
-                            @*                        <li class="nav-item">
-
-                                </li>*@
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
-                        @*@if (this.User.IsInRole())
-                            {*@
+                            @*@if (this.User.IsInRole())
+                {*@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Games" asp-action="Create">Add New Game</a>
                         </li>
