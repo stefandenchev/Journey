@@ -305,3 +305,8 @@ body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
     color: #e6e6ff;
     background: #304052
 }
+
+#continue-shopping-button, #clear-shopping-button, #checkout-shopping-button {
+    margin-bottom: 95px;
+    padding: 10px;
+}

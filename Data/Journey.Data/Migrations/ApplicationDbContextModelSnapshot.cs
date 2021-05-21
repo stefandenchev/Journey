@@ -186,9 +186,6 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ShoppingCartId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -199,8 +196,6 @@ namespace Journey.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("PublisherId");
-
-                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("Games");
                 });
@@ -320,6 +315,37 @@ namespace Journey.Data.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Items");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Language", b =>
                 {
                     b.Property<int>("Id")
@@ -370,43 +396,6 @@ namespace Journey.Data.Migrations
                     b.ToTable("Logs_17114092");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.Order", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("IssuedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IssuerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ModifiedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("IssuerId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
@@ -436,27 +425,6 @@ namespace Journey.Data.Migrations
                     b.ToTable("Publishers");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.ShoppingCart", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedOn_17114092")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ShoppingCarts");
-                });
-
             modelBuilder.Entity("Journey.Data.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -484,6 +452,42 @@ namespace Journey.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.UserCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -604,10 +608,6 @@ namespace Journey.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Journey.Data.Models.ShoppingCart", null)
-                        .WithMany("Games")
-                        .HasForeignKey("ShoppingCartId");
-
                     b.Navigation("Genre");
 
                     b.Navigation("Publisher");
@@ -662,7 +662,7 @@ namespace Journey.Data.Migrations
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.Order", b =>
+            modelBuilder.Entity("Journey.Data.Models.Item", b =>
                 {
                     b.HasOne("Journey.Data.Models.Game", "Game")
                         .WithMany()
@@ -670,20 +670,22 @@ namespace Journey.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Journey.Data.Models.ApplicationUser", "Issuer")
-                        .WithMany("Orders")
-                        .HasForeignKey("IssuerId");
-
                     b.Navigation("Game");
-
-                    b.Navigation("Issuer");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.ShoppingCart", b =>
+            modelBuilder.Entity("Journey.Data.Models.UserCartItem", b =>
                 {
+                    b.HasOne("Journey.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Journey.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Game");
 
                     b.Navigation("User");
                 });
@@ -745,8 +747,6 @@ namespace Journey.Data.Migrations
 
                     b.Navigation("Logins");
 
-                    b.Navigation("Orders");
-
                     b.Navigation("Roles");
                 });
 
@@ -770,11 +770,6 @@ namespace Journey.Data.Migrations
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
-                {
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.ShoppingCart", b =>
                 {
                     b.Navigation("Games");
                 });

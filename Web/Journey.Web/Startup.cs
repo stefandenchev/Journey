@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web
 {
+    using System;
     using System.Reflection;
 
     using Journey.Data;
@@ -36,6 +37,14 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           // remove if it doesn't work
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
@@ -48,6 +57,8 @@
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
+
+            services.AddDistributedMemoryCache();
 
             services.AddControllersWithViews(
                 options =>
@@ -107,6 +118,8 @@
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession(); // remove if it doesn't work
 
             app.UseEndpoints(
                 endpoints =>

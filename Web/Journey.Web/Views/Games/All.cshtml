@@ -25,7 +25,7 @@
                 <a class="boxhole img16x9" a asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
             </span>
             <a class="atitle" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-            <div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" href="https://www.wingamestore.com/buy/12085/" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>
+            <div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" asp-controller="Cart" asp-action="Add" asp-route-id="@game.Id" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>
         </div>
     </li>}
             </ul>

@@ -40,6 +40,10 @@
 
         public DbSet<GameTag> GamesTags { get; set; }
 
+        public DbSet<Item> Items { get; set; }
+
+        public DbSet<UserCartItem> UserCartItems { get; set; }
+
         public DbSet<Log> Logs_17114092 { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

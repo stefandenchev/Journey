@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Journey.Data.Models;
     using Journey.Web.ViewModels.Games.Create;
 
     public interface IGamesService

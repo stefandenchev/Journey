@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
-    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon-32x32.png">
@@ -38,10 +38,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
 
-                    <div class="nav-item">
-                        <a class="nav-link text-light" id="cart-icon-main" asp-area="" asp-controller="Home" asp-action="Privacy"><label><img src="~/images/icon-header-cart.png"/></label></a>
-                    </div>
-
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <div class="nav-item">
+                            <a class="nav-link text-light" id="cart-icon-main" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
+                        </div>
+                    }
                     @*search bar here*@
                     <div class="nk-widget">
                         <div class="container">
@@ -62,7 +64,7 @@
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Games" asp-action="All">All Games</a></li>
+                                <li><a class="dropdown-item" asp-controller="Games" asp-action="All">All Games</a></li>
                                 <li><a class="dropdown-item" href="#">Pre-Order</a></li>
 
                                 <li class="dropdown-divider"></li>

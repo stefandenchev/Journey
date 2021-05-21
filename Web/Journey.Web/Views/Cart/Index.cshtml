@@ -1,0 +1,135 @@
+﻿@model Journey.Web.ViewModels.Cart.CartViewModel
+@{ ViewBag.Title = "Shopping Cart"; }
+
+<link href="~/css/gamestore_globalweb.css" rel="stylesheet" />
+<link href="~/css/gamestore_subs_checkout.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+
+<div class="container">
+    <h2>Your @ViewBag.Title</h2>
+
+    @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
+    {
+     <div class="container">
+         <section id="core-guts" class="stringy fatty">
+             <div id="cart-block-wrap" class="contentbox raft">
+                 <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                     <tbody class="boxoom">
+                         @foreach (var item in Model.GamesInCart)
+                         {
+                            <tr class="product hovcolor">
+                                <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                <td class="details">
+                                    <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                </td>
+                                <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                <td class="remove" onclick="removeItem('itemId')"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
+                            </tr>
+                            }
+                            <tr class="grandtotal bortop">
+                             <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
+                             <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </section>
+     </div>
+     }
+else
+{
+<p>Your shopping cart is empty.</p>
+}
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1 header"><a href="@Url.Action("Index", "Home")" class="btn btn-primary top-spacing" id="continue-shopping-button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;&nbsp;Continue Shopping</a></div>
+
+        @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
+        {
+         <div class="col-md-3 header"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-danger top-spacing" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
+             <div class="col-md-3 header"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-success top-spacing"id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>}
+         </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script src="~/js/toastr.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                closeButton: true,
+                showDuration: 100,
+                hideDuration: 1000,
+                timeOut: 1500,
+                extendedTimeOut: 200,
+                tapToDismiss: true,
+                debug: false,
+                fadeOut: 200,
+                positionClass: "toast-top-center"
+            };
+        });
+
+        function removeItem(itemId) {
+            var obj = {
+                GameId: itemId,
+            };
+            $.ajax({
+                // url: "/Cart/RemoveItem",
+                url: "@Url.Action("RemoveItem")",
+                data: JSON.stringify(obj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    toastr.options.timeOut = 3000;
+                    toastr.success('Item was removed from your shopping cart');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+                },
+                error: function (result) {
+                    alert(result.Error);
+                },
+            });
+
+        }
+
+        function moveToWishList(itemId) {
+            var obj = {
+                GameId: itemId,
+            };
+            $.ajax({
+                url: "/Cart/MoveToWishList",
+                data: JSON.stringify(obj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    toastr.options.timeOut = 3000;
+                    if (result.Success) {
+                        toastr.success('Item was moved to your wish list');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 3000);
+
+                    }
+                    else {
+                        toastr.error(result.Error);
+                    }
+                },
+                error: function (result) {
+                    toastr.options.timeOut = 5000;
+                    toastr.error(result.Error);
+                },
+            });
+        }</script>
+}
+
+
+
+
+

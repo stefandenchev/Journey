@@ -948,3 +948,4 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Results.cshtml.g.
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Genre.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Publisher.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\SamePublisherGamesList\Default.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
