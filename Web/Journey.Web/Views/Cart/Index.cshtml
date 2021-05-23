@@ -24,9 +24,9 @@
                                     <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
                                 </td>
                                 <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
-                                <td class="remove" onclick="removeItem('itemId')"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
+                                <td class="remove" onclick="removeItem(@item.Id)"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
                             </tr>
-                            }
+                         }
                             <tr class="grandtotal bortop">
                              <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
                              <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
@@ -37,26 +37,27 @@
          </section>
      </div>
      }
-else
-{
-<p>Your shopping cart is empty.</p>
-}
+     else
+     {
+     <p>Your shopping cart is empty.</p>
+     }
+
     <div class="row">
-        <div class="col-md-3 col-md-offset-1 header"><a href="@Url.Action("Index", "Home")" class="btn btn-primary top-spacing" id="continue-shopping-button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;&nbsp;Continue Shopping</a></div>
+        <div class="row"><a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Go Back</a></div>
 
         @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
         {
-         <div class="col-md-3 header"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-danger top-spacing" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
-             <div class="col-md-3 header"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-success top-spacing"id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>}
-         </div>
+             <div class="row"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-primary" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
+
+             <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
+         }
+    </div>
 </div>
 
 
 
 
 @section Scripts {
-
-    <script src="~/js/toastr.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -74,27 +75,32 @@ else
         });
 
         function removeItem(itemId) {
+            var t = $("input[name='__RequestVerificationToken']").val();
             var obj = {
-                GameId: itemId,
+                gameId: itemId,
             };
-            $.ajax({
-                // url: "/Cart/RemoveItem",
-                url: "@Url.Action("RemoveItem")",
-                data: JSON.stringify(obj),
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
+            console.log(typeof itemId);
+            console.log(itemId);
+            console.log(JSON.stringify(obj));
+            console.log(t);
+                $.ajax({
+                    url: `/Cart/RemoveItem?gameId=${itemId}`,
+                    // url: "@Url.Action("RemoveItem")",
+                    // data: JSON.stringify(obj),
+                    type: "GET",
+                    headers:
+                    {
+                        "RequestVerificationToken": t
+                    },
+                contentType: "application/json",
                 dataType: "json",
-                success: function (result) {
-                    toastr.options.timeOut = 3000;
-                    toastr.success('Item was removed from your shopping cart');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000);
+                    success: function (result) {           
+                    location.reload();
                 },
-                error: function (result) {
-                    alert(result.Error);
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
                 },
-            });
+                });         
 
         }
 

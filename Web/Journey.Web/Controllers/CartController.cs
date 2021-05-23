@@ -4,17 +4,16 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using Journey.Data;
     using Journey.Data.Models;
-    using Journey.Services.Data.Helpers;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels.Cart;
-    using Journey.Web.ViewModels.Games;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Routing;
-    using Microsoft.AspNetCore.Session;
 
+    [Authorize]
     public class CartController : BaseController
     {
         private readonly ApplicationDbContext db;
@@ -71,7 +70,9 @@
             // return this.RedirectToAction("ViewGame", new RouteValueDictionary(new { controller = "Home", action = "ViewGame", Id = id }));
         }
 
-        public ActionResult RemoveItem(int gameId)
+        [HttpGet]
+        //[Route("")]
+        public JsonResult RemoveItem(int gameId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -130,8 +131,33 @@
             return games;
         }
 
+        /*[HttpGet]
+        public ActionResult Checkout()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+            var model = new CheckoutViewModel();
 
+            // get games
+            List<Game> games = GetGamesFromCart(userId);
+            model.GamesInCart = games;
+
+            // get credit cards
+            model.CreditCards = db.CreditCards.Where(c => c.HolderId == userId).ToList();
+
+            //calculate total
+            double tax = 0.13;
+            model.Total = games.Sum(g => g.Price);
+            model.TaxTotal = Math.Round(model.Total * (decimal)tax, 2);
+            model.TotalWithTaxes = Math.Round(model.Total + model.TaxTotal, 2);
+
+            return View(model);
+        }
+*/
 
         /* public IActionResult Index()
          {

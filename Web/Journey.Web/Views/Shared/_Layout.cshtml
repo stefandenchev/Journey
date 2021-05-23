@@ -23,7 +23,7 @@
 
 </head>
 <body>
-
+    <div class="page-container">
     <header>
 
         <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
@@ -101,11 +101,12 @@
     </header>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="container-main">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
+    </div>
     </div>
 
 

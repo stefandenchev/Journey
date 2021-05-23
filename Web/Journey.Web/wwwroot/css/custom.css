@@ -29,7 +29,7 @@ h6,
     font-family: "Motiva Sans", Sans-serif;
 }
 
-.form-control, .form-control-language{
+.form-control, .form-control-language {
     margin-bottom: 15px;
 }
 
@@ -90,7 +90,7 @@ nav a {
 
     .nav-link:hover, .nav-item:hover, .nav-link.text-light:hover {
         color: #fff !important;
-        font-weight:500
+        font-weight: 500
     }
 
 .navbar-brand {
@@ -103,10 +103,10 @@ nav a {
     left: auto !important;
     right: auto !important;
     background: #171A21 !important;
-    bottom: 0px;
+    height: 4rem;
 }
 
-#paginationMain{
+#paginationMain {
     padding-bottom: 20px;
 }
 
@@ -114,7 +114,7 @@ nav a {
     margin-bottom: 45px !important;
 }
 
-.carousel-inner .carousel-item > img {
+.carousel-inner .carousel-item > a > img {
     -webkit-animation: zoom 20s;
     -o-animation: zoom 20s;
     animation: zoom 20s;
@@ -122,7 +122,7 @@ nav a {
 
 @-webkit-keyframes zoom {
     from {
-        -webkit-transform: scale(1.05, 1.05);
+        -webkit-transform: scale(1.1, 1.1);
     }
 
     to {
@@ -132,7 +132,7 @@ nav a {
 
 @keyframes zoom {
     from {
-        transform: scale(1.05, 1.05);
+        transform: scale(1.1, 1.1);
     }
 
     to {
@@ -145,8 +145,8 @@ nav a {
     padding-top: 45px;
 }
 
-#LatestGamesTitle{
-    text-align:center
+#LatestGamesTitle {
+    text-align: center
 }
 
 .dropdown-submenu {
@@ -201,8 +201,6 @@ nav a {
 nk-widget {
     color: white !important
 }
-
-
 
 .badge-buy {
     display: block;
@@ -270,13 +268,18 @@ body > header > nav > div > a.navbar-brand {
     margin: 0
 }
 
-a.atitle{
-    font-size:15px !important;
+a.atitle {
+    font-size: 15px !important;
 }
 
-#carouselHome{
+#carouselHome {
     width: 100% !important;
     padding: 0 !important;
+}
+
+.container-fluid {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
 }
 
 a {
@@ -294,19 +297,61 @@ body > header > nav > div > div > ul:nth-child(1) > li:nth-child(1) > a:hover {
 
 body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
     margin-bottom: 32px;
-
 }
 
-#cart-icon-main:hover{
+#cart-icon-main:hover {
     background: #304052;
     border-radius: 50%;
 }
+
 .dropdown-item:hover {
     color: #e6e6ff;
     background: #304052
 }
 
-#continue-shopping-button, #clear-shopping-button, #checkout-shopping-button {
+#checkout-shopping-button, #clear-shopping-button, #continue-shopping-button {
     margin-bottom: 95px;
-    padding: 10px;
+    border-radius: 12px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 18px;
+    padding: 16px 46px;
+    margin-left: 50px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+    width: 200px;
+}
+
+#checkout-shopping-button {
+    background-color: #48bd26
+}
+
+    #checkout-shopping-button:hover {
+        background-color: #49ae2b
+    }
+
+#clear-shopping-button {
+    background-color: #c81f1f
+}
+    #clear-shopping-button:hover {
+        background-color: #b42c2c
+    }
+
+#continue-shopping-button {
+    background-color: #1B6EF3;
+}
+
+    #continue-shopping-button:hover {
+        background-color: #1B6EC2;
+    }
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#container-main {
+    padding-bottom: 2.5rem;
 }

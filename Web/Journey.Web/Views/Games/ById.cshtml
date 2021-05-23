@@ -21,7 +21,12 @@
                 <div id="price-bar" class="wabit">
                     <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
-                <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
+
+                @if (true)
+                {
+                    <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
+                }
+
             </div>
         </div>
 
