@@ -64,7 +64,6 @@ namespace Journey.Data.Migrations
             migrationBuilder.DropTable(
                 name: "UserCartItems",
                 schema: "17114092");
-
         }
     }
 }

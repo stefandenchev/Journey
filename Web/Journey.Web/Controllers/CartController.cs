@@ -35,11 +35,9 @@
 
             var viewModel = new CartViewModel();
 
-            // add games
             List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
             viewModel.GamesInCart = games;
 
-            // calculate total
             viewModel.Total = games.Sum(g => g.Price);
 
             return this.View(viewModel);
@@ -54,6 +52,7 @@
                 // add displaying errors to the home page
                 // return RedirectToAction("ViewGame", "Home", new { area = "" });
                 this.TempData["message"] = "This game is already in your cart.";
+
                 // return this.RedirectToAction("ById", new RouteValueDictionary(new { controller = "Games", action = "ById", Id = id }));
                 return this.RedirectToAction("Index", "Cart");
             }
@@ -66,12 +65,12 @@
             this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
 
             return this.RedirectToAction("Index");
+
             // Session["cart"] = this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString();
             // return this.RedirectToAction("ViewGame", new RouteValueDictionary(new { controller = "Home", action = "ViewGame", Id = id }));
         }
 
         [HttpGet]
-        //[Route("")]
         public JsonResult RemoveItem(int gameId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -131,121 +130,31 @@
             return games;
         }
 
-        /*[HttpGet]
-        public ActionResult Checkout()
+        /*[HttpPost]
+        public JsonResult MoveToWishList(string gameId)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == null)
+            var userId = User.Identity.GetUserId();
+
+            var gameInCart = db.UserCartItems.FirstOrDefault(g => g.UserId == userId && g.GameId == gameId);
+            if (gameInCart != null)
             {
-                return RedirectToAction("Index", "Home");
+                var gameInWishList = db.WishLists.FirstOrDefault(g => g.userId == userId && g.gameId == gameId);
+                if (gameInWishList != null)
+                {
+                    return Json(new { Success = false, Error = "This game is already in your wish list" }, JsonRequestBehavior.AllowGet);
+                }
+
+                db.WishLists.Add(new WishList { userId = userId, gameId = gameInCart.GameId });
+                db.UserCartItems.Remove(gameInCart);
+                db.SaveChanges();
+
+                Session["cart"] = db.UserCartItems.Where(c => c.UserId == userId).Count().ToString();
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
             }
-
-            var model = new CheckoutViewModel();
-
-            // get games
-            List<Game> games = GetGamesFromCart(userId);
-            model.GamesInCart = games;
-
-            // get credit cards
-            model.CreditCards = db.CreditCards.Where(c => c.HolderId == userId).ToList();
-
-            //calculate total
-            double tax = 0.13;
-            model.Total = games.Sum(g => g.Price);
-            model.TaxTotal = Math.Round(model.Total * (decimal)tax, 2);
-            model.TotalWithTaxes = Math.Round(model.Total + model.TaxTotal, 2);
-
-            return View(model);
-        }
-*/
-
-        /* public IActionResult Index()
-         {
-             *//*           var cart = SessionHelper.GetObjectFromJson<List<Item>>(this.HttpContext.Session, "cart");
-                        this.ViewBag.cart = cart;
-                        this.ViewBag.total = cart.Sum(item => item.Game.Price);
-
-                        return this.View();*//*
-
-             var viewModel = new CartViewModel
-             {
-                 UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value,
-                 Games = new List<GameInCartViewModel>(),
-             };
-
-             return this.View(viewModel);
-         }
-
-         private int Exists(int id)
-         {
-             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(this.HttpContext.Session, "cart");
-             for (int i = 0; i < cart.Count; i++)
-             {
-                 if (cart[i].Game.Id.Equals(id))
-                 {
-                     return i;
-                 }
-             }
-
-             return -1;
-         }
-
-         public IActionResult Buy(int id)
-         {
-             *//*            AllGamesModel gamesListModel = new AllGamesModel
-                         {
-                             Games = this.gamesService.GetAll(),
-                         };
-
-                         if (SessionHelper.GetObjectFromJson<List<Item>>(this.HttpContext.Session, "cart") == null)
-                         {
-                             List<Item> cart = new List<Item>();
-                             cart.Add(new Item { Game = gamesListModel.Games.FirstOrDefault(x => x.Id == id) });
-                             SessionHelper.SetObjectAsJson(this.HttpContext.Session, "cart", cart);
-                         }
-                         else
-                         {
-                             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(this.HttpContext.Session, "cart");
-                             int index = this.Exists(id);
-                             cart.Add(new Item { Game = gamesListModel.Games.FirstOrDefault(x => x.Id == id) });
-
-                             SessionHelper.SetObjectAsJson(this.HttpContext.Session, "cart", cart);
-                         }*//*
-
-             AllGamesModel gamesListModel = new AllGamesModel
-             {
-                 Games = this.gamesService.GetAll(),
-             };
-
-             var viewModel = new CartViewModel
-             {
-                 UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value,
-                 Games = this.gamesService.GetAllToModel<GameInCartViewModel>(),
-             };
-
-             Game game = gamesListModel.Games.FirstOrDefault(x => x.Id == id);
-             GameInCartViewModel gameToAdd = new GameInCartViewModel
-             {
-                 Id = id,
-                 Title = game.Title,
-                 Price = game.Price,
-             };
-
-             viewModel.Games.Add(gameToAdd);
-
-             return this.RedirectToAction("Index");
-         }
-
-         public IActionResult Remove(int id)
-         {
-             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(this.HttpContext.Session, "cart");
-             int index = this.Exists(id);
-             cart.RemoveAt(index);
-
-             SessionHelper.SetObjectAsJson(this.HttpContext.Session, "cart", cart);
-
-             return this.RedirectToAction("Index");
-         }
-     }*/
+            else
+            {
+                return Json(new { Success = false, Error = "Error occurred while moving game to your wish list" }, JsonRequestBehavior.AllowGet);
+            }
+        }*/
     }
 }

@@ -11,6 +11,7 @@
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels.Games.Create;
+    using Journey.Web.ViewModels.Games.Edit;
 
     public class GamesService : IGamesService
     {
@@ -123,6 +124,20 @@
         public int GetCount()
         {
             return this.gamesRepository.All().Count();
+        }
+
+        public async Task UpdateAsync(int id, EditGameInputModel input)
+        {
+            var game = this.gamesRepository.All().FirstOrDefault(x => x.Id == id);
+            game.Title = input.Title;
+            game.Description = input.Description;
+            game.Drm = input.Drm;
+            game.MininumRequirements = input.MininumRequirements;
+            game.RecommendedRequirements = input.RecommendedRequirements;
+            game.GenreId = input.GenreId;
+            game.PublisherId = input.PublisherId;
+
+            await this.gamesRepository.SaveChangesAsync();
         }
     }
 }

@@ -570,14 +570,6 @@ table.list-table tr.divider td {
     padding: 0 15px 10px 15px;
 }
 
-#account-guts .loading {
-    background: url('/images/loading-funnel-120.gif') no-repeat 50% 80px;
-}
-
-.happy #account-guts .loading {
-    background-image: url('/images/loading-3darrows-100.gif');
-}
-
 #account-guts .tab-content.active {
     display: block;
 }
@@ -2034,16 +2026,6 @@ table.list-table td.ddl-info-btn {
         margin-bottom: 0;
     }
 
-    #box-ordersummary a.printer-friendly, #box-ddlviewer a.printer-friendly, #box-reviewviewer a.printer-friendly {
-        background-image: url('/images/icon-printer-friendly.png');
-        background-position: 5px 50%;
-        background-repeat: no-repeat;
-        background-size: 18px 18px;
-        padding-left: 30px;
-        display: inline-block;
-        margin: 8px 0;
-    }
-
     #box-ordersummary h3, #box-ddlviewer h3, #box-reviewviewer h3 {
         padding: 7px;
     }
@@ -2550,18 +2532,6 @@ body#checkout-page {
         background-repeat: no-repeat;
         background-size: 60px 38px;
     }
-
-#cc-block .pay-type-btn {
-    background-image: url('/images/icon-paytype-cc.jpg');
-}
-
-#ap-block .pay-type-btn {
-    background-image: url('/images/icon-paytype-ap.png');
-}
-
-#pp-block .pay-type-btn {
-    background-image: url('/images/icon-paytype-pp.jpg');
-}
 
 .pay-block .pay-type-btn.fancyradio input[type="radio"] {
     position: relative;
@@ -3386,26 +3356,6 @@ tr.rewards .points {
     padding: 0px;
     padding-left: 22px;
     background: url('/images/s1/icon-rewards-points.png') no-repeat left top;
-}
-
-.store1 tr.rewards .points {
-    background-image: url('/images/s1/icon-rewards-points.png');
-}
-
-.store2 tr.rewards .points {
-    background-image: url('/images/s2/icon-rewards-points.png');
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (-o-min-device-pixel-ratio:2/1), only screen and (min--moz-device-pixel-ratio:2), only screen and (min-device-pixel-ratio:2) {
-    .store1 tr.rewards .points {
-        background-image: url('/images/s1/icon-rewards-points@2x.png');
-        background-size: 21px 21px;
-    }
-
-    .store2 tr.rewards .points {
-        background-image: url('/images/s2/icon-rewards-points@2x.png');
-        background-size: 21px 21px;
-    }
 }
 
 tr.taxes td {

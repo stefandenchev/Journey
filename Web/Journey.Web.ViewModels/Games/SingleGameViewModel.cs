@@ -41,6 +41,8 @@
 
         public string OriginalUrl { get; set; }
 
+        public bool IsInUserCart { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, SingleGameViewModel>()

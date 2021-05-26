@@ -18,7 +18,6 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-
             configuration.CreateMap<Image, ImagesViewModel>()
                .ForMember(x => x.LocalPath, opt =>
                opt.MapFrom(x => $"{x.UploadName}.{x.Extension}"));

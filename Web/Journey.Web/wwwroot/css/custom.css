@@ -14,6 +14,10 @@ body {
     height: max-content !important;
 }
 
+body > div.page-container > header > nav {
+    height: 50px;
+}
+
 h1,
 h2,
 h3,
@@ -256,7 +260,7 @@ nk-widget {
     white-space: pre-line;
 }
 
-body > header > nav > div > a.navbar-brand {
+body > div.page-container > header > nav > div > a {
     font-family: 'Zen Dots', cursive;
 }
 
@@ -291,8 +295,13 @@ a {
     font-family: "Motiva Sans", Sans-serif !important;
 }
 
-body > header > nav > div > div > ul:nth-child(1) > li:nth-child(1) > a:hover {
-    color: white !important
+input#searchInput.form-control {
+    font-size: 16px !important;
+    font-family: "Motiva Sans", Sans-serif !important;
+}
+
+ul.hotprods-wide li .costblock .price > em {
+    left: 2.7em
 }
 
 body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
@@ -355,3 +364,39 @@ body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
 #container-main {
     padding-bottom: 2.5rem;
 }
+
+#to-cart-bar {
+    position: relative;
+    display: -webkit-box;
+    display: -moz-inline-box;
+    display: inline-block;
+    -moz-box-orient: vertical;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    margin-top: -4px;
+    content: "";
+    background-size: 18px 18px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+a.btn-buy.return {
+    background: #1B6EF3;
+}
+
+    a.btn-buy.return:hover {
+        background: #0963f5;
+    }
+
+#core-guts{
+    padding-top: 10px !important
+}
+
+#git-hub-logo{
+    color:white
+}
+
+    #git-hub-logo:hover {
+        color: #e08821;
+    }

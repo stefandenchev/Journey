@@ -37,7 +37,6 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // remove if it doesn't work
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(20);
@@ -81,7 +80,7 @@
             services.AddTransient<IGamesService, GamesService>();
             services.AddTransient<IGenresService, GenresService>();
             services.AddTransient<ILanguagesService, LanguagesService>();
-            services.AddTransient<ITagsService, TagsService>();
+            services.AddTransient<ITagsService, DrmsService>();
             services.AddTransient<IPublishersService, PublishersService>();
             services.AddTransient<ISearchService, SearchService>();
         }
@@ -119,7 +118,7 @@
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseSession(); // remove if it doesn't work
+            app.UseSession();
 
             app.UseEndpoints(
                 endpoints =>

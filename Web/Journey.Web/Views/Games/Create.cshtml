@@ -4,7 +4,8 @@
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
     var languageItems = this.Model.LanguagesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var tagItems = this.Model.TagsItems.Select(x => new SelectListItem(x.Value, x.Key));
-    var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key)); }
+    var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
 
 <div class="col-md-6 offset-3">
     <h1>@this.ViewData["Title"]</h1>

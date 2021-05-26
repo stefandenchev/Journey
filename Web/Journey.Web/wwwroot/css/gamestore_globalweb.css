@@ -1292,7 +1292,6 @@ a.btn-buy.buyhov .hovit {
     height: 18px;
     margin-top: -4px;
     content: "";
-    background-image: url('/images/icon-cart-add.png');
     background-size: 18px 18px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -1304,10 +1303,6 @@ a.btn-buy.buyhov .hovit {
 
 a.btn-buy.in-cart .hovit::before {
     display: none;
-}
-
-#icon-loader-cart-add {
-    background-image: url('/images/icon-cart-add.png');
 }
 
 #icon-loader-cart-in {

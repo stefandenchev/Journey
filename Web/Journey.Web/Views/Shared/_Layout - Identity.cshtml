@@ -13,9 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 
-
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
-    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon-32x32.png">
@@ -24,7 +23,7 @@
 
 </head>
 <body>
-
+    <div class="page-container">
     <header>
 
         <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
@@ -40,6 +39,25 @@
                     <partial name="_LoginPartial" />
 
 
+
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <div class="nav-item">
+                            <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
+                        </div>
+                    }
+
+                    <div class="nk-widget">
+                        <div class="container">
+                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-area="Home" asp-controller="Search" asp-action="Results" method="get">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
+                                    <label for="searchInput"></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item dropdown">
@@ -48,7 +66,7 @@
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Games" asp-action="All">All Games</a></li>
+                                <li><a class="dropdown-item" asp-area="Home" asp-controller="Games" asp-action="All">All Games</a></li>
                                 <li><a class="dropdown-item" href="#">Pre-Order</a></li>
 
                                 <li class="dropdown-divider"></li>
@@ -58,25 +76,23 @@
                                     <ul class="dropdown-menu">
 
 
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
 
                                     </ul>
                                 </li>
                             </ul>
 
-                            @*@if (this.User.IsInRole())
-                                {*@
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Games" asp-action="Create">Add New Game</a>
-                        </li>
-                        @*}*@
-
-
+                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                </li>
+                            }
                     </ul>
                 </div>
             </div>
@@ -91,12 +107,11 @@
             @this.RenderBody()
         </main>
     </div>
-
-
+    </div>
 
     <footer class="footer" id="footerMain">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
         </div>
     </footer>
 

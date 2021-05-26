@@ -5,6 +5,7 @@
 
     using Journey.Data.Models;
     using Journey.Web.ViewModels.Games.Create;
+    using Journey.Web.ViewModels.Games.Edit;
 
     public interface IGamesService
     {
@@ -17,5 +18,7 @@
         T GetById<T>(int id);
 
         Task CreateAsync(CreateGameInputModel input, string imagePath);
+
+        Task UpdateAsync(int id, EditGameInputModel input);
     }
 }

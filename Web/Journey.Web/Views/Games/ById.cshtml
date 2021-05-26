@@ -1,4 +1,5 @@
 ﻿@model Journey.Web.ViewModels.Games.SingleGameViewModel
+@using Journey.Common
 @{
     this.ViewData["Title"] = Model.Title;
 }
@@ -13,7 +14,20 @@
     <section id="core-guts" class="stringy fatty">
 
 
-        <h2 id="core-guts-title"><span class="supported"><b><img src="/images/icon-platform-lt-win.svg" /></b></span>@Model.Title</h2>
+        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <h2 id="core-guts-title">
+                <span class="supported"><b><img src="/images/icon-platform-lt-win.svg" /></b></span>@Model.Title
+                <a asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+            </h2>
+        }
+        else
+        {
+            <h2 id="core-guts-title">
+                <span class="supported"><b><img src="/images/icon-platform-lt-win.svg" /></b></span>@Model.Title
+            </h2>
+        }
+
         <div class="rift nuts">
             <div id="detail-badge" class="boxed">
 
@@ -22,7 +36,12 @@
                     <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
 
-                @if (true)
+                @if (Model.IsInUserCart)
+                {
+                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Index"><label><i class="fas fa-cart-arrow-down"></i> In Cart</label><span class="hovit"></span></a></div>
+
+                }
+                else
                 {
                     <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
                 }
@@ -67,24 +86,24 @@
 
                 @*<ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 400ms; width: 1640.67px; transform: translate3d(-189.25px, 0px, 0px);">
 
-                        @if (Model.OriginalUrl == null)
+                    @if (Model.OriginalUrl == null)
+                    {
+                        foreach (var image in Model.Images)
                         {
-                            foreach (var image in Model.Images)
-                            {
-                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
-                            }
+                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
                         }
+                    }
 
-                        else
+                    else
+                    {
+                       foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
                         {
-                           foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
-                            {
-                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
-                            }
+                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
                         }
+                    }
 
 
-                    </ul>*@
+                </ul>*@
             </div>
         </div>
 
@@ -193,36 +212,3 @@
 
     </section>
 </div>
-
-
-
-<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="orderModalLabel">Order - @Model.Title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="order-form" asp-controller="Games" asp-action="Order" method="post">
-                    <div class="form-group">
-                        <input type="hidden" value="@Model.Id" name="gameId" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="complete-order-button">Complete</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    $('#complete-order-button').click(function () {
-        $('#order-form').submit();
-    });
-</script>

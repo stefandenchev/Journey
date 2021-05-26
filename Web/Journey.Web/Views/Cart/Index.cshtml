@@ -1,6 +1,8 @@
 ﻿@model Journey.Web.ViewModels.Cart.CartViewModel
-@{ ViewBag.Title = "Shopping Cart"; }
-
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<link href="~/css/toastr.css" rel="stylesheet" />
 <link href="~/css/gamestore_globalweb.css" rel="stylesheet" />
 <link href="~/css/gamestore_subs_checkout.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
@@ -11,46 +13,46 @@
 
     @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
     {
-     <div class="container">
-         <section id="core-guts" class="stringy fatty">
-             <div id="cart-block-wrap" class="contentbox raft">
-                 <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
-                     <tbody class="boxoom">
-                         @foreach (var item in Model.GamesInCart)
-                         {
-                            <tr class="product hovcolor">
-                                <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
-                                <td class="details">
-                                    <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
-                                </td>
-                                <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
-                                <td class="remove" onclick="removeItem(@item.Id)"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
-                            </tr>
-                         }
+        <div class="container">
+            <section id="core-guts" class="stringy fatty">
+                <div id="cart-block-wrap" class="contentbox raft">
+                    <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody class="boxoom">
+                            @foreach (var item in Model.GamesInCart)
+                            {
+                                <tr class="product hovcolor">
+                                    <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                    <td class="details">
+                                        <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                    </td>
+                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                    <td class="remove" onclick="removeItem(@item.Id)"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
+                                </tr>
+                            }
                             <tr class="grandtotal bortop">
-                             <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
-                             <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
-                         </tr>
-                     </tbody>
-                 </table>
-             </div>
-         </section>
-     </div>
-     }
-     else
-     {
-     <p>Your shopping cart is empty.</p>
-     }
+                                <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
+                                <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    }
+    else
+    {
+        <p>Your shopping cart is empty.</p>
+    }
 
     <div class="row">
-        <div class="row"><a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Go Back</a></div>
+        <div class="row"><a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop</a></div>
 
         @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
         {
-             <div class="row"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-primary" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
+            <div class="row"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-primary" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
 
-             <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
-         }
+            <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
+        }
     </div>
 </div>
 
@@ -60,20 +62,6 @@
 @section Scripts {
 
     <script>
-        $(document).ready(function () {
-            toastr.options = {
-                closeButton: true,
-                showDuration: 100,
-                hideDuration: 1000,
-                timeOut: 1500,
-                extendedTimeOut: 200,
-                tapToDismiss: true,
-                debug: false,
-                fadeOut: 200,
-                positionClass: "toast-top-center"
-            };
-        });
-
         function removeItem(itemId) {
             var t = $("input[name='__RequestVerificationToken']").val();
             var obj = {
@@ -94,13 +82,13 @@
                     },
                 contentType: "application/json",
                 dataType: "json",
-                    success: function (result) {           
+                    success: function (result) {
                     location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
+                    console.log(errorThrown);
                 },
-                });         
+                });
 
         }
 
