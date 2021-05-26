@@ -13,7 +13,25 @@
     <h1>@ViewData["Title"]</h1>
     <h4>@this.Model.Games.Count() matching games</h4>
 
+    <div class="row">
+        @if (ViewBag.TitleSortParam.Contains("title_desc"))
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title-descending</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title-ascending</a>
+        }
 
+        @if (ViewBag.PriceSortParam.Contains("price_asc"))
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price-ascending</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price-descending</a>
+        }
+    </div>
 
     <hr />
     <div id="tile-view" class="blockcontent resp4">
@@ -29,11 +47,12 @@
                                 <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
                             <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>                        </div>
+                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
+                        </div>
                     </li>
                 }
             </ul>
         </div>
-        
+
     </div>
 </div>

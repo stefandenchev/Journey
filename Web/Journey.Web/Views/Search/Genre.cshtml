@@ -4,8 +4,8 @@
     this.Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
-<link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
+<link rel="stylesheet" href="~/css/gamestore_subs_detail.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true">
 <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
@@ -13,6 +13,27 @@
 
     <h1>@ViewData["Title"]</h1>
     <h4>@this.Model.Games.Count() matching games</h4>
+
+    <div class="row">
+        @if (ViewBag.TitleSortParam.Contains("title_desc"))
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-descending</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-ascending</a>
+        }
+
+        @if (ViewBag.PriceSortParam.Contains("price_asc"))
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-ascending</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-descending</a>
+        }
+    </div>
+
     <hr />
     <div id="tile-view" class="blockcontent resp4">
         <div id="tile-results">
@@ -27,7 +48,8 @@
                                 <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
                             <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>                        </div>
+                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
+                        </div>
                     </li>
                 }
             </ul>

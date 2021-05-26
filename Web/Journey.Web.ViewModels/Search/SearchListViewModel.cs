@@ -5,5 +5,7 @@
     public class SearchListViewModel : PagingViewModel
     {
         public IEnumerable<GameInListViewModel> Games { get; set; }
+
+        public string Search { get; set; }
     }
 }
