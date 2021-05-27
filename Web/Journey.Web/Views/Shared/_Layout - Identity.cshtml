@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 
-    <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
-    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon-32x32.png">
@@ -90,7 +90,7 @@
                             @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
                                 </li>
                             }
                     </ul>
