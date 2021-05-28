@@ -13,6 +13,8 @@
     <h1>@ViewData["Title"]</h1>
     <h4>@this.Model.Games.Count() matching games</h4>
 
+    <div id="slider"></div>
+
     <div class="row">
         @if (ViewBag.TitleSortParam.Contains("title_desc"))
         {

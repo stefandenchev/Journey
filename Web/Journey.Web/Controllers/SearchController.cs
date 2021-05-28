@@ -23,7 +23,7 @@
         }
 
         [HttpGet]
-        public IActionResult Results(string s, string sortOrder)
+        public IActionResult Results(string s, string sortOrder, decimal min, decimal max)
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
             this.ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
@@ -35,7 +35,8 @@
                 viewModel = new SearchListViewModel
                 {
                     Search = s,
-                    Games = this.searchService.GetAll<GameInListViewModel>(),
+                    Games = this.searchService.GetAll<GameInListViewModel>()
+                    .Where(p => p.Price >= min && p.Price <= max),
                 };
             }
             else
@@ -45,6 +46,7 @@
                     Search = s,
                     Games = this.searchService.GetAll<GameInListViewModel>()
                     .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                    .Where(p => p.Price >= min && p.Price <= max)
                     .OrderBy(x => x.Title),
                 };
 
@@ -52,6 +54,7 @@
                 {
                     viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                     .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                    .Where(p => p.Price >= min && p.Price <= max)
                     .OrderByDescending(x => x.Title);
                 }
 
@@ -59,6 +62,7 @@
                 {
                     viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                     .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                    .Where(p => p.Price >= min && p.Price <= max)
                     .OrderByDescending(x => x.Price);
                 }
 
@@ -66,6 +70,7 @@
                 {
                     viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                     .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                    .Where(p => p.Price >= min && p.Price <= max)
                     .OrderBy(x => x.Price);
                 }
             }

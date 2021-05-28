@@ -70,14 +70,6 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 20px;
 }
 
-.carousel-control-prev {
-    margin-left: -10px;
-}
-
-.carousel-control-next {
-    margin-right: -10px;
-}
-
 li.nav-item {
     padding-left: 25px
 }
@@ -413,3 +405,164 @@ a.btn-buy.return {
     #git-hub-logo:hover {
         color: #e08821;
     }
+
+
+
+
+/* FOR CART */
+#cart-block-wrap {
+    display: block;
+    clear: left;
+    float: left;
+    width: 60%;
+    margin-right: -60%;
+}
+
+tr.grandtotal td.amount, tr.grandtotal td.amount span.price {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+tr.grandtotal td.label {
+    padding-right: 0 !important;
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+#cart-block .tip {
+    margin-left: 10px;
+    top: 3px;
+    opacity: 0.7;
+}
+
+#cart-block .slimform .tip {
+    top: 5px;
+}
+
+#cart-table {
+    border-collapse: separate;
+}
+
+    #cart-table td {
+        position: relative;
+        padding: 15px 10px;
+        vertical-align: middle;
+    }
+
+        #cart-table td.remove div {
+            height: 58px;
+            content: "";
+        }
+
+tr.bortop td {
+    border-top: 1px solid #202d3b;
+}
+
+tr.spacer td {
+    border-top: 1px solid #202d3b;
+    padding: 0 !important;
+    height: 0 !important;
+}
+
+.happy tr.bordered td, .happy tr.bortop td, .happy tr.spacer td {
+    border-color: #e1e1e1;
+}
+
+td.amount {
+    text-align: right;
+    font-size: 15px;
+    height: 30px;
+}
+
+.happy td.amount {
+    color: #666;
+}
+
+td.amount span.price {
+    font-size: 15px;
+}
+
+.happy td.amount span.price {
+    color: #555;
+}
+
+td.amount .subest {
+    margin-top: -2px;
+    color: #ccc;
+}
+
+    td.amount .subest, td.amount .subest span.price * {
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+        td.amount .subest span.price * {
+            color: #999;
+        }
+
+        td.amount .subest span.price i, td.amount .subest span.price u, td.amount .subest span.price tt {
+            font-size: 0.8em;
+        }
+
+td.remove {
+    width: 14px;
+    width: 8px;
+    padding: 0 !important;
+}
+
+    td.remove a {
+        display: -moz-inline-box;
+        display: inline-block;
+        position: absolute;
+        bottom: 3px;
+        right: 0;
+        margin-left: 7px;
+        padding: 8px 6px 8px 10px;
+        background: #293747;
+        border-radius: 33px 0 0 33px;
+        opacity: 0.5;
+    }
+
+.happy td.remove a {
+    background: #aaa;
+}
+
+td.remove a img {
+    width: 14px;
+    height: 14px;
+}
+
+@media not all and (hover:none) {
+    td.remove a {
+        opacity: 0.0;
+        transition: opacity 0.2s;
+    }
+
+    tr.hovcolor:hover td.remove a {
+        opacity: 1.0;
+    }
+}
+
+tr.product td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+    tr.product td.boxshot {
+        min-width: 90px !important;
+        width: 128px;
+        vertical-align: top !important;
+    }
+
+        tr.product td.boxshot.b1x1 {
+            min-width: 50px !important;
+            width: 50px !important;
+        }
+
+
+tr.product .product-title, tr.product .product-title a, tr.product .product-title a:hover {
+    font-weight: 400;
+    color: #eee;
+    text-decoration: none;
+}
