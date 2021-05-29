@@ -137,21 +137,29 @@
                             }
                         </tr>
                         <tr>
-                            <th>Includes</th>
+
+
+                        <th>
+                            Languages
+                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <a asp-area="Administration" asp-controller="GameLanguages" asp-action="Index" id="editLanguageButton" class="btn btn-secondary btn-sm">Edit</a>
+                            }
+                        </th>
                             <td>
-                                @foreach (var tag in Model.Tags)
+                                @foreach (var language in Model.Languages.OrderBy(x => x.LanguageName))
                                 {
-                                    @tag.TagName
-                                    <br />
+                                @language.LanguageName
+                                <br />
                                 }
                             </td>
                         </tr>
                         <tr>
-                            <th>Languages</th>
+                            <th>Tags</th>
                             <td>
-                                @foreach (var language in Model.Languages)
+                                @foreach (var tag in Model.Tags)
                                 {
-                                    @language.LanguageName
+                                    @tag.TagName
                                     <br />
                                 }
                             </td>

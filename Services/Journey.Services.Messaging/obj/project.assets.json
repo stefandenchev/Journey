@@ -80,11 +80,11 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "SendGrid/9.22.0": {
+      "SendGrid/9.23.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
-          "starkbank-ecdsa": "[1.2.0, 2.0.0)"
+          "starkbank-ecdsa": "[1.3.1, 2.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/SendGrid.dll": {}
@@ -93,7 +93,7 @@
           "lib/netstandard2.0/SendGrid.dll": {}
         }
       },
-      "starkbank-ecdsa/1.2.0": {
+      "starkbank-ecdsa/1.3.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/StarkbankEcdsa.dll": {}
@@ -694,10 +694,10 @@
         "tools/install.ps1"
       ]
     },
-    "SendGrid/9.22.0": {
-      "sha512": "5vXkfOqPhi6W5/tEmRcTVJakT69SXiCGqVRERYF4ZAtJ4alylzlOqin6w8Xrog0Brf3RL+4BKXI+CwKbFLtteA==",
+    "SendGrid/9.23.2": {
+      "sha512": "AeZGbA17e0HApT6zK6fMxuS+HNfqL3Mm5sOML8qEjb1Sl2Qjgr3gXIXpOP5VkK8sO5zRynViOPxl66f7nRkTAQ==",
       "type": "package",
-      "path": "sendgrid/9.22.0",
+      "path": "sendgrid/9.23.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -713,14 +713,14 @@
         "lib/netstandard2.0/SendGrid.dll",
         "lib/netstandard2.0/SendGrid.pdb",
         "lib/netstandard2.0/SendGrid.xml",
-        "sendgrid.9.22.0.nupkg.sha512",
+        "sendgrid.9.23.2.nupkg.sha512",
         "sendgrid.nuspec"
       ]
     },
-    "starkbank-ecdsa/1.2.0": {
-      "sha512": "hP53QPYOOEIR44EK9phz+DYliM6DEieDZxpb8GZzE+++qyrWqUscKcyHCC6L9yu/ehllYtqxtT4qrjWDsuQlUQ==",
+    "starkbank-ecdsa/1.3.1": {
+      "sha512": "YV20cpN7WgEiaIuIv8ZQPgkDVximP6gHCMCTgy6+IwArDHmuDVQLJ15Qwwmgd5woETnogquD+gu4SXDZW/ffog==",
       "type": "package",
-      "path": "starkbank-ecdsa/1.2.0",
+      "path": "starkbank-ecdsa/1.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -729,7 +729,7 @@
         "lib/netstandard1.3/StarkbankEcdsa.dll",
         "lib/netstandard2.0/StarkbankEcdsa.dll",
         "lib/netstandard2.1/StarkbankEcdsa.dll",
-        "starkbank-ecdsa.1.2.0.nupkg.sha512",
+        "starkbank-ecdsa.1.3.1.nupkg.sha512",
         "starkbank-ecdsa.nuspec"
       ]
     },
@@ -2784,7 +2784,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Sendgrid >= 9.22.0",
+      "Sendgrid >= 9.23.2",
       "StyleCop.Analyzers >= 1.2.0-beta.312"
     ]
   },
@@ -2829,7 +2829,7 @@
         "dependencies": {
           "Sendgrid": {
             "target": "Package",
-            "version": "[9.22.0, )"
+            "version": "[9.23.2, )"
           },
           "StyleCop.Analyzers": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers",

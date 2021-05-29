@@ -10,7 +10,6 @@
 <div class="col-md-6 offset-3">
     <h1>@this.ViewData["Title"]</h1>
 
-
     <form method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
 
@@ -63,6 +62,16 @@
             <label asp-for="Languages"></label>
             <select asp-for="Languages" class="form-control" asp-items="languageItems"></select>
             <span asp-validation-for="Languages" class="text-danger"></span>
+        </div>
+
+        <div>
+            
+                @foreach (var item in Model.LanguagesItems)
+                {
+                    <input type="checkbox" value="@item.Key"/>
+                    <label for="item_@item.Key">@item.Value</label>
+                }
+            
         </div>
 
         <div class="form-group-tag">

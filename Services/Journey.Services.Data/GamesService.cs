@@ -139,5 +139,14 @@
 
             await this.gamesRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        {
+            return this.gamesRepository.AllAsNoTracking().Select(x => new
+            {
+                x.Id,
+                x.Title,
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Title));
+        }
     }
 }

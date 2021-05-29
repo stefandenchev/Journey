@@ -80,7 +80,7 @@
             services.AddTransient<IGamesService, GamesService>();
             services.AddTransient<IGenresService, GenresService>();
             services.AddTransient<ILanguagesService, LanguagesService>();
-            services.AddTransient<ITagsService, DrmsService>();
+            services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<IPublishersService, PublishersService>();
             services.AddTransient<ISearchService, SearchService>();
         }

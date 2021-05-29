@@ -125,7 +125,6 @@
                     await this.imagesRepository.SaveChangesAsync();
                 }
 
-
                 foreach (var item in game.Languages)
                 {
                     var languageId = await this.GetOrCreateLanguageAsync(item);
@@ -295,7 +294,6 @@
 
                 default:
                     return string.Empty;
-
             }
         }
 

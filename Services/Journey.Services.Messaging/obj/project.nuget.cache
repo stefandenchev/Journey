@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EZwajSmZaCIJWgcfq+unjJ1aWM9K6hrfqpqxzo6w0NpgEKVZYZjCuhCQ0Krx4ECoEaT5QcvY03yJd0epGJbEoQ==",
+  "dgSpecHash": "zNIkY0aoNNQZzoZaJLlpPwdCPoCzKj8JchOZwqt1Fos1FpzGeOelf1IHufhPpafq9gHoVFsuvUvZvIWh1d5eVQ==",
   "success": true,
   "projectFilePath": "D:\\Journey\\Services\\Journey.Services.Messaging\\Journey.Services.Messaging.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,8 @@
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
-    "C:\\Users\\Stormlight\\.nuget\\packages\\sendgrid\\9.22.0\\sendgrid.9.22.0.nupkg.sha512",
-    "C:\\Users\\Stormlight\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\sendgrid\\9.23.2\\sendgrid.9.23.2.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\starkbank-ecdsa\\1.3.1\\starkbank-ecdsa.1.3.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",

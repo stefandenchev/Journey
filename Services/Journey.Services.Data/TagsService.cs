@@ -7,11 +7,11 @@
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
 
-    public class DrmsService : ITagsService
+    public class TagsService : ITagsService
     {
         private readonly IDeletableEntityRepository<Tag> tagsRepository;
 
-        public DrmsService(IDeletableEntityRepository<Tag> tagsRepository)
+        public TagsService(IDeletableEntityRepository<Tag> tagsRepository)
         {
             this.tagsRepository = tagsRepository;
         }

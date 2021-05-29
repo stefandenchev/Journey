@@ -84,7 +84,7 @@
                 return this.View(input);
             }
 
-            this.TempData["Message"] = "Game added successfully.";
+            // this.TempData["Message"] = "Game added successfully.";
 
             return this.RedirectToAction("All");
         }
@@ -95,6 +95,7 @@
             var inputModel = this.gamesService.GetById<EditGameInputModel>(id);
             inputModel.GenresItems = this.genresService.GetAllAsKeyValuePairs();
             inputModel.PublisherItems = this.publishersService.GetAllAsKeyValuePairs();
+
             // inputModel.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
             return this.View(inputModel);
         }
@@ -107,6 +108,7 @@
             {
                 input.GenresItems = this.genresService.GetAllAsKeyValuePairs();
                 input.PublisherItems = this.publishersService.GetAllAsKeyValuePairs();
+
                 // input.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }

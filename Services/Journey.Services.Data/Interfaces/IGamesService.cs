@@ -20,5 +20,7 @@
         Task CreateAsync(CreateGameInputModel input, string imagePath);
 
         Task UpdateAsync(int id, EditGameInputModel input);
+
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }
 }

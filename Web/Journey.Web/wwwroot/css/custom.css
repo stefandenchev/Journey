@@ -14,9 +14,9 @@ body {
     height: max-content !important;
 }
 
-body > div.page-container > header > nav {
-    height: 50px;
-}
+    body > div.page-container > header > nav {
+        height: 50px;
+    }
 
 h1,
 h2,
@@ -138,7 +138,6 @@ nav a {
         transform: scale(1, 1);
     }
 }
-
 
 #latest {
     padding-top: 45px;
@@ -349,6 +348,7 @@ body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
 #clear-shopping-button {
     background-color: #c81f1f
 }
+
     #clear-shopping-button:hover {
         background-color: #b42c2c
     }
@@ -394,19 +394,21 @@ a.btn-buy.return {
         background: #0963f5;
     }
 
-#core-guts{
+#core-guts {
     padding-top: 10px !important
 }
 
-#git-hub-logo{
-    color:white
+#git-hub-logo {
+    color: white
 }
 
     #git-hub-logo:hover {
         color: #e08821;
     }
 
-
+.table {
+    color: white
+}
 
 
 /* FOR CART */
@@ -565,4 +567,20 @@ tr.product .product-title, tr.product .product-title a, tr.product .product-titl
     font-weight: 400;
     color: #eee;
     text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#editLanguageButton {
+    top: 40%;
+    left: 4%;
+    position: relative;
+    z-index: 2;
+}
+
+/* ADMIN AREA*/
+.table-hover tbody tr:hover {
+    color: #e08821;
 }
