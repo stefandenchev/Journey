@@ -16,9 +16,9 @@ namespace Journey.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("17114092")
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Journey.Data.Models.ApplicationRole", b =>
                 {
@@ -140,12 +140,18 @@ namespace Journey.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.Drm", b =>
+            modelBuilder.Entity("Journey.Data.Models.CreditCard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CVV")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -153,20 +159,25 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ExpirationDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Drms");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CreditCards");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
@@ -174,7 +185,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -185,8 +196,8 @@ namespace Journey.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DrmId")
-                        .HasColumnType("int");
+                    b.Property<string>("Drm")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
@@ -220,8 +231,6 @@ namespace Journey.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DrmId");
-
                     b.HasIndex("GenreId");
 
                     b.HasIndex("IsDeleted");
@@ -236,7 +245,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -264,7 +273,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -292,7 +301,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -351,7 +360,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -380,7 +389,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateOfChange_17114092")
                         .HasColumnType("datetime2");
@@ -396,12 +405,41 @@ namespace Journey.Data.Migrations
                     b.ToTable("Logs_17114092");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Order", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreditCardId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreditCardId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -430,7 +468,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -459,7 +497,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
@@ -495,7 +533,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -519,7 +557,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -594,14 +632,17 @@ namespace Journey.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.CreditCard", b =>
+                {
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
-                    b.HasOne("Journey.Data.Models.Drm", "Drm")
-                        .WithMany("Games")
-                        .HasForeignKey("DrmId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Journey.Data.Models.Genre", "Genre")
                         .WithMany("Games")
                         .HasForeignKey("GenreId")
@@ -613,8 +654,6 @@ namespace Journey.Data.Migrations
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Drm");
 
                     b.Navigation("Genre");
 
@@ -668,6 +707,23 @@ namespace Journey.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.Order", b =>
+                {
+                    b.HasOne("Journey.Data.Models.CreditCard", "CreditCard")
+                        .WithMany()
+                        .HasForeignKey("CreditCardId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CreditCard");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.UserCartItem", b =>
@@ -745,11 +801,6 @@ namespace Journey.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.Drm", b =>
-                {
-                    b.Navigation("Games");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Game", b =>

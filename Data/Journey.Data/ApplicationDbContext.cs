@@ -42,6 +42,10 @@
 
         public DbSet<UserCartItem> UserCartItems { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<CreditCard> CreditCards { get; set; }
+
         public DbSet<Log> Logs_17114092 { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

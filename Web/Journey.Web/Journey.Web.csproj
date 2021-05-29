@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
     <Folder Include="wwwroot\images\games\" />
   </ItemGroup>
 </Project>

@@ -580,6 +580,11 @@ a:hover {
     z-index: 2;
 }
 
+/* MANAGE */
+hr {
+    border-top: 1px solid #e08821;
+}
+
 /* ADMIN AREA*/
 .table-hover tbody tr:hover {
     color: #e08821;

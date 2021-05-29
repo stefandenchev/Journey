@@ -62,7 +62,6 @@
 
     <script>
         function removeItem(itemId) {
-            var t = $("input[name='__RequestVerificationToken']").val();
             var obj = {
                 gameId: itemId,
             };
@@ -75,10 +74,6 @@
                     // url: "@Url.Action("RemoveItem")",
                     // data: JSON.stringify(obj),
                     type: "GET",
-                    headers:
-                    {
-                        "RequestVerificationToken": t
-                    },
                 contentType: "application/json",
                 dataType: "json",
                     success: function (result) {

@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
@@ -130,31 +131,103 @@
             return games;
         }
 
-        /*[HttpPost]
-        public JsonResult MoveToWishList(string gameId)
+        [HttpGet]
+        public ActionResult Checkout()
         {
-            var userId = User.Identity.GetUserId();
-
-            var gameInCart = db.UserCartItems.FirstOrDefault(g => g.UserId == userId && g.GameId == gameId);
-            if (gameInCart != null)
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (userId == null)
             {
-                var gameInWishList = db.WishLists.FirstOrDefault(g => g.userId == userId && g.gameId == gameId);
-                if (gameInWishList != null)
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            var viewModel = new CheckoutViewModel();
+
+            // get games
+            List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
+            viewModel.GamesInCart = games;
+
+            // get credit cards
+            viewModel.CreditCards = this.db.CreditCards.Where(c => c.UserId == userId).ToList();
+
+            // calculate total
+            viewModel.Total = games.Sum(g => g.Price);
+
+            return this.View(viewModel);
+        }
+/*
+        [HttpPost]
+        public async Task<ActionResult> Checkout(CheckoutViewModel model)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (string.IsNullOrEmpty(model.PaymentMethodId))
+            {
+                ModelState.AddModelError("PaymentMethodId", "A payment method could not be retrieved.");
+                return View(model);
+            }
+
+            try
+            {
+                string orderId = Guid.NewGuid().ToString();
+                model.GamesInCart = GetGamesFromCart(userId);
+
+                // add new order record
+                var newOrder = new Order
                 {
-                    return Json(new { Success = false, Error = "This game is already in your wish list" }, JsonRequestBehavior.AllowGet);
+                    Id = orderId,
+                    UserId = userId,
+                    PurchaseDate = DateTime.Now,
+                    CreditCardUsed = model.PaymentMethodId
+                };
+                db.Orders.Add(newOrder);
+
+                // add new orderItem records
+                foreach (var game in model.GamesInCart)
+                {
+                    db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id });
                 }
 
-                db.WishLists.Add(new WishList { userId = userId, gameId = gameInCart.GameId });
-                db.UserCartItems.Remove(gameInCart);
-                db.SaveChanges();
+                // if any of the games bought were in the user's wish list, remove them from there
+                var userWishList = db.WishLists.Where(i => i.userId == userId);
+                foreach (var game in model.GamesInCart)
+                {
+                    var gameInWishList = userWishList.FirstOrDefault(i => i.gameId == game.Id);
+                    if (gameInWishList != null)
+                    {
+                        db.WishLists.Remove(gameInWishList);
+                    }
+                }
 
-                Session["cart"] = db.UserCartItems.Where(c => c.UserId == userId).Count().ToString();
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+
+                // remove all items from user's cart
+                var cartItem = db.UserCartItems.Where(c => c.UserId == userId).ToList();
+                db.UserCartItems.RemoveRange(cartItem);
+
+                List<string> gameIds = new List<string>();
+
+                foreach (Game g in model.GamesInCart)
+                {
+                    gameIds.Add(g.Id);
+                }
+
+                // remove the games from wishlist
+                var wishes = db.WishLists.Where(c => c.userId == userId && gameIds.Contains(c.gameId));
+                db.WishLists.RemoveRange(wishes);
+
+                await db.SaveChangesAsync();
+                Session["cart"] = "0";
             }
-            else
+            catch (Exception ex)
             {
-                return Json(new { Success = false, Error = "Error occurred while moving game to your wish list" }, JsonRequestBehavior.AllowGet);
+                ModelState.AddModelError("", "An unexpected error occured while attempting to place your order.");
+                return View(model);
             }
+
+            return RedirectToAction("OrderComplete", "Cart");
         }*/
     }
 }

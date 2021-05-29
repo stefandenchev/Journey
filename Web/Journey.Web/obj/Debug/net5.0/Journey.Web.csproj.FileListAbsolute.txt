@@ -442,7 +442,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.RazorCoreGenerate.cache
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Dashboard\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\_ViewImports.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\_ViewStart.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
@@ -962,3 +961,7 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Gam
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Details.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Edit.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Cart\Checkout.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Payment.cshtml.g.cs
