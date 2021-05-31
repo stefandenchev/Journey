@@ -1,6 +1,292 @@
-﻿
+﻿<link href="~/css/gamestore_globalweb.css" rel="stylesheet" />
+<link href="~/css/gamestore_subs_detail.css" rel="stylesheet" />
 
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item"><a class="nav-link" asp-action="Payment">Payment</a></li>
-    <li class="nav-item"><a class="nav-link" asp-page="/Orders">Orders</a></li>
-</ul>
+
+
+<div class="container">
+
+    <ul class="nav navbar-nav list-inline" id="prof-nav">
+        <li class="list-inline-item"><a class="nav-link" asp-action="Payment">Payment</a></li>
+        <li class="list-inline-item"><a class="nav-link" asp-area="Home" asp-controller="Wishlist">Wishlist</a></li>
+        <li class="list-inline-item"><a class="nav-link" asp-action="Purchases">Purchases</a></li>
+        <li class="list-inline-item"><a class="nav-link" asp-action="Orders">Orders</a></li>
+    </ul>
+
+    <div id="account-guts" class="contentbox">
+        <div id="tabs">
+        </div><div id="ledgers-tab" class="tab-content"></div><div id="referrals-tab" class="tab-content"></div><div id="subscription-tab" class="tab-content"></div><div id="games-tab" class="tab-content loaded">
+            <div id="account-games" class="wabit">
+                <div id="mygames-actionbar" class="js-show wabit" style="display: block;">
+                    <div class="controlbar js-show wabit" style="display: block;">
+
+                        <h3>Your Purchased Games</h3>
+
+
+                    </div>
+                </div>
+                <div class="list-table-scroll">
+
+                    <table id="mygames-listing" class="list-table" cellpadding="0" cellspacing="0" border="0">
+
+                        <tbody>
+                            <tr class="list-header hide">
+                                <th class="game-head" colspan="2" nowrap="">Game</th>
+                                <th class="ddl-license" nowrap="">License</th>
+                                <th class="ddl-info-btn" nowrap="">Service</th>
+                            </tr>
+
+                            <tr class="even">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/4901/Cities-Skylines-After-Dark/" title="Cities: Skylines - After Dark"><img src="/images_boxshots/128x72/cities-skylines-after-dark-1548946045.jpg" srcset="/images_boxshots/master/cities-skylines-after-dark-1548946045.jpg 512w,/images_boxshots/352x198/cities-skylines-after-dark-1548946045.jpg 352w,/images_boxshots/256x144/cities-skylines-after-dark-1548946045.jpg 256w,/images_boxshots/240x135/cities-skylines-after-dark-1548946045.jpg 240w,/images_boxshots/128x72/cities-skylines-after-dark-1548946045.jpg 128w" sizes="128px" alt="Cities: Skylines - After Dark" class="boxpid-4901"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/4901/Cities-Skylines-After-Dark/">Cities: Skylines - After Dark</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> FGWL9-4JV63-DKWXD</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-4901" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=4901" href="https://www.wingamestore.com/myaccount-games-detail/?pid=4901">Steam</a></td>
+
+                            </tr>
+                            <tr class="odd">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/9750/Cities-Skylines-Industries-Plus/" title="Cities: Skylines - Industries Plus"><img src="/images_boxshots/128x72/cities-skylines-industries-plus-1548952090.jpg" srcset="/images_boxshots/master/cities-skylines-industries-plus-1548952090.jpg 512w,/images_boxshots/352x198/cities-skylines-industries-plus-1548952090.jpg 352w,/images_boxshots/256x144/cities-skylines-industries-plus-1548952090.jpg 256w,/images_boxshots/240x135/cities-skylines-industries-plus-1548952090.jpg 240w,/images_boxshots/128x72/cities-skylines-industries-plus-1548952090.jpg 128w" sizes="128px" alt="Cities: Skylines - Industries Plus" class="boxpid-9750"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/9750/Cities-Skylines-Industries-Plus/">Cities: Skylines - Industries Plus</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> TBFW4-I45BD-MW2WG</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-9750" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=9750" href="https://www.wingamestore.com/myaccount-games-detail/?pid=9750">Steam</a></td>
+
+                            </tr>
+                            <tr class="even">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/7285/Cities-Skylines-Mass-Transit/" title="Cities: Skylines - Mass Transit"><img src="/images_boxshots/128x72/cities-skylines-mass-transit-1548950608.jpg" srcset="/images_boxshots/master/cities-skylines-mass-transit-1548950608.jpg 512w,/images_boxshots/352x198/cities-skylines-mass-transit-1548950608.jpg 352w,/images_boxshots/256x144/cities-skylines-mass-transit-1548950608.jpg 256w,/images_boxshots/240x135/cities-skylines-mass-transit-1548950608.jpg 240w,/images_boxshots/128x72/cities-skylines-mass-transit-1548950608.jpg 128w" sizes="128px" alt="Cities: Skylines - Mass Transit" class="boxpid-7285"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/7285/Cities-Skylines-Mass-Transit/">Cities: Skylines - Mass Transit</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> 637MH-NGLD9-PYCZK</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-7285" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=7285" href="https://www.wingamestore.com/myaccount-games-detail/?pid=7285">Steam</a></td>
+
+                            </tr>
+                            <tr class="odd">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/11677/Crusader-Kings-III-Royal-Edition/" title="Crusader Kings III: Royal Edition"><img src="/images_boxshots/128x72/crusader-kings-iii-1589503068.jpg" srcset="/images_boxshots/master/crusader-kings-iii-1589503068.jpg 512w,/images_boxshots/352x198/crusader-kings-iii-1589503068.jpg 352w,/images_boxshots/256x144/crusader-kings-iii-1589503068.jpg 256w,/images_boxshots/240x135/crusader-kings-iii-1589503068.jpg 240w,/images_boxshots/128x72/crusader-kings-iii-1589503068.jpg 128w" sizes="128px" alt="Crusader Kings III: Royal Edition" class="boxpid-11677"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/11677/Crusader-Kings-III-Royal-Edition/">Crusader Kings III: Royal Edition</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> EM3MP-3RYNN-ZE80M</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-11677" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=11677" href="https://www.wingamestore.com/myaccount-games-detail/?pid=11677">Steam</a></td>
+
+                            </tr>
+                            <tr class="even">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/11519/Curse-of-the-Dead-Gods/" title="Curse of the Dead Gods"><img src="/images_boxshots/128x72/curse-of-the-dead-gods-1583355972.jpg" srcset="/images_boxshots/master/curse-of-the-dead-gods-1583355972.jpg 512w,/images_boxshots/352x198/curse-of-the-dead-gods-1583355972.jpg 352w,/images_boxshots/256x144/curse-of-the-dead-gods-1583355972.jpg 256w,/images_boxshots/240x135/curse-of-the-dead-gods-1583355972.jpg 240w,/images_boxshots/128x72/curse-of-the-dead-gods-1583355972.jpg 128w" sizes="128px" alt="Curse of the Dead Gods" class="boxpid-11519"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/11519/Curse-of-the-Dead-Gods/">Curse of the Dead Gods</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> QV6K4-IN8FY-D42EH</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-11519" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=11519" href="https://www.wingamestore.com/myaccount-games-detail/?pid=11519">Steam</a></td>
+
+                            </tr>
+                            <tr class="odd">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/7544/METAL-GEAR-SOLID-V-The-Definitive-Experience/" title="METAL GEAR SOLID V: The Definitive Experience"><img src="/images_boxshots/128x72/metal-gear-solid-v-the-definitive-experience-1548950751.jpg" srcset="/images_boxshots/master/metal-gear-solid-v-the-definitive-experience-1548950751.jpg 512w,/images_boxshots/352x198/metal-gear-solid-v-the-definitive-experience-1548950751.jpg 352w,/images_boxshots/256x144/metal-gear-solid-v-the-definitive-experience-1548950751.jpg 256w,/images_boxshots/240x135/metal-gear-solid-v-the-definitive-experience-1548950751.jpg 240w,/images_boxshots/128x72/metal-gear-solid-v-the-definitive-experience-1548950751.jpg 128w" sizes="128px" alt="METAL GEAR SOLID V: The Definitive Experience" class="boxpid-7544"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/7544/METAL-GEAR-SOLID-V-The-Definitive-Experience/">METAL GEAR SOLID V: The Definitive Experience</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> G4WWG-C5GYQ-KI3WQ</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-7544" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=7544" href="https://www.wingamestore.com/myaccount-games-detail/?pid=7544">Steam</a></td>
+
+                            </tr>
+                            <tr class="even">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/11271/RESIDENT-EVIL-3/" title="RESIDENT EVIL 3"><img src="/images_boxshots/128x72/resident-evil-3-1578523153.jpg" srcset="/images_boxshots/master/resident-evil-3-1578523153.jpg 512w,/images_boxshots/352x198/resident-evil-3-1578523153.jpg 352w,/images_boxshots/256x144/resident-evil-3-1578523153.jpg 256w,/images_boxshots/240x135/resident-evil-3-1578523153.jpg 240w,/images_boxshots/128x72/resident-evil-3-1578523153.jpg 128w" sizes="128px" alt="RESIDENT EVIL 3" class="boxpid-11271"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/11271/RESIDENT-EVIL-3/">RESIDENT EVIL 3</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> 6F8FL-423L7-X9BZA</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-11271" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=11271" href="https://www.wingamestore.com/myaccount-games-detail/?pid=11271">Steam</a></td>
+
+                            </tr>
+                            <tr class="odd">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/8464/Stellaris-Apocalypse/" title="Stellaris: Apocalypse"><img src="/images_boxshots/128x72/stellaris-apocalypse-1589473997.jpg" srcset="/images_boxshots/master/stellaris-apocalypse-1589473997.jpg 512w,/images_boxshots/352x198/stellaris-apocalypse-1589473997.jpg 352w,/images_boxshots/256x144/stellaris-apocalypse-1589473997.jpg 256w,/images_boxshots/240x135/stellaris-apocalypse-1589473997.jpg 240w,/images_boxshots/128x72/stellaris-apocalypse-1589473997.jpg 128w" sizes="128px" alt="Stellaris: Apocalypse" class="boxpid-8464"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/8464/Stellaris-Apocalypse/">Stellaris: Apocalypse</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> EY2HI-6CL87-JWFML</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-8464" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=8464" href="https://www.wingamestore.com/myaccount-games-detail/?pid=8464">Steam</a></td>
+
+                            </tr>
+                            <tr class="even">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/6250/Stellaris-Leviathans-Story-Pack/" title="Stellaris: Leviathans Story Pack"><img src="/images_boxshots/128x72/stellaris-leviathans-story-pack-1589474052.jpg" srcset="/images_boxshots/master/stellaris-leviathans-story-pack-1589474052.jpg 512w,/images_boxshots/352x198/stellaris-leviathans-story-pack-1589474052.jpg 352w,/images_boxshots/256x144/stellaris-leviathans-story-pack-1589474052.jpg 256w,/images_boxshots/240x135/stellaris-leviathans-story-pack-1589474052.jpg 240w,/images_boxshots/128x72/stellaris-leviathans-story-pack-1589474052.jpg 128w" sizes="128px" alt="Stellaris: Leviathans Story Pack" class="boxpid-6250"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/6250/Stellaris-Leviathans-Story-Pack/">Stellaris: Leviathans Story Pack</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> 5CRKC-WC5DZ-T3JBY</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-6250" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=6250" href="https://www.wingamestore.com/myaccount-games-detail/?pid=6250">Steam</a></td>
+
+                            </tr>
+                            <tr class="odd">
+                                <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/7921/Stellaris-Synthetic-Dawn-Story-Pack/" title="Stellaris: Synthetic Dawn Story Pack"><img src="/images_boxshots/128x72/stellaris-synthetic-dawn-story-pack-1589474096.jpg" srcset="/images_boxshots/master/stellaris-synthetic-dawn-story-pack-1589474096.jpg 512w,/images_boxshots/352x198/stellaris-synthetic-dawn-story-pack-1589474096.jpg 352w,/images_boxshots/256x144/stellaris-synthetic-dawn-story-pack-1589474096.jpg 256w,/images_boxshots/240x135/stellaris-synthetic-dawn-story-pack-1589474096.jpg 240w,/images_boxshots/128x72/stellaris-synthetic-dawn-story-pack-1589474096.jpg 128w" sizes="128px" alt="Stellaris: Synthetic Dawn Story Pack" class="boxpid-7921"></a></td>
+                                <td class="game"><a href="https://www.wingamestore.com/product/7921/Stellaris-Synthetic-Dawn-Story-Pack/">Stellaris: Synthetic Dawn Story Pack</a></td>
+                                <td class="ddl-license"><span>Steam Key:</span><b> WYB7T-AIXPR-ZEL0K</b></td>
+                                <td class="ddl-info-btn" nowrap=""><a id="ddl-info-7921" class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-games-detail/?pid=7921" href="https://www.wingamestore.com/myaccount-games-detail/?pid=7921">Steam</a></td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="orders-tab" class="tab-content loaded">
+            <div id="account-orders" class="wabit">
+                <h3>Completed Orders (8)</h3>	<div class="list-table-scroll">
+                    <table class="list-table" cellpadding="4" cellspacing="0" border="0">
+                        <thead>
+                            <tr class="list-header">
+                                <th class="col1" nowrap="">Order #</th>
+                                <th class="col2" nowrap="">Ordered From</th>
+                                <th class="align-r col3" nowrap="">Amount</th>
+                                <th class="align-r col4" nowrap="">Placed</th>
+                                <th class="align-r col5" nowrap="">Completed</th>
+                                <th class="align-c col6" nowrap="">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="even">
+                                <td class="col1"><b>1817291</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$10.51</td>
+                                <td class="align-r col4">3/19/2021</td>
+                                <td class="align-r col5">3/19/2021</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1817291" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1817291">View</a></td>
+                            </tr>
+
+                            <tr class="odd">
+                                <td class="col1"><b>1780945</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$17.47</td>
+                                <td class="align-r col4">12/24/2020</td>
+                                <td class="align-r col5">12/24/2020</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1780945" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1780945">View</a></td>
+                            </tr>
+
+                            <tr class="even">
+                                <td class="col1"><b>1771625</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$19.79</td>
+                                <td class="align-r col4">12/2/2020</td>
+                                <td class="align-r col5">12/2/2020</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1771625" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1771625">View</a></td>
+                            </tr>
+
+                            <tr class="odd">
+                                <td class="col1"><b>1743928</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$59.95</td>
+                                <td class="align-r col4">9/16/2020</td>
+                                <td class="align-r col5">9/16/2020</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1743928" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1743928">View</a></td>
+                            </tr>
+
+                            <tr class="even">
+                                <td class="col1"><b>1640454</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$11.99</td>
+                                <td class="align-r col4">3/7/2020</td>
+                                <td class="align-r col5">3/7/2020</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1640454" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1640454">View</a></td>
+                            </tr>
+
+                            <tr class="odd">
+                                <td class="col1"><b>1472542</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$16.03</td>
+                                <td class="align-r col4">12/8/2018</td>
+                                <td class="align-r col5">12/8/2018</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1472542" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1472542">View</a></td>
+                            </tr>
+
+                            <tr class="even">
+                                <td class="col1"><b>1416676</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$7.48</td>
+                                <td class="align-r col4">7/24/2018</td>
+                                <td class="align-r col5">7/25/2018</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1416676" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1416676">View</a></td>
+                            </tr>
+
+                            <tr class="odd">
+                                <td class="col1"><b>1416553</b></td>
+                                <td class="col2" nowrap="">WinGameStore</td>
+                                <td class="align-r col3">$0.00</td>
+                                <td class="align-r col4">7/24/2018</td>
+                                <td class="align-r col5">7/24/2018</td>
+                                <td class="align-c col6" nowrap=""><a class="btn-mini popbox cboxElement" data-popw="620" data-popref="https://www.wingamestore.com/myaccount-orders-detail/?oid=1416553" href="https://www.wingamestore.com/myaccount-orders-detail/?oid=1416553">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="list-table-listnav"></div>
+            </div>
+        </div>
+        <div id="settings-tab" class="tab-content"></div><div id="wishlist-tab" class="tab-content loaded active">
+            <div id="account-wishlist" class="wabit" data-url="https://www.wingamestore.com/myaccount-wishlist/">
+
+                <div id="wishlist-actionbar" class="js-show wabit" style="display: block;">
+                    <div class="controlbar js-show wabit" style="display: block;">
+
+                        <span id="wishlist-orderby" class="left smoodge wabit">
+                            <label for="wishlist-orderby-menu-btn" class="light small">SORT</label>
+                            <span class="menu-wrap" data-menu="wishlist-orderby">
+                                <a id="wishlist-orderby-menu-btn" class="btn-small menu usable popmenubtn" data-popm="wishlist-orderby"><span class="popmenu-label">By Desire</span></a>
+                                <ul class="popmenu" data-popm="wishlist-orderby">
+                                    <li data-oby="desire" class="orderby-selected"><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=desire">By Desire</a></li>
+                                    <li data-oby="specials" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=specials">Sales On Top</a></li>
+                                    <li data-oby="price" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=price">Lowest Price</a></li>
+                                    <li data-oby="price_r" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=price_r">Highest Price</a></li>
+                                    <li data-oby="added" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=added">Recently Added</a></li>
+                                    <li data-oby="added_r" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=added_r">Older Additions</a></li>
+                                    <li data-oby="date" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=date">Newer Games</a></li>
+                                    <li data-oby="date_r" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=date_r">Older Games</a></li>
+                                    <li data-oby="date_p" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=date_p">New to Store</a></li>
+                                    <li data-oby="title" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=title">Alphabetical</a></li>
+                                    <li data-oby="title_r" class=""><a href="https://www.wingamestore.com/myaccount-wishlist/?sortby=title_r">Reverse Alphabetical</a></li>
+                                </ul>
+                            </span>
+                        </span>
+
+                        <span class="right smoodge wabit"><a id="sharewishlist-btn" class="btn-small" formurl="https://www.wingamestore.com/myaccount-pop_sharewishlist/" href="https://www.wingamestore.com/myaccount-pop_sharewishlist/">Share Wishlist</a></span>
+                        <span class="right smoodge wabit"><label for="togwsn-btn" class="light small">SALES EMAILS</label><a id="togwsn-btn" class="btn-small wsnon" href="https://www.wingamestore.com/myaccount-wishlist/?toggle=wsn" title="You are currently receiving email notices when games on your wishlist go on sale.">Yes<b>&nbsp;</b></a></span>
+
+                    </div>
+                </div>
+
+                <form id="id_WishlistForm" name="WishlistForm" class="standard" method="post" action="https://www.wingamestore.com/myaccount-wishlist/">
+                    <input type="hidden" name="numitems" value="2">
+
+                    <div class="list-table-scroll">
+                        <table class="list-table" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr class="product even">
+                                    <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/12329/Total-War-WARHAMMER-III/" title="Total War™: WARHAMMER® III"><img src="/images_boxshots/128x72/total-war-warhammer-iii-1612459200.jpg" srcset="/images_boxshots/master/total-war-warhammer-iii-1612459200.jpg 512w,/images_boxshots/352x198/total-war-warhammer-iii-1612459200.jpg 352w,/images_boxshots/256x144/total-war-warhammer-iii-1612459200.jpg 256w,/images_boxshots/240x135/total-war-warhammer-iii-1612459200.jpg 240w,/images_boxshots/128x72/total-war-warhammer-iii-1612459200.jpg 128w" sizes="128px" alt="Total War™: WARHAMMER® III" class="boxpid-12329"></a></td>
+
+                                    <td class="details">
+                                        <div class="product-title"><a href="https://www.wingamestore.com/product/12329/Total-War-WARHAMMER-III/">Total War™: WARHAMMER® III</a></div>
+                                        <div class="product-type"><span class="light">Strategy</span> — <span class="preorder">Pre-Order</span></div>
+                                    </td>
+
+                                    <td class="desire"><select class="desire-inline-edit" data-pid="12329" name="desire_0"><option value="1" selected="selected">Must Have</option><option value="2">High</option><option value="3">Moderate</option><option value="4">Low</option><option value="5">Lowest</option></select></td>
+
+                                    <td class="added"><div>Added</div><div>4/16/2021</div><div><a class="remove-pid" href="https://www.wingamestore.com/myaccount-wishlist/?drop=12329" title="Click to remove this product from your wishlist">(remove)</a></div></td>
+
+                                    <td class="cost" nowrap=""><div class="wabit onsale"><a class="btn-buy add-to-cart subtle salebadge in-cart" data-pid="12329" data-box="/images_boxshots/240x135/total-war-warhammer-iii-1612459200.jpg" data-hov="Add" href="https://www.wingamestore.com/buy/12329/" rel="nofollow"><span class="percentoff">-20<i>%</i></span><label>In Cart</label><span class="hovit">In Cart</span></a></div><div class="added"><div>Added</div><div>4/16/2021</div><div><a class="remove-pid" href="https://www.wingamestore.com/myaccount-wishlist/?drop=12329" title="Click to remove this product from your wishlist">(remove)</a></div></div></td>
+                                </tr>
+                                <tr class="divider"><td colspan="6">&nbsp;</td></tr>
+
+                                <tr class="product odd">
+                                    <td class="boxshot"><a class="boxhole img16x9" href="https://www.wingamestore.com/product/6987/DARK-SOULS-III/" title="DARK SOULS™ III"><img src="/images_boxshots/128x72/dark-soulstm-iii-1548950442.jpg" srcset="/images_boxshots/master/dark-soulstm-iii-1548950442.jpg 512w,/images_boxshots/352x198/dark-soulstm-iii-1548950442.jpg 352w,/images_boxshots/256x144/dark-soulstm-iii-1548950442.jpg 256w,/images_boxshots/240x135/dark-soulstm-iii-1548950442.jpg 240w,/images_boxshots/128x72/dark-soulstm-iii-1548950442.jpg 128w" sizes="128px" alt="DARK SOULS™ III" class="boxpid-6987"></a></td>
+
+                                    <td class="details">
+                                        <div class="product-title"><a href="https://www.wingamestore.com/product/6987/DARK-SOULS-III/">DARK SOULS™ III</a></div>
+                                        <div class="product-type"><span class="light">Action</span></div>
+                                    </td>
+
+                                    <td class="desire"><select class="desire-inline-edit" data-pid="6987" name="desire_1"><option value="1">Must Have</option><option value="2">High</option><option value="3" selected="selected">Moderate</option><option value="4">Low</option><option value="5">Lowest</option></select></td>
+
+                                    <td class="added"><div>Added</div><div>5/30/2021</div><div><a class="remove-pid" href="https://www.wingamestore.com/myaccount-wishlist/?drop=6987" title="Click to remove this product from your wishlist">(remove)</a></div></td>
+
+                                    <td class="cost" nowrap=""><div class="wabit"><a class="btn-buy add-to-cart subtle" data-pid="6987" data-box="/images_boxshots/240x135/dark-soulstm-iii-1548950442.jpg" data-hov="Add" href="https://www.wingamestore.com/buy/6987/" rel="nofollow"><label><span class="price"><em><i>$</i>59.99</em></span></label><span class="hovit">Add</span></a></div><div class="added"><div>Added</div><div>5/30/2021</div><div><a class="remove-pid" href="https://www.wingamestore.com/myaccount-wishlist/?drop=6987" title="Click to remove this product from your wishlist">(remove)</a></div></div></td>
+                                </tr>
+                                <tr class="divider"><td colspan="6">&nbsp;</td></tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+                <ul id="buymenu" class="popmenu"><li class="li-buy"><a href="" class="" rel="nofollow">Buy Now</a></li><li class="li-gift"><a class="open-form" href="" rel="nofollow">Gift to Friend</a></li><li class="li-demo"></li><li class="li-wish"><a class="wish-action" href="" rel="nofollow">Add to Wishlist</a></li></ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,93 +1,63 @@
 ﻿@model Journey.Web.ViewModels.Cart.CheckoutViewModel
-@{
-    ViewBag.Title = "Checkout";
-}
+@{ ViewBag.Title = "Checkout"; }
 
-<style type="text/css">
-    h2 {
-        margin: 1em 0 2em;
-    }
+<link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
-    img {
-        border-radius: 25%;
-    }
+<div class="container">
+    <h2>Your @ViewBag.Title</h2>
 
-    .large-font {
-        font-size: large;
-    }
 
-    .vertical-align {
-        display: flex;
-        align-items: center;
-    }
-
-    .header {
-        font-size: x-large;
-    }
-
-    .top-spacing {
-        line-height: 2em;
-        margin-top: 3.5em;
-    }
-</style>
-
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="container large-font">
-        @foreach (var item in Model.GamesInCart)
-        {
-            @Html.HiddenFor(m => m.GamesInCart, item)
-            <div class="row vertical-align">
-                <div class="col-md-1"><img src="@item.ImageUrl" alt="Game Cover of @item.Title" width="50" /></div>
-                <div class="col-md-5">@item.Title</div>
-                <div class="col-md-2">$@item.Price</div>
+    <div class="container">
+        <section id="core-guts" class="stringy fatty">
+            <div id="cart-block-wrap" class="contentbox raft">
+                <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody class="boxoom">
+                        @foreach (var item in Model.GamesInCart)
+                        {
+                         <tr class="product hovcolor">
+                             <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                             <td class="details">
+                                 <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                             </td>
+                             <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                         </tr>
+                         }
+                        <tr class="grandtotal bortop">
+                            <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
+                            <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <hr>
-        }
-
-        <h4>Select a Payment Method</h4>
-        @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
-        {
-            <div class="col-md-3">
-                @Html.DropDownListFor(m => m.PaymentMethodId, Model.CreditCards.Select(item => new SelectListItem
-                {
-                    Value = item.Id.ToString(),
-                    Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
-                }), new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PaymentMethodId)
-            </div>
-            <br />
-            <hr>
-        }
-        else
-        {
-            <div style="padding-left:2%">
-                A payment method is required to place an order. Click <a href="@Url.Action("Index", "Manage")">here</a> to add a credit card.
-            </div>
-            <hr>
-        }
-
-        <div class="row">
-            <div class="col-md-6 header">Cart Total:</div>
-            <div class="col-md-6 header">$@Model.Total</div>
+        </section>
     </div>
+
+    <h4>Select a Payment Method</h4>
+    @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
+    {
+        <div class="col-md-3">
+    @Html.DropDownListFor(m => m.PaymentMethodId, Model.CreditCards.Select(item => new SelectListItem
+    {
+        Value = item.Id.ToString(),
+        Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
+    }), new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PaymentMethodId)
     </div>
+    <br />
+    <hr>
+    }
+    else
+    {
+        <div style="padding-left:2%">
+              A payment method is required to place an order. Click <a href="@Url.Action("Payment", "Profile")">here</a> to add a credit card.
+        </div>
+    <hr>
+    }
 
     <div class="row">
-        <div class="col-md-5 col-md-offset-1 header"><a href="@Url.Action("Index", "Cart")" class="btn btn-primary top-spacing"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;&nbsp;Back to Cart</a></div>
+        <div class="row"><a href="@Url.Action("Index", "Cart")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Cart</a></div>
 
-        @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0 && Model.CreditCards != null && Model.CreditCards.Count() > 0)
-        {
-            <div class="col-md-5 header"><input type="submit" class="btn btn-success top-spacing" value="Place Order"></div>
-        }
+        <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Place Order&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
     </div>
-}
-
-
-
-
-
+</div>

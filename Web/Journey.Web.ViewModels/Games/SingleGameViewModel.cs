@@ -43,6 +43,8 @@
 
         public bool IsInUserCart { get; set; }
 
+        public bool IsInUserWishlist { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, SingleGameViewModel>()

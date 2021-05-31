@@ -1287,10 +1287,6 @@ a.btn-buy.buyhov .hovit {
     background-repeat: no-repeat;
 }
 
-#buy-bar a.btn-buy.in-cart label::before, a.btn-buy.in-cart .hovit::before {
-    background-image: url('/images/icon-cart-in.png');
-}
-
 a.btn-buy.in-cart .hovit::before {
     display: none;
 }

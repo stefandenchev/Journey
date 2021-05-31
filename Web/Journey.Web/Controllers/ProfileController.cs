@@ -1,15 +1,14 @@
-﻿using Journey.Data;
-using Journey.Data.Models;
-using Journey.Web.ViewModels.Profile;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace Journey.Web.Controllers
+﻿namespace Journey.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
+
+    using Journey.Data;
+    using Journey.Data.Models;
+    using Journey.Web.ViewModels.Profile;
+    using Microsoft.AspNetCore.Mvc;
+
     public class ProfileController : BaseController
     {
         private readonly ApplicationDbContext db;
@@ -99,6 +98,21 @@ namespace Journey.Web.Controllers
             {
                 return this.Json(new { Success = false, Error = "Error occurred while deleting credit card record" });
             }
+        }
+
+        public IActionResult Wishlist()
+        {
+            return this.View();
+        }
+
+        public IActionResult Purchases()
+        {
+            return this.View();
+        }
+
+        public IActionResult Orders()
+        {
+            return this.View();
         }
     }
 }

@@ -38,12 +38,21 @@
 
                 @if (Model.IsInUserCart)
                 {
-                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Index"><label><i class="fas fa-cart-arrow-down"></i> In Cart</label><span class="hovit"></span></a></div>
+                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-controller="Cart" asp-action="Index"><label><i class="fas fa-cart-arrow-down"></i> In Cart</label><span class="hovit"></span></a></div>
 
                 }
                 else
                 {
-                    <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" data-box="" data-hov="Add to Cart" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
+                    <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
+                }
+                @if (Model.IsInUserWishlist)
+                {
+                    <div id="wish-bar"><a class="btn add-to-wishlist" data-pid="@Model.Id" asp-controller="Wishlist" asp-action="Remove" asp-route-id="@Model.Id"><label><i class="fas fa-heart"></i> In Wishlist</label><span class="hovit"></span></a></div>
+
+                }
+                else
+                {
+                    <div id="wish-bar"><a class="btn add-to-wishlist" data-pid="@Model.Id" asp-controller="Wishlist" asp-action="Add" asp-route-id="@Model.Id"><label><i class="far fa-heart"></i> Add to Wishlist</label><span class="hovit"></span></a></div>
                 }
 
             </div>
@@ -86,24 +95,24 @@
 
                 @*<ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 400ms; width: 1640.67px; transform: translate3d(-189.25px, 0px, 0px);">
 
-                    @if (Model.OriginalUrl == null)
-                    {
-                        foreach (var image in Model.Images)
+                        @if (Model.OriginalUrl == null)
                         {
-                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
+                            foreach (var image in Model.Images)
+                            {
+                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
+                            }
                         }
-                    }
 
-                    else
-                    {
-                       foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+                        else
                         {
-                            <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
+                           foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
+                            {
+                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
+                            }
                         }
-                    }
 
 
-                </ul>*@
+                    </ul>*@
             </div>
         </div>
 
@@ -114,8 +123,16 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th>Release Date</th>
+                            @if (Model.ReleaseDate > DateTime.UtcNow)
+                            {
+                                <th>Pre-order ETA</th>
+                            }
+                            else
+                            {
+                                <th>Release Date</th>
+                            }
                             <td>@Model.ReleaseDate.ToShortDateString()</td>
+
                         </tr>
                         <tr>
                             <th>Genre</th>
@@ -139,18 +156,18 @@
                         <tr>
 
 
-                        <th>
-                            Languages
-                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
-                                <a asp-area="Administration" asp-controller="GameLanguages" asp-action="Index" id="editLanguageButton" class="btn btn-secondary btn-sm">Edit</a>
-                            }
-                        </th>
+                            <th>
+                                Languages
+                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                {
+                                    <a asp-area="Administration" asp-controller="GameLanguages" asp-action="Index" id="editLanguageButton" class="btn btn-secondary btn-sm">Edit</a>
+                                }
+                            </th>
                             <td>
                                 @foreach (var language in Model.Languages.OrderBy(x => x.LanguageName))
                                 {
-                                @language.LanguageName
-                                <br />
+                                    @language.LanguageName
+                                    <br />
                                 }
                             </td>
                         </tr>

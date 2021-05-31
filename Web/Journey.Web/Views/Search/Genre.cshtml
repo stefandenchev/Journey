@@ -17,20 +17,20 @@
     <div class="row">
         @if (ViewBag.TitleSortParam.Contains("title_desc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-descending</a>
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-ascending</a>
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
         }
 
         @if (ViewBag.PriceSortParam.Contains("price_asc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-ascending</a>
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-descending</a>
+            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
         }
     </div>
 

@@ -2008,21 +2008,17 @@ sub.flipr.flipped::after {
     vertical-align: middle;
     width: 24px;
     height: 24px;
-    margin-right: 8px;
     top: -1px;
-    content: "";
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
 
 #wish-bar a.btn label::before {
     top: -1px;
-    background-image: url('/images/icon-btn-wishlist-wht.svg');
     background-size: 24px 24px;
 }
 
 #wish-bar a.btn.onlist label::before {
-    background-image: url('/images/icon-btn-wishlist-wht-solid.svg');
 }
 
 #gift-bar a.btn label::before {

@@ -154,8 +154,8 @@
 
             return this.View(viewModel);
         }
-/*
-        [HttpPost]
+
+       /* [HttpPost]
         public async Task<ActionResult> Checkout(CheckoutViewModel model)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

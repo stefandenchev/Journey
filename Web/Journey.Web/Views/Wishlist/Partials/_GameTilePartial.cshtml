@@ -1,0 +1,65 @@
+﻿@model Game
+@using Journey.Data.Models
+
+<style>
+    .game-tile {
+        color: white;
+        border: 1px solid lightskyblue;
+        border-radius: 0.25rem;
+        padding: 0;
+        margin-bottom: 3rem;
+    }
+
+    .game-tile-footer {
+        background-image: url(https://store.steampowered.com/public/images/v6/home/background_spotlight.jpg);
+        padding: 1rem;
+    }
+
+    .game-image {
+        width: 100%;
+        max-height: 300px;
+        min-height: 300px;
+    }
+</style>
+
+<a href="/Home/ViewGame/@(Model.Id)">
+    <div class="col-md-4">
+        <div class="game-tile" title="Click to view game details">
+
+            <img src="" alt="Game Cover of @Model.Title" class="game-image" />
+
+            <div class="game-tile-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col pull-left">
+                            @Html.DisplayFor(item => item.Title)
+                        </div>
+                        <div class="col pull-right">
+                            @Html.DisplayFor(item => item.Price)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+
+@*<div class="game-tile-padding">
+        @Html.LabelFor(item => item.Title)
+        @Html.DisplayFor(item => item.Title)
+        <br />
+        @Html.LabelFor(item => item.Rating)
+        @Html.DisplayFor(item => item.Rating)
+        <br />
+        @Html.LabelFor(item => item.ReleaseYear)
+        @Html.DisplayFor(item => item.ReleaseYear)
+        <br />
+        @Html.LabelFor(item => item.ImageUrl)
+        @Html.DisplayFor(item => item.ImageUrl)
+        <br />
+        @Html.LabelFor(item => item.PlatformId)
+        @Html.DisplayFor(item => item.PlatformId)
+        <br />
+        @Html.LabelFor(item => item.CategoryId)
+        @Html.DisplayFor(item => item.CategoryId)
+    </div>*@

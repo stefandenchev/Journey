@@ -150,6 +150,7 @@
                 var game = this.gamesService.GetById<SingleGameViewModel>(id);
 
                 game.IsInUserCart = this.db.UserCartItems.Any(c => c.UserId == userId && c.GameId == id);
+                game.IsInUserWishlist = this.db.Wishlists.Any(c => c.UserId == userId && c.GameId == id);
 
                 return this.View(game);
             }
