@@ -104,6 +104,7 @@
         // POST: Administration/GameLanguages/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("GameId,LanguageId,Id,CreatedOn_17114092,ModifiedOn_17114092")] GameLanguage gameLanguage)

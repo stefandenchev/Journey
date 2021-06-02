@@ -36,7 +36,12 @@
                     <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
                 </div>
 
-                @if (Model.IsInUserCart)
+                @if (Model.IsInUserLibrary)
+                {
+                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-area="Profile" asp-controller="Profile" asp-action="Orders"><label><i class="fas fa-box"></i> In Collection</label><span class="hovit"></span></a></div>
+
+                }
+                else if (Model.IsInUserCart)
                 {
                     <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-controller="Cart" asp-action="Index"><label><i class="fas fa-cart-arrow-down"></i> In Cart</label><span class="hovit"></span></a></div>
 
@@ -45,9 +50,10 @@
                 {
                     <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
                 }
+
                 @if (Model.IsInUserWishlist)
                 {
-                    <div id="wish-bar"><a class="btn add-to-wishlist" data-pid="@Model.Id" asp-controller="Wishlist" asp-action="Remove" asp-route-id="@Model.Id"><label><i class="fas fa-heart"></i> In Wishlist</label><span class="hovit"></span></a></div>
+                    <div id="wish-bar"><a class="btn add-to-wishlist" data-pid="@Model.Id" asp-controller="Wishlist" asp-action="Remove" asp-route-id="@Model.Id"><label><i class="fas fa-heart"></i> Remove from Wishlist</label><span class="hovit"></span></a></div>
 
                 }
                 else

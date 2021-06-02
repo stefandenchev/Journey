@@ -9,6 +9,7 @@
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Cart;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -19,20 +20,24 @@
     {
         private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
+        private readonly ICreditCardsService creditCardsService;
+        private readonly IOrdersService ordersService;
 
-        public CartController(ApplicationDbContext db, IGamesService gamesService)
+        public CartController(
+            ApplicationDbContext db,
+            IGamesService gamesService,
+            ICreditCardsService creditCardsService,
+            IOrdersService ordersService)
         {
             this.db = db;
             this.gamesService = gamesService;
+            this.creditCardsService = creditCardsService;
+            this.ordersService = ordersService;
         }
 
         public ActionResult Index()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == null)
-            {
-                return this.RedirectToAction("Index", "Home");
-            }
 
             var viewModel = new CartViewModel();
 
@@ -50,11 +55,6 @@
 
             if (this.db.UserCartItems.Any(c => c.UserId == userId && c.GameId == id))
             {
-                // add displaying errors to the home page
-                // return RedirectToAction("ViewGame", "Home", new { area = "" });
-                this.TempData["message"] = "This game is already in your cart.";
-
-                // return this.RedirectToAction("ById", new RouteValueDictionary(new { controller = "Games", action = "ById", Id = id }));
                 return this.RedirectToAction("Index", "Cart");
             }
 
@@ -66,9 +66,6 @@
             this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
 
             return this.RedirectToAction("Index");
-
-            // Session["cart"] = this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString();
-            // return this.RedirectToAction("ViewGame", new RouteValueDictionary(new { controller = "Home", action = "ViewGame", Id = id }));
         }
 
         [HttpGet]
@@ -110,6 +107,121 @@
             return this.RedirectToAction("Index", "Cart");
         }
 
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = new CheckoutViewModel();
+
+            // get games
+            List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
+            viewModel.GamesInCart = games;
+
+            // get credit cards
+            // viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
+            viewModel.CreditCards = this.db.CreditCards.Where(c => c.UserId == userId).ToList();
+
+            // calculate total
+            viewModel.Total = games.Sum(g => g.Price);
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Checkout(CheckoutViewModel model)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            try
+            {
+                string orderId = Guid.NewGuid().ToString();
+                model.GamesInCart = this.GetGamesFromCart(userId);
+
+                // add new order record
+                var newOrder = new Order
+                {
+                    Id = orderId,
+                    UserId = userId,
+                    PurchaseDate = DateTime.Now,
+                    CreditCardId = model.PaymentMethodId,
+                };
+
+                this.db.Orders.Add(newOrder);
+
+                // add new orderItem records
+                foreach (var game in model.GamesInCart)
+                {
+                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id });
+                }
+
+                // if any of the games bought were in the user's wish list, remove them from there
+                var userWishList = this.db.Wishlists.Where(i => i.UserId == userId);
+                foreach (var game in model.GamesInCart)
+                {
+                    var gameInWishList = userWishList.FirstOrDefault(i => i.GameId == game.Id);
+                    if (gameInWishList != null)
+                    {
+                        this.db.Wishlists.Remove(gameInWishList);
+                    }
+                }
+
+                // remove all items from user's cart
+                var cartItem = this.db.UserCartItems.Where(c => c.UserId == userId).ToList();
+                this.db.UserCartItems.RemoveRange(cartItem);
+
+                List<int> gameIds = new List<int>();
+
+                foreach (var g in model.GamesInCart)
+                {
+                    gameIds.Add(g.Id);
+                }
+
+                // remove the games from wishlist
+                var wishes = this.db.Wishlists.Where(c => c.UserId == userId && gameIds.Contains(c.GameId));
+                this.db.Wishlists.RemoveRange(wishes);
+
+                await this.db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("", "An unexpected error occured while attempting to place your order.");
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("OrderComplete", "Cart");
+        }
+
+        [HttpGet]
+        public ActionResult OrderComplete()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (userId == null)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            var model = new CheckoutViewModel();
+
+            // get lastest order
+            //var lastestOrder = this.ordersService.GetAll<OrderViewModel>().Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
+            Order lastestOrder = db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
+
+            // string ccNumber = this.creditCardsService.GetAll<CreditCardViewModel>().Where(cc => (cc.Id + "") == lastestOrder.CreditCard).FirstOrDefault().CardNumber;
+            string ccNumber = db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
+
+            if (ccNumber != null)
+            {
+                model.CreditCardLast4 = ccNumber.Substring(ccNumber.Length - 5);
+            }
+
+            model.GamesInCart = this.GetGamesFromLastOrder(userId, lastestOrder);
+
+            model.Total = model.GamesInCart.Sum(g => g.Price);
+
+            return this.View(model);
+        }
+
         private List<GameInCartViewModel> GetGamesFromCart(string userId)
         {
             var gamesInCartDB = this.db.UserCartItems.Where(c => c.UserId == userId).ToList();
@@ -131,103 +243,17 @@
             return games;
         }
 
-        [HttpGet]
-        public ActionResult Checkout()
+        private List<GameInCartViewModel> GetGamesFromLastOrder(string userId, Order lastestOrder)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == null)
+            List<OrderItem> orderItems = this.db.OrderItems.Where(oi => oi.OrderId == lastestOrder.Id).ToList();
+            List<int> gameIds = new List<int>();
+
+            foreach (var oi in orderItems)
             {
-                return this.RedirectToAction("Index", "Home");
+                gameIds.Add(oi.GameId);
             }
 
-            var viewModel = new CheckoutViewModel();
-
-            // get games
-            List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
-            viewModel.GamesInCart = games;
-
-            // get credit cards
-            viewModel.CreditCards = this.db.CreditCards.Where(c => c.UserId == userId).ToList();
-
-            // calculate total
-            viewModel.Total = games.Sum(g => g.Price);
-
-            return this.View(viewModel);
+            return this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id)).ToList();
         }
-
-       /* [HttpPost]
-        public async Task<ActionResult> Checkout(CheckoutViewModel model)
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            if (string.IsNullOrEmpty(model.PaymentMethodId))
-            {
-                ModelState.AddModelError("PaymentMethodId", "A payment method could not be retrieved.");
-                return View(model);
-            }
-
-            try
-            {
-                string orderId = Guid.NewGuid().ToString();
-                model.GamesInCart = GetGamesFromCart(userId);
-
-                // add new order record
-                var newOrder = new Order
-                {
-                    Id = orderId,
-                    UserId = userId,
-                    PurchaseDate = DateTime.Now,
-                    CreditCardUsed = model.PaymentMethodId
-                };
-                db.Orders.Add(newOrder);
-
-                // add new orderItem records
-                foreach (var game in model.GamesInCart)
-                {
-                    db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id });
-                }
-
-                // if any of the games bought were in the user's wish list, remove them from there
-                var userWishList = db.WishLists.Where(i => i.userId == userId);
-                foreach (var game in model.GamesInCart)
-                {
-                    var gameInWishList = userWishList.FirstOrDefault(i => i.gameId == game.Id);
-                    if (gameInWishList != null)
-                    {
-                        db.WishLists.Remove(gameInWishList);
-                    }
-                }
-
-
-                // remove all items from user's cart
-                var cartItem = db.UserCartItems.Where(c => c.UserId == userId).ToList();
-                db.UserCartItems.RemoveRange(cartItem);
-
-                List<string> gameIds = new List<string>();
-
-                foreach (Game g in model.GamesInCart)
-                {
-                    gameIds.Add(g.Id);
-                }
-
-                // remove the games from wishlist
-                var wishes = db.WishLists.Where(c => c.userId == userId && gameIds.Contains(c.gameId));
-                db.WishLists.RemoveRange(wishes);
-
-                await db.SaveChangesAsync();
-                Session["cart"] = "0";
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "An unexpected error occured while attempting to place your order.");
-                return View(model);
-            }
-
-            return RedirectToAction("OrderComplete", "Cart");
-        }*/
     }
 }

@@ -4,6 +4,11 @@
 }
 <style type="text/css">
 
+    th {
+        padding:6px;
+        margin:6px
+    }
+
     .modal-content {
         position: relative;
         display: flex;
@@ -18,61 +23,8 @@
     .btn-spacing {
         margin-top: 1em;
         margin-bottom: 1em;
-    }
+    }  
 
-    #ui-datepicker-div {
-        padding-top: 3em;
-    }
-
-        #ui-datepicker-div > table > tbody > tr > td > a {
-            color: red
-        }
-
-        #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-month,
-        #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-year {
-            border-radius: 6px;
-            margin-left: 2px;
-            background-color: #1b6ec2;
-        }
-
-        #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-prev.ui-corner-all,
-        #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-next.ui-corner-all,
-        #ui-datepicker-div > table > tbody, #ui-datepicker-div > table,
-        #ui-datepicker-div > div.ui-datepicker-buttonpane.ui-widget-content > button.ui-datepicker-current.ui-state-default.ui-priority-secondary.ui-corner-all {
-            display: none
-        }
-
-        #ui-datepicker-div > div.ui-datepicker-buttonpane.ui-widget-content > button.ui-datepicker-close.ui-state-default.ui-priority-primary.ui-corner-all {
-            border-radius: 6px;
-            padding: 0.5em;
-            background-color: #1b6ec2;
-            position: relative;
-            color: white;
-            margin-top: 0.3em;
-            margin-left: 0.1em;
-            border: none;
-            font-size: inherit
-        }
-
-        #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-next.ui-corner-all {
-            margin-left: 5px
-        }
-
-    #creditCardNumber, #expirationDate {
-        color: black
-    }
-
-    #cardNumberValidationError {
-        color: red
-    }
-
-    #modal-button, #btnAdd, #btnBack {
-        border-radius: 6px;
-    }
-
-    #btnBack {
-        float:right
-    }
 </style>
 
 <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
@@ -83,8 +35,14 @@
     @*// Credit Card Information*@
     <h4><b>Credit Card Information</b></h4>
     <p>Please note that only Visa and MasterCard credit cards are accepted.</p>
-    <button type="button" class="btn btn-success btn-spacing" data-toggle="modal" id="btnAdd" data-target="#creditCardModal">Add New Credit Card</button>
-    <button type="button" class="btn btn-primary" id="btnBack" a href="@Url.Action("Index", "Cart")">Back To Cart</button>
+    <button type="button" class="btn btn-primary btn-spacing" data-toggle="modal" id="btnAdd" data-target="#creditCardModal">Add New Credit Card</button>
+
+
+    <div id="payments-nav">
+        <a class="btn btn-success" id="wish" asp-area="Home" asp-controller="Wishlist" asp-action="Index"><label>To Wishlist</label><span class="hovit"></span></a>
+        <a class="btn btn-success" asp-area="Home" asp-controller="Cart" asp-action="Index"><label>To Cart</label><span class="hovit"></span></a>
+    </div>
+
 
     <table class="table table-hover">
         @if (Model.CreditCards != null && Model.CreditCards.Count > 0)
@@ -116,7 +74,7 @@
 
                         <th>@card.CardNumber</th>
                         <th>@card.ExpirationDate</th>
-                        <th><a class="btn-danger btn-lg" asp-action="DeleteCreditCard" asp-route-id="@card.Id">Remove</a></th>
+                        <th><a class="btn-danger btn" id="remove" asp-action="DeleteCreditCard" asp-route-id="@card.Id">Remove</a></th>
 
                     </tr>
                 </thead>

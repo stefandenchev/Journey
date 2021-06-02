@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
+
+@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 <div class="container">
     <h2>Your @ViewBag.Title</h2>
 
@@ -37,13 +41,13 @@
     @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
     {
         <div class="col-md-3">
-    @Html.DropDownListFor(m => m.PaymentMethodId, Model.CreditCards.Select(item => new SelectListItem
-    {
-        Value = item.Id.ToString(),
-        Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
-    }), new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.PaymentMethodId)
-    </div>
+            @Html.DropDownListFor(m => m.PaymentMethodId, Model.CreditCards.Select(item => new SelectListItem
+            {
+                Value = item.Id.ToString(),
+                Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
+            }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PaymentMethodId)
+        </div>
     <br />
     <hr>
     }
@@ -56,8 +60,20 @@
     }
 
     <div class="row">
-        <div class="row"><a href="@Url.Action("Index", "Cart")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Cart</a></div>
-
-        <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Place Order&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
+        <div class="row">
+            <a href="@Url.Action("Index", "Cart")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Cart</a>
+        </div>
+        @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0 && Model.CreditCards != null && Model.CreditCards.Count() > 0)
+        {
+            <form asp-action="Checkout">
+                <div class="row">
+                    <input type="submit" value="Place Order" class="btn btn-primary" id="checkout-shopping-button">
+                </div>
+            </form>
+        }
+        
     </div>
+
 </div>
+
+}

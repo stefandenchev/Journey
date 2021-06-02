@@ -48,6 +48,8 @@
 
         public DbSet<Wishlist> Wishlists { get; set; }
 
+        public DbSet<OrderItem> OrderItems { get; set; }
+
         public DbSet<Log> Logs_17114092 { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

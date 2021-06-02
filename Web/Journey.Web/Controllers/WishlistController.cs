@@ -70,6 +70,22 @@ namespace Journey.Web.Controllers
             return this.RedirectToAction("ById", new RouteValueDictionary(new { controller = "Games", action = "ById", Id = id }));
         }
 
+        public async Task<ActionResult> RemoveFromList(int id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (!this.db.Wishlists.Any(c => c.UserId == userId && c.GameId == id))
+            {
+                this.TempData["message"] = "This game is not in your wish list.";
+                return this.RedirectToAction("Index");
+            }
+
+            Wishlist wish = this.db.Wishlists.FirstOrDefault(c => c.UserId == userId && c.GameId == id);
+            this.db.Wishlists.Remove(wish);
+            await this.db.SaveChangesAsync();
+            return this.RedirectToAction("Index");
+        }
+
         private List<GameInListViewModel> GetGamesFromWishlist(string userId)
         {
             var gamesInWishlist = this.db.Wishlists.Where(c => c.UserId == userId).ToList();

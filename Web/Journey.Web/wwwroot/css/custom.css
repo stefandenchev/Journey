@@ -71,7 +71,7 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
 }
 
 li.nav-item {
-    padding-left: 25px
+    padding-left: 10px
 }
 
 .navbar-light {
@@ -386,12 +386,25 @@ body > div.container-fluid > main > div.nk-pagination.nk-pagination-center {
     background-repeat: no-repeat;
 }
 
+#pay-to-wish-btn {
+    float: right
+}
+
+#cart-icon-main > label > i {
+    color: white
+}
+
 a.btn.add-to-wishlist {
+    color: white;
     font-weight: 500;
     background: #a263b7;
     justify-content: space-around;
     width: 100%
 }
+
+    a.btn.add-to-wishlist:hover {
+        background: #89509c;
+    }
 
 a.btn-buy.return {
     background: #1B6EF3;
@@ -600,15 +613,15 @@ hr {
     border-top: 1px solid #e08821;
 }
 
-#creditCardModalTitle{
-    float:left
+#creditCardModalTitle {
+    float: left
 }
 
 #creditCardModal > div > div > div.modal-header > button {
     float: right
 }
 
-.modal-header, .modal-body, .modal-footer{
+.modal-header, .modal-body, .modal-footer {
     background-color: #C5C3C0
 }
 
@@ -619,6 +632,82 @@ hr {
 #prof-nav {
     all: unset;
 }
+
+#payments-nav {
+    float: right
+}
+
+    #payments-nav > a {
+        border-radius: 6px
+    }
+
+#buttons {
+    float:right; 
+    padding-top: 1.7em !important
+}
+
+/* PAYMENT */
+#ui-datepicker-div {
+    padding-top: 3em;
+}
+
+    #ui-datepicker-div > table > tbody > tr > td > a {
+        color: red
+    }
+
+    #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-month,
+    #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-year {
+        border-radius: 6px;
+        margin-left: 2px;
+        background-color: #1b6ec2;
+    }
+
+    #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-prev.ui-corner-all,
+    #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-next.ui-corner-all,
+    #ui-datepicker-div > table > tbody, #ui-datepicker-div > table,
+    #ui-datepicker-div > div.ui-datepicker-buttonpane.ui-widget-content > button.ui-datepicker-current.ui-state-default.ui-priority-secondary.ui-corner-all {
+        display: none
+    }
+
+    #ui-datepicker-div > div.ui-datepicker-buttonpane.ui-widget-content > button.ui-datepicker-close.ui-state-default.ui-priority-primary.ui-corner-all {
+        border-radius: 6px;
+        padding: 0.5em;
+        background-color: #1b6ec2;
+        position: relative;
+        color: white;
+        margin-top: 0.3em;
+        margin-left: 0.1em;
+        border: none;
+        font-size: inherit
+    }
+
+    #ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > a.ui-datepicker-next.ui-corner-all {
+        margin-left: 5px
+    }
+
+    #creditCardNumber, #expirationDate {
+        color: black
+    }
+
+    #cardNumberValidationError {
+        color: red
+    }
+
+    #modal-button, #btnAdd, #btnBack, #remove {
+        border-radius: 6px;
+    }
+
+    #btnBack {
+        float:right
+    }
+
+    #wish {
+        background-color: #a263b7;
+    }
+     
+        #wish:hover {
+            background-color: #89509c;
+        }
 
 /* ADMIN AREA*/
 .table-hover tbody tr:hover {

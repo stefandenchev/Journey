@@ -1,12 +1,14 @@
 ﻿namespace Journey.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Common;
     using Journey.Data;
+    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
@@ -131,7 +133,7 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 GamesCount = this.gamesService.GetCount(),
-                Games = this.gamesService.GetAll<GameInListViewModel>(id, 16),
+                Games = this.gamesService.GetAllInList<GameInListViewModel>(id, 16),
             };
 
             return this.View(viewModel);
@@ -149,8 +151,16 @@
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 var game = this.gamesService.GetById<SingleGameViewModel>(id);
 
-                game.IsInUserCart = this.db.UserCartItems.Any(c => c.UserId == userId && c.GameId == id);
-                game.IsInUserWishlist = this.db.Wishlists.Any(c => c.UserId == userId && c.GameId == id);
+                List<string> allOrderIds = new List<string>();
+                var allOrders = db.Orders.Where(o => o.UserId == userId);
+                foreach (Order o in allOrders)
+                {
+                    allOrderIds.Add(o.Id);
+                }
+
+                game.IsInUserCart = this.db.UserCartItems.Any(x => x.UserId == userId && x.GameId == id);
+                game.IsInUserWishlist = this.db.Wishlists.Any(x => x.UserId == userId && x.GameId == id);
+                game.IsInUserLibrary = this.db.OrderItems.Any(x => x.GameId == id && allOrderIds.Contains(x.OrderId));
 
                 return this.View(game);
             }

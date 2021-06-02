@@ -14,7 +14,8 @@
         private readonly IDeletableEntityRepository<Language> languagesRepository;
         private readonly IRepository<GameLanguage> gamesLanguageRepository;
 
-        public LanguagesService(IDeletableEntityRepository<Language> languagesRepository,
+        public LanguagesService(
+            IDeletableEntityRepository<Language> languagesRepository,
             IRepository<GameLanguage> gamesLanguageRepository)
         {
             this.languagesRepository = languagesRepository;

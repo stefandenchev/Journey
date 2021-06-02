@@ -1,21 +1,28 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
 
     using Journey.Data;
     using Journey.Data.Models;
+    using Journey.Services.Data.Interfaces;
+    using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Mvc;
 
     public class ProfileController : BaseController
     {
         private readonly ApplicationDbContext db;
+        private readonly IGamesService gamesService;
 
-        public ProfileController(ApplicationDbContext db)
+        public ProfileController(
+            ApplicationDbContext db,
+            IGamesService gamesService)
         {
             this.db = db;
+            this.gamesService = gamesService;
         }
 
         public IActionResult Index()
@@ -100,11 +107,6 @@
             }
         }
 
-        public IActionResult Wishlist()
-        {
-            return this.View();
-        }
-
         public IActionResult Purchases()
         {
             return this.View();
@@ -112,7 +114,34 @@
 
         public IActionResult Orders()
         {
-            return this.View();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var orders = db.Orders.Where(o => o.UserId == userId);
+            var orderItems = db.OrderItems;
+            var games = db.Games;
+
+            List<OrdersViewModel> model = new List<OrdersViewModel>();
+
+            foreach (var order in orders)
+            {
+                var gameIds = db.OrderItems.Where(oi => oi.OrderId == order.Id).Select(oi => oi.GameId).ToList();
+
+                var orderGames = this.gamesService.GetAll<GameInListViewModel>().Where(g => gameIds.Contains(g.Id));
+                //decimal total = 0;
+                var total = orderGames.Sum(g => g.Price);
+                List<GameInListViewModel> gameThumbs = orderGames.Select(g => new GameInListViewModel { Id = g.Id, ImageUrl = g.ImageUrl}).ToList();
+
+                model.Add(new OrdersViewModel
+                {
+                    Id = order.Id,
+                    OrderPlaced = order.PurchaseDate,
+                    ItemNumber = orderItems.Where(oi => oi.OrderId == order.Id).Count(),
+                    Total = total,
+                    Games = gameThumbs
+                });
+            }
+
+            return View(model);
         }
     }
 }

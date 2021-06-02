@@ -434,6 +434,42 @@ namespace Journey.Data.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
@@ -760,6 +796,23 @@ namespace Journey.Data.Migrations
                     b.Navigation("CreditCard");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Journey.Data.Models.OrderItem", b =>
+                {
+                    b.HasOne("Journey.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Game");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.UserCartItem", b =>

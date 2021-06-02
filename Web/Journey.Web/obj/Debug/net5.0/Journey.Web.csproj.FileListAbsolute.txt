@@ -967,5 +967,5 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Index.cshtml.g.c
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Payment.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Wishlist.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Wishlist\Index.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Wishlist\Partials\_GameListPartial.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Wishlist\Partials\_GameTilePartial.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Cart\OrderComplete.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Profile\Orders.cshtml.g.cs

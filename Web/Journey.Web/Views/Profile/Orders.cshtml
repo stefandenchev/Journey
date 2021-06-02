@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Journey.Web.ViewModels.Profile.OrdersViewModel>
+@{
+    ViewBag.Title = "My Orders";
+}
+<style>
+    .space-vertically {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    .space-horizontally {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .header {
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+<h2 class="space-vertically">@ViewBag.Title</h2>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="row header">
+            <div class="col-md-4">@Html.DisplayNameFor(model => model.OrderPlaced)</div>
+            <div class="col-md-2">@Html.DisplayNameFor(model => model.ItemNumber)</div>
+            <div class="col-md-2">@Html.DisplayNameFor(model => model.Total)</div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">@Html.DisplayFor(modelItem => item.OrderPlaced)</div>
+            <div class="col-md-2">@Html.DisplayFor(modelItem => item.ItemNumber)</div>
+            <div class="col-md-2">@Html.DisplayFor(modelItem => item.Total)</div>
+            <div class="col-md-2"><a href="@Url.Action("ViewOrder", "Cart", new { id = item.Id })" class="btn btn-default" title="View Order"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;&nbsp;VIEW ORDER</a></div>
+        </div>
+        <div class="row">
+            @foreach (var tile in item.Games)
+            {
+                <a href="@Url.Action("ById", "Games", new { Id = tile.Id })"><img src="@(tile.ImageUrl)" class="img-thumbnail space-horizontally" alt="Game Cover" width="70" title="Navigate to Game" /></a>
+            }
+        </div>
+        if (Model.ToList().IndexOf(item) != Model.Count() - 1)
+        {
+            <hr />
+        }
+    }
+}
+else
+{
+    <p> You have not placed any orders yet.</p>
+}
+</div>

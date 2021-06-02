@@ -1,0 +1,84 @@
+﻿@model Journey.Web.ViewModels.Cart.CheckoutViewModel
+@{
+    ViewBag.Title = "Order Complete";
+}
+
+<style type="text/css">
+    h2 {
+        margin: 1em 0 2em;
+    }
+
+    img {
+        border-radius: 25%;
+    }
+
+    .large-font {
+        font-size: large;
+    }
+
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
+
+    .header {
+        font-size: x-large;
+    }
+
+    .top-spacing {
+        line-height: 2em;
+        margin-top: 3.5em;
+    }
+</style>
+
+<h2>The following games have been added to your library. Thank you for your purchase.</h2>
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="container large-font">
+    @foreach (var item in Model.GamesInCart)
+    {
+        @Html.HiddenFor(m => m.GamesInCart, item)
+        <div class="row vertical-align">
+            <div class="col-md-1"><img src="@item.ImageUrl" alt="Game Cover of @item.Title" width="50" /></div>
+            <div class="col-md-5">@item.Title</div>
+            <div class="col-md-2">$@item.Price</div>
+            <div class="col-md-2"><button class="btn btn-primary margin-bottom" onclick="downloadGame('@item.Title');">Download</button></div>
+        </div>
+        <hr>
+    }
+
+    <div class="row">
+        <div class="col-md-6 header">Payment Method:</div>
+        <div class="col-md-6 header"> **** - **** - **** - @Model.CreditCardLast4</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 header">Cart Total:</div>
+        <div class="col-md-6 header">$@Model.Total</div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        function downloadGame(title) {
+            download(title + '.txt', title);
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    </script>
+}
+
+
+

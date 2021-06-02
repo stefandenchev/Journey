@@ -9,7 +9,11 @@
 
     public interface IGamesService
     {
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 16);
+        IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 16);
+
+        IEnumerable<T> GetAll<T>();
+
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
 
         IEnumerable<T> GetLatest<T>(int count = 12);
 
@@ -20,7 +24,5 @@
         Task CreateAsync(CreateGameInputModel input, string imagePath);
 
         Task UpdateAsync(int id, EditGameInputModel input);
-
-        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }
 }

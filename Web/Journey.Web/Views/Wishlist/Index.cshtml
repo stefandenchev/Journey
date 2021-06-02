@@ -3,100 +3,41 @@
     ViewBag.Title = "My Wish List";
 }
 
-<style>
-    body {
-        background: center top no-repeat #1b2838;
-        color: white;
-    }
+<div class="container">
+    <h2>@ViewBag.Title</h2>
 
-    .vertical-space {
-        margin-top: 3em;
-    }
+    <br />
 
-    .ui-autocomplete {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        display: none;
-        float: left;
-        min-width: 160px;
-        padding: 5px 0;
-        margin: 2px 0 0;
-        list-style: none;
-        font-size: 14px;
-        text-align: left;
-        background-color: #ffffff;
-        border: 1px solid #cccccc;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        border-radius: 4px;
-        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-        background-clip: padding-box;
-    }
+    @{
+        if (Model.Games.Any())
+        {
+            <div class="container">
+                <section id="core-guts" class="stringy fatty">
+                    <div id="cart-block-wrap" class="contentbox raft">
+                        <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody class="boxoom">
+                                @foreach (var item in Model.Games)
+                                {
+                                    <tr class="product hovcolor">
+                                        <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                        <td class="details">
+                                            <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                        </td>
+                                        <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                        <td id="buttons"><a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
+                                            <a class="btn btn-danger" asp-controller="Wishlist" asp-action="RemoveFromList" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a></td>
 
-        .ui-autocomplete > li > div {
-            display: block;
-            padding: 3px 20px;
-            clear: both;
-            font-weight: normal;
-            line-height: 1.42857143;
-            color: #333333;
-            white-space: nowrap;
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         }
-
-    .ui-state-hover,
-    .ui-state-active,
-    .ui-state-focus {
-        text-decoration: none;
-        color: #262626;
-        background-color: #dcdcdc;
-        cursor: pointer;
+        else
+        {
+            <p>You currently do not have any games in your wish list.</p>
+        }
     }
-
-    .ui-helper-hidden-accessible {
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-</style>
-
-<h2>@ViewBag.Title</h2>
-
-<br />
-
-@{
-    if (Model.Games.Any())
-    {
-        <div class="container">
-            <section id="core-guts" class="stringy fatty">
-                <div id="cart-block-wrap" class="contentbox raft">
-                    <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tbody class="boxoom">
-                            @foreach (var item in Model.Games)
-                            {
-                                <tr class="product hovcolor">
-                                    <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
-                                    <td class="details">
-                                        <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
-                                    </td>
-                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
-                                    <td class="remove" onclick="removeItem(@item.Id)"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-    } 
-    else
-    {
-        <p>You currently do not have any games in your wish list.</p>
-    }
-}
+</div>

@@ -89,12 +89,21 @@
             await this.gamesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 16)
+        public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 16)
         {
             var games = this.gamesRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return games;
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            var games = this.gamesRepository.AllAsNoTracking()
                 .To<T>()
                 .ToList();
 

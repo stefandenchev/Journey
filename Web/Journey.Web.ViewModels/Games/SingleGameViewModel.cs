@@ -7,7 +7,6 @@
     using AutoMapper;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
-    using Journey.Web.ViewModels.Search;
 
     public class SingleGameViewModel : IMapFrom<Game>, IHaveCustomMappings
     {
@@ -44,6 +43,8 @@
         public bool IsInUserCart { get; set; }
 
         public bool IsInUserWishlist { get; set; }
+
+        public bool IsInUserLibrary { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
