@@ -22,13 +22,12 @@ body {
     font-family: 'Zen Dots', cursive !important;
 }
 
-#journey-title:hover {
-    -webkit-transform: scale(1.15);
-    -ms-transform: scale(1.15);
-    transform: scale(1.15);
-    color: #e08821 !important;
-
-}
+    #journey-title:hover {
+        -webkit-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        transform: scale(1.15);
+        color: #e08821 !important;
+    }
 
 #navbarDropdown, li.nav-item, body > div.page-container > header > nav > div > div > ul > li > form > button, #searchInput, input#searchInput.form-control {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
@@ -43,8 +42,16 @@ div.validation-summary-errors {
     color: #d9534f
 }
 
-i.credit{
-    float:right
+i.credit {
+    float: right
+}
+
+#whoops{
+    font-size:8px
+}
+
+a:hover {
+    color: #ee8a16;
 }
 
 input.text, input[type='text'], input[type='email'], input[type='password'], input[type='file'], input[type='date'], textarea.form-control, .form-control, input#searchInput.form-control {
@@ -610,7 +617,7 @@ a:hover {
     text-decoration: underline;
 }
 
-#editLanguageButton {
+#editMultiButton {
     top: 40%;
     left: 4%;
     position: relative;
@@ -627,6 +634,14 @@ a:hover {
 }
 
 /* MANAGE/PROFILE */
+body > div.page-container > div.container > main > div > div > div.col-md-9 > div {
+    background-color: #1B2939;
+}
+
+#email-verification {
+    color: #e08821;
+}
+
 hr {
     border-top: 1px solid #e08821;
 }
@@ -660,7 +675,7 @@ hr {
     }
 
 #buttons {
-    float:right; 
+    float: right;
     padding-top: 1.7em !important
 }
 
@@ -703,31 +718,35 @@ hr {
         margin-left: 5px
     }
 
-    #creditCardNumber, #expirationDate {
-        color: black
-    }
+#creditCardNumber, #expirationDate {
+    color: black
+}
 
-    #cardNumberValidationError {
-        color: red
-    }
+#cardNumberValidationError {
+    color: red
+}
 
-    #modal-button, #btnAdd, #btnBack, #remove {
-        border-radius: 6px;
-    }
+#modal-button, #btnAdd, #btnBack, #remove {
+    border-radius: 6px;
+}
 
-    #btnBack {
-        float:right
-    }
+#btnBack {
+    float: right
+}
 
-    #wish {
-        background-color: #a263b7;
+#wish {
+    background-color: #a263b7;
+}
+
+    #wish:hover {
+        background-color: #89509c;
     }
-     
-        #wish:hover {
-            background-color: #89509c;
-        }
 
 /* ADMIN AREA*/
 .table-hover tbody tr:hover {
     color: #e08821;
+}
+
+dl > dd {
+    margin-bottom: 15px;
 }

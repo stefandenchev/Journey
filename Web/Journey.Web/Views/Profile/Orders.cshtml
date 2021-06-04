@@ -3,20 +3,6 @@
     ViewBag.Title = "My Orders";
 }
 <style>
-    .space-vertically {
-        margin-top: 1.5em;
-        margin-bottom: 1em;
-    }
-
-    .space-horizontally {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    .header {
-        font-weight: bold;
-    }
-
     hr {
         width: 82%
     }
@@ -29,31 +15,35 @@
 
 <div class="page-container">
     <div class="container">
-        <h2 class="space-vertically">@ViewBag.Title</h2>
-
-        <div class="row">
-            @if (ViewBag.DateSortParam.Contains("date_asc"))
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-ascending <i class="fas fa-arrow-up"></i></a>
-            }
-            else
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-descending <i class="fas fa-arrow-down"></i></a>
-            }
-
-            @if (ViewBag.PriceSortParam.Contains("price_asc"))
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
-            }
-            else
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
-            }
-        </div>
-
+        <h2>@ViewBag.Title</h2>
+        <br />
+        <h5>
+            TOTAL SPENT: €@Model.Total
+        </h5>
         <hr />
         @if (Model.Orders != null && Model.Orders.Count() > 0)
         {
+            <div class="row">
+                @if (ViewBag.DateSortParam.Contains("date_asc"))
+                {
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-ascending <i class="fas fa-arrow-up"></i></a>
+                }
+                else
+                {
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-descending <i class="fas fa-arrow-down"></i></a>
+                }
+
+                @if (ViewBag.PriceSortParam.Contains("price_asc"))
+                {
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
+                }
+                else
+                {
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
+                }
+            </div>
+
+            <hr />
             foreach (var item in Model.Orders)
             {
                 <div class="row header">
@@ -65,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-4">@item.OrderPlaced</div>
                     <div class="col-md-2">@item.ItemNumber</div>
-                    <div class="col-md-2">@item.Total</div>
+                    <div class="col-md-2">€@item.Total</div>
                     <div class="col-md-2" id="view-btn"><a asp-controller="Cart" asp-action="ViewOrder" asp-route-id="@item.Id" class="btn btn-danger" title="View Order"><i class="far fa-list-alt"></i> VIEW ORDER</a></div>
 
                 </div>
@@ -85,7 +75,9 @@
         {
             <p> You have not placed any orders yet.</p>
         }
+
     </div>
+
 </div>
 
 

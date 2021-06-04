@@ -45,16 +45,13 @@
                 .OrderBy(x => x.Game.Title),
             };
 
-            // var applicationDbContext = this.gamesLanguagesRepository.All().Include(g => g.Game).Include(g => g.Language);
-
-
             if (sortOrder == "title_desc")
             {
                 viewModel.GamesLanguages = this.languagesService.GetAll<GamesLanguagesListViewModel>()
                 .OrderByDescending(x => x.Game.Title);
             }
 
-            if(sortOrder == "lang_desc")
+            if (sortOrder == "lang_desc")
             {
                 viewModel.GamesLanguages = this.languagesService.GetAll<GamesLanguagesListViewModel>()
                 .OrderByDescending(x => x.Language.Name);

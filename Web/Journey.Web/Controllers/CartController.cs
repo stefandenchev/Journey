@@ -75,7 +75,6 @@
                 var a = this.HttpContext.Session.GetString("cart");
                 this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
 
-                // Session["cart"] = this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString();
                 return this.Json(new { Success = true });
             }
             else
@@ -131,10 +130,11 @@
                 string orderId = Guid.NewGuid().ToString();
                 model.GamesInCart = this.GetGamesFromCart(userId);
 
-                /*foreach (var game in model.GamesInCart)
+                // ????????????????????????????
+                foreach (var game in model.GamesInCart)
                 {
-                    game.GameKey = RandomGenerator();
-                }*/
+                    game.GameKey = RandomKeyGen();
+                }
 
                 // add new order record
                 var newOrder = new Order
@@ -150,7 +150,7 @@
                 // add new orderItem records
                 foreach (var game in model.GamesInCart)
                 {
-                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id });
+                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = this.RandomKeyGen()});
                 }
 
                 // if any of the games bought were in the user's wish list, remove them from there
@@ -202,11 +202,11 @@
             Order lastestOrder = db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
 
             // string ccNumber = this.creditCardsService.GetAll<CreditCardViewModel>().Where(cc => (cc.Id + "") == lastestOrder.CreditCard).FirstOrDefault().CardNumber;
-            string ccNumber = db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
+            string cardNumber = db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
 
-            if (ccNumber != null)
+            if (cardNumber != null)
             {
-                model.CreditCardLast4 = ccNumber.Substring(ccNumber.Length - 5);
+                model.CreditCardLast4 = cardNumber.Substring(cardNumber.Length - 5);
             }
 
             model.GamesInCart = this.GetGamesFromLastOrder(userId, lastestOrder);
@@ -229,7 +229,6 @@
                 if (dbGame != null)
                 {
                     var gameToAdd = this.gamesService.GetById<GameInCartViewModel>(dbGame.Id);
-                    // gameToAdd.GameKey = this.RandomGenerator();
 
                     games.Add(gameToAdd);
                 }
@@ -248,7 +247,13 @@
                 gameIds.Add(oi.GameId);
             }
 
-            return this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id)).ToList();
+            var gamesToReturn = this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id)).ToList();
+            foreach (var game in gamesToReturn)
+            {
+                game.GameKey = orderItems.FirstOrDefault(x => x.GameId == game.Id).GameKey;
+            }
+
+            return gamesToReturn;
         }
 
         [HttpGet]
@@ -278,5 +283,24 @@
             return View("OrderComplete", model);
         }
 
+        private string RandomKeyGen()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var stringChars = new List<char>();
+            var random = new Random();
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (i % 4 == 0 && i != 0)
+                {
+                    stringChars.Add('-');
+                }
+
+                stringChars.Add(chars[random.Next(chars.Length)]);
+            }
+
+            var finalString = new string(stringChars.ToArray());
+            return finalString;
+        }
     }
 }

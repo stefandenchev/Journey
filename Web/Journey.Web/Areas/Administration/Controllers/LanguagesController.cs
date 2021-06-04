@@ -3,7 +3,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Journey.Data;
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Microsoft.AspNetCore.Mvc;

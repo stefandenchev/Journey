@@ -1,0 +1,42 @@
+﻿@model Journey.Web.ViewModels.Administration.GameTags.GameTagAdminInputModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var tagItems = this.Model.TagsItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var gameItems = this.Model.GamesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<h1>Edit</h1>
+
+<h4>GameTag</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+
+            <div class="form-group">
+                <label asp-for="GameId" class="control-label"></label>
+                <select asp-for="GameId" class="form-control" asp-items="gameItems"></select>
+                <span asp-validation-for="GameId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagId" class="control-label"></label>
+                <select asp-for="TagId" class="form-control" asp-items="tagItems"></select>
+                <span asp-validation-for="TagId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

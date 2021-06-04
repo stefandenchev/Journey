@@ -45,7 +45,7 @@
 
                 @if (Model.IsInUserLibrary)
                 {
-                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-area="Profile" asp-controller="Profile" asp-action="Orders"><label><i class="fas fa-box"></i> To Collection</label><span class="hovit"></span></a></div>
+                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-area="Profile" asp-controller="Profile" asp-action="Library"><label><i class="fas fa-box"></i> To Collection</label><span class="hovit"></span></a></div>
 
                 }
                 else if (Model.IsInUserCart)
@@ -177,7 +177,7 @@
                                 Languages
                                 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                                 {
-                                    <a asp-area="Administration" asp-controller="GameLanguages" asp-action="Index" id="editLanguageButton" class="btn btn-secondary btn-sm">Edit</a>
+                                    <a asp-area="Administration" asp-controller="GameLanguages" asp-action="Index" id="editMultiButton" class="btn btn-secondary btn-sm">Edit</a>
                                 }
                             </th>
                             <td>
@@ -189,7 +189,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Tags</th>
+                            <th>
+                                Tags
+                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                {
+                                    <a asp-area="Administration" asp-controller="GameTags" asp-action="Index" id="editMultiButton" class="btn btn-secondary btn-sm">Edit</a>
+                                }
+                            </th>
                             <td>
                                 @foreach (var tag in Model.Tags)
                                 {

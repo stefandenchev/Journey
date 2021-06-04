@@ -1,9 +1,10 @@
 ﻿namespace Journey.Web.ViewModels.Administration.GameLanguage
 {
-    using Journey.Data.Models;
-    using Journey.Services.Mapping;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Journey.Data.Models;
+    using Journey.Services.Mapping;
 
     public class GameLanguageAdminInputModel : IMapFrom<GameLanguage>
     {

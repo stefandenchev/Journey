@@ -45,16 +45,16 @@
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <div class="nav-item">
-                            <a class="nav-link text-light" id="cart-icon-main" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
+                            <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
                         </div>
                         <div class="nav-item">
-                            <a class="nav-link text-light" id="cart-icon-main" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
+                            <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
                         </div>                                                
                     }
 
                     <div class="nk-widget">
                         <div class="container">
-                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-controller="Search" asp-action="Results" method="get">
+                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-area="Home" asp-controller="Search" asp-action="Results" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
                                     <label for="searchInput"></label>
@@ -71,7 +71,7 @@
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" asp-controller="Games" asp-action="All">All Games</a></li>
+                                <li><a class="dropdown-item" asp-area="Home" asp-controller="Games" asp-action="All">All Games</a></li>
                                 <li><a class="dropdown-item" href="#">Pre-Order</a></li>
 
                                 <li class="dropdown-divider"></li>
@@ -80,12 +80,12 @@
                                     <a class="dropdown-item dropdown-toggle" href="#">Popular Genres</a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
 
                                     </ul>
                                 </li>
@@ -94,14 +94,14 @@
                                     <a class="dropdown-item dropdown-toggle" href="#">Remaining Genres</a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Arcade">Arcade</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Board & Card">Board & Card</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Indie">Indie</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Puzzle">Puzzle</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Shooters">Shooters</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Sports">Sports</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Time Management">Time Management</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Search" asp-action="Genre" asp-route-g="Virtual Reality">Virtual Reality</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Arcade">Arcade</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Board & Card">Board & Card</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Indie">Indie</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Puzzle">Puzzle</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Shooters">Shooters</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Sports">Sports</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Time Management">Time Management</a></li>
+                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Virtual Reality">Virtual Reality</a></li>
 
                                     </ul>
                                 </li>
@@ -111,7 +111,7 @@
                             @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
                                 </li>
                             }
                     </ul>

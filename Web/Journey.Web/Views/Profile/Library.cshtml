@@ -7,22 +7,21 @@
     <div class="container">
         <h2>@ViewBag.Title</h2>
 
-        <div class="row">
-            @if (ViewBag.TitleSortParam.Contains("title_desc"))
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
-            }
-            else
-            {
-                <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
-            }
-        </div>
-
         <br />
 
         @{
             if (Model.Collection.Any())
             {
+                <div class="row">
+                    @if (ViewBag.TitleSortParam.Contains("title_desc"))
+                    {
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
+                    }
+                </div>
 
                 <section id="core-guts" class="stringy fatty">
                     <div id="cart-block-wrap" class="contentbox raft">

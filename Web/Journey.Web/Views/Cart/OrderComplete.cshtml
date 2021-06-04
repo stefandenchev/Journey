@@ -27,6 +27,11 @@
         line-height: 2em;
         margin-top: 3.5em;
     }
+
+    .btn btn-primary margin-bottom {
+        border-radius: 6px;
+    }
+
 </style>
 
 <div class="page-container">
@@ -35,17 +40,26 @@
 
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row vertical-align">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">Title</div>
+            <div class="col-md-1">Price</div>
+            <div class="col-md-3">Key</div>
+
+        </div>
         <div class="container large-font">
             @foreach (var item in Model.GamesInCart)
             {
-                @Html.HiddenFor(m => m.GamesInCart, item)
                 <div class="row vertical-align">
                     <div class="col-md-1"><img src="@item.ImageUrl" alt="Game Cover of @item.Title" width="50" /></div>
                     <div class="col-md-5">@item.Title</div>
-                    <div class="col-md-2">$@item.Price</div>
-                    <div class="col-md-2"><button class="btn btn-primary margin-bottom" onclick="downloadGame('@item.Title');">Download</button></div>
+                    <div class="col-md-1">€@item.Price</div>
+                    <div id="key" class="col-md-3">
+                        @item.GameKey
+                    </div>
+                    <div class="col-md-2"><button class="btn btn-primary margin-bottom" onclick="downloadKey('@item.Title', '@item.GameKey');">Download</button></div>
                 </div>
-             <hr>
+                <hr>            
             }
 
             <div class="row">
@@ -54,17 +68,20 @@
             </div>
             <div class="row">
                 <div class="col-md-6 header">Cart Total:</div>
-                <div class="col-md-6 header">$@Model.Total</div>
+                <div class="col-md-6 header">€@Model.Total</div>
             </div>
         </div>
+
     </div>
 </div>
+
+
 
 @section Scripts {
 
     <script>
-        function downloadGame(title, result) {
-            download(title + '.txt', title);
+        function downloadKey(title, key) {
+            download(title + '.txt', key);
         }
 
         function download(filename, text) {

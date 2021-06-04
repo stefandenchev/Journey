@@ -1,9 +1,10 @@
-﻿using Journey.Data.Models;
-using Journey.Services.Mapping;
-using System;
-
-namespace Journey.Web.ViewModels.Administration.GameLanguage
+﻿namespace Journey.Web.ViewModels.Administration.GameLanguage
 {
+    using System;
+
+    using Journey.Data.Models;
+    using Journey.Services.Mapping;
+
     public class GamesLanguagesListViewModel : IMapFrom<Journey.Data.Models.GameLanguage>
     {
         public int Id { get; set; }

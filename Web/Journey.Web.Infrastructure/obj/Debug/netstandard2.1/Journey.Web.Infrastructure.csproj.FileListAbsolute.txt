@@ -6,3 +6,4 @@ D:\Journey\Web\Journey.Web.Infrastructure\obj\Debug\netstandard2.1\Journey.Web.I
 D:\Journey\Web\Journey.Web.Infrastructure\obj\Debug\netstandard2.1\Journey.Web.Infrastructure.csproj.CoreCompileInputs.cache
 D:\Journey\Web\Journey.Web.Infrastructure\obj\Debug\netstandard2.1\Journey.Web.Infrastructure.dll
 D:\Journey\Web\Journey.Web.Infrastructure\obj\Debug\netstandard2.1\Journey.Web.Infrastructure.pdb
+D:\Journey\Web\Journey.Web.Infrastructure\obj\Debug\netstandard2.1\Journey.Web.Infrastructure.csprojAssemblyReference.cache

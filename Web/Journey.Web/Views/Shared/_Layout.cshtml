@@ -54,7 +54,7 @@
 
                     <div class="nk-widget">
                         <div class="container">
-                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-controller="Search" asp-action="Results" method="get">
+                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-area="Home" asp-controller="Search" asp-action="Results" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
                                     <label for="searchInput"></label>
@@ -135,7 +135,7 @@
     <footer class="footer" id="footerMain">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a> 
-                                                                           <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a></i>
+                                                                           <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i></i>
         </div>
     </footer>
 

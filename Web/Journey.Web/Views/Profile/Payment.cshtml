@@ -32,7 +32,7 @@
 <div class="container">
 
     @*// Credit Card Information*@
-    <h4><b>Credit Card Information</b></h4>
+    <h2>Credit Card Information</h2>
     <p>Please note that only Visa and MasterCard credit cards are accepted.</p>
     <button type="button" class="btn btn-primary btn-spacing" data-toggle="modal" id="btnAdd" data-target="#creditCardModal">Add New Credit Card</button>
 
@@ -43,9 +43,9 @@
     </div>
 
 
-    <table class="table table-hover">
-        @if (Model.CreditCards != null && Model.CreditCards.Count > 0)
-        {
+    @if (Model.CreditCards != null && Model.CreditCards.Count > 0)
+    {
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Issuer</th>
@@ -64,11 +64,11 @@
                     <tr>
                         @if (card.CardNumber.StartsWith("4"))
                         {
-                            <th><img src="@Url.Content("~/images/CC/Visa.png")" width="70" alt="Visa logo" class="img-responsive" /></th>
+                            <th><img src="~/images/CC/Visa.png" width="70" alt="Visa logo" class="img-responsive" /></th>
                         }
                         else if (card.CardNumber.StartsWith("5"))
                         {
-                            <th><img src="@Url.Content("~/images/CC/MasterCard.png")" width="70" alt="Mastercard logo" class="img-responsive" /></th>
+                            <th><img src="~/images/CC/MasterCard.png" width="70" alt="Mastercard logo" class="img-responsive" /></th>
                         }
 
                         <th>@card.CardNumber</th>
@@ -78,11 +78,15 @@
                     </tr>
                 </thead>
                 <tbody class="tbody"></tbody>
-
             }
-        }
+        </table>
+    }
 
-    </table>
+    else
+    {
+        <p>Please add a payment method.</p>
+    }
+
     <div class="modal fade" id="creditCardModal" role="dialog" aria-labelledby="creditCardModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -124,13 +128,6 @@
     <script>
         $(document).ready(function () {
 
-            // this code was added in attempt to solve the date picker not working in FireFox - didn't work
-            // what worked was deleting 'tabindex="-1"' from modal
-            //$('#creditCardModal').on('shown.bs.modal', function (e) {
-            //    $.fn.modal.Constructor.prototype.enforceFocus = function () { };
-            //});
-
-            // to style date picker for expiration date
             $('.date-picker').datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -144,12 +141,10 @@
                 }
             });
 
-            // when modal is closed, any information that user might have entered should be cleared
             $('#creditCardModal').on('hidden.bs.modal', function (e) {
                 clearModal();
             })
 
-            // on Credit Card Number and Credit Card Expiration Date changes, remove validation error message
             $('#cardNumberValidationError').change(function () {
                 $('#cardNumberValidationError').text('');
             });
@@ -162,16 +157,15 @@
         });
 
 
-        // add a credit card
         function AddCreditCard() {
             var t = $("input[name='__RequestVerificationToken']").val();
-            // credit card validation
+
             var cardNbr = $('#creditCardNumber').val();
             var validationErrorNbr = validateCardNumber(cardNbr);
             if (validationErrorNbr) {
                 $('#cardNumberValidationError').text(validationErrorNbr);
             }
-            // expiration date validation
+
             var expDate = $('#expirationDate').val();
             var validationErrorDate = validateExpDate(expDate);
             if (validationErrorDate) {
@@ -208,7 +202,7 @@
             });
         }
 
-        // delete a credit card
+
         function deleteCreditCard(Id) {
             var ans = confirm("Are you sure you want to delete this credit card?");
             if (ans) {
@@ -228,7 +222,7 @@
         }
 
         function validateCardNumber(cardNbr) {
-            // remove all spaces
+
             cardNbr = cardNbr.replace(/\s+/g, '');
             if (!cardNbr) {
                 return 'The credit card number is required.';

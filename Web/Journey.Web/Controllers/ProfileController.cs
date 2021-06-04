@@ -27,11 +27,6 @@
             this.ordersService = ordersService;
         }
 
-        public IActionResult Index()
-        {
-            return this.View();
-        }
-
         public IActionResult Payment()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -139,6 +134,8 @@
                     Total = total,
                     Games = gameThumbs,
                 });
+
+                viewModel.Total = viewModel.Orders.Sum(x => x.Total);
             }
 
             if (sortOrder == "date_asc")
