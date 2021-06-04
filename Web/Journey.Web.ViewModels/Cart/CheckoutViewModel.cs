@@ -1,7 +1,8 @@
 ﻿namespace Journey.Web.ViewModels.Cart
 {
-    using Journey.Data.Models;
     using System.Collections.Generic;
+
+    using Journey.Data.Models;
 
     public class CheckoutViewModel : CartViewModel
     {

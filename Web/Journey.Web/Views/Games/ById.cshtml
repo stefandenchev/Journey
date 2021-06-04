@@ -33,12 +33,19 @@
 
                 <div class="boxhole img16x9" title="@Model.Title"><img src="@Model.MainImage" /></div>
                 <div id="price-bar" class="wabit">
-                    <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
+                    @if (Model.IsInUserLibrary)
+                    {
+                        <div class="normal"><span class="price"><em>You own this game!</em></span></div>
+                    }
+                    else
+                    {
+                        <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
+                    }
                 </div>
 
                 @if (Model.IsInUserLibrary)
                 {
-                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-area="Profile" asp-controller="Profile" asp-action="Orders"><label><i class="fas fa-box"></i> In Collection</label><span class="hovit"></span></a></div>
+                    <div id="buy-bar"><a class="btn-buy return" data-pid="@Model.Id" asp-area="Profile" asp-controller="Profile" asp-action="Orders"><label><i class="fas fa-box"></i> To Collection</label><span class="hovit"></span></a></div>
 
                 }
                 else if (Model.IsInUserCart)
@@ -51,7 +58,11 @@
                     <div id="buy-bar"><a class="btn-buy add-to-cart" data-pid="@Model.Id" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id"><label><i class="fas fa-cart-plus"></i> Add to Cart</label><span class="hovit"></span></a></div>
                 }
 
-                @if (Model.IsInUserWishlist)
+                @if (Model.IsInUserLibrary)
+                {
+                    
+                }
+                else if (Model.IsInUserWishlist)
                 {
                     <div id="wish-bar"><a class="btn add-to-wishlist" data-pid="@Model.Id" asp-controller="Wishlist" asp-action="Remove" asp-route-id="@Model.Id"><label><i class="fas fa-heart"></i> Remove from Wishlist</label><span class="hovit"></span></a></div>
 
@@ -152,7 +163,7 @@
                             <th>DRM</th>
                             @if (Model.Drm.Contains("Steam"))
                             {
-                                <td>@Model.Drm&nbsp;&nbsp;<img class="img-dk fadeshift" src="~/images/icon-serialfor-steam.png" width="13" height="13" title="Buyers receive a key for Steam to redeem, install &amp; play" /><img class="img-lt fadeshift" src="/images/icon-serialfor-steam-lt.png" width="13" height="13" title="Buyers receive a key for Steam to redeem, install &amp; play" /></td>
+                                <td>@Model.Drm&nbsp;&nbsp;<img class="img-dk fadeshift" src="~/images/icon-serialfor-steam-lt.png" width="13" height="13" title="Buyers receive a key for Steam to redeem, install &amp; play" /><img class="img-lt fadeshift" src="/images/icon-serialfor-steam-lt.png" width="13" height="13" title="Buyers receive a key for Steam to redeem, install &amp; play" /></td>
                             }
                             else if (Model.Drm.Contains("Ubisoft"))
                             {

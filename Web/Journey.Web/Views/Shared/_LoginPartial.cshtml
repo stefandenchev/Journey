@@ -20,13 +20,10 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Payment">Payment</a></li>
                     <li><a class="dropdown-item" asp-controller="Wishlist" asp-action="Index">Wishlist</a></li>
-                    <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Purchases">Purchases</a></li>
                     <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Orders">Orders</a></li>
-                    <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Index">Index</a></li>
-                     @*ADD ORDERS*@  
+                    <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Library">Library</a></li> 
                 </ul>
             </li>
-@*            <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile">Profile</a></li>*@
         </ul>
 
      </li> if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))

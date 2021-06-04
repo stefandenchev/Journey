@@ -1,0 +1,80 @@
+﻿@model Journey.Web.ViewModels.Profile.GameLibraryViewModel
+@{
+    ViewBag.Title = "My Games Library";
+}
+
+<div class="page-container">
+    <div class="container">
+        <h2>@ViewBag.Title</h2>
+
+        <div class="row">
+            @if (ViewBag.TitleSortParam.Contains("title_desc"))
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
+            }
+            else
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
+            }
+        </div>
+
+        <br />
+
+        @{
+            if (Model.Collection.Any())
+            {
+
+                <section id="core-guts" class="stringy fatty">
+                    <div id="cart-block-wrap" class="contentbox raft">
+                        <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tbody class="boxoom">
+                                @foreach (var item in Model.Collection)
+                                {
+                                    <tr class="product hovcolor">
+                                        <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                        <td class="details">
+                                            <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                        </td>
+
+                                        <td id="buttons">
+                                            <div class="col-md-2"><button class="btn btn-primary margin-bottom" onclick="downloadGame('@item.Title');">Download</button></div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            }
+            else
+            {
+                <p>You currently do not own any games.</p>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        function downloadGame(title, result) {
+            download(title + '.txt', title);
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+    </script>
+}

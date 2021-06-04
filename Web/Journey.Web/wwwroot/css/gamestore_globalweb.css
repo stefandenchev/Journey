@@ -37,7 +37,6 @@ body {
     position: relative;
     background: #202d3b;
     color: #bcbcbc;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 81.25%;
     line-height: 1.5;
 }
@@ -86,12 +85,6 @@ body *::-webkit-scrollbar-thumb {
 body .scroll-sm::-webkit-scrollbar {
     width: 7px;
     height: 7px;
-}
-
-@media not screen and (-webkit-min-device-pixel-ratio:2),not screen and ( min--moz-device-pixel-ratio:2),not screen and ( -o-min-device-pixel-ratio:2/1),not screen and ( min-device-pixel-ratio:2),not screen and ( min-resolution:192dpi),not screen and ( min-resolution:2dppx) {
-    body {
-        font-family: sans-serif, Lato, Helvetica, 'Helvetica Neue', Arial;
-    }
 }
 
 @media not all and (hover:none) {
@@ -487,11 +480,6 @@ ul, ol, li ul, li ol {
 
 .smaller {
     font-size: 10px;
-}
-
-.tiny, .tinythin, .tinybold {
-    font-family: arial, helvetica, geneva, sans-serif;
-    font-size: 9px;
 }
 
 .tinythin {
@@ -3089,7 +3077,6 @@ a.no-js {
         width: 100%;
         color: #fff;
         font-size: 1.1em;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         overflow: visible;
         border-radius: 16px;
         -webkit-transition: background-color 150ms ease, border-color 150ms ease;
@@ -4459,12 +4446,6 @@ img.tip {
     }
 }
 
-.cboxIE #cboxTopLeft, .cboxIE #cboxTopCenter, .cboxIE #cboxTopRight, .cboxIE #cboxBottomLeft, .cboxIE #cboxBottomCenter, .cboxIE #cboxBottomRight, .cboxIE #cboxMiddleLeft, .cboxIE #cboxMiddleRight {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
-}
-
-
-
 textarea {
     height: initial;
     min-height: 34px;
@@ -4537,7 +4518,6 @@ select {
     border-radius: 3px;
     min-height: 34px;
     background: rgba(0,0,0,0.1) url('/images/icon-arrow-selectbox-lt.png') right center no-repeat;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #eee;
     overflow: hidden;

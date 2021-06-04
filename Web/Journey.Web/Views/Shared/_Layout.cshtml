@@ -30,7 +30,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand mb-0 h1" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -122,8 +122,8 @@
     </header>
 
 
+    <partial name="_CookieConsentPartial" />
     <div class="container-fluid" id="container-main">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
@@ -134,7 +134,8 @@
 
     <footer class="footer" id="footerMain">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a> 
+                                                                           <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a></i>
         </div>
     </footer>
 

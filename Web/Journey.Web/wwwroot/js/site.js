@@ -109,15 +109,6 @@ var rig_tooltipjs = function (context) { }; jQuery(document).ready(function ($) 
 })(jQuery, document, window);
 var rig_cboxcontent = function (from) { }; var rig_popboxjs = function (context) { }; jQuery(document).ready(function ($) {
     rig_cboxcontent = function (from) { if ($('[data-rigger]', $("#cboxLoadedContent")).length) { var riggers = null; $('[data-rigger]', $("#cboxLoadedContent")).each(function () { riggers = $(this).data('rigger').split(','); for (var i = 0; i < riggers.length; i++) { if (typeof window[riggers[i]] !== 'undefined') { window[riggers[i]]($(this)); } else { console.log('rigger ' + riggers[i] + ' does not exist to run'); } } }); } }; rig_popboxjs = function (context) {
-        $(".popbox", context).colorbox({
-            transition: "none", fixed: true, opacity: 0.5, onOpen: addBurr, onClosed: remBurr, onComplete: function () { rig_cboxcontent('popbox'); $.colorbox.resize(); }, initialWidth: function () { return ($(this).dataExists('popw') ? ($(this).data('popw') / 2) : 120); }, initialHeight: function () { return ($(this).dataExists('poph') ? ($(this).data('poph') / 2) : 100); }, innerWidth: function () { return ($(this).dataExists('popw') ? $(this).data('popw') : 0); }, innerHeight: function () { return ($(this).dataExists('poph') ? $(this).data('poph') : 0); }, minWidth: '200', minHeight: '200', maxWidth: function () { return (($(this).dataExists('popw') && $(this).data('popw') > 1024) ? 1024 : $(this).data('popw')); }, maxHeight: function () {
-                var wh = $(window).innerHeight(); var max = parseInt((wh * 0.95)) + "px"; if ($(this).dataExists('poph')) { if (wh > $(this).data('poph')) { var max = parseInt($(this).data('poph')); } }
-                return max;
-            }, width: "100%", href: function () {
-                var url, using; if ($(this).dataExists('popref')) { url = $(this).data('popref'); using = 'popref'; }
-                else { url = $(this).attr('href'); using = 'href'; }
-                url += (url.indexOf('?') >= 0 ? '&' : '?') + 'popbox'; return url;
-            }, escKey: function () { return ($(this).dataExists('poplock') ? false : true); }, overlayClose: function () { return ($(this).dataExists('poplock') ? false : true); }, closeButton: function () { return ($(this).dataExists('poplock') ? false : true); },
-        });
+       
     }; rig_popboxjs(document);
 });

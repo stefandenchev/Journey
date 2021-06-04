@@ -1,10 +1,12 @@
 ﻿namespace Journey.Web.ViewModels.Profile
 {
+    using Journey.Data.Models;
+    using Journey.Services.Mapping;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class OrdersViewModel
+    public class OrdersViewModel : IMapFrom<Order>
     {
         public string Id { get; set; }
 

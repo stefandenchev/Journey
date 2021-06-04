@@ -181,3 +181,95 @@ AS
 	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
 	SELECT 'Images', 'DELETE', GETDATE() FROM deleted d
 GO
+
+-- CREDITCARD
+CREATE TRIGGER tr_OnCreditCardUpdateAddLogRecord
+ON [17114092].CreditCards FOR UPDATE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'CreditCards', 'UPDATE', GETDATE() FROM inserted i
+		JOIN deleted d ON i.Id = d.Id
+GO
+
+CREATE TRIGGER tr_OnCreditCardInsertAddLogRecord
+ON [17114092].CreditCards FOR INSERT
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'CreditCards', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnCreditCardDeleteAddLogRecord
+ON [17114092].CreditCards FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'CreditCards', 'DELETE', GETDATE() FROM deleted d
+GO
+
+-- ORDERITEM
+CREATE TRIGGER tr_OnOrderUpdateAddLogRecord
+ON [17114092].Orders FOR UPDATE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Orders', 'UPDATE', GETDATE() FROM inserted i
+		JOIN deleted d ON i.Id = d.Id
+GO
+
+CREATE TRIGGER tr_OnOrderItemInsertAddLogRecord
+ON [17114092].Orders FOR INSERT
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Orders', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnOrderItemDeleteAddLogRecord
+ON [17114092].Orders FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Orders', 'DELETE', GETDATE() FROM deleted d
+GO
+
+-- USERCARTITEM
+CREATE TRIGGER tr_OnUserCartItemUpdateAddLogRecord
+ON [17114092].UserCartItems FOR UPDATE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'UserCartItems', 'UPDATE', GETDATE() FROM inserted i
+		JOIN deleted d ON i.Id = d.Id
+GO
+
+CREATE TRIGGER tr_OnUserCartItemItemInsertAddLogRecord
+ON [17114092].UserCartItems FOR INSERT
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'UserCartItems', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnUserCartItemItemDeleteAddLogRecord
+ON [17114092].UserCartItems FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'UserCartItems', 'DELETE', GETDATE() FROM deleted d
+GO
+
+-- WISHLIST
+CREATE TRIGGER tr_OnWishlistUpdateAddLogRecord
+ON [17114092].Wishlists FOR UPDATE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Wishlists', 'UPDATE', GETDATE() FROM inserted i
+		JOIN deleted d ON i.Id = d.Id
+GO
+
+CREATE TRIGGER tr_OnWishlistInsertAddLogRecord
+ON [17114092].Wishlists FOR INSERT
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Wishlists', 'INSERT', GETDATE() FROM inserted i
+GO
+
+CREATE TRIGGER tr_OnWishlistItemDeleteAddLogRecord
+ON [17114092].Wishlists FOR DELETE
+AS
+	INSERT Logs_17114092 (TableName, OperationType, DateOfChange_17114092)
+	SELECT 'Wishlists', 'DELETE', GETDATE() FROM deleted d
+GO

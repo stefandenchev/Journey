@@ -9,7 +9,6 @@
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
-    using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Cart;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -20,19 +19,13 @@
     {
         private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
-        private readonly ICreditCardsService creditCardsService;
-        private readonly IOrdersService ordersService;
 
         public CartController(
             ApplicationDbContext db,
-            IGamesService gamesService,
-            ICreditCardsService creditCardsService,
-            IOrdersService ordersService)
+            IGamesService gamesService)
         {
             this.db = db;
             this.gamesService = gamesService;
-            this.creditCardsService = creditCardsService;
-            this.ordersService = ordersService;
         }
 
         public ActionResult Index()
@@ -138,6 +131,11 @@
                 string orderId = Guid.NewGuid().ToString();
                 model.GamesInCart = this.GetGamesFromCart(userId);
 
+                /*foreach (var game in model.GamesInCart)
+                {
+                    game.GameKey = RandomGenerator();
+                }*/
+
                 // add new order record
                 var newOrder = new Order
                 {
@@ -170,7 +168,7 @@
                 var cartItem = this.db.UserCartItems.Where(c => c.UserId == userId).ToList();
                 this.db.UserCartItems.RemoveRange(cartItem);
 
-                List<int> gameIds = new List<int>();
+                List<int> gameIds = new();
 
                 foreach (var g in model.GamesInCart)
                 {
@@ -183,7 +181,7 @@
 
                 await this.db.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 this.ModelState.AddModelError("", "An unexpected error occured while attempting to place your order.");
                 return this.View(model);
@@ -196,10 +194,6 @@
         public ActionResult OrderComplete()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == null)
-            {
-                return this.RedirectToAction("Index", "Home");
-            }
 
             var model = new CheckoutViewModel();
 
@@ -235,6 +229,7 @@
                 if (dbGame != null)
                 {
                     var gameToAdd = this.gamesService.GetById<GameInCartViewModel>(dbGame.Id);
+                    // gameToAdd.GameKey = this.RandomGenerator();
 
                     games.Add(gameToAdd);
                 }
@@ -255,5 +250,33 @@
 
             return this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id)).ToList();
         }
+
+        [HttpGet]
+        public ActionResult ViewOrder(string id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var model = new CheckoutViewModel();
+
+            // get lastest order
+            var order = db.Orders.FirstOrDefault(o => o.Id == id);
+            if (order == null)
+            {
+                return RedirectToAction("Orders", "Home");
+            }
+
+            string ccNumber = db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
+
+            if (ccNumber != null)
+            {
+                model.CreditCardLast4 = ccNumber.Substring(ccNumber.Length - 5);
+            }
+
+            model.GamesInCart = GetGamesFromLastOrder(userId, order);
+
+            model.Total = model.GamesInCart.Sum(g => g.Price);
+
+            return View("OrderComplete", model);
+        }
+
     }
 }
