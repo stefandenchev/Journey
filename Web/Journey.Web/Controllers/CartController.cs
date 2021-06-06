@@ -4,28 +4,34 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels.Cart;
+    using Journey.Web.ViewModels.Export;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
 
     [Authorize]
     public class CartController : BaseController
     {
         private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
+        private readonly IOrdersService ordersService;
 
         public CartController(
             ApplicationDbContext db,
-            IGamesService gamesService)
+            IGamesService gamesService,
+            IOrdersService ordersService)
         {
             this.db = db;
             this.gamesService = gamesService;
+            this.ordersService = ordersService;
         }
 
         public ActionResult Index()
@@ -130,19 +136,13 @@
                 string orderId = Guid.NewGuid().ToString();
                 model.GamesInCart = this.GetGamesFromCart(userId);
 
-                // ????????????????????????????
-                foreach (var game in model.GamesInCart)
-                {
-                    game.GameKey = this.RandomKeyGen();
-                }
-
-                // add new order record
                 var newOrder = new Order
                 {
                     Id = orderId,
                     UserId = userId,
                     PurchaseDate = DateTime.Now,
                     CreditCardId = model.PaymentMethodId,
+                    Total = model.GamesInCart.Sum(x => x.Price),
                 };
 
                 this.db.Orders.Add(newOrder);
@@ -150,7 +150,7 @@
                 // add new orderItem records
                 foreach (var game in model.GamesInCart)
                 {
-                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = this.RandomKeyGen()});
+                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = this.RandomKeyGen() });
                 }
 
                 // if any of the games bought were in the user's wish list, remove them from there
@@ -197,20 +197,70 @@
 
             var model = new CheckoutViewModel();
 
-            Order lastestOrder = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
+            Order latestOrder = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
+            model.Id = latestOrder.Id;
 
-            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
+            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == latestOrder.CreditCardId).FirstOrDefault().CardNumber;
 
             if (cardNumber != null)
             {
                 model.CreditCardLast4 = cardNumber.Substring(cardNumber.Length - 5);
             }
 
-            model.GamesInCart = this.GetGamesFromLastOrder(userId, lastestOrder);
+            model.GamesInCart = this.GetGamesFromLastOrder(userId, latestOrder);
 
             model.Total = model.GamesInCart.Sum(g => g.Price);
 
             return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ViewOrder(string id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var model = new CheckoutViewModel();
+
+            // get lastest order
+            var order = this.db.Orders.FirstOrDefault(o => o.Id == id);
+            if (order == null)
+            {
+                return this.RedirectToAction("Orders", "Home");
+            }
+
+            model.Id = order.Id;
+
+            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
+
+            if (cardNumber != null)
+            {
+                model.CreditCardLast4 = cardNumber.Substring(cardNumber.Length - 5);
+            }
+
+            model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
+
+            model.Total = model.GamesInCart.Sum(g => g.Price);
+
+            return this.View("OrderComplete", model);
+        }
+
+        public IActionResult ExportToJson(string id)
+        {
+            var order = this.ordersService.GetById<OrderJsonExportModel>(id);
+            order.OrderItems = this.ordersService.GetAllOrderItems<OrderItemJsonExportModel>()
+                .Where(x => x.OrderId == order.Id);
+
+            string jsonResult = JsonConvert.SerializeObject(order, Formatting.Indented);
+
+            StringBuilder sb = new();
+            sb.AppendLine($"Receipt for Order: {order.Id}").AppendLine(jsonResult);
+
+            var fileName = $"Receipt-{order.Id}.txt";
+            var type = "text/plain";
+            var fileBytes = Encoding.ASCII.GetBytes(sb.ToString());
+            return new FileContentResult(fileBytes, type)
+            {
+                FileDownloadName = fileName,
+            };
         }
 
         private List<GameInCartViewModel> GetGamesFromCart(string userId)
@@ -251,48 +301,6 @@
             }
 
             return gamesToReturn;
-        }
-
-        [HttpGet]
-        public ActionResult ViewOrder(string id)
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var model = new CheckoutViewModel();
-
-            // get lastest order
-            var order = this.db.Orders.FirstOrDefault(o => o.Id == id);
-            if (order == null)
-            {
-                return this.RedirectToAction("Orders", "Home");
-            }
-
-            string ccNumber = this.db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
-
-            if (ccNumber != null)
-            {
-                model.CreditCardLast4 = ccNumber.Substring(ccNumber.Length - 5);
-            }
-
-            model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
-
-            model.Total = model.GamesInCart.Sum(g => g.Price);
-
-            return this.View("OrderComplete", model);
-        }
-
-        public IActionResult ExportToJson(string id)
-        {
-            var game = this.gamesService.GetById<GameJsonExportModel>(id);
-
-            string jsonResult = JsonConvert.SerializeObject(game, Formatting.Indented);
-
-            var fileName = $"{game.Title}.txt";
-            var mimeType = "text/plain";
-            var fileBytes = Encoding.ASCII.GetBytes(jsonResult);
-            return new FileContentResult(fileBytes, mimeType)
-            {
-                FileDownloadName = fileName,
-            };
         }
 
         private string RandomKeyGen()

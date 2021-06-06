@@ -9,6 +9,10 @@
     {
         Task CreateAsync(OrderViewModel input);
 
+        T GetById<T>(string id);
+
         public IEnumerable<T> GetAll<T>();
+
+        public IEnumerable<T> GetAllOrderItems<T>();
     }
 }

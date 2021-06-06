@@ -14,10 +14,14 @@
     public class OrdersService : IOrdersService
     {
         private readonly IRepository<Order> ordersRepository;
+        private readonly IRepository<OrderItem> orderItemsRepository;
 
-        public OrdersService(IRepository<Order> ordersRepository)
+        public OrdersService(
+            IRepository<Order> ordersRepository,
+            IRepository<OrderItem> orderItemsRepository)
         {
             this.ordersRepository = ordersRepository;
+            this.orderItemsRepository = orderItemsRepository;
         }
 
         public async Task CreateAsync(OrderViewModel input)
@@ -36,6 +40,20 @@
         public IEnumerable<T> GetAll<T>()
         {
             return this.ordersRepository.All().To<T>().ToList();
+        }
+
+        public T GetById<T>(string id)
+        {
+            var order = this.ordersRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+
+            return order;
+        }
+
+        public IEnumerable<T> GetAllOrderItems<T>()
+        {
+            return this.orderItemsRepository.All().To<T>().ToList();
         }
     }
 }

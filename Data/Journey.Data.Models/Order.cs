@@ -15,5 +15,7 @@
         public CreditCard CreditCard { get; set; }
 
         public DateTime PurchaseDate { get; set; }
+
+        public decimal Total { get; set; }
     }
 }

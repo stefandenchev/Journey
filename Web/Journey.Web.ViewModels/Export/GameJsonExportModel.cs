@@ -1,10 +1,11 @@
-﻿namespace Journey.Web.ViewModels.Games.Export
+﻿namespace Journey.Web.ViewModels.Export
 {
     using System;
     using System.Collections.Generic;
 
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Games;
     using Newtonsoft.Json;
 
     public class GameJsonExportModel : IMapFrom<Game>

@@ -12,10 +12,10 @@
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Export;
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Journey.Web.ViewModels.Games.Edit;
-    using Journey.Web.ViewModels.Games.Export;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;

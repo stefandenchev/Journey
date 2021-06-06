@@ -1,4 +1,4 @@
-﻿namespace Journey.Web.ViewModels.Games.Export
+﻿namespace Journey.Web.ViewModels.Export
 {
     using Newtonsoft.Json.Converters;
 

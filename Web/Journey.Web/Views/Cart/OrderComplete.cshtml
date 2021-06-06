@@ -67,12 +67,14 @@
 
             <div class="row">
                 <div class="col-md-6 header">Payment Method:</div>
-                <div class="col-md-6 header"> **** - **** - **** - @Model.CreditCardLast4</div>
+                <div class="col-md-4 header"> **** - **** - **** - @Model.CreditCardLast4</div>
             </div>
             <div class="row">
                 <div class="col-md-6 header">Cart Total:</div>
-                <div class="col-md-6 header">€@Model.Total</div>
+                <div class="col-md-4 header">€@Model.Total</div>
+                <div class="col-md-2 header"><a asp-controller="Cart" asp-action="ExportToJson" asp-route-id="@Model.Id" id="editTop" class="btn btn-primary">Print Receipt</a></div>
             </div>
+
         </div>
 
     </div>
