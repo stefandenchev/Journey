@@ -2264,7 +2264,8 @@
         "dependencies": {
           "Journey.Data.Models": "1.0.0",
           "Journey.Services.Mapping": "1.0.0",
-          "Microsoft.AspNetCore.Http.Features": "5.0.6"
+          "Microsoft.AspNetCore.Http.Features": "5.0.6",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "Journey.Web.ViewModels.dll": {}

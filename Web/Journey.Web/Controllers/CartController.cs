@@ -133,7 +133,7 @@
                 // ????????????????????????????
                 foreach (var game in model.GamesInCart)
                 {
-                    game.GameKey = RandomKeyGen();
+                    game.GameKey = this.RandomKeyGen();
                 }
 
                 // add new order record
@@ -197,12 +197,9 @@
 
             var model = new CheckoutViewModel();
 
-            // get lastest order
-            //var lastestOrder = this.ordersService.GetAll<OrderViewModel>().Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
-            Order lastestOrder = db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
+            Order lastestOrder = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
 
-            // string ccNumber = this.creditCardsService.GetAll<CreditCardViewModel>().Where(cc => (cc.Id + "") == lastestOrder.CreditCard).FirstOrDefault().CardNumber;
-            string cardNumber = db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
+            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == lastestOrder.CreditCardId).FirstOrDefault().CardNumber;
 
             if (cardNumber != null)
             {
@@ -263,24 +260,39 @@
             var model = new CheckoutViewModel();
 
             // get lastest order
-            var order = db.Orders.FirstOrDefault(o => o.Id == id);
+            var order = this.db.Orders.FirstOrDefault(o => o.Id == id);
             if (order == null)
             {
-                return RedirectToAction("Orders", "Home");
+                return this.RedirectToAction("Orders", "Home");
             }
 
-            string ccNumber = db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
+            string ccNumber = this.db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
 
             if (ccNumber != null)
             {
                 model.CreditCardLast4 = ccNumber.Substring(ccNumber.Length - 5);
             }
 
-            model.GamesInCart = GetGamesFromLastOrder(userId, order);
+            model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
 
             model.Total = model.GamesInCart.Sum(g => g.Price);
 
-            return View("OrderComplete", model);
+            return this.View("OrderComplete", model);
+        }
+
+        public IActionResult ExportToJson(string id)
+        {
+            var game = this.gamesService.GetById<GameJsonExportModel>(id);
+
+            string jsonResult = JsonConvert.SerializeObject(game, Formatting.Indented);
+
+            var fileName = $"{game.Title}.txt";
+            var mimeType = "text/plain";
+            var fileBytes = Encoding.ASCII.GetBytes(jsonResult);
+            return new FileContentResult(fileBytes, mimeType)
+            {
+                FileDownloadName = fileName,
+            };
         }
 
         private string RandomKeyGen()

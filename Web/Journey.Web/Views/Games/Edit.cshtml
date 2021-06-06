@@ -3,7 +3,6 @@
     ViewData["Title"] = "Edit game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
     var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key));
-    @*var languageItems = this.Model.LanguagesItems.Select(x => new SelectListItem(x.Value, x.Key));*@
 }
 
 <div class="container">
@@ -65,12 +64,6 @@
                 </div>
             </div>
         </div>
-
-        @*<div class="form-group-language">
-            <label asp-for="Languages"></label>
-            <select asp-for="Languages" class="form-control" asp-items="languageItems"></select>
-            <span asp-validation-for="Languages" class="text-danger"></span>
-        </div>*@
 
         <hr />
         <input type="hidden" asp-for="Id" />

@@ -1,5 +1,7 @@
 ﻿@model GamesListViewModel
-@{ this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber; }
+@{
+    this.ViewData["Title"] = "All Games - Page: " + Model.PageNumber;
+}
 
 <link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
 <link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
@@ -18,16 +20,16 @@
 
                 @foreach (var game in this.Model.Games)
                 {
-                 <li class="product">
-                    <div class="tilebox-main">
-                        <span class="boxshot" title="@game.Title">
-                            <a class="boxhole img16x9" a asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
-                        </span>
-                        <a class="atitle" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                        <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
-                        @*<div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" asp-controller="Cart" asp-action="Add" asp-route-id="@game.Id" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>*@
-                    </div>
-                 </li>
+                    <li class="product">
+                        <div class="tilebox-main">
+                            <span class="boxshot" title="@game.Title">
+                                <a class="boxhole img16x9" a asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                            </span>
+                            <a class="atitle" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
+                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
+                            @*<div class="tags"><span class="right"><span class="costblock"><a class="btn-buy add-to-cart subtle salebadge" data-pid="" data-hov="Add" asp-controller="Cart" asp-action="Add" asp-route-id="@game.Id" rel="nofollow"><label><span class="price"><em><i>€</i>@game.Price</em></span></label><span class="hovit"></span></a></span></span></div>*@
+                        </div>
+                    </li>
                 }
             </ul>
         </div>

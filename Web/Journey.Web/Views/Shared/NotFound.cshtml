@@ -1,0 +1,73 @@
+﻿@{
+    this.ViewData["Title"] = "404";
+}
+
+<style>
+    body {
+        background-image: url('/images/bruh.gif');
+        background-repeat: repeat;
+        background-size: cover;
+        padding: 0;
+        margin: 0;
+    }
+
+    .text-center {
+        margin-top: 18em;
+        display: block;
+        box-sizing: border-box;
+        padding: 2px;
+        background: rgba(23,26,33, 0.7);
+        border-radius: 8px;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        margin-left: 20em;
+        margin-right: 20em
+    }
+
+    #btn-back {
+        border-radius: 6px;
+        background: #e08821;
+    }
+
+    .nk-title {
+        color: #e08821;
+    }
+
+</style>
+
+<body>
+    <div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+
+                    <div class="nk-header-text">
+
+                        <div class="nk-gap-4"></div>
+                        <div class="container">
+                            <div class="text-center">
+                                <h2 class="nk-title display-1">404</h2>
+                                <br />
+                                <div class="nk-gap-1"></div>
+
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <p class="lead">There's nothing here.</p>
+
+
+                                        <a class="btn btn-primary" id="btn-back" asp-area="Home" asp-controller="Home" asp-action="Index">Go to Homepage</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nk-gap-4"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

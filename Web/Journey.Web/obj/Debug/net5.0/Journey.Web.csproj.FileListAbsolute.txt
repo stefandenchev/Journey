@@ -951,11 +951,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_PagingPartialSearch.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\Edit.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Languages\Create.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Languages\Delete.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Languages\Details.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Languages\Edit.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Languages\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Create.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Delete.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Details.cshtml.g.cs
@@ -973,3 +968,9 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Gam
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameTags\Details.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameTags\Edit.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameTags\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Create.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Delete.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Details.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Edit.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\NotFound.cshtml.g.cs

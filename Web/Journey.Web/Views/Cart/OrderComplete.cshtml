@@ -32,6 +32,9 @@
         border-radius: 6px;
     }
 
+    #download {
+        border-radius: 6px;
+    }
 </style>
 
 <div class="page-container">
@@ -57,9 +60,9 @@
                     <div id="key" class="col-md-3">
                         @item.GameKey
                     </div>
-                    <div class="col-md-2"><button class="btn btn-primary margin-bottom" onclick="downloadKey('@item.Title', '@item.GameKey');">Download</button></div>
+                    <div class="col-md-2"><button id ="download" class="btn btn-primary margin-bottom" onclick="downloadKey('@item.Title', '@item.GameKey');">Download</button></div>
                 </div>
-                <hr>            
+                <hr>
             }
 
             <div class="row">

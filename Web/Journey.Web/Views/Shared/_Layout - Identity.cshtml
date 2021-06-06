@@ -26,128 +26,140 @@
 </head>
 <body>
     <div class="page-container">
-    <header>
+        <header>
 
-        <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+            <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
 
 
 
-                    @if (this.User.Identity.IsAuthenticated)
-                    {
-                        <div class="nav-item">
-                            <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <div class="nav-item">
+                                <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
+                            </div>
+                            <div class="nav-item">
+                                <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
+                            </div>
+                        }
+
+                        <div class="nk-widget">
+                            <div class="container">
+                                <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-area="Home" asp-controller="Search" asp-action="Results" method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
+                                        <label for="searchInput"></label>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="nav-item">
-                            <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
-                        </div>                                                
-                    }
 
-                    <div class="nk-widget">
-                        <div class="container">
-                            <form class="nk-form nk-form-style-1" novalidate="novalidate" asp-area="Home" asp-controller="Search" asp-action="Results" method="get">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Search Games" name="s">
-                                    <label for="searchInput"></label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                        <ul class="navbar-nav flex-grow-1">
 
-                    <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Store
+                                </a>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Store
-                            </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" asp-area="Home" asp-controller="Games" asp-action="All">All Games</a></li>
 
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" asp-area="Home" asp-controller="Games" asp-action="All">All Games</a></li>
-                                <li><a class="dropdown-item" href="#">Pre-Order</a></li>
+                                    <li class="dropdown-divider"></li>
 
-                                <li class="dropdown-divider"></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Popular Genres</a>
+                                        <ul class="dropdown-menu">
 
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Popular Genres</a>
-                                    <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
 
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Action">Action</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Adventure">Adventure</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Racing">Racing</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Role Playing">Role Playing</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Simulation">Simulation</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Strategy">Strategy</a></li>
+                                        </ul>
+                                    </li>
 
-                                    </ul>
-                                </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Remaining Genres</a>
+                                        <ul class="dropdown-menu">
 
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Remaining Genres</a>
-                                    <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Arcade">Arcade</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Board & Card">Board & Card</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Indie">Indie</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Puzzle">Puzzle</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Shooters">Shooters</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Sports">Sports</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Time Management">Time Management</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Virtual Reality">Virtual Reality</a></li>
 
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Arcade">Arcade</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Board & Card">Board & Card</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Indie">Indie</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Puzzle">Puzzle</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Shooters">Shooters</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Sports">Sports</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Time Management">Time Management</a></li>
-                                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Genre" asp-route-g="Virtual Reality">Virtual Reality</a></li>
+                                        </ul>
+                                    </li>
 
-                                    </ul>
-                                </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Top 5 Publishers</a>
+                                        <ul class="dropdown-menu">
 
-                            </ul>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="Ubisoft">Ubisoft</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="THQ Nordic">THQ Nordic</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="UIG Entertainment">UIG Entertainment</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="Plug In Digital">Plug In Digital</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="BANDAI NAMCO Entertainment">BANDAI NAMCO Entertainment</a></li>
 
-                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
+                                        </ul>
+                                    </li>
+
+                                </ul>
+
+                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
                                 </li>
                             }
-                    </ul>
-                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+            </header>
+
+
+            <partial name="_CookieConsentPartial" />
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @this.RenderBody()
+                </main>
             </div>
-        </nav>
-
-    </header>
-
-
-    <partial name="_CookieConsentPartial" />
-    <div class="container">
-        <main role="main" class="pb-3">
-            @this.RenderBody()
-        </main>
-    </div>
-    </div>
-
-    <footer class="footer" id="footerMain">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
         </div>
-    </footer>
+
+        <footer class="footer" id="footerMain">
+            <div class="container">
+                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
+            </div>
+        </footer>
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
 
 
-    <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
+        <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
 
-    @await this.RenderSectionAsync("Scripts", required: false)
-</body>
+        @await this.RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>

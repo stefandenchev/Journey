@@ -17,8 +17,21 @@
         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             <h2 id="core-guts-title">
-                <span class="supported"><b><img src="/images/icon-platform-lt-win.svg" /></b></span>@Model.Title
-                <a asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+                <span class="supported">
+                    @if (Model.Drm.Contains("Ubisoft"))
+                    {
+                        <b><img src="/images/ubisoft-logo.png" /></b>
+                    }
+                    else
+                    {
+                        <b><img src="/images/icon-serialfor-steam-lt.png" /></b>
+                    }
+                    <b><img src="/images/icon-platform-lt-win.svg" /></b>
+                </span>
+
+                @Model.Title
+                <a asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id" id="editTop" class="btn btn-secondary btn-sm">EDIT</a>
+                <a asp-controller="Games" asp-action="ExportToJson" asp-route-id="@Model.Id" id="editTop" class="btn btn-secondary btn-sm">TO JSON</a>
             </h2>
         }
         else
@@ -60,7 +73,7 @@
 
                 @if (Model.IsInUserLibrary)
                 {
-                    
+
                 }
                 else if (Model.IsInUserWishlist)
                 {
@@ -110,26 +123,6 @@
                     </ul>
                 </div>
 
-                @*<ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 400ms; width: 1640.67px; transform: translate3d(-189.25px, 0px, 0px);">
-
-                        @if (Model.OriginalUrl == null)
-                        {
-                            foreach (var image in Model.Images)
-                            {
-                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="/images/games/" + x.Images.FirstOrDefault(x=> x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault().Extension)"></a></li>
-                            }
-                        }
-
-                        else
-                        {
-                           foreach (var image in Model.Images.Where(x => x.OriginalUrl.Contains("thumbs")))
-                            {
-                                <li class="lSsetCSS" style="width: 118.167px; margin-right: 8px;"><a href="#"><img src="@image.OriginalUrl"></a></li>
-                            }
-                        }
-
-
-                    </ul>*@
             </div>
         </div>
 
@@ -148,7 +141,7 @@
                             {
                                 <th>Release Date</th>
                             }
-                            <td>@Model.ReleaseDate.ToShortDateString()</td>
+                            <td>@Model.ReleaseDate.ToString("dd/MM/yyyy")</td>
 
                         </tr>
                         <tr>

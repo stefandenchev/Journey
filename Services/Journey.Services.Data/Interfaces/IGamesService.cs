@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Journey.Data.Models;
     using Journey.Web.ViewModels.Games.Create;
     using Journey.Web.ViewModels.Games.Edit;
 

@@ -64,16 +64,6 @@
             <span asp-validation-for="Languages" class="text-danger"></span>
         </div>
 
-        <div>
-            
-                @foreach (var item in Model.LanguagesItems)
-                {
-                    <input type="checkbox" value="@item.Key"/>
-                    <label for="item_@item.Key">@item.Value</label>
-                }
-            
-        </div>
-
         <div class="form-group-tag">
             <label asp-for="Tags"></label>
             <select asp-for="Tags" class="form-control" asp-items="tagItems"></select>

@@ -122,6 +122,8 @@
 
             app.UseSession();
 
+            app.UseStatusCodePagesWithRedirects("/Home/NotFound");
+
             app.UseEndpoints(
                 endpoints =>
                     {

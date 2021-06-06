@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.ViewModels.Administration.GameLanguage
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -19,5 +20,7 @@
 
         [Display(Name = "Languages")]
         public IEnumerable<KeyValuePair<string, string>> LanguagesItems { get; set; }
+
+        public DateTime CreatedOn_17114092 { get; set; }
     }
 }

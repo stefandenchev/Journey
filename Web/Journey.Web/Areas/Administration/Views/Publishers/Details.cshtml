@@ -1,0 +1,48 @@
+﻿@model Journey.Data.Models.Publisher
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Publisher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedOn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeletedOn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn_17114092)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn_17114092)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedOn_17114092)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedOn_17114092)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

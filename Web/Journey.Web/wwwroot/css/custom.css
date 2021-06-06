@@ -14,6 +14,10 @@ body {
     height: max-content !important;
 }
 
+h1, h2{
+    margin-top: 1em
+}
+
     body > div.page-container > header > nav {
         height: 50px;
     }
@@ -617,12 +621,34 @@ a:hover {
     text-decoration: underline;
 }
 
+#editTop {
+    background: #52BBDB;
+    text-shadow: none;
+    border-radius: 6px;
+}
+
+    #editTop:hover {
+        background: #569fb5;
+    }
+
+select#Languages.form-control, select#Tags.form-control {
+    height: 9.5em;
+    overflow: scroll
+}
+
 #editMultiButton {
     top: 40%;
     left: 4%;
     position: relative;
     z-index: 2;
+    border: none;
+    border-radius: 6px;
+    background: #52BBDB;
 }
+
+    #editMultiButton:hover {
+        background: #569fb5;
+    }
 
 /* PAGINATION */
 #paginationMain > nav > a.nk-pagination-current-white {

@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.ViewModels.Administration.GameTags
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -19,5 +20,7 @@
 
         [Display(Name = "Tags")]
         public IEnumerable<KeyValuePair<string, string>> TagsItems { get; set; }
+
+        public DateTime CreatedOn_17114092 { get; set; }
     }
 }

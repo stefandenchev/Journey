@@ -1,11 +1,12 @@
 ﻿@model Journey.Web.ViewModels.Administration.Dashboard.IndexViewModel
-@{
-    this.ViewData["Title"] = "Admin dashboard";
-}
+@{ this.ViewData["Title"] = "Admin dashboard"; }
 
 <h1>@this.ViewData["Title"]</h1>
-@*Settings: @this.Model.SettingsCount*@
-<a class="nav-link text-light" asp-controller="Languages" asp-action="Index">Languages</a>
-<a class="nav-link text-light" asp-controller="GameLanguages" asp-action="Index">GameLanguages</a>
-<a class="nav-link text-light" asp-controller="GameTags" asp-action="Index">GameTags</a>
+<hr />
+<h3>What are we editing?</h3>
+
+<a class="btn btn-info" asp-controller="GameTags" asp-action="Index">GameTags</a>
+<a class="btn btn-info" asp-controller="GameLanguages" asp-action="Index">GameLanguages</a>
+<a class="btn btn-info" asp-controller="Publishers" asp-action="Index">Publishers</a>
+
 

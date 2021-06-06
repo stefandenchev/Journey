@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Common;
@@ -14,9 +15,11 @@
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Journey.Web.ViewModels.Games.Edit;
+    using Journey.Web.ViewModels.Games.Export;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
 
     public class GamesController : BaseController
     {
@@ -122,11 +125,6 @@
 
         public IActionResult All(int id = 1)
         {
-            if (id <= 0)
-            {
-                return this.NotFound();
-            }
-
             const int itemsPerPage = 16;
             var viewModel = new GamesListViewModel
             {
@@ -135,6 +133,11 @@
                 GamesCount = this.gamesService.GetCount(),
                 Games = this.gamesService.GetAllInList<GameInListViewModel>(id, 16),
             };
+
+            if (id <= 0 || id > viewModel.PagesCount)
+            {
+                return this.NotFound();
+            }
 
             return this.View(viewModel);
         }
@@ -152,7 +155,7 @@
                 var game = this.gamesService.GetById<SingleGameViewModel>(id);
 
                 List<string> allOrderIds = new List<string>();
-                var allOrders = db.Orders.Where(o => o.UserId == userId);
+                var allOrders = this.db.Orders.Where(o => o.UserId == userId);
                 foreach (Order o in allOrders)
                 {
                     allOrderIds.Add(o.Id);
@@ -164,6 +167,21 @@
 
                 return this.View(game);
             }
+        }
+
+        public IActionResult ExportToJson (int id)
+        {
+            var game = this.gamesService.GetById<GameJsonExportModel>(id);
+
+            string jsonResult = JsonConvert.SerializeObject(game, Formatting.Indented);
+
+            var fileName = $"{game.Title}.txt";
+            var mimeType = "text/plain";
+            var fileBytes = Encoding.ASCII.GetBytes(jsonResult);
+            return new FileContentResult(fileBytes, mimeType)
+            {
+                FileDownloadName = fileName,
+            };
         }
     }
 }

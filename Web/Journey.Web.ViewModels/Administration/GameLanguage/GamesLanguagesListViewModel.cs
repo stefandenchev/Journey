@@ -5,7 +5,7 @@
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class GamesLanguagesListViewModel : IMapFrom<Journey.Data.Models.GameLanguage>
+    public class GamesLanguagesListViewModel : IMapFrom<GameLanguage>
     {
         public int Id { get; set; }
 

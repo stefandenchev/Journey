@@ -54,22 +54,5 @@
                x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :
                "/images/games/" + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Extension));
         }
-
-/*        public string EditDescription(string description)
-        {
-            var regex = new Regex(@"(?s).*?[.?!](?:\s.*?[.?!]){0,2}");
-
-            var matches = regex.Matches(description);
-
-            StringBuilder sb = new();
-
-            foreach (var match in matches)
-            {
-                sb.AppendLine(match.ToString());
-                sb.AppendLine();
-            }
-
-            return sb.ToString();
-        }*/
     }
 }

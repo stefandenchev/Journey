@@ -34,7 +34,7 @@
         }
 
         // GET: Administration/GameLanguages
-        public async Task<IActionResult> Index(string sortOrder)
+        public IActionResult Index(string sortOrder)
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
             this.ViewBag.LanguageSortParam = sortOrder == "lang_asc" ? "lang_desc" : "lang_asc";

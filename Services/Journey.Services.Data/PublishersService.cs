@@ -6,6 +6,7 @@
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
+    using Journey.Services.Mapping;
 
     public class PublishersService : IPublishersService
     {
@@ -14,6 +15,11 @@
         public PublishersService(IDeletableEntityRepository<Publisher> publishersRepository)
         {
             this.publishersRepository = publishersRepository;
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.publishersRepository.AllAsNoTracking().To<T>().ToList();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
@@ -25,6 +31,15 @@
             })
             .OrderBy(x => x.Name)
             .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public T GetById<T>(int id)
+        {
+            var publisher = this.publishersRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+
+            return publisher;
         }
     }
 }
