@@ -43,10 +43,10 @@
                         @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <div class="nav-item">
-                                <a class="nav-link text-light" id="cart-icon-main" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
+                                <a class="nav-link text-light" id="cart-icon-main" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
                             </div>
                             <div class="nav-item">
-                                <a class="nav-link text-light" id="cart-icon-main" asp-controller="Cart" asp-action="Index"><label><img src="~/images/icon-header-cart.png" /></label></a>
+                                <a class="nav-link text-light" id="cart-icon-main" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
                             </div>
                         }
 
@@ -121,11 +121,11 @@
                                 </ul>
 
                                 @* @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                    {
-                                    <li class="nav-item">
-                                        <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
-                                    </li>
-                                    }*@
+                {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                </li>
+                }*@
 
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="About">About</a>

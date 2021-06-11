@@ -58,7 +58,6 @@
 
             if (!this.db.Wishlists.Any(c => c.UserId == userId && c.GameId == id))
             {
-                this.TempData["message"] = "This game is not in your wish list.";
                 return this.RedirectToAction("ById", new RouteValueDictionary(new { controller = "Games", action = "ById", Id = id }));
             }
 
@@ -74,7 +73,6 @@
 
             if (!this.db.Wishlists.Any(c => c.UserId == userId && c.GameId == id))
             {
-                this.TempData["message"] = "This game is not in your wish list.";
                 return this.RedirectToAction("Index");
             }
 

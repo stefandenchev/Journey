@@ -115,15 +115,11 @@
 
             var viewModel = new CheckoutViewModel();
 
-            // get games
             List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
             viewModel.GamesInCart = games;
 
-            // get credit cards
-            // viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
             viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
 
-            // calculate total
             viewModel.Total = games.Sum(g => g.Price);
 
             return this.View(viewModel);
@@ -150,7 +146,6 @@
 
                 this.db.Orders.Add(newOrder);
 
-                // add new orderItems
                 foreach (var game in model.GamesInCart)
                 {
                     this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = RandomKeyGen() });
