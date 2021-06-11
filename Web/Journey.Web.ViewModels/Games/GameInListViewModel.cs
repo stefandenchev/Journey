@@ -23,14 +23,6 @@
 
         public string PublisherName { get; set; }
 
-        /*public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<Game, GameInListViewModel>()
-                .ForMember(x => x.ImageUrl, opt =>
-                opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots"))
-                .OriginalUrl));
-        }*/
-
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, GameInListViewModel>()
@@ -38,8 +30,6 @@
                 opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl != null ?
                 x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :
                 "/images/games/" + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Id + "." + x.Images.FirstOrDefault(x => x.UploadName.Contains("cover")).Extension));
-
-              // "/images/games/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
         }
     }
 }

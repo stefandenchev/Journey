@@ -424,7 +424,6 @@ D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Journey.Services.pdb
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Journey.Web.Infrastructure.pdb
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Journey.Web.ViewModels.pdb
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\Journey.Data.Common.pdb
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.csprojAssemblyReference.cache
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.GeneratedMSBuildEditorConfig.editorconfig
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.AssemblyInfoInputs.cache
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.AssemblyInfo.cs
@@ -974,3 +973,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Pub
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Edit.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Publishers\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\NotFound.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_CuratedPartial.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.csproj.AssemblyReference.cache
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs

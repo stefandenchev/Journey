@@ -4,11 +4,11 @@
 }
 
 <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
-
 <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
 <div class="container">
     <h2>Your @ViewBag.Title</h2>
+    <br />
 
     @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
     {
@@ -56,8 +56,6 @@
 </div>
 
 
-
-
 @section Scripts {
 
     <script>
@@ -86,35 +84,8 @@
 
         }
 
-        function moveToWishList(itemId) {
-            var obj = {
-                GameId: itemId,
-            };
-            $.ajax({
-                url: "/Cart/MoveToWishList",
-                data: JSON.stringify(obj),
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    toastr.options.timeOut = 3000;
-                    if (result.Success) {
-                        toastr.success('Item was moved to your wish list');
-                        setTimeout(function () {
-                            location.reload();
-                        }, 3000);
 
-                    }
-                    else {
-                        toastr.error(result.Error);
-                    }
-                },
-                error: function (result) {
-                    toastr.options.timeOut = 5000;
-                    toastr.error(result.Error);
-                },
-            });
-        }</script>
+    </script>
 }
 
 

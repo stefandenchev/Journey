@@ -15,15 +15,18 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage</a></li>
 
-                <li class="dropdown-submenu">
+                @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                 <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle" href="#">Profile</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Library">Library</a></li>
-                        <li><a class="dropdown-item" asp-area="Home" asp-controller="Wishlist" asp-action="Index">Wishlist</a></li>
+                      @*<li><a class="dropdown-item" asp-area="Home" asp-controller="Wishlist" asp-action="Index">Wishlist</a></li>*@
                         <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Orders">Orders</a></li>
                         <li><a class="dropdown-item" asp-area="Profile" asp-controller="Profile" asp-action="Payment">Payment</a></li>
                     </ul>
-                </li>
+                 </li>
+                }
             </ul>
 
         </li>

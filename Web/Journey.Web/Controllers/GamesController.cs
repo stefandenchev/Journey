@@ -89,8 +89,6 @@
                 return this.View(input);
             }
 
-            // this.TempData["Message"] = "Game added successfully.";
-
             return this.RedirectToAction("All");
         }
 
@@ -101,7 +99,6 @@
             inputModel.GenresItems = this.genresService.GetAllAsKeyValuePairs();
             inputModel.PublisherItems = this.publishersService.GetAllAsKeyValuePairs();
 
-            // inputModel.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
             return this.View(inputModel);
         }
 
@@ -114,7 +111,6 @@
                 input.GenresItems = this.genresService.GetAllAsKeyValuePairs();
                 input.PublisherItems = this.publishersService.GetAllAsKeyValuePairs();
 
-                // input.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }
 
@@ -144,15 +140,19 @@
 
         public IActionResult ById(int id)
         {
+            var game = this.gamesService.GetById<SingleGameViewModel>(id);
+            if (game == null)
+            {
+                return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+            }
+
             if (!this.User.Identity.IsAuthenticated)
             {
-                var game = this.gamesService.GetById<SingleGameViewModel>(id);
                 return this.View(game);
             }
             else
             {
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                var game = this.gamesService.GetById<SingleGameViewModel>(id);
 
                 List<string> allOrderIds = new List<string>();
                 var allOrders = this.db.Orders.Where(o => o.UserId == userId);
@@ -169,7 +169,7 @@
             }
         }
 
-        public IActionResult ExportToJson (int id)
+        public IActionResult ExportToJson(int id)
         {
             var game = this.gamesService.GetById<GameJsonExportModel>(id);
 

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" asp-append-version="true" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
@@ -28,7 +27,7 @@
     <div class="page-container">
         <header>
 
-            <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
+            <nav class="navbar navbar-expand-sm navbar-dark">
                 <div class="container">
                     <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
 
@@ -42,7 +41,7 @@
 
 
 
-                        @if (this.User.Identity.IsAuthenticated)
+                        @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <div class="nav-item">
                                 <a class="nav-link text-light" id="cart-icon-main" asp-area="Home" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
@@ -105,6 +104,8 @@
                                         </ul>
                                     </li>
 
+                                    <li class="dropdown-divider"></li>
+
                                     <li class="dropdown-submenu">
                                         <a class="dropdown-item dropdown-toggle" href="#">Top 5 Publishers</a>
                                         <ul class="dropdown-menu">
@@ -113,53 +114,59 @@
                                             <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="THQ Nordic">THQ Nordic</a></li>
                                             <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="UIG Entertainment">UIG Entertainment</a></li>
                                             <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="Plug In Digital">Plug In Digital</a></li>
-                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="BANDAI NAMCO Entertainment">BANDAI NAMCO Entertainment</a></li>
+                                            <li><a class="dropdown-item" asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="BANDAI NAMCO Entertainment">BANDAI NAMCO</a></li>
 
                                         </ul>
                                     </li>
 
                                 </ul>
 
-                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
-                                </li>
-                            }
-                            </ul>
-                        </div>
+                                @*@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                    {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    </li>
+                                    }*@
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="About">About</a>
+                            </li>
+
+                        </ul>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-            </header>
+        </header>
 
 
-            <partial name="_CookieConsentPartial" />
-            <div class="container">
-                <main role="main" class="pb-3">
-                    @this.RenderBody()
-                </main>
-            </div>
+        <partial name="_CookieConsentPartial" />
+        <div class="container">
+            <main role="main" class="pb-3">
+                @this.RenderBody()
+            </main>
         </div>
+    </div>
 
-        <footer class="footer" id="footerMain">
-            <div class="container">
-                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
-            </div>
-        </footer>
-
-
-        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    <footer class="footer" id="footerMain">
+        <div class="container">
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
+            <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i></i>
+        </div>
+    </footer>
 
 
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
 
-        <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-        @await this.RenderSectionAsync("Scripts", required: false)
-    </body>
+
+
+    <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
+
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

@@ -23,18 +23,21 @@
         private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
+        private readonly ICreditCardsService creditCardsService;
 
         public CartController(
             ApplicationDbContext db,
             IGamesService gamesService,
-            IOrdersService ordersService)
+            IOrdersService ordersService,
+            ICreditCardsService creditCardsService)
         {
             this.db = db;
             this.gamesService = gamesService;
             this.ordersService = ordersService;
+            this.creditCardsService = creditCardsService;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -68,7 +71,7 @@
         }
 
         [HttpGet]
-        public JsonResult RemoveItem(int gameId)
+        public IActionResult RemoveItem(int gameId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -89,7 +92,7 @@
             }
         }
 
-        public ActionResult ClearAll()
+        public IActionResult ClearAll()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -106,7 +109,7 @@
         }
 
         [HttpGet]
-        public ActionResult Checkout()
+        public IActionResult Checkout()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -118,7 +121,7 @@
 
             // get credit cards
             // viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
-            viewModel.CreditCards = this.db.CreditCards.Where(c => c.UserId == userId).ToList();
+            viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
 
             // calculate total
             viewModel.Total = games.Sum(g => g.Price);
@@ -147,10 +150,10 @@
 
                 this.db.Orders.Add(newOrder);
 
-                // add new orderItem records
+                // add new orderItems
                 foreach (var game in model.GamesInCart)
                 {
-                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = this.RandomKeyGen() });
+                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = RandomKeyGen() });
                 }
 
                 // if any of the games bought were in the user's wish list, remove them from there
@@ -164,7 +167,7 @@
                     }
                 }
 
-                // remove all items from user's cart
+                // remove all items from cart
                 var cartItem = this.db.UserCartItems.Where(c => c.UserId == userId).ToList();
                 this.db.UserCartItems.RemoveRange(cartItem);
 
@@ -183,7 +186,7 @@
             }
             catch (Exception)
             {
-                this.ModelState.AddModelError("", "An unexpected error occured while attempting to place your order.");
+                this.ModelState.AddModelError(string.Empty, "An unexpected error occured while attempting to place your order.");
                 return this.View(model);
             }
 
@@ -191,7 +194,7 @@
         }
 
         [HttpGet]
-        public ActionResult OrderComplete()
+        public IActionResult OrderComplete()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -215,12 +218,11 @@
         }
 
         [HttpGet]
-        public ActionResult ViewOrder(string id)
+        public IActionResult ViewOrder(string id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var model = new CheckoutViewModel();
 
-            // get lastest order
             var order = this.db.Orders.FirstOrDefault(o => o.Id == id);
             if (order == null)
             {
@@ -229,7 +231,8 @@
 
             model.Id = order.Id;
 
-            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == order.CreditCardId).FirstOrDefault().CardNumber;
+            var card = this.creditCardsService.GetById(order.CreditCardId);
+            var cardNumber = card.CardNumber;
 
             if (cardNumber != null)
             {
@@ -261,6 +264,26 @@
             {
                 FileDownloadName = fileName,
             };
+        }
+
+        private static string RandomKeyGen()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var stringChars = new List<char>();
+            var random = new Random();
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (i % 4 == 0 && i != 0)
+                {
+                    stringChars.Add('-');
+                }
+
+                stringChars.Add(chars[random.Next(chars.Length)]);
+            }
+
+            var finalString = new string(stringChars.ToArray());
+            return finalString;
         }
 
         private List<GameInCartViewModel> GetGamesFromCart(string userId)
@@ -301,26 +324,6 @@
             }
 
             return gamesToReturn;
-        }
-
-        private string RandomKeyGen()
-        {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var stringChars = new List<char>();
-            var random = new Random();
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (i % 4 == 0 && i != 0)
-                {
-                    stringChars.Add('-');
-                }
-
-                stringChars.Add(chars[random.Next(chars.Length)]);
-            }
-
-            var finalString = new string(stringChars.ToArray());
-            return finalString;
         }
     }
 }

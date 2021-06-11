@@ -10,11 +10,10 @@
 
     <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" asp-append-version="true">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" asp-append-version="true">
     <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
 
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" asp-append-version="true" />
 
@@ -28,7 +27,7 @@
     <div class="page-container">
         <header>
 
-            <nav class="navbar navbar-expand-sm navbar-light box-shadow mb-3">
+            <nav class="navbar navbar-expand-sm navbar-dark">
                 <div class="container">
                     <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
 
@@ -41,8 +40,7 @@
                         <partial name="_LoginPartial" />
 
 
-
-                        @if (this.User.Identity.IsAuthenticated)
+                        @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <div class="nav-item">
                                 <a class="nav-link text-light" id="cart-icon-main" asp-controller="Wishlist" asp-action="Index"><label><i class="fas fa-heart"></i></label></a>
@@ -122,48 +120,58 @@
 
                                 </ul>
 
-                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
-                                </li>
-                            }
-                            </ul>
-                        </div>
+                                @* @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                    {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    </li>
+                                    }*@
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="About">About</a>
+                            </li>
+
+                        </ul>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-            </header>
+        </header>
 
-            <partial name="_CookieConsentPartial" />
-            <div class="container-fluid" id="container-main">
-                <main role="main" class="pb-3">
-                    @this.RenderBody()
-                </main>
-            </div>
+        <partial name="_CookieConsentPartial" />
+        <div class="container-fluid" id="container-main">
+            <main role="main" class="pb-3">
+                @this.RenderBody()
+            </main>
         </div>
+    </div>
 
 
 
-        <footer class="footer" id="footerMain">
-            <div class="container">
-                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
-                <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i></i>
-            </div>
-        </footer>
+    <footer class="footer" id="footerMain">
+        <div id="footerContainer" class="container">
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName -
+            <a asp-area="Home" asp-controller="Home" asp-action="About">About</a>
+            <i id="gitHubLogo">
+                <a id="git-hub-logo" href="https://github.com/stefandenchev">Github &nbsp;<i class="fab fa-github fa-lg"></i></a>
+            </i>
+
+            @*<i class="credits">
+                    Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i>
+                    <br id="creditsBreak" />
+                    Made with the <a href="https://github.com/NikolayIT/ASP.NET-Core-Template"> ASP.NET-Core-Template</a>
+                </i>*@
+        </div>
+    </footer>
 
 
-        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src=" https://use.fontawesome.com/21cc4e21bc.js" asp-append-version="true"></script>
 
-        <script src="~/js/site.js" asp-append-version="true"></script>
-
-
-
-        <script src=" https://use.fontawesome.com/21cc4e21bc.js"></script>
-
-        @await this.RenderSectionAsync("Scripts", required: false)
-    </body>
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

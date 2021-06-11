@@ -8,63 +8,60 @@
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Cart;
     using Journey.Web.ViewModels.Profile;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class ProfileController : BaseController
     {
         private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
+        private readonly ICreditCardsService creditCardsService;
 
         public ProfileController(
             ApplicationDbContext db,
             IGamesService gamesService,
-            IOrdersService ordersService)
+            IOrdersService ordersService,
+            ICreditCardsService creditCardsService)
         {
             this.db = db;
             this.gamesService = gamesService;
             this.ordersService = ordersService;
+            this.creditCardsService = creditCardsService;
         }
 
         public IActionResult Payment()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var creditCards = new List<CreditCard>();
 
-            creditCards = this.db.CreditCards.Where(c => c.UserId == userId).ToList();
+            var creditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId);
 
             var model = new PaymentViewModel
             {
-                CreditCards = creditCards ?? new List<CreditCard>(),
+                CreditCards = creditCards ?? new List<CreditCardViewModel>(),
             };
 
             return this.View(model);
         }
 
-        [HttpGet]
-        public JsonResult GetCreditCards()
-        {
-            string currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            List<CreditCard> creditCards = new List<CreditCard>();
-
-            creditCards = this.db.CreditCards.Where(c => c.UserId == currentUserId).ToList();
-
-            return this.Json(creditCards);
-        }
-
         [HttpPost]
-        public ActionResult AddCreditCard([FromBody] CreditCard creditCard)
+        public IActionResult AddCreditCard([FromBody] CreditCard creditCard)
         {
             creditCard.UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             try
             {
                 string cardNumberFormatted = creditCard.CardNumber.Replace(" ", string.Empty);
-                cardNumberFormatted = cardNumberFormatted.Length == 13 ? string.Format("{0:0000 0000 0000 0}", long.Parse(cardNumberFormatted)) :
-                    cardNumberFormatted.Length == 15 ? string.Format("{0:0000 0000 0000 000}", long.Parse(cardNumberFormatted)) :
-                        string.Format("{0:0000 0000 0000 0000}", long.Parse(cardNumberFormatted));
+                cardNumberFormatted = string.Format("{0:0000 0000 0000 0000}", long.Parse(cardNumberFormatted));
+
+                if (this.db.CreditCards.Any(x => x.CardNumber == cardNumberFormatted))
+                {
+                    return this.RedirectToAction("Payment");
+                }
+
                 creditCard.CardNumber = cardNumberFormatted;
 
                 this.db.CreditCards.Add(creditCard);
@@ -77,31 +74,19 @@
             }
         }
 
-        public ActionResult DeleteCreditCard(int? id)
+        public IActionResult DeleteCreditCard(int id)
         {
-            if (id == null)
+            var card = this.creditCardsService.GetByIdToModel<CreditCardViewModel>(id);
+            if (card != null)
             {
-                return this.Json(new { Success = false, Error = "Information not received" });
+                this.creditCardsService.RemoveById(id);
+            }
+            else
+            {
+                return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
             }
 
-            try
-            {
-                var creditCard = this.db.CreditCards.FirstOrDefault(c => c.Id == id);
-
-                if (creditCard == null)
-                {
-                    return this.Json(new { Success = false, Error = "Credit Card not found" });
-                }
-
-                this.db.CreditCards.Remove(creditCard);
-                this.db.SaveChanges();
-
-                return this.RedirectToAction("Payment", "Profile");
-            }
-            catch
-            {
-                return this.Json(new { Success = false, Error = "Error occurred while deleting credit card record" });
-            }
+            return this.RedirectToAction("Payment", "Profile");
         }
 
         public IActionResult Orders(string sortOrder)
@@ -115,7 +100,7 @@
             var orderItems = this.db.OrderItems;
             var games = this.db.Games;
 
-            OrdersListViewModel viewModel = new OrdersListViewModel();
+            OrdersListViewModel viewModel = new();
             viewModel.Orders = new List<OrdersViewModel>();
 
             foreach (var order in orders)
@@ -159,7 +144,7 @@
             return this.View(viewModel);
         }
 
-        public ActionResult Library(string sortOrder)
+        public IActionResult Library(string sortOrder)
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
 
@@ -184,8 +169,10 @@
             var orderIds = this.db.Orders.Where(o => o.UserId == userId).Select(o => o.Id).ToList();
             var gameIds = this.db.OrderItems.Where(oi => orderIds.Contains(oi.OrderId)).Select(oi => oi.GameId).ToList();
 
-            var games = new GameLibraryViewModel();
-            games.Collection = new List<GameInLibraryViewModel>();
+            var games = new GameLibraryViewModel
+            {
+                Collection = new List<GameInLibraryViewModel>(),
+            };
 
             List<Game> purchasedGames = this.db.Games.Where(g => gameIds.Contains(g.Id)).ToList();
             foreach (var purchasedGame in purchasedGames)

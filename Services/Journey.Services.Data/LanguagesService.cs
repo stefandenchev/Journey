@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
@@ -29,7 +30,7 @@
                 x.Id,
                 x.Name,
             })
-            .OrderBy(x => x.Name)
+            .OrderBy(x => x.Id)
             .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 

@@ -7,7 +7,6 @@ D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Servi
 D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Data.Common.pdb
 D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Data.Models.pdb
 D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Services.Mapping.pdb
-D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.csprojAssemblyReference.cache
 D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.AssemblyInfoInputs.cache
 D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.AssemblyInfo.cs
 D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.csproj.CoreCompileInputs.cache
@@ -16,3 +15,4 @@ D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Servi
 D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.pdb
 D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Web.ViewModels.dll
 D:\Journey\Services\Journey.Services.Data\bin\Debug\netstandard2.1\Journey.Web.ViewModels.pdb
+D:\Journey\Services\Journey.Services.Data\obj\Debug\netstandard2.1\Journey.Services.Data.csproj.AssemblyReference.cache

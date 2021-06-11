@@ -41,10 +41,6 @@ body {
     line-height: 1.5;
 }
 
-    body.happy {
-        background: #ececec;
-        color: #666;
-    }
 
     body.stuck {
         position: fixed;
@@ -56,11 +52,7 @@ body {
     body.microheader {
     }
 
-#trailer-trash {
-    display: none;
-    width: 100%;
-    width: 100vw;
-}
+
 
 body *::-webkit-scrollbar {
     width: 9px;
@@ -69,17 +61,12 @@ body *::-webkit-scrollbar {
 
 body *::-webkit-scrollbar-track {
     border-radius: 9px;
-    background: #1a232b;
-}
-
-body.happy *::-webkit-scrollbar-track {
-    border-radius: 9px;
-    background: #ececec;
+    background: #201a2b;
 }
 
 body *::-webkit-scrollbar-thumb {
     border-radius: 9px;
-    background: #7c8a9b;
+    background: #857c9b;
 }
 
 body .scroll-sm::-webkit-scrollbar {
@@ -166,37 +153,6 @@ table.nopad td, table.nopad th {
     background: #344659;
 }
 
-.happy .even-c, .happy .even-c td {
-    background: #f3f3f3;
-}
-
-.even-cl, .even-cl td {
-    background: #3b5065;
-}
-
-.happy .even-cl, .happy .even-cl td {
-    background: #f4f4f4;
-}
-
-@media (max-width:756px) {
-    .doublist .even {
-        background: #344659;
-    }
-
-    .happy .doublist .even {
-        background: #f3f3f3;
-    }
-}
-
-@media (max-width:480px) {
-    .even {
-        background: #344659;
-    }
-
-    .happy .even {
-        background: #f3f3f3;
-    }
-}
 
 h1, h2, h3, h4, h5, .t3, .title {
     color: #fff;
@@ -208,17 +164,13 @@ h1, h2, h3, h4, h5, .t3, .title {
     font-weight: 600;
 }
 
-.happy h1, .happy h2, .happy h3, .happy h4, .happy h5, .happy .t3, .happy .title {
-    color: #4c5059;
-}
+
 
 .subtitle {
     color: #dfdfdf;
 }
 
-.happy .subtitle {
-    color: inherit;
-}
+
 
 h1 {
     font-size: 24px;
@@ -252,11 +204,7 @@ h2 {
     }
 }
 
-.happy h2.contentbox-title, .happy h2#core-guts-title {
-    font-size: 28px;
-    padding-left: 15px;
-    background: #e1e1e1;
-}
+
 
 h3 {
     font-size: 21px;
@@ -4504,27 +4452,6 @@ input::-webkit-input-placeholder {
     font-weight: normal;
 }
 
-select {
-    -webkit-padding-end: 23px;
-    -webkit-padding-start: 6px;
-    -webkit-appearance: button;
-    -webkit-user-select: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
-    padding: 5px 23px 5px 7px;
-    border: solid 1px rgba(255,255,255,0.1);
-    border-radius: 3px;
-    min-height: 34px;
-    background: rgba(0,0,0,0.1) url('/images/icon-arrow-selectbox-lt.png') right center no-repeat;
-    font-size: 14px;
-    color: #eee;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-}
 
     select option {
         color: initial;
@@ -4726,86 +4653,3 @@ span.biginput {
         width: 100% !important;
     }
 }
-
-label.fancycheckbox {
-    position: relative;
-    display: inline-block;
-    margin: -1px 0;
-    padding: 2px 9px 2px 32px;
-    width: 100%;
-    background: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-    label.fancycheckbox:hover {
-        background: #4b5f75;
-    }
-
-.happy label.fancycheckbox:hover {
-    background: #dae9f3;
-}
-
-label.fancycheckbox input[type="checkbox"] {
-    -webkit-appearance: none;
-    -webkit-transition: .15s;
-    position: absolute;
-    left: 4px;
-    top: 3px;
-    height: 17px;
-    width: 17px;
-    margin-right: 4px;
-    border-radius: 3px;
-    background: #f1f1f1;
-    border: 1px solid #999;
-    color: #fff;
-}
-
-    label.fancycheckbox input[type="checkbox"]:checked {
-        background: #1c9cc5;
-        border-color: #1c9cc5;
-    }
-
-        label.fancycheckbox input[type="checkbox"]:before, label.fancycheckbox input[type="checkbox"]:checked:before {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            line-height: 16px;
-            font-weight: 800;
-            font-size: 15px;
-            text-align: center;
-            color: #fff;
-            content: ' ';
-        }
-
-        label.fancycheckbox input[type="checkbox"]:checked:before {
-            color: #fff;
-            content: '\2713';
-        }
-
-    label.fancycheckbox input[type="checkbox"]:disabled {
-        opacity: 0.5;
-    }
-
-label.fancyradio {
-    position: relative;
-    margin: 1px 0;
-    min-height: 17px;
-    padding: 4px 9px;
-    padding-left: 32px;
-    background: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-    label.fancyradio:hover {
-        background-color: #4b5f75;
-    }
-
-.happy label.fancyradio:hover {
-    background-color: #dae9f3;
-}
-

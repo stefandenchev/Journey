@@ -50,6 +50,8 @@
 
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
+
         public DbSet<Log> Logs_17114092 { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

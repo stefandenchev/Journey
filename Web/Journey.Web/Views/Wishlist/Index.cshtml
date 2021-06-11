@@ -1,47 +1,48 @@
 ﻿@model GamesListViewModel
 @{
-    ViewBag.Title = "My Wish List";
+    ViewBag.Title = "Your Wish List";
 }
 
-<div class="page-container">
-    <div class="container">
-        <h2>@ViewBag.Title</h2>
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <br />
 
-        <br />
+    @if (Model.Games.Any())
+    {
+        <div class="container">
+            <section id="core-guts" class="stringy fatty">
+                <div id="cart-block-wrap" class="contentbox raft">
+                    <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody class="boxoom">
+                            @foreach (var item in Model.Games)
+                            {
+                                <tr class="product hovcolor">
+                                    <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                    <td class="details">
+                                        <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                    </td>
+                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                    <td id="buttons">
+                                        <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
+                                        <a class="btn btn-danger" asp-controller="Wishlist" asp-action="RemoveFromList" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                    </td>
 
-        @{
-            if (Model.Games.Any())
-            {
-                <div class="container">
-                    <section id="core-guts" class="stringy fatty">
-                        <div id="cart-block-wrap" class="contentbox raft">
-                            <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                <tbody class="boxoom">
-                                    @foreach (var item in Model.Games)
-                                    {
-                                        <tr class="product hovcolor">
-                                            <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
-                                            <td class="details">
-                                                <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
-                                            </td>
-                                            <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
-                                            <td id="buttons">
-                                                <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
-                                                <a class="btn btn-danger" asp-controller="Wishlist" asp-action="RemoveFromList" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
-                                            </td>
-
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            }
-            else
-            {
-                <p>You currently do not have any games in your wish list.</p>
-            }
-        }
+            </section>
+        </div>
+    }
+    else
+    {
+        <p>You currently do not have any games in your wish list.</p>
+    }
+
+    <div class="row">
+        <div class="row">
+            <a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop</a>
+        </div>
     </div>
 </div>

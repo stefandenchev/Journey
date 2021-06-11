@@ -1,17 +1,19 @@
-﻿using Journey.Data;
-using Journey.Data.Models;
-using Journey.Services.Data.Interfaces;
-using Journey.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace Journey.Web.Controllers
+﻿namespace Journey.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using Journey.Data;
+    using Journey.Data.Models;
+    using Journey.Services.Data.Interfaces;
+    using Journey.Web.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Routing;
+
+    [Authorize]
     public class WishlistController : BaseController
     {
         private readonly ApplicationDbContext db;
@@ -26,10 +28,6 @@ namespace Journey.Web.Controllers
         public IActionResult Index()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            //List<int> gameIds = this.db.Wishlists.Where(w => w.UserId == userId).Select(w => w.GameId).ToList();
-
-            //var games = this.db.Games.Where(g => gameIds.Contains(g.Id));
 
             var viewModel = new GamesListViewModel();
 

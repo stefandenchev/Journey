@@ -12,6 +12,7 @@
             this.Languages = new HashSet<GameLanguage>();
             this.Tags = new HashSet<GameTag>();
             this.Images = new HashSet<Image>();
+            this.Votes = new HashSet<Vote>();
         }
 
         public string Title { get; set; }
@@ -43,5 +44,7 @@
         public decimal Price { get; set; }
 
         public string OriginalUrl { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

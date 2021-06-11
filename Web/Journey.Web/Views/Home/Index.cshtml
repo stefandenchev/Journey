@@ -1,5 +1,5 @@
-﻿@using Journey.Common
-@model Journey.Web.ViewModels.Games.Home.LatestReleasesViewModel
+﻿@model Journey.Web.ViewModels.Games.Home.HomeGamesViewModel
+@using Journey.Common
 @{ this.ViewData["Title"] = "Home"; }
 
 <link rel="stylesheet" href="~/assets/css/godlike.css" asp-append-version="true">
@@ -12,6 +12,7 @@
 <div class="container-fluid">
     <div id="carouselHome" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
+
             <div class="carousel-item active">
                 <a href="/Games/ById/572">
                     <img src="~/images/wh3.jpg" class="d-block w-100" alt="...">
@@ -27,6 +28,12 @@
                     <img src="~/images/biomutant.jpg" class="d-block w-100" alt="" />
                 </a>
             </div>
+            <div class="carousel-item">
+                <a href="/Games/ById/573">
+                    <img src="~/images/hired-gun.jpg" class="d-block w-100" alt="" />
+                </a>
+            </div>
+
         </div>
         <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,5 +47,10 @@
 </div>
 
 <div class="container" id="latest">
-    <partial name="_LatestPartial" model="@Model" />
+    <partial name="_LatestPartial" model="@Model.Lastest" />
 </div>
+
+<div class="container" id="curated">
+    <partial name="_CuratedPartial" model="@Model.Curated" />
+</div>
+

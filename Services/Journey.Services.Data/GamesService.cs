@@ -18,17 +18,17 @@
         private readonly string[] allowedExtensions = new[] { "jpg", "jpeg", "png" };
 
         private readonly IDeletableEntityRepository<Game> gamesRepository;
-        private readonly IRepository<GameLanguage> gameLanguagesRepository;
-        private readonly IRepository<GameTag> gameTagsRepository;
+        private readonly IDeletableEntityRepository<Language> languagesRepository;
+        private readonly IDeletableEntityRepository<Tag> tagsRepository;
 
         public GamesService(
             IDeletableEntityRepository<Game> gamesRepository,
-            IRepository<GameLanguage> gameLanguagesRepository,
-            IRepository<GameTag> gameTagsRepository)
+            IDeletableEntityRepository<Language> languagesRepository,
+            IDeletableEntityRepository<Tag> tagsRepository)
         {
             this.gamesRepository = gamesRepository;
-            this.gameLanguagesRepository = gameLanguagesRepository;
-            this.gameTagsRepository = gameTagsRepository;
+            this.languagesRepository = languagesRepository;
+            this.tagsRepository = tagsRepository;
         }
 
         public async Task CreateAsync(CreateGameInputModel input, string imagePath)
@@ -47,20 +47,26 @@
 
             foreach (var inputLanguage in input.Languages)
             {
-                var language = this.gameLanguagesRepository
+                var language = this.languagesRepository
                     .All()
-                    .FirstOrDefault(x => x.Language.Id == inputLanguage);
+                    .FirstOrDefault(x => x.Id == inputLanguage);
 
-                game.Languages.Add(language);
+                game.Languages.Add(new GameLanguage
+                {
+                    Language = language,
+                });
             }
 
             foreach (var inputTag in input.Tags)
             {
-                var tag = this.gameTagsRepository
+                var tag = this.tagsRepository
                     .All()
-                    .FirstOrDefault(x => x.Tag.Id == inputTag);
+                    .FirstOrDefault(x => x.Id == inputTag);
 
-                game.Tags.Add(tag);
+                game.Tags.Add(new GameTag
+                {
+                    Tag = tag,
+                });
             }
 
             foreach (var image in input.Images)
@@ -139,6 +145,7 @@
         {
             var game = this.gamesRepository.All().FirstOrDefault(x => x.Id == id);
             game.Title = input.Title;
+            game.Price = input.Price;
             game.Description = input.Description;
             game.Drm = input.Drm;
             game.MininumRequirements = input.MininumRequirements;
@@ -156,6 +163,20 @@
                 x.Id,
                 x.Title,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Title));
+        }
+
+        public IEnumerable<T> GetCurated<T>(int count = 12)
+        {
+            var idList = new List<int> { 472, 555, 569, 575, 578, 579,
+                                         580, 581, 583, 585, 586, 587 };
+
+            var games = this.gamesRepository.AllAsNoTracking()
+                .Where(t => idList.Contains(t.Id))
+                .Take(count)
+                .To<T>()
+                .ToList();
+
+            return games;
         }
     }
 }

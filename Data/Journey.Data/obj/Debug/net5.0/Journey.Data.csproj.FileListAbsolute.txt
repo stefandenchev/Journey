@@ -11,7 +11,6 @@ D:\Journey\Data\Journey.Data\bin\Debug\net5.0\Journey.Data.Models.dll
 D:\Journey\Data\Journey.Data\bin\Debug\net5.0\Journey.Common.pdb
 D:\Journey\Data\Journey.Data\bin\Debug\net5.0\Journey.Data.Common.pdb
 D:\Journey\Data\Journey.Data\bin\Debug\net5.0\Journey.Data.Models.pdb
-D:\Journey\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.csprojAssemblyReference.cache
 D:\Journey\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.GeneratedMSBuildEditorConfig.editorconfig
 D:\Journey\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.AssemblyInfoInputs.cache
 D:\Journey\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.AssemblyInfo.cs
@@ -44,3 +43,4 @@ C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\J
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Data\Journey.Data\obj\Debug\net5.0\ref\Journey.Data.dll
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.pdb
 C:\Users\Stormlight\Downloads\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Journey-33d31a1fe7e231557ac487a9899c58ee18cad3c0\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.genruntimeconfig.cache
+D:\Journey\Data\Journey.Data\obj\Debug\net5.0\Journey.Data.csproj.AssemblyReference.cache

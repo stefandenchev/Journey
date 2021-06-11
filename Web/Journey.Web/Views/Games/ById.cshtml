@@ -4,6 +4,7 @@
     this.ViewData["Title"] = Model.Title;
 }
 
+
 <link href="~/css/gamestore_subs_detail.css" rel="stylesheet" asp-append-version="true">
 <link href="~/css/gamestore_globalweb.css" rel="stylesheet" asp-append-version="true">
 
@@ -13,33 +14,31 @@
 <div id="core-rib" class="contained">
     <section id="core-guts" class="stringy fatty">
 
+        <h2 id="core-guts-title">
+            <span class="supported">
+                @if (Model.Drm.Contains("Ubisoft"))
+                {
+                    <b><img src="/images/ubisoft-logo.png" /></b>
+                }
+                else
+                {
+                    <b><img src="/images/icon-serialfor-steam-lt.png" /></b>
+                }
+                <b><img src="/images/icon-platform-lt-win.svg" /></b>
+            </span>
 
-        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <h2 id="core-guts-title">
-                <span class="supported">
-                    @if (Model.Drm.Contains("Ubisoft"))
-                    {
-                        <b><img src="/images/ubisoft-logo.png" /></b>
-                    }
-                    else
-                    {
-                        <b><img src="/images/icon-serialfor-steam-lt.png" /></b>
-                    }
-                    <b><img src="/images/icon-platform-lt-win.svg" /></b>
-                </span>
+            @Model.Title
 
-                @Model.Title
+
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
                 <a asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id" id="editTop" class="btn btn-secondary btn-sm">EDIT</a>
                 <a asp-controller="Games" asp-action="ExportToJson" asp-route-id="@Model.Id" id="editTop" class="btn btn-secondary btn-sm">TO JSON</a>
-            </h2>
-        }
-        else
-        {
-            <h2 id="core-guts-title">
-                <span class="supported"><b><img src="/images/icon-platform-lt-win.svg" /></b></span>@Model.Title
-            </h2>
-        }
+            }
+
+
+        </h2>
+
 
         <div class="rift nuts">
             <div id="detail-badge" class="boxed">
@@ -123,6 +122,112 @@
                     </ul>
                 </div>
 
+            </div>
+        </div>
+
+        <div class="rift">
+            <div id="detail-stars" class="boxed">
+                <p id="rate-title">RATING</p>
+
+
+                <ul class="item-rating">
+
+                    @if (Model.AverageVote < 1)
+                    {
+                        <li id="star-li" class="star-empty fa-2x" data-vote="1"><i id="star" class="fas fa-star"></i></li>
+                    }
+                    else
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="1"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+                    @if (Model.AverageVote <= 1)
+                    {
+                        <li id="star-li" class="star-empty fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+                    else if (Model.AverageVote > 1 && Model.AverageVote <= 1.5)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star-half-alt"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+                    else if (Model.AverageVote > 1.5 && Model.AverageVote <= 2)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+
+                    else if (Model.AverageVote > 2 && Model.AverageVote <= 2.5)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star-half-alt"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+                    else if (Model.AverageVote > 2.5 && Model.AverageVote <= 3)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+
+                    else if (Model.AverageVote > 3 && Model.AverageVote <= 3.5)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="4"><i id="star" class="fas fa-star-half-alt"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+                    else if (Model.AverageVote > 3.5 && Model.AverageVote <= 4)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-empty fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+
+                    else if (Model.AverageVote > 4 && Model.AverageVote <= 4.5)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="5"><i id="star" class="fas fa-star-half-alt"></i></li>
+                    }
+
+                    else if (Model.AverageVote > 4.5)
+                    {
+                        <li id="star-li" class="star-fill fa-2x" data-vote="2"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="3"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="4"><i id="star" class="fas fa-star"></i></li>
+                        <li id="star-li" class="star-fill fa-2x" data-vote="5"><i id="star" class="fas fa-star"></i></li>
+                    }
+
+
+                    @if (Model.AverageVote % 1 == 0)
+                    {
+
+                        <li id="star-rating"><span id="averageVoteValue">@Model.AverageVote.ToString()</span><span> / 5</span> </li>
+                    }
+                    else
+                    {
+                        <li id="star-rating"><span id="averageVoteValue">@Model.AverageVote.ToString("0.0")</span><span> / 5</span> </li>
+                    }
+
+                </ul>
             </div>
         </div>
 
@@ -211,6 +316,7 @@
             </div>
         </div>
 
+
         <div id="detail-sysreqs" class="boxed raft">
 
             <h3 id="requirements-section">Requirements</h3><div class="section wabit">
@@ -253,3 +359,35 @@
 
     </section>
 </div>
+
+
+<form method="post" id="antiForgeryForm"></form>
+@section Scripts {
+    <script>
+        $("li[data-vote]").each(function (el) {
+            $(this).click(function () {
+                var value = $(this).attr("data-vote");
+                var gameId = @Model.Id;
+                var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
+                var data = { gameId: gameId, value: value };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Votes",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': antiForgeryToken
+                    },
+                    success: function (data) {
+                        $('#averageVoteValue').html(data.averageVote.toFixed(1));
+                        location.reload(true);
+                    },
+
+                });
+
+
+            })
+        });
+    </script>
+}

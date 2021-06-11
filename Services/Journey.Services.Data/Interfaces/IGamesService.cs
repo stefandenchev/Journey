@@ -23,5 +23,7 @@
         Task CreateAsync(CreateGameInputModel input, string imagePath);
 
         Task UpdateAsync(int id, EditGameInputModel input);
+
+        IEnumerable<T> GetCurated<T>(int count = 12);
     }
 }

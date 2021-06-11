@@ -18,9 +18,10 @@
 
         public IActionResult Index()
         {
-            var viewModel = new LatestReleasesViewModel
+            var viewModel = new HomeGamesViewModel
             {
-                Games = this.gamesService.GetLatest<GameInListViewModel>(),
+                Lastest = new LatestReleasesViewModel { Games = this.gamesService.GetLatest<GameInListViewModel>() },
+                Curated = new CuratedGamesViewModel { Games = this.gamesService.GetCurated<GameInListViewModel>() },
             };
 
             return this.View(viewModel);
@@ -39,6 +40,11 @@
         }
 
         public IActionResult NotFound()
+        {
+            return this.View();
+        }
+
+        public IActionResult About()
         {
             return this.View();
         }

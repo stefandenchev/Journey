@@ -13,7 +13,6 @@
     <div class="container">
         <h2>Your @ViewBag.Title</h2>
 
-
         <div class="container">
             <section id="core-guts" class="stringy fatty">
                 <div id="cart-block-wrap" class="contentbox raft">
@@ -39,7 +38,7 @@
             </section>
         </div>
 
-        <h4>Select a Payment Method</h4>
+        <h4 id="payment-select">Select a Payment Method</h4>
         @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
         {
             <div class="col-md-3">

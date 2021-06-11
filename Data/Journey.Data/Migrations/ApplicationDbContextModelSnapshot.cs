@@ -147,9 +147,6 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CVV")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CardNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -570,6 +567,37 @@ namespace Journey.Data.Migrations
                     b.ToTable("UserCartItems");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn_17114092")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte>("Value")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Wishlist", b =>
                 {
                     b.Property<int>("Id")
@@ -838,6 +866,23 @@ namespace Journey.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.Vote", b =>
+                {
+                    b.HasOne("Journey.Data.Models.Game", "Game")
+                        .WithMany("Votes")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "User")
+                        .WithMany("Votes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Game");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Wishlist", b =>
                 {
                     b.HasOne("Journey.Data.Models.Game", "Game")
@@ -913,6 +958,8 @@ namespace Journey.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
@@ -922,6 +969,8 @@ namespace Journey.Data.Migrations
                     b.Navigation("Languages");
 
                     b.Navigation("Tags");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Genre", b =>

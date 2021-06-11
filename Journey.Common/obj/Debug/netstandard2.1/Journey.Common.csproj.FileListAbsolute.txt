@@ -6,4 +6,4 @@ D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.AssemblyInfo.c
 D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.csproj.CoreCompileInputs.cache
 D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.dll
 D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.pdb
-D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.csprojAssemblyReference.cache
+D:\Journey\Journey.Common\obj\Debug\netstandard2.1\Journey.Common.csproj.AssemblyReference.cache
