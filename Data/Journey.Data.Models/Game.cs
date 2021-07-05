@@ -29,12 +29,6 @@
 
         public virtual Genre Genre { get; set; }
 
-        public virtual ICollection<GameLanguage> Languages { get; set; }
-
-        public virtual ICollection<GameTag> Tags { get; set; }
-
-        public virtual ICollection<Image> Images { get; set; }
-
         public string Drm { get; set; } = "Steam";
 
         public string MininumRequirements { get; set; }
@@ -43,7 +37,19 @@
 
         public decimal Price { get; set; }
 
+        public decimal CurrentPrice { get; set; }
+
         public string OriginalUrl { get; set; }
+
+        public bool IsOnSale { get; set; }
+
+        public int SalePercentage { get; set; }
+
+        public virtual ICollection<GameLanguage> Languages { get; set; }
+
+        public virtual ICollection<GameTag> Tags { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
     }

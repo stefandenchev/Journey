@@ -38,6 +38,10 @@
 
         public decimal Price { get; set; }
 
+        public decimal CurrentPrice { get; set; }
+
+        public int SalePercentage { get; set; }
+
         public string OriginalUrl { get; set; }
 
         public bool IsInUserCart { get; set; }
@@ -45,6 +49,8 @@
         public bool IsInUserWishlist { get; set; }
 
         public bool IsInUserLibrary { get; set; }
+
+        public bool IsOnSale { get; set; }
 
         public double AverageVote { get; set; }
 

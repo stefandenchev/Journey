@@ -108,7 +108,7 @@
                 var gameIds = this.db.OrderItems.Where(x => x.OrderId == order.Id).Select(x => x.GameId).ToList();
 
                 var orderGames = this.gamesService.GetAll<GameInListViewModel>().Where(g => gameIds.Contains(g.Id));
-                var total = orderGames.Sum(g => g.Price);
+                var total = orderGames.Sum(g => g.CurrentPrice);
                 List<GameInListViewModel> gameThumbs = orderGames.Select(g => new GameInListViewModel { Id = g.Id, ImageUrl = g.ImageUrl }).ToList();
 
                 viewModel.Orders.Add(new OrdersViewModel

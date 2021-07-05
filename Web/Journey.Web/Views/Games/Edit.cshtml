@@ -1,5 +1,5 @@
 ﻿@model Journey.Web.ViewModels.Games.Edit.EditGameInputModel
-@{ 
+@{
     ViewData["Title"] = "Edit game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
     var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key));
@@ -17,6 +17,7 @@
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
             </div>
+
             <div class="col-2">
                 <div class="form-group">
                     <label asp-for="Price"></label>
@@ -24,6 +25,38 @@
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="IsOnSale"></label>
+                    <input asp-for="IsOnSale" class="form-control" />
+                    <span asp-validation-for="IsOnSale" class="text-danger"></span>
+                </div>
+            </div>
+
+            @if (Model.IsOnSale)
+            {
+                <div class="col-2" id="Percentage">
+                    <div class="form-group">
+                        <label asp-for="SalePercentage"></label>
+                        <input asp-for="SalePercentage" class="form-control" />
+                        <span asp-validation-for="SalePercentage" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-2" id="Percentage" style="display:none">
+                    <div class="form-group">
+                        <label asp-for="SalePercentage"></label>
+                        <input asp-for="SalePercentage" class="form-control" />
+                        <span asp-validation-for="SalePercentage" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+
         </div>
 
         <div class="form-group">
@@ -72,3 +105,12 @@
 
     </form>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#IsOnSale').change(function () {
+            $('#Percentage').toggle($(this).is(':checked'));
+        });
+    });
+</script>

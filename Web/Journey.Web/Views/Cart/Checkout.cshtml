@@ -25,7 +25,7 @@
                                     <td class="details">
                                         <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
                                     </td>
-                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.CurrentPrice</em></span></td>
                                 </tr>
                             }
                             <tr class="grandtotal bortop">

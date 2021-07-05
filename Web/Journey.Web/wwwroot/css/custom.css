@@ -109,7 +109,11 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-left: 1em
 }
 
-/* CREATE GAME (NOT ALL)*/
+#price-bar{
+    font-size:1.3em;
+}
+
+/* CREATE/EDIT GAME (NOT ALL)*/
 #ReleaseDate {
     color: #BBC3C0;
     padding-left: 20px
@@ -150,6 +154,11 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
 #container-main > main > div > form > input.btn.btn-primary {
     border-radius: 6px;
 }
+
+#IsOnSale{
+    height:25px
+}
+
 /*---------------------*/
 span.price {
     margin-right: 5px
@@ -236,6 +245,10 @@ nav a {
 
 #LatestGamesTitle {
     text-align: center
+}
+
+.right{
+    margin-bottom: 0.4em;
 }
 
 .dropdown-submenu {
@@ -525,7 +538,7 @@ a.btn-buy.return {
     color: #c77f2b !important;
 }
 
-/* FOR CART */
+/* CART */
 #cart-block-wrap {
     display: block;
     clear: left;

@@ -46,7 +46,7 @@
             List<GameInCartViewModel> games = this.GetGamesFromCart(userId);
             viewModel.GamesInCart = games;
 
-            viewModel.Total = games.Sum(g => g.Price);
+            viewModel.Total = games.Sum(g => g.CurrentPrice);
 
             return this.View(viewModel);
         }
@@ -120,7 +120,7 @@
 
             viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
 
-            viewModel.Total = games.Sum(g => g.Price);
+            viewModel.Total = games.Sum(g => g.CurrentPrice);
 
             return this.View(viewModel);
         }
@@ -141,7 +141,7 @@
                     UserId = userId,
                     PurchaseDate = DateTime.Now,
                     CreditCardId = model.PaymentMethodId,
-                    Total = model.GamesInCart.Sum(x => x.Price),
+                    Total = model.GamesInCart.Sum(x => x.CurrentPrice),
                 };
 
                 this.db.Orders.Add(newOrder);
@@ -207,7 +207,7 @@
 
             model.GamesInCart = this.GetGamesFromLastOrder(userId, latestOrder);
 
-            model.Total = model.GamesInCart.Sum(g => g.Price);
+            model.Total = model.GamesInCart.Sum(g => g.CurrentPrice);
 
             return this.View(model);
         }
@@ -236,7 +236,7 @@
 
             model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
 
-            model.Total = model.GamesInCart.Sum(g => g.Price);
+            model.Total = model.GamesInCart.Sum(g => g.CurrentPrice);
 
             return this.View("OrderComplete", model);
         }

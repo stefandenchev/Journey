@@ -16,6 +16,8 @@
 
         public decimal Price { get; set; }
 
+        public decimal CurrentPrice { get; set; }
+
         public string GameKey { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

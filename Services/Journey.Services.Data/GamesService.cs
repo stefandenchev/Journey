@@ -153,6 +153,19 @@
             game.GenreId = input.GenreId;
             game.PublisherId = input.PublisherId;
 
+            game.IsOnSale = input.IsOnSale;
+            game.SalePercentage = input.SalePercentage;
+
+            if (game.IsOnSale)
+            {
+                game.CurrentPrice = game.Price - (game.Price * input.SalePercentage / 100);
+            }
+            else
+            {
+                game.SalePercentage = 0;
+                game.CurrentPrice = game.Price;
+            }
+
             await this.gamesRepository.SaveChangesAsync();
         }
 
@@ -167,8 +180,11 @@
 
         public IEnumerable<T> GetCurated<T>(int count = 12)
         {
-            var idList = new List<int> { 472, 555, 569, 575, 578, 579,
-                                         580, 581, 583, 585, 586, 587 };
+            var idList = new List<int>
+            {
+                472, 555, 569, 575, 578, 579,
+                580, 581, 583, 585, 586, 587,
+            };
 
             var games = this.gamesRepository.AllAsNoTracking()
                 .Where(t => idList.Contains(t.Id))

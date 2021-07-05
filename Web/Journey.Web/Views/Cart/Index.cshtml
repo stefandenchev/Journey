@@ -24,7 +24,7 @@
                                     <td class="details">
                                         <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
                                     </td>
-                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.CurrentPrice</em></span></td>
                                     <td class="remove" onclick="removeItem(@item.Id)"><a class="drop-product"><img src="/images/icon-delete-lt.png" width="14" height="14" title="Remove" /></a></td>
                                 </tr>
                             }

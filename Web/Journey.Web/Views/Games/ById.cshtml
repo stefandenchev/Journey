@@ -51,7 +51,15 @@
                     }
                     else
                     {
-                        <div class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
+                        if (Model.IsOnSale)
+                        {
+                            <div id="price-bar"><span class="save">@Model.SalePercentage<i>%</i></span><div class="onsale"><span class="price"><em><i>€</i>@Model.CurrentPrice</em><span class="was"><i>€</i>@Model.Price</span></span></div></div>
+
+                        }
+                        else
+                        {
+                            <div id="price-bar" class="normal"><span class="price"><em><i>€</i>@Model.Price</em></span></div>
+                        }
                     }
                 </div>
 
@@ -348,14 +356,9 @@
                 </table>
             </div><center></center>
 
-
-
-
         </div>
 
         <vc:same-publisher-games-list publisher-name="@Model.PublisherName" current-game="@Model.Title"></vc:same-publisher-games-list>
-
-
 
     </section>
 </div>
@@ -385,8 +388,6 @@
                     },
 
                 });
-
-
             })
         });
     </script>

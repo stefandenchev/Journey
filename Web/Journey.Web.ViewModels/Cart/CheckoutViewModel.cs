@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using Journey.Data.Models;
-
     public class CheckoutViewModel : CartViewModel
     {
         public int PaymentMethodId { get; set; }
