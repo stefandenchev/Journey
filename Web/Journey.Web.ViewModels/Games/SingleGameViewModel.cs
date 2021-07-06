@@ -8,10 +8,8 @@
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class SingleGameViewModel : IMapFrom<Game>, IHaveCustomMappings
+    public class SingleGameViewModel : GameBaseViewModel, IMapFrom<Game>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -54,7 +52,7 @@
 
         public double AverageVote { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public new void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Game, SingleGameViewModel>()
                .ForMember(x => x.AverageVote, opt =>

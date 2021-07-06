@@ -6,8 +6,9 @@
 
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Games;
 
-    public class OrdersViewModel : IMapFrom<Order>
+    public class ProfileOrderViewModel : IMapFrom<Order>
     {
         public string Id { get; set; }
 
@@ -23,6 +24,6 @@
         [Display(Name = "Total")]
         public decimal Total { get; set; }
 
-        public List<GameInListViewModel> Games { get; set; }
+        public List<GameThumbViewModel> Games { get; set; }
     }
 }

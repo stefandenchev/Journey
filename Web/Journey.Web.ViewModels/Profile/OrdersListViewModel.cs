@@ -4,7 +4,7 @@
 
     public class OrdersListViewModel
     {
-        public ICollection<OrdersViewModel> Orders { get; set; }
+        public ICollection<ProfileOrderViewModel> Orders { get; set; }
 
         public decimal Total { get; set; }
     }

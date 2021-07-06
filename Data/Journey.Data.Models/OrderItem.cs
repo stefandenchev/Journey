@@ -13,5 +13,7 @@
         public Game Game { get; set; }
 
         public string GameKey { get; set; }
+
+        public decimal PriceOnPurchase { get; set; }
     }
 }

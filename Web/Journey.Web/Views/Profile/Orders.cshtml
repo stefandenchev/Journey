@@ -63,7 +63,7 @@
                     @foreach (var tile in item.Games)
                     {
                         <div class="col">
-                            <a href="@Url.Action("ById", "Games", new { Id = tile.Id })"><img src="@(tile.ImageUrl)" class="img-thumbnail" alt="Game Cover" width="120" title="To Game Page" /></a>
+                            <a asp-controller="Games" asp-action="ById" asp-route-id="@tile.Id"><img src="@(tile.ImageUrl)" class="img-thumbnail" alt="Game Cover" width="120" title="To Game Page" /></a>
                         </div>
                     }
                 </div>

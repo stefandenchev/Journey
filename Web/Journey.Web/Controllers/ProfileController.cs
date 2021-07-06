@@ -7,8 +7,8 @@
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
-    using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Cart;
+    using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -101,22 +101,26 @@
             var games = this.db.Games;
 
             OrdersListViewModel viewModel = new();
-            viewModel.Orders = new List<OrdersViewModel>();
+            viewModel.Orders = new List<ProfileOrderViewModel>();
 
             foreach (var order in orders)
             {
                 var gameIds = this.db.OrderItems.Where(x => x.OrderId == order.Id).Select(x => x.GameId).ToList();
 
-                var orderGames = this.gamesService.GetAll<GameInListViewModel>().Where(g => gameIds.Contains(g.Id));
-                var total = orderGames.Sum(g => g.CurrentPrice);
-                List<GameInListViewModel> gameThumbs = orderGames.Select(g => new GameInListViewModel { Id = g.Id, ImageUrl = g.ImageUrl }).ToList();
+                var orderGames = this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id));
+                var total = orderGames.Sum(g => g.PriceOnPurchase);
 
-                viewModel.Orders.Add(new OrdersViewModel
+                var currentOrderItems = this.ordersService.GetAllOrderItems<OrderItemViewModel>().Where(g => gameIds.Contains(g.GameId));
+                var currentTotal = currentOrderItems.Sum(g => g.PriceOnPurchase);
+
+                List<GameThumbViewModel> gameThumbs = orderGames.Select(g => new GameThumbViewModel { Id = g.Id, ImageUrl = g.ImageUrl }).ToList();
+
+                viewModel.Orders.Add(new ViewModels.Profile.ProfileOrderViewModel
                 {
                     Id = order.Id,
                     OrderPlaced = order.PurchaseDate,
                     ItemNumber = orderItems.Where(oi => oi.OrderId == order.Id).Count(),
-                    Total = total,
+                    Total = currentTotal,
                     Games = gameThumbs,
                 });
 

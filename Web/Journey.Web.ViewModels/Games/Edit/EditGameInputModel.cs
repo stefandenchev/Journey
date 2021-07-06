@@ -5,7 +5,7 @@
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class EditGameInputModel : BaseGameInputModel, IMapFrom<Game>
+    public class EditGameInputModel : GameBaseInputModel, IMapFrom<Game>
     {
         public int Id { get; set; }
 

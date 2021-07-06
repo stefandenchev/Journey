@@ -148,7 +148,7 @@
 
                 foreach (var game in model.GamesInCart)
                 {
-                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = RandomKeyGen() });
+                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = RandomKeyGen(), PriceOnPurchase = game.CurrentPrice });
                 }
 
                 // if any of the games bought were in the user's wish list, remove them from there
@@ -207,7 +207,7 @@
 
             model.GamesInCart = this.GetGamesFromLastOrder(userId, latestOrder);
 
-            model.Total = model.GamesInCart.Sum(g => g.CurrentPrice);
+            model.Total = model.GamesInCart.Sum(g => g.PriceOnPurchase);
 
             return this.View(model);
         }
@@ -236,7 +236,7 @@
 
             model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
 
-            model.Total = model.GamesInCart.Sum(g => g.CurrentPrice);
+            model.Total = model.GamesInCart.Sum(g => g.PriceOnPurchase);
 
             return this.View("OrderComplete", model);
         }
@@ -316,6 +316,7 @@
             foreach (var game in gamesToReturn)
             {
                 game.GameKey = orderItems.FirstOrDefault(x => x.GameId == game.Id).GameKey;
+                game.PriceOnPurchase = orderItems.FirstOrDefault(x => x.GameId == game.Id).PriceOnPurchase;
             }
 
             return gamesToReturn;

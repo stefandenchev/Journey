@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public abstract class BaseGameInputModel
+    public abstract class GameBaseInputModel
     {
         [Required]
         [MinLength(3)]

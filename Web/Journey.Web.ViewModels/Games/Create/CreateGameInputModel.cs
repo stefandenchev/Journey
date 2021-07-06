@@ -6,7 +6,7 @@
 
     using Microsoft.AspNetCore.Http;
 
-    public class CreateGameInputModel : BaseGameInputModel
+    public class CreateGameInputModel : GameBaseInputModel
     {
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }

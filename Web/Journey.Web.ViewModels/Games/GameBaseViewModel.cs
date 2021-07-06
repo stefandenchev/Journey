@@ -1,4 +1,4 @@
-﻿namespace Journey.Web.ViewModels.Cart
+﻿namespace Journey.Web.ViewModels.Games
 {
     using System.Linq;
 
@@ -6,25 +6,15 @@
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class GameInCartViewModel : IMapFrom<Game>, IHaveCustomMappings
+    public abstract class GameBaseViewModel : IMapFrom<Game>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
         public string ImageUrl { get; set; }
-
-        public decimal Price { get; set; }
-
-        public decimal CurrentPrice { get; set; }
-
-        public decimal PriceOnPurchase { get; set; }
-
-        public string GameKey { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Game, GameInCartViewModel>()
+            configuration.CreateMap<Game, GameInListViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                 opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl != null ?
                 x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :

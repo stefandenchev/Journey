@@ -4,14 +4,16 @@ using Journey.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Journey.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210706082515_AddPriceOnPurchaseForOrderItems")]
+    partial class AddPriceOnPurchaseForOrderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -852,7 +854,7 @@ namespace Journey.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Journey.Data.Models.Order", "Order")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("OrderId");
 
                     b.Navigation("Game");
@@ -992,11 +994,6 @@ namespace Journey.Data.Migrations
             modelBuilder.Entity("Journey.Data.Models.Language", b =>
                 {
                     b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Journey.Data.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Journey.Data.Models.Publisher", b =>
