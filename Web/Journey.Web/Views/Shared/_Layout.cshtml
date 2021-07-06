@@ -121,15 +121,11 @@
                                 </ul>
 
                                 @* @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                {
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
-                </li>
-                }*@
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="About">About</a>
-                            </li>
+                                    {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    </li>
+                                    }*@
 
                         </ul>
                     </div>
@@ -146,24 +142,15 @@
         </div>
     </div>
 
-
-
     <footer class="footer" id="footerMain">
         <div id="footerContainer" class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName -
-            <a asp-area="Home" asp-controller="Home" asp-action="About">About</a>
+            &copy; @DateTime.Now.Year -
+            <a asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
             <i id="gitHubLogo">
                 <a id="git-hub-logo" href="https://github.com/stefandenchev">Github &nbsp;<i class="fab fa-github fa-lg"></i></a>
             </i>
-
-            @*<i class="credits">
-                    Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i>
-                    <br id="creditsBreak" />
-                    Made with the <a href="https://github.com/NikolayIT/ASP.NET-Core-Template"> ASP.NET-Core-Template</a>
-                </i>*@
         </div>
     </footer>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

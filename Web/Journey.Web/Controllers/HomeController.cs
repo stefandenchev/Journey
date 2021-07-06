@@ -44,9 +44,9 @@
             return this.View();
         }
 
-        public IActionResult About()
+/*        public IActionResult About()
         {
             return this.View();
-        }
+        }*/
     }
 }

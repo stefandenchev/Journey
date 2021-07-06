@@ -128,17 +128,12 @@
                                     </li>
                                     }*@
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="Home" asp-controller="Home" asp-action="About">About</a>
-                            </li>
-
                         </ul>
                     </div>
                 </div>
             </nav>
 
         </header>
-
 
         <partial name="_CookieConsentPartial" />
         <div class="container">
@@ -149,12 +144,14 @@
     </div>
 
     <footer class="footer" id="footerMain">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName &nbsp; <a id="git-hub-logo" href="https://github.com/stefandenchev"><i class="fab fa-github fa-lg"></i></a>
-            <i class="credit">Inspired by the <a href="https://www.wingamestore.com/"> wingamestore.com</a> <i id="whoops">(Thanks for unbanning me!)</i></i>
+        <div id="footerContainer" class="container">
+            &copy; @DateTime.Now.Year -
+            <a asp-area="Home" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+            <i id="gitHubLogo">
+                <a id="git-hub-logo" href="https://github.com/stefandenchev">Github &nbsp;<i class="fab fa-github fa-lg"></i></a>
+            </i>
         </div>
     </footer>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

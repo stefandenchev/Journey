@@ -27,10 +27,10 @@
                         <a asp-action="Index" asp-route-sortOrder="@ViewBag.TagSortParam">Tag</a>
                     </th>
                     <th>
-                        CreatedOn_17114092
+                        CreatedOn
                     </th>
                     <th>
-                        ModifiedOn_17114092
+                        ModifiedOn
                     </th>
                     <th>
                         Options
@@ -48,10 +48,10 @@
                             @Html.DisplayFor(modelItem => item.Tag.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CreatedOn_17114092)
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ModifiedOn_17114092)
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

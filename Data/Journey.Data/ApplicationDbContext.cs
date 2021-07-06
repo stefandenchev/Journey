@@ -52,7 +52,7 @@
 
         public DbSet<Vote> Votes { get; set; }
 
-        public DbSet<Log> Logs_17114092 { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -100,8 +100,6 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-
-            builder.HasDefaultSchema("17114092");
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
@@ -125,13 +123,13 @@
             foreach (var entry in changedEntries)
             {
                 var entity = (IAuditInfo)entry.Entity;
-                if (entry.State == EntityState.Added && entity.CreatedOn_17114092 == default)
+                if (entry.State == EntityState.Added && entity.CreatedOn == default)
                 {
-                    entity.CreatedOn_17114092 = DateTime.UtcNow;
+                    entity.CreatedOn = DateTime.UtcNow;
                 }
                 else
                 {
-                    entity.ModifiedOn_17114092 = DateTime.UtcNow;
+                    entity.ModifiedOn = DateTime.UtcNow;
                 }
             }
         }

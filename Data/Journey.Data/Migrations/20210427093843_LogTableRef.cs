@@ -51,7 +51,7 @@ namespace Journey.Data.Migrations
                 name: "DateOfChange",
                 schema: "17114092",
                 table: "Logs_17114092",
-                newName: "CreatedOn_17114092");
+                newName: "CreatedOn");
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "ModifiedOn_17114092",

@@ -10,6 +10,6 @@
 
         public string OperationType { get; set; }
 
-        public DateTime DateOfChange_17114092 { get; set; }
+        public DateTime DateOfChange { get; set; }
     }
 }

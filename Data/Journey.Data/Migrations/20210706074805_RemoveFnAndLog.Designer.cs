@@ -4,14 +4,16 @@ using Journey.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Journey.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210706074805_RemoveFnAndLog")]
+    partial class RemoveFnAndLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace Journey.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -37,7 +39,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -72,7 +74,7 @@ namespace Journey.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -94,7 +96,7 @@ namespace Journey.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NormalizedEmail")
@@ -149,7 +151,7 @@ namespace Journey.Data.Migrations
                     b.Property<string>("CardNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -161,7 +163,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -183,7 +185,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("CurrentPrice")
@@ -210,7 +212,7 @@ namespace Journey.Data.Migrations
                     b.Property<string>("MininumRequirements")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OriginalUrl")
@@ -252,7 +254,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GameId")
@@ -261,7 +263,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -280,13 +282,13 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TagId")
@@ -308,7 +310,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -317,7 +319,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -335,7 +337,7 @@ namespace Journey.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
@@ -344,7 +346,7 @@ namespace Journey.Data.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OriginalUrl")
@@ -367,7 +369,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -376,7 +378,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -389,39 +391,18 @@ namespace Journey.Data.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("Journey.Data.Models.Log", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateOfChange")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OperationType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TableName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logs");
-                });
-
             modelBuilder.Entity("Journey.Data.Models.Order", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreditCardId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("PurchaseDate")
@@ -449,7 +430,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -464,7 +445,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OrderId")
@@ -488,7 +469,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -497,7 +478,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -517,7 +498,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -526,7 +507,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -546,7 +527,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -558,7 +539,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -582,13 +563,13 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -613,7 +594,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -625,7 +606,7 @@ namespace Journey.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn_17114092")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")

@@ -103,7 +103,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,TagId,Id,CreatedOn_17114092,ModifiedOn_17114092")] GameTag gameTag)
+        public async Task<IActionResult> Create([Bind("GameId,TagId,Id,CreatedOn,ModifiedOn")] GameTag gameTag)
         {
             if (this.ModelState.IsValid)
             {
@@ -133,7 +133,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,TagId,Id,CreatedOn_17114092,ModifiedOn_17114092")] GameTagAdminInputModel input)
+        public async Task<IActionResult> Edit(int id, [Bind("GameId,TagId,Id,CreatedOn,ModifiedOn")] GameTagAdminInputModel input)
         {
             if (!this.ModelState.IsValid)
             {

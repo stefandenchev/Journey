@@ -47,7 +47,7 @@ namespace Journey.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TableName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OperationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn_17114092 = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn_17114092 = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
