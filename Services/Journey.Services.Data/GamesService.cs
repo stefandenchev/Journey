@@ -158,7 +158,7 @@
 
             if (game.IsOnSale)
             {
-                game.CurrentPrice = game.Price - (game.Price * input.SalePercentage / 100);
+                game.CurrentPrice = game.Price - Math.Ceiling(game.Price * input.SalePercentage / 100);
             }
             else
             {

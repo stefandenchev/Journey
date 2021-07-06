@@ -74,8 +74,8 @@ div.validation-summary-errors {
     font-style: normal;
 }
 
-#cart-icon-main > label > img{
-    margin-top:6px
+#cart-icon-main > label > img {
+    margin-top: 6px
 }
 
 #whoops {
@@ -109,8 +109,8 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-left: 1em
 }
 
-#price-bar{
-    font-size:1.3em;
+#price-bar {
+    font-size: 1.3em;
 }
 
 /* CREATE/EDIT GAME (NOT ALL)*/
@@ -124,16 +124,16 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 15px;
 }
 
-#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images {
+#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images, #SalePercentage {
     background: #141022 !important;
     border: 1px solid #3b3048 !important;
 }
 
-#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price {
+#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price, #SalePercentage {
     padding-left: 0.8em
 }
 
-#GenreId, #PublisherId, #PaymentMethodId {
+#GenreId, #PublisherId, #PaymentMethodId, #SalePercentage {
     border: 1px solid #3b3048;
     height: 45px;
     background: #141022;
@@ -155,8 +155,8 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     border-radius: 6px;
 }
 
-#IsOnSale{
-    height:25px
+#IsOnSale {
+    height: 25px
 }
 
 /*---------------------*/
@@ -202,7 +202,7 @@ nav a {
     right: auto !important;
     background: #121015;
     height: 4rem;
-    margin-top:2em !important
+    margin-top: 2em !important
 }
 
 #paginationMain {
@@ -247,7 +247,7 @@ nav a {
     text-align: center
 }
 
-.right{
+.right {
     margin-bottom: 0.4em;
 }
 
@@ -382,6 +382,10 @@ a.atitle {
 
 a {
     color: #e08821;
+}
+
+#noGames {
+    margin-top: 1em;
 }
 
 #searchInput {
@@ -892,7 +896,7 @@ hr {
 }
 
     #GameId > option, #LanguageId > option, #TagId > option {
-        color:#C5C3C0
+        color: #C5C3C0
     }
 
 .table-hover tbody tr:hover {

@@ -305,7 +305,7 @@
         private List<GameInCartViewModel> GetGamesFromLastOrder(string userId, Order lastestOrder)
         {
             List<OrderItem> orderItems = this.db.OrderItems.Where(oi => oi.OrderId == lastestOrder.Id).ToList();
-            List<int> gameIds = new List<int>();
+            List<int> gameIds = new();
 
             foreach (var oi in orderItems)
             {

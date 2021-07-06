@@ -344,7 +344,7 @@
             {
                 actualGenre = detailElements[1].TextContent[6..].Split(", ", StringSplitOptions.RemoveEmptyEntries)[0];
 
-                Genre genre = new Genre
+                Genre genre = new()
                 {
                     Name = actualGenre,
                 };
@@ -354,7 +354,7 @@
             else
             {
                 actualGenre = detailElements[1].TextContent[5..];
-                Genre genre = new Genre
+                Genre genre = new()
                 {
                     Name = actualGenre,
                 };
@@ -432,7 +432,7 @@
             // NEW DESCRIPTION
             var description = document.QuerySelectorAll(".section.txtlists");
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             foreach (var node in description)
             {
                 sb.AppendLine(this.Stringify(node));
@@ -452,7 +452,7 @@
             // MAIN IMAGE
             var main = document.QuerySelector("#detail-badge > div.boxhole.img16x9 > img").GetAttribute("src");
 
-            Image image = new Image
+            Image image = new()
             {
                 OriginalUrl = "https://www.wingamestore.com" + main,
             };
@@ -468,7 +468,7 @@
             {
                 imageResult = item.GetAttribute("src");
 
-                Image image2 = new Image
+                Image image2 = new()
                 {
                     OriginalUrl = "https://www.wingamestore.com" + imageResult,
                 };

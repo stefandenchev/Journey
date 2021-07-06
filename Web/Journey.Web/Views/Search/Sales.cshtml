@@ -1,6 +1,6 @@
-﻿@model Journey.Web.ViewModels.Search.GenreListViewModel
+﻿@model Journey.Web.ViewModels.Search.SalesViewModel
 @{
-    ViewData["Title"] = Model.GenreName + " Games";
+    ViewData["Title"] = "Games on Sale";
     this.Layout = "/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,20 +17,29 @@
     <div class="row">
         @if (ViewBag.TitleSortParam.Contains("title_desc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title <i class="fas fa-arrow-down"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-down"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-g="@Model.GenreName">Sort by title <i class="fas fa-arrow-up"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-up"></i></a>
         }
 
         @if (ViewBag.PriceSortParam.Contains("price_asc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price <i class="fas fa-arrow-up"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price <i class="fas fa-arrow-up"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Genre" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-g="@Model.GenreName">Sort by price <i class="fas fa-arrow-down"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price <i class="fas fa-arrow-down"></i></a>
+        }
+
+        @if (ViewBag.DiscountSortParam.Contains("disc_asc"))
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.DiscountSortParam">Sort by discount <i class="fas fa-arrow-up"></i></a>
+        }
+        else
+        {
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.DiscountSortParam">Sort by discount <i class="fas fa-arrow-down"></i></a>
         }
     </div>
 
@@ -47,7 +56,7 @@
                                 <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
                             <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                            @*                        <div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
+                            @*<div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
                             @if (game.IsOnSale)
                             {
                                 <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
@@ -61,6 +70,6 @@
                 }
             </ul>
         </div>
-        
+
     </div>
 </div>

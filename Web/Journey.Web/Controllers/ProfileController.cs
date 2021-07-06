@@ -48,7 +48,7 @@
         }
 
         [HttpPost]
-        public IActionResult AddCreditCard([FromBody] CreditCard creditCard)
+        public IActionResult AddCreditCard([FromBody] CreateCardInputModel creditCard)
         {
             creditCard.UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -57,15 +57,15 @@
                 string cardNumberFormatted = creditCard.CardNumber.Replace(" ", string.Empty);
                 cardNumberFormatted = string.Format("{0:0000 0000 0000 0000}", long.Parse(cardNumberFormatted));
 
-                if (this.db.CreditCards.Any(x => x.CardNumber == cardNumberFormatted))
+                if (this.creditCardsService.GetAll<CreditCardViewModel>().Any(x => x.CardNumber == cardNumberFormatted))
                 {
                     return this.RedirectToAction("Payment");
                 }
 
                 creditCard.CardNumber = cardNumberFormatted;
 
-                this.db.CreditCards.Add(creditCard);
-                this.db.SaveChanges();
+                this.creditCardsService.CreateAsync(creditCard);
+
                 return this.Json(new { Success = true });
             }
             catch

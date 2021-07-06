@@ -2,11 +2,9 @@
 {
     using System;
 
-    using Journey.Data.Models;
-    using Journey.Services.Mapping;
     using Journey.Web.ViewModels.Games;
 
-    public class GameInListViewModel : GameBaseViewModel, IMapFrom<OrderItem>, IMapFrom<Game>, IHaveCustomMappings
+    public class GameInListViewModel : GameBaseViewModel
     {
         public string Title { get; set; }
 
@@ -23,7 +21,5 @@
         public bool IsOnSale { get; set; }
 
         public int SalePercentage { get; set; }
-
-        public int PriceOnPurchase { get; set; }
     }
 }

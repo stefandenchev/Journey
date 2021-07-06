@@ -1,6 +1,5 @@
 ﻿namespace Journey.Web.Controllers
 {
-    using System;
     using System.Linq;
 
     using Journey.Services.Data.Interfaces;
@@ -25,50 +24,45 @@
         [HttpGet]
         public IActionResult Results(string s, string sortOrder)
         {
+            if (string.IsNullOrEmpty(s))
+            {
+                return this.RedirectPermanent("/Games/All");
+            }
+
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
             this.ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
 
             var viewModel = new SearchListViewModel();
 
-            if (string.IsNullOrEmpty(s))
+            viewModel = new SearchListViewModel
             {
-                viewModel = new SearchListViewModel
-                {
-                    Search = s,
-                    Games = this.searchService.GetAll<GameInListViewModel>(),
-                };
-            }
-            else
+                Search = s,
+                Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                .OrderBy(x => x.Title),
+            };
+
+            if (sortOrder == "title_desc")
             {
-                viewModel = new SearchListViewModel
-                {
-                    Search = s,
-                    Games = this.searchService.GetAll<GameInListViewModel>()
-                    .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                    .OrderBy(x => x.Title),
-                };
-
-                if (sortOrder == "title_desc")
-                {
-                    viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                    .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                    .OrderByDescending(x => x.Title);
-                }
-
-                if (sortOrder == "price_desc")
-                {
-                    viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                    .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                    .OrderByDescending(x => x.Price);
-                }
-
-                if (sortOrder == "price_asc")
-                {
-                    viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                    .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                    .OrderBy(x => x.Price);
-                }
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                .OrderByDescending(x => x.Title);
             }
+
+            if (sortOrder == "price_desc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                .OrderByDescending(x => x.Price);
+            }
+
+            if (sortOrder == "price_asc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.Title.ToLower().Contains(s.ToLower()))
+                .OrderBy(x => x.Price);
+            }
+
 
             return this.View(viewModel);
         }
@@ -148,5 +142,60 @@
 
             return this.View(viewModel);
         }
+
+        [HttpGet]
+        public IActionResult Sales(string sortOrder)
+        {
+            this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
+            this.ViewBag.PriceSortParam = sortOrder == "price_desc" ? "price_asc" : "price_desc";
+            this.ViewBag.DiscountSortParam = sortOrder == "disc_desc" ? "disc_asc" : "disc_desc";
+
+            var viewModel = new SalesViewModel();
+
+            viewModel = new SalesViewModel
+            {
+                Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderBy(x => x.Title),
+            };
+
+            if (sortOrder == "title_desc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderByDescending(x => x.Title);
+            }
+
+            if (sortOrder == "price_asc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderBy(x => x.CurrentPrice);
+            }
+
+            if (sortOrder == "price_desc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderByDescending(x => x.CurrentPrice);
+            }
+
+            if (sortOrder == "disc_asc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderBy(x => x.SalePercentage);
+            }
+
+            if (sortOrder == "disc_desc")
+            {
+                viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
+                .Where(x => x.IsOnSale)
+                .OrderByDescending(x => x.SalePercentage);
+            }
+
+            return this.View(viewModel);
+        }
+
     }
 }

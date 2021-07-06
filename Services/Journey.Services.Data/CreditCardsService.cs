@@ -2,12 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Profile;
 
     public class CreditCardsService : ICreditCardsService
     {
@@ -48,6 +50,19 @@
                 .FirstOrDefault(x => x.Id == id);
 
             this.creditCardsRepository.Delete(card);
+            await this.creditCardsRepository.SaveChangesAsync();
+        }
+
+        public async Task CreateAsync(CreateCardInputModel input)
+        {
+            var card = new CreditCard
+            {
+                UserId = input.UserId,
+                CardNumber = input.CardNumber,
+                ExpirationDate = input.ExpirationDate,
+            };
+
+            await this.creditCardsRepository.AddAsync(card);
             await this.creditCardsRepository.SaveChangesAsync();
         }
     }

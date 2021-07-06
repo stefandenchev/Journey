@@ -11,50 +11,65 @@
 <div class="container">
 
     <h1>@ViewData["Title"] - "@Model.Search"</h1>
-    <h4>@this.Model.Games.Count() matching games</h4>
 
-    <div id="slider"></div>
+    @if (Model.Games.Any())
+    {
+        <h4>@this.Model.Games.Count() matching games</h4>
 
-    <div class="row">
-        @if (ViewBag.TitleSortParam.Contains("title_desc"))
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
-        }
-        else
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
-        }
+        <div class="row">
+            @if (ViewBag.TitleSortParam.Contains("title_desc"))
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title <i class="fas fa-arrow-down"></i></a>
+            }
+            else
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-s="@Model.Search">Sort by title <i class="fas fa-arrow-up"></i></a>
+            }
 
-        @if (ViewBag.PriceSortParam.Contains("price_asc"))
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
-        }
-        else
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
-        }
-    </div>
-
-    <hr />
-    <div id="tile-view" class="blockcontent resp4">
-        <div id="tile-results">
-            <ul id="latest-releases" class="products">
-
-                @foreach (var game in this.Model.Games)
-                {
-
-                    <li class="product">
-                        <div class="tilebox-main">
-                            <span class="boxshot" title="@game.Title">
-                                <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
-                            </span>
-                            <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
-                        </div>
-                    </li>
-                }
-            </ul>
+            @if (ViewBag.PriceSortParam.Contains("price_asc"))
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price <i class="fas fa-arrow-up"></i></a>
+            }
+            else
+            {
+                <a class="btn btn-primary" id="order-button" asp-action="Results" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-s="@Model.Search">Sort by price <i class="fas fa-arrow-down"></i></a>
+            }
         </div>
 
-    </div>
+        <hr />
+        <div id="tile-view" class="blockcontent resp4">
+            <div id="tile-results">
+                <ul id="latest-releases" class="products">
+
+                    @foreach (var game in this.Model.Games)
+                    {
+                        <li class="product">
+                            <div class="tilebox-main">
+                                <span class="boxshot" title="@game.Title">
+                                    <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                                </span>
+                                <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
+                                @*                        <div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
+                                @if (game.IsOnSale)
+                                {
+                                    <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                                }
+                                else
+                                {
+                                    <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <h2>Could not find anything! Try typing something else or browse all the games below!</h2>
+        <a class="btn btn-success" id="noGames" asp-area="Home" asp-controller="Games" asp-action="All"><label>Browse All</label><span class="hovit"></span></a>
+    }
+
 </div>

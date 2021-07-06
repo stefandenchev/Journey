@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Journey.Data.Models;
+    using Journey.Web.ViewModels.Profile;
 
     public interface ICreditCardsService
     {
@@ -14,5 +15,7 @@
         T GetByIdToModel<T>(int id);
 
         Task RemoveById(int id);
+
+        Task CreateAsync(CreateCardInputModel input);
     }
 }

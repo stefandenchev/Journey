@@ -17,20 +17,20 @@
     <div class="row">
         @if (ViewBag.TitleSortParam.Contains("title_desc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-p="@Model.PublisherName">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-p="@Model.PublisherName">Sort by title <i class="fas fa-arrow-down"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-p="@Model.PublisherName">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
-        }
-
-        @if (ViewBag.PriceSortParam.Contains("price_asc"))
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-p="@Model.PublisherName">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
-        }
-        else
-        {
-            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-p="@Model.PublisherName">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.TitleSortParam" asp-route-p="@Model.PublisherName">Sort by title <i class="fas fa-arrow-up"></i></a>
+        }                                                                                                                                                                      
+                                                                                                                                                                               
+        @if (ViewBag.PriceSortParam.Contains("price_asc"))                                                                                                                     
+        {                                                                                                                                                                      
+            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-p="@Model.PublisherName">Sort by price <i class="fas fa-arrow-up"></i></a>
+        }                                                                                                                                                                      
+        else                                                                                                                                                                   
+        {                                                                                                                                                                      
+            <a class="btn btn-primary" id="order-button" asp-action="Publisher" asp-route-sortOrder="@ViewBag.PriceSortParam" asp-route-p="@Model.PublisherName">Sort by price <i class="fas fa-arrow-down"></i></a>
         }
     </div>
 
@@ -41,19 +41,26 @@
 
                 @foreach (var game in this.Model.Games)
                 {
-
                     <li class="product">
                         <div class="tilebox-main">
                             <span class="boxshot" title="@game.Title">
                                 <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
                             <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
-                            <div class="tags"><span class="right"><label><span class="price"><em><i>€</i>@game.Price</em></span></label></span></div>
+                            @*                        <div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
+                            @if (game.IsOnSale)
+                            {
+                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                            }
+                            else
+                            {
+                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                            }
                         </div>
                     </li>
                 }
             </ul>
         </div>
-        </
+        
     </div>
 </div>

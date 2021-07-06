@@ -154,7 +154,7 @@
             {
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                List<string> allOrderIds = new List<string>();
+                List<string> allOrderIds = new();
                 var allOrders = this.db.Orders.Where(o => o.UserId == userId);
                 foreach (Order o in allOrders)
                 {
