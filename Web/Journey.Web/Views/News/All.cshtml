@@ -1,0 +1,41 @@
+﻿@using Journey.Common
+@model Journey.Web.ViewModels.News.NewsListViewModel
+@{
+    ViewBag.Title = GlobalConstants.SystemName;
+}
+
+@*@section breadcrumbs {
+        <li><a href="/">Home</a></li>
+    }*@
+
+<div class="container">
+    <div class="wrapper">
+        <div class="blog margin-bottom-40">
+
+            @if (Model.News.Any())
+            {
+                foreach (var post in Model.News)
+                {
+                    <h2>@post.Title</h2>
+                    <div class="blog-post-tags">
+                        <ul class="list-unstyled list-inline blog-info">
+                            <li><i class="fa fa-calendar"></i> @post.CreatedOn.ToString("MMMM dd, yyyy")</li>
+                        </ul>
+                    </div>
+                    <partial name="_ImageOrVideo" model="post" />
+
+                    @Html.Raw(post.Content)
+
+                    <p><a class="btn btn-u btn-u-small"><i class="fa fa-plus"></i> Read More</a></p>
+                    <br />
+                }
+            }
+            else
+            {
+                <h2>Sorry, no recent news found.</h2>
+            }
+        </div>
+
+    </div>
+    <partial name="_PagingPartial" model="@Model" />
+</div>

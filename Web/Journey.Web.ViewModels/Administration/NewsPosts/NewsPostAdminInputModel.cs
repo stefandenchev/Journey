@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.ViewModels.Administration.NewsPosts
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     using Journey.Data.Models;
@@ -18,5 +19,7 @@
         public string ShortContent { get; set; }
 
         public string ImageOrVideoUrl { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

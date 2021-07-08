@@ -22,6 +22,18 @@
             return this.newsRepository.AllAsNoTracking().To<T>().ToList();
         }
 
+        public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 6)
+        {
+            var games = this.newsRepository.AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return games;
+        }
+
         public T GetById<T>(int id)
         {
             var newsPost = this.newsRepository.AllAsNoTracking()
@@ -29,6 +41,11 @@
                 .To<T>().FirstOrDefault();
 
             return newsPost;
+        }
+
+        public int GetCount()
+        {
+            return this.newsRepository.All().Count();
         }
     }
 }

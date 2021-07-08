@@ -4,14 +4,14 @@
 
     public class PagingViewModel
     {
-        public int GamesCount { get; set; }
+        public int ItemsCount { get; set; }
 
         public int PageNumber { get; set; }
 
         public int ItemsPerPage { get; set; }
 
         public int PagesCount
-            => (int)Math.Ceiling((double)this.GamesCount / this.ItemsPerPage);
+            => (int)Math.Ceiling((double)this.ItemsCount / this.ItemsPerPage);
 
         public bool HasPreviousPage
             => this.PageNumber > 1;
