@@ -85,7 +85,7 @@
         }
 
         // GET: Administration/Publishers/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
             var inputModel = this.publishersService.GetById<PublisherAdminInputModel>(id);
 

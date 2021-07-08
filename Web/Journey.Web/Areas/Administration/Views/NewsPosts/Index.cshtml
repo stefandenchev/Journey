@@ -1,0 +1,60 @@
+﻿@model Journey.Web.ViewModels.Administration.NewsPosts.NewsPostsListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body > div.page-container {
+        padding-bottom: 5em;
+    }
+</style>
+
+<div class="page-container">
+    <div class="container">
+        <h1>Index</h1>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam">Name</a>
+                    </th>
+                    <th>
+                        CreatedOn
+                    </th>
+                    <th>
+                        ModifiedOn
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.News)
+                {
+                    <tr>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

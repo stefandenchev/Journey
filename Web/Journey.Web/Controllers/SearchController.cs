@@ -63,7 +63,6 @@
                 .OrderBy(x => x.Price);
             }
 
-
             return this.View(viewModel);
         }
 

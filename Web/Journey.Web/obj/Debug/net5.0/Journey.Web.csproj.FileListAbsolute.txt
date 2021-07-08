@@ -976,3 +976,9 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\NotFound.cshtml.g
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_CuratedPartial.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Journey.Web.csproj.AssemblyReference.cache
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Sales.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\News\Post.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Create.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Delete.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Details.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Edit.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Index.cshtml.g.cs

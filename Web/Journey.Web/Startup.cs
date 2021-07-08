@@ -91,6 +91,9 @@
             services.AddTransient<ICreditCardsService, CreditCardsService>();
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IVotesService, VotesService>();
+            services.AddTransient<INewsUrlGenerator, NewsUrlGenerator>();
+            services.AddTransient<INewsService, NewsService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

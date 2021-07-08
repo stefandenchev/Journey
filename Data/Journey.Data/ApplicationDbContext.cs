@@ -54,6 +54,8 @@
 
         public DbSet<Log> Logs { get; set; }
 
+        public DbSet<NewsPost> NewsPosts { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
