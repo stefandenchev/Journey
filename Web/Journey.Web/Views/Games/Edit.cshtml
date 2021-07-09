@@ -1,4 +1,4 @@
-﻿@model Journey.Web.ViewModels.Games.Edit.EditGameInputModel
+﻿@model EditGameInputModel
 @{
     ViewData["Title"] = "Edit game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));

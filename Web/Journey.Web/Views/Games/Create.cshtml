@@ -1,4 +1,4 @@
-﻿@model Journey.Web.ViewModels.Games.Create.CreateGameInputModel
+﻿@model CreateGameInputModel
 
 @{ this.ViewData["Title"] = "Add New Game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));

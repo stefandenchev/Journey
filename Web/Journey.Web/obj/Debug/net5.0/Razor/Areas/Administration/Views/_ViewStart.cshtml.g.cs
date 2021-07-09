@@ -26,8 +26,50 @@ using Journey.Web.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Administration.Dashboard;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Administration.GameLanguage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Administration.GameTags;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Administration.NewsPosts;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Administration.Publishers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\Journey\Web\Journey.Web\Areas\Administration\Views\_ViewImports.cshtml"
+using Journey.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2e706a4d4b4ca7144828f4541e3d27733498dbb7", @"/Areas/Administration/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0943f289a4ccdfcbada02edb8cf79a8a3e41c006", @"/Areas/Administration/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"38d4d42d7031396ce6aa24a753f94ebd03228451", @"/Areas/Administration/Views/_ViewImports.cshtml")]
     public class Areas_Administration_Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

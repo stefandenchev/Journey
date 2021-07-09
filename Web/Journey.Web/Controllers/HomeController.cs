@@ -39,14 +39,9 @@
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
 
-        public IActionResult NotFound()
+        public new IActionResult NotFound()
         {
             return this.View();
         }
-
-/*        public IActionResult About()
-        {
-            return this.View();
-        }*/
     }
 }
