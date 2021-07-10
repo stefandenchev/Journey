@@ -4,10 +4,6 @@
     ViewBag.Title = GlobalConstants.SystemName;
 }
 
-@*@section breadcrumbs {
-        <li><a href="/">Home</a></li>
-    }*@
-
 <div class="container">
     <div class="wrapper">
         <div class="blog margin-bottom-40">
@@ -26,7 +22,7 @@
 
                     @Html.Raw(post.Content)
 
-                    <p><a class="btn btn-u btn-u-small"><i class="fa fa-plus"></i> Read More</a></p>
+                    <p><a class="btn" id="btn-full-news" asp-controller="News" asp-action="Post" asp-route-id="@post.Id"><i class="fa fa-plus"></i> Read More</a></p>
                     <br />
                 }
             }

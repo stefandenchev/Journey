@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using System.Net
+@using Journey.Common
+@using Microsoft.AspNetCore.Http.Extensions
+
+@model NewsPostViewModel
+
+@{ ViewBag.Title = Model.Title; }
+
+<div class="container">
+    <div class="blog-post-tags">
+        <ul class="list-unstyled list-inline blog-info">
+            <li><i class="fa fa-calendar"></i> @Model.CreatedOn.ToString("MMMM dd, yyyy")</li>
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <li><i class="fas fa-pencil-alt"></i> <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Edit" asp-route-id="@Model.Id">Edit</a></li>
+            }
+        </ul>
+
+    </div>
+    @Html.Raw(Model.Content)
+    <br />
+
+</div>

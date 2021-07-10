@@ -938,14 +938,6 @@ img.img-circle {
     background-color: black;
 }
 
-.header .navbar-default .navbar-nav > li > a {
-    color: #DDDDDD;
-}
-
-.topbar ul.loginbar > li > a, .topbar ul.loginbar > li > a:hover {
-    color: #AAAAAA !important;
-}
-
 .navbar-collapse {
     margin-bottom: 5px;
     text-align: right;
@@ -1015,14 +1007,13 @@ img.img-circle {
 ------------------------------------*/
 /*Blog Page*/
 .blog h2 {
-    color: #555;
+    color: #C5C3C0;
     font-size: 21px;
     line-height: 32px;
     margin-bottom: 10px;
 }
 
     .blog h2 a {
-        color: #585f69;
         line-height: 32px;
     }
 
@@ -1039,6 +1030,10 @@ img.img-circle {
     margin-top: 9px;
 }
 
+#btn-full-news {
+    background: #e08821;
+}
+
 /*Blog Content Tags*/
 .blog-post-tags {
     padding: 5px 0 8px;
@@ -1052,7 +1047,7 @@ img.img-circle {
     }
 
     .blog-post-tags li {
-        font-size: 12px;
+        font-size: 14px;
     }
 
         .blog-post-tags li i {
@@ -1062,6 +1057,7 @@ img.img-circle {
     .blog-post-tags ul.blog-info {
         color: #eee;
         margin-bottom: 3px;
+        font-size: 20px
     }
 
     .blog-post-tags ul.blog-tags a {
