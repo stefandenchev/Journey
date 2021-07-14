@@ -29,7 +29,8 @@
 
             <nav class="navbar navbar-expand-sm navbar-dark">
                 <div class="container">
-                    <a class="navbar-brand mb-0 h1" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                    <a class="navbar-brand mb-2 mr-2 h1 lg-view" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                    <a class="navbar-brand mb-2 mr-2 h1 sm-view" id="journey-title" asp-area="" asp-controller="Home" asp-action="Index">J</a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +39,6 @@
 
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
-
 
 
                         @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(GlobalConstants.AdministratorRoleName))
@@ -122,13 +122,13 @@
                                 </ul>
 
                                 @*@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                    {
-                                    <li class="nav-item">
-                                        <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
-                                    </li>
-                                    }*@
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
+                    </li>
+                    }*@
 
-                                
+
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Home" asp-controller="Search" asp-action="Sales">Sales</a>
                             </li>

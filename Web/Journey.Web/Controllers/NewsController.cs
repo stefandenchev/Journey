@@ -21,7 +21,7 @@
                 PageNumber = id,
                 ItemsPerPage = perPage,
                 ItemsCount = this.newsService.GetCount(),
-                News = this.newsService.GetAllInList<NewsInListViewModel>(id, 6),
+                News = this.newsService.GetAllInList<NewsInListViewModel>(id, 3),
             };
 
             return this.View(model);

@@ -12,36 +12,45 @@
             {
                 foreach (var post in Model.News)
                 {
+                    var timePassed = ((DateTime.UtcNow).Subtract(post.CreatedOn).TotalMinutes);
 
-                    var timePassed = ((DateTime.Now).Subtract(post.CreatedOn).TotalMinutes);
-
-
-                    <h2>@post.Title</h2>
+                    <h1>@post.Title</h1>
                     <div class="blog-post-tags">
                         <ul class="list-unstyled list-inline blog-info">
 
-                            @if (timePassed == 1)
+                            @if (timePassed > 1 && timePassed < 2)
                             {
-                                <li>@timePassed minute ago</li>
+                                <li>@string.Format("{0:0}", (int)timePassed) minute ago</li>
                             }
                             else if (timePassed < 60)
                             {
-                                <li>@timePassed minutes ago</li>
+                                <li>@timePassed.ToString("f0") minutes ago</li>
                             }
-                            else if (timePassed >= 60 && timePassed <= 60 * 23 + 59)
+                            else if (timePassed >= 60 && timePassed < 120)
                             {
-                                <li>@(timePassed/60) hours ago</li>
+                                <li>@string.Format("{0:0}", (int)timePassed / 60) hour ago</li>
+                            }
+                            else if (timePassed >= 120 && timePassed <= 60 * 23 + 59)
+                            {
+                                <li>@((timePassed/60).ToString("f0")) hours ago</li>
                             }
                             else if (timePassed >= 60 * 24 && timePassed <= 60 * 47 + 59)
                             {
-                                <li>@(timePassed/60/24) day ago</li>
+                                <li>@string.Format("{0:0}", (int)timePassed / 60 / 24) day ago</li>
                             }
-                            else
+                            else if (timePassed > 60 * 47 + 59 && timePassed <= 60 * 24 * 31)
                             {
-                                <li>@(timePassed/60/24) days ago</li>
+                                <li>@((timePassed/60/24).ToString("f0")) days ago</li>
                             }
 
-                            <li><i class="fa fa-calendar"></i> @post.CreatedOn.ToString("MMMM dd, yyyy") &nbsp; <i class="fas fa-pencil-alt"></i> <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Edit" asp-route-id="@post.Id">Edit</a></li>
+
+                            <li>
+                                <i class="fa fa-calendar"></i> @post.CreatedOn.ToString("MMMM dd, yyyy")&nbsp;
+                                @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                {
+                                    <i class="fas fa-pencil-alt"></i> <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                                }
+                            </li>
                         </ul>
                     </div>
                     <partial name="_ImageOrVideo" model="post" />

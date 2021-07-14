@@ -984,16 +984,12 @@ img.img-circle {
 
 .wrapper {
     background: #362946;
-    padding: 1em;
+    padding: 1em 2em;
 }
 
 .edit-with-tinymce {
     width: 100%;
     height: 500px;
-}
-
-.header {
-    background-color: black;
 }
 
 .copyright {
@@ -1185,6 +1181,11 @@ img.img-circle {
     .blog-medium img {
         margin-bottom: 20px;
     }
+}
+
+.img-responsive-news {
+    width: 100%;
+    height: auto;
 }
 
 /*Blog Full Wisth
