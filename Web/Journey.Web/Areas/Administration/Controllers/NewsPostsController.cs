@@ -27,6 +27,7 @@
         public IActionResult Index(string sortOrder)
         {
             this.ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : string.Empty;
+            this.ViewBag.DateSortParam = sortOrder == "date_desc" ? "date_asc" : "date_desc";
 
             var viewModel = new NewsPostsListViewModel
             {
@@ -38,6 +39,18 @@
             {
                 viewModel.News = this.newsService.GetAll<NewsPostsInListViewModel>()
                 .OrderByDescending(x => x.Title);
+            }
+
+            if (sortOrder == "date_desc")
+            {
+                viewModel.News = this.newsService.GetAll<NewsPostsInListViewModel>()
+                .OrderByDescending(x => x.CreatedOn);
+            }
+
+            if (sortOrder == "date_asc")
+            {
+                viewModel.News = this.newsService.GetAll<NewsPostsInListViewModel>()
+                .OrderBy(x => x.CreatedOn);
             }
 
             return this.View(viewModel);

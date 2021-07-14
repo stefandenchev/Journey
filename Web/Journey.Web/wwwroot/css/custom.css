@@ -46,7 +46,7 @@ body > div.page-container > header > nav {
 
 #journey-title {
     font-family: 'Zen Dots', cursive !important;
-    /*    font-size: 1vw;*/
+    font-size: 1.3em;
 }
 
     #journey-title:hover {
@@ -741,14 +741,76 @@ select#Languages.form-control, select#Tags.form-control {
         background: #569fb5;
     }
 
+/* RESPONSIVE PAGES */
+
+.lg-view {
+    display: inline-block;
+}
+
+.sm-view {
+    display: none;
+}
+
+@media (min-width: 200px) and (max-width:576px) {
+
+    #journey-title {
+        font-size: 1em;
+    }
+
+    .lg-view {
+        display: inline-block;
+    }
+
+    .sm-view {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #journey-title {
+        font-size: 1em;
+    }
+
+
+}
+
+@media (min-width:576px) and (max-width: 1022px) {
+
+    #journey-title {
+        font-size: 1.1em;
+    }
+
+    .lg-view {
+        display: none;
+    }
+
+    .sm-view {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 2rem;
+    }
+    #journey-title {
+        font-size: 1.3em;
+    }
+
+
+}
+
 /* PAGINATION */
 #paginationMain > nav > a.nk-pagination-current-white {
     background-color: #e08821;
 }
 
-#paginationMain > nav > a:hover {
-    color: #ff8900;
+#paginationMain > nav > a.nk-pagination-current-white:hover {
+    background-color: #bd7d32;
 }
+
+
 
 /* MANAGE/PROFILE */
 #dwn-btn {
@@ -1034,12 +1096,16 @@ img.img-circle {
     background: #e08821;
 }
 
+#btn-full-news:hover {
+    background: #bd7d32;
+}
+
 /*Blog Content Tags*/
 .blog-post-tags {
     padding: 5px 0 8px;
     margin-bottom: 10px;
-    border-top: solid 1px #eee;
-    border-bottom: solid 1px #eee;
+    border-top: solid 1px #e08821;
+    border-bottom: solid 1px #e08821;
 }
 
     .blog-post-tags ul {
@@ -1051,7 +1117,7 @@ img.img-circle {
     }
 
         .blog-post-tags li i {
-            color: #777;
+            color: #C5C3C0;
         }
 
     .blog-post-tags ul.blog-info {

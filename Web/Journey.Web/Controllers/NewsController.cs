@@ -6,7 +6,7 @@
 
     public class NewsController : BaseController
     {
-        private const int PostsPerPageDefaultValue = 5;
+        private const int PostsPerPageDefaultValue = 3;
         private readonly INewsService newsService;
 
         public NewsController(INewsService newsService)
@@ -23,8 +23,6 @@
                 ItemsCount = this.newsService.GetCount(),
                 News = this.newsService.GetAllInList<NewsInListViewModel>(id, 6),
             };
-
-
 
             return this.View(model);
         }

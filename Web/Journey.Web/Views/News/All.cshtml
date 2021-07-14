@@ -1,7 +1,7 @@
 ﻿@using Journey.Common
 @model NewsListViewModel
 @{
-    ViewBag.Title = GlobalConstants.SystemName;
+    this.ViewData["Title"] = "News";
 }
 
 <div class="container">
@@ -12,10 +12,36 @@
             {
                 foreach (var post in Model.News)
                 {
+
+                    var timePassed = ((DateTime.Now).Subtract(post.CreatedOn).TotalMinutes);
+
+
                     <h2>@post.Title</h2>
                     <div class="blog-post-tags">
                         <ul class="list-unstyled list-inline blog-info">
-                            <li><i class="fa fa-calendar"></i> @post.CreatedOn.ToString("MMMM dd, yyyy")</li>
+
+                            @if (timePassed == 1)
+                            {
+                                <li>@timePassed minute ago</li>
+                            }
+                            else if (timePassed < 60)
+                            {
+                                <li>@timePassed minutes ago</li>
+                            }
+                            else if (timePassed >= 60 && timePassed <= 60 * 23 + 59)
+                            {
+                                <li>@(timePassed/60) hours ago</li>
+                            }
+                            else if (timePassed >= 60 * 24 && timePassed <= 60 * 47 + 59)
+                            {
+                                <li>@(timePassed/60/24) day ago</li>
+                            }
+                            else
+                            {
+                                <li>@(timePassed/60/24) days ago</li>
+                            }
+
+                            <li><i class="fa fa-calendar"></i> @post.CreatedOn.ToString("MMMM dd, yyyy") &nbsp; <i class="fas fa-pencil-alt"></i> <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Edit" asp-route-id="@post.Id">Edit</a></li>
                         </ul>
                     </div>
                     <partial name="_ImageOrVideo" model="post" />

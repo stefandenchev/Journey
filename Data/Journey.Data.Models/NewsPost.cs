@@ -13,6 +13,7 @@
         public string Content { get; set; }
 
         [DataType(DataType.Html)]
+        [DisplayName("Short Content")]
         public string ShortContent { get; set; }
 
         [DisplayName("Content Url")]
