@@ -82,8 +82,22 @@ using Journey.Web.ViewModels.Cart;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Forum;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Games.Home.ViewComponents;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c12d04a2c852a1ebae0e6c80ac7e23acbcf7aa12", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e6534b131a48049bd52923c770e66413340bf10d", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9a055814da75f06cd2fcd8016e5b512942f69e2f", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

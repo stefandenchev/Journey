@@ -93,6 +93,8 @@
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<INewsUrlGenerator, NewsUrlGenerator>();
             services.AddTransient<INewsService, NewsService>();
+            services.AddTransient<IForumService, ForumService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
 
         }
 

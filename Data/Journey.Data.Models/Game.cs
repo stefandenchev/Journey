@@ -13,6 +13,7 @@
             this.Tags = new HashSet<GameTag>();
             this.Images = new HashSet<Image>();
             this.Votes = new HashSet<Vote>();
+            this.ForumPosts = new HashSet<ForumPost>();
         }
 
         public string Title { get; set; }
@@ -52,5 +53,7 @@
         public virtual ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
+
+        public virtual ICollection<ForumPost> ForumPosts { get; set; }
     }
 }

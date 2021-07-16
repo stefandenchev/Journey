@@ -16,6 +16,8 @@
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Votes = new HashSet<Vote>();
+            this.ForumPosts = new HashSet<ForumPost>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -34,5 +36,8 @@
 
         public virtual ICollection<Vote> Votes { get; set; }
 
+        public virtual ICollection<ForumPost> ForumPosts { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
