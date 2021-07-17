@@ -947,7 +947,6 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Genre.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Search\Publisher.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\SamePublisherGamesList\Default.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_PagingPartialSearch.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Games\Edit.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\GameLanguages\Create.cshtml.g.cs
@@ -990,3 +989,5 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Forum\ByTitle.cshtml.g.c
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\AngleSharp.Css.dll
 D:\Journey\Web\Journey.Web\bin\Debug\net5.0\HtmlSanitizer.dll
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Posts\Create.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_ForumPagingPartial.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_SearchPagingPartial.cshtml.g.cs

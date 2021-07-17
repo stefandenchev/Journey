@@ -57,5 +57,23 @@
         {
             return this.postsRepository.All().Count(x => x.CategoryId == categoryId);
         }
+
+        public IEnumerable<T> GetAllInList<T>(int categoryId, int page, int itemsPerPage = 16)
+        {
+            var games = this.postsRepository.AllAsNoTracking()
+                .Where(x => x.CategoryId == categoryId)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return games;
+        }
+
+        public int GetCount(int categoryId)
+        {
+            return this.postsRepository.All().Where(x => x.CategoryId == categoryId).Count();
+        }
     }
 }

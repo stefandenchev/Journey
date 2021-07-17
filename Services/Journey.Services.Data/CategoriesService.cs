@@ -40,6 +40,7 @@
             var category = this.categoriesRepository.All()
                 .Where(x => x.Title.Replace(" ", "-") == title.Replace(" ", "-"))
                 .To<T>().FirstOrDefault();
+
             return category;
         }
     }

@@ -1,7 +1,5 @@
 ﻿namespace Journey.Web.ViewModels.Forum
 {
-    using System.Collections.Generic;
-
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
