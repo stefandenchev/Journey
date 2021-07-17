@@ -1,5 +1,6 @@
-﻿namespace Journey.Web.ViewModels.Forum
+﻿namespace Journey.Web.ViewModels
 {
+    using Journey.Web.ViewModels.Forum;
     using System.Collections.Generic;
 
     public class ForumViewModel

@@ -5,6 +5,7 @@
 
 <link href="~/css/forums.css" rel="stylesheet" />
 <link href="~/css/discussions.css" rel="stylesheet" />
+<link href="~/css/buttons.css" rel="stylesheet" />
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
@@ -12,6 +13,13 @@
         <div class="col-lg-12">
             <div class="wrapper">
 
+                <div class="new-discussion-div">
+                    <a asp-controller="Posts" asp-action="Create" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+                        <span>
+                            Start a New Discussion
+                        </span>
+                    </a>
+                </div>
 
                 <h2 class="discussion_primary_header">
                     Journey Forums
@@ -31,7 +39,7 @@
                 {
                     <div class="discussions_forum_row">
                         <div class="discussions_forumlist_linkoverlay">
-                            <a href="https://steamcommunity.com/discussions/forum/30/">
+                            <a href="@category.Url">
                                 <img src="https://community.akamai.steamstatic.com/public/images/trans.gif">
                             </a>
                         </div>
@@ -51,7 +59,28 @@
                         </div>
                     </div>
                 }
-             
+
+
+                <div class="forum_topic"
+
+                <a class="forum_topic_overlay" href="https://steamcommunity.com/discussions/forum/30/5501694039541288651/"></a>
+                <div class="forum_topic_details ">
+                <div class="forum_topic_reply_count">
+                <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> 1			</div>
+                <div class="forum_topic_lastpost" title="16 July, 2021 3:06:29 pm EEST" data-timestamp="1626437189">
+                23 minutes ago			</div>
+                </div>
+                <div class="forum_topic_icon">
+                <a href="https://steamcommunity.com/discussions/forum/30/5501694039541288651/?tscn=1626435611" onclick="Forum_CancelEvent(event);">
+                <img src="https://community.akamai.steamstatic.com/public/images/skin_1/forum_topicicon_unread.png?v=1">
+                </a>
+                </div>
+                <div class="forum_topic_name">Title here</div>
+                <div class="forum_topic_op">username here</div>
+                <div style="clear: both;"></div>
+                </div>
+
+
 
             </div>
         </div>

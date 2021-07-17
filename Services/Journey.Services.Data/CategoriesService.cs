@@ -25,5 +25,22 @@
 
             return categories;
         }
+
+        public T GetById<T>(int id)
+        {
+            var category = this.categoriesRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>().FirstOrDefault();
+
+            return category;
+        }
+
+        public T GetByTitle<T>(string title)
+        {
+            var category = this.categoriesRepository.All()
+                .Where(x => x.Title.Replace(" ", "-") == title.Replace(" ", "-"))
+                .To<T>().FirstOrDefault();
+            return category;
+        }
     }
 }

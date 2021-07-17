@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "gOlDbwO4timQVgMc05CeUsEGDZHugG3gMRM2GZLfVsZeZqmvlO0/C2Yt6MCGSLUNII1T9DIf5ItWBq3ekxksdQ==",
+  "dgSpecHash": "KJzOVMAb9Mtdi9uQCdxHHC8wplOlYX6aiGBq/Xz8PEebyAPPGzWgH7aKbOyxf7QKHXRv+TJBws9Ph0Ig5MKf0g==",
   "success": true,
   "projectFilePath": "D:\\Journey\\Web\\Journey.Web\\Journey.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Stormlight\\.nuget\\packages\\anglesharp\\0.15.0\\anglesharp.0.15.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\anglesharp.css\\0.15.0\\anglesharp.css.0.15.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\htmlsanitizer\\5.0.404\\htmlsanitizer.5.0.404.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.6\\microsoft.aspnetcore.cryptography.keyderivation.5.0.6.nupkg.sha512",

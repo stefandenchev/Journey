@@ -1,10 +1,11 @@
 ﻿namespace Journey.Web.Controllers
 {
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Forum;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ForumController : Controller
+    public class ForumController : BaseController
     {
         private readonly IForumService forumService;
         private readonly ICategoriesService categoriesService;
@@ -25,6 +26,17 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public IActionResult ByTitle(string title)
+        {
+            var category = this.categoriesService.GetByTitle<CategoryViewModel>(title);
+            if (category == null)
+            {
+                return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+            }
+
+            return this.View(category);
         }
     }
 }

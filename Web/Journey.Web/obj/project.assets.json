@@ -14,6 +14,18 @@
           "lib/netstandard2.0/AngleSharp.dll": {}
         }
       },
+      "AngleSharp.Css/0.15.0": {
+        "type": "package",
+        "dependencies": {
+          "AngleSharp": "0.15.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.Css.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.Css.dll": {}
+        }
+      },
       "AutoMapper/10.1.1": {
         "type": "package",
         "dependencies": {
@@ -31,6 +43,19 @@
         "type": "package",
         "build": {
           "build/BuildBundlerMinifier.targets": {}
+        }
+      },
+      "HtmlSanitizer/5.0.404": {
+        "type": "package",
+        "dependencies": {
+          "AngleSharp": "[0.15.0]",
+          "AngleSharp.Css": "[0.15.0]"
+        },
+        "compile": {
+          "lib/netstandard2.0/HtmlSanitizer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlSanitizer.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -2551,6 +2576,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
+          "HtmlSanitizer": "5.0.404",
           "Journey.Data.Models": "1.0.0",
           "Journey.Services.Mapping": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.6",
@@ -2583,6 +2609,26 @@
         "lib/net472/AngleSharp.xml",
         "lib/netstandard2.0/AngleSharp.dll",
         "lib/netstandard2.0/AngleSharp.xml",
+        "logo.png"
+      ]
+    },
+    "AngleSharp.Css/0.15.0": {
+      "sha512": "U9dDvmdvHUMUphbjZ4ZV1feUQrzT7d92meWbYZJTCBO8/NUP0qsYFKPswof51uHGxr+11Ye6Wm6toy/yFr10ZA==",
+      "type": "package",
+      "path": "anglesharp.css/0.15.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "anglesharp.css.0.15.0.nupkg.sha512",
+        "anglesharp.css.nuspec",
+        "lib/net46/AngleSharp.Css.dll",
+        "lib/net46/AngleSharp.Css.xml",
+        "lib/net461/AngleSharp.Css.dll",
+        "lib/net461/AngleSharp.Css.xml",
+        "lib/net472/AngleSharp.Css.dll",
+        "lib/net472/AngleSharp.Css.xml",
+        "lib/netstandard2.0/AngleSharp.Css.dll",
+        "lib/netstandard2.0/AngleSharp.Css.xml",
         "logo.png"
       ]
     },
@@ -2628,6 +2674,21 @@
         "tools/netstandard1.3/BundlerMinifier.dll",
         "tools/netstandard1.3/NUglify.dll",
         "tools/netstandard1.3/Newtonsoft.Json.dll"
+      ]
+    },
+    "HtmlSanitizer/5.0.404": {
+      "sha512": "bMfRh7+NM+ZGhLKMGi0CvnwosHVO/Frs3YLQd81tpVah5gnlSrwEbCA+JfIHpxcl1rBvCfmdCCDDqxVGqAv++Q==",
+      "type": "package",
+      "path": "htmlsanitizer/5.0.404",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlsanitizer.5.0.404.nupkg.sha512",
+        "htmlsanitizer.nuspec",
+        "lib/net46/HtmlSanitizer.dll",
+        "lib/net46/HtmlSanitizer.xml",
+        "lib/netstandard2.0/HtmlSanitizer.dll",
+        "lib/netstandard2.0/HtmlSanitizer.xml"
       ]
     },
     "Humanizer.Core/2.8.26": {

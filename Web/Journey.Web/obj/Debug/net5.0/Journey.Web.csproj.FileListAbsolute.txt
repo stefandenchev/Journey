@@ -984,5 +984,9 @@ D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\New
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\NewsPosts\Index.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\News\All.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\_ImageOrVideo.cshtml.g.cs
-D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\EditorTemplates\Html.cshtml.g.cs
 D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Forum\Index.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Shared\EditorTemplates\Html.cshtml.g.cs
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Forum\ByTitle.cshtml.g.cs
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\AngleSharp.Css.dll
+D:\Journey\Web\Journey.Web\bin\Debug\net5.0\HtmlSanitizer.dll
+D:\Journey\Web\Journey.Web\obj\Debug\net5.0\Razor\Views\Posts\Create.cshtml.g.cs

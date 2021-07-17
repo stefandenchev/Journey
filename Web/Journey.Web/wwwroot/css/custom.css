@@ -124,22 +124,22 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 15px;
 }
 
-#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images, #SalePercentage {
+#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images, #SalePercentage, #CategoryId {
     background: #141022 !important;
     border: 1px solid #3b3048 !important;
 }
 
-#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price, #SalePercentage {
+#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price, #SalePercentage, #CategoryId {
     padding-left: 0.8em
 }
 
-#GenreId, #PublisherId, #PaymentMethodId, #SalePercentage {
+#GenreId, #PublisherId, #PaymentMethodId, #SalePercentage, #CategoryId {
     border: 1px solid #3b3048;
     height: 45px;
     background: #141022;
 }
 
-    #PublisherId > option, #GenreId > option, #PaymentMethodId > option {
+    #PublisherId > option, #GenreId > option, #PaymentMethodId > option, #CategoryId > option {
         color: #BBC3C0
     }
 
@@ -741,8 +741,12 @@ select#Languages.form-control, select#Tags.form-control {
         background: #569fb5;
     }
 
-/* RESPONSIVE PAGES */
+/* FORUM */
+.new-discussion-div{
+    float: right
+}
 
+/* RESPONSIVE PAGES */
 .lg-view {
     display: inline-block;
 }

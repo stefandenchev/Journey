@@ -12,5 +12,7 @@
         public string Title { get; set; }
 
         public int ForumPostsCount { get; set; }
+
+        public string Url => $"/f/{this.Title.Replace(' ', '-')}";
     }
 }

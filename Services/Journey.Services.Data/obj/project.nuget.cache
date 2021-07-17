@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "QZcTW8iHc8dx9gMh22iBDpBpNiIUvN3a0drw3xXWkCVwL9PXLSeB1lJw/CC6UIuLM54klsvJkkqEHX8pGW9iQQ==",
+  "dgSpecHash": "BdEXxqI2XEarfznGZR/oAnp3bH0cMxTn/PBRiMkZSfatQ+Mf13R8M4SATx47wlxBe19dHFfv2eqM278aBeSzuw==",
   "success": true,
   "projectFilePath": "D:\\Journey\\Services\\Journey.Services.Data\\Journey.Services.Data.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Stormlight\\.nuget\\packages\\anglesharp\\0.15.0\\anglesharp.0.15.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\anglesharp.css\\0.15.0\\anglesharp.css.0.15.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\htmlsanitizer\\5.0.404\\htmlsanitizer.5.0.404.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.6\\microsoft.aspnetcore.cryptography.keyderivation.5.0.6.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
@@ -41,6 +44,7 @@
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\Stormlight\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\Stormlight\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],

@@ -193,6 +193,9 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -201,6 +204,8 @@ namespace Journey.Data.Migrations
                     b.HasIndex("ForumPostId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("UserId");
 
@@ -251,7 +256,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -262,9 +267,6 @@ namespace Journey.Data.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("GameId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -281,8 +283,6 @@ namespace Journey.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("GameId");
 
                     b.HasIndex("IsDeleted");
 
@@ -741,6 +741,9 @@ namespace Journey.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ForumPostId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
@@ -754,6 +757,8 @@ namespace Journey.Data.Migrations
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ForumPostId");
 
                     b.HasIndex("GameId");
 
@@ -905,16 +910,22 @@ namespace Journey.Data.Migrations
             modelBuilder.Entity("Journey.Data.Models.Comment", b =>
                 {
                     b.HasOne("Journey.Data.Models.ForumPost", "ForumPost")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("ForumPostId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.Comment", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("Journey.Data.Models.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId");
 
                     b.Navigation("ForumPost");
+
+                    b.Navigation("Parent");
 
                     b.Navigation("User");
                 });
@@ -930,19 +941,17 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.ForumPost", b =>
                 {
-                    b.HasOne("Journey.Data.Models.Category", null)
+                    b.HasOne("Journey.Data.Models.Category", "Category")
                         .WithMany("ForumPosts")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("Journey.Data.Models.Game", "Game")
-                        .WithMany("ForumPosts")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Journey.Data.Models.ApplicationUser", "User")
                         .WithMany("ForumPosts")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Game");
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });
@@ -1068,6 +1077,10 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.Vote", b =>
                 {
+                    b.HasOne("Journey.Data.Models.ForumPost", null)
+                        .WithMany("Votes")
+                        .HasForeignKey("ForumPostId");
+
                     b.HasOne("Journey.Data.Models.Game", "Game")
                         .WithMany("Votes")
                         .HasForeignKey("GameId")
@@ -1171,10 +1184,15 @@ namespace Journey.Data.Migrations
                     b.Navigation("ForumPosts");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.ForumPost", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Votes");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
-                    b.Navigation("ForumPosts");
-
                     b.Navigation("Images");
 
                     b.Navigation("Languages");

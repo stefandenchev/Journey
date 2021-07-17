@@ -22,7 +22,7 @@
                 "Help and Tips",
                 "Suggestions and Ideas",
                 "General Discussion",
-                "Specific Game",
+                "Guides",
             };
 
             foreach (var category in categories)
