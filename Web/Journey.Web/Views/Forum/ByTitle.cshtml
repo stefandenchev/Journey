@@ -2,8 +2,8 @@
 @{ this.ViewData["Title"] = Model.Title; }
 
 <link href="~/css/forums.css" rel="stylesheet" asp-append-version="true" />
-<link href="~/css/discussions.css" rel="stylesheet" asp-append-version="true"/>
-<link href="~/css/buttons.css" rel="stylesheet" asp-append-version="true"/>
+<link href="~/css/discussions.css" rel="stylesheet" asp-append-version="true" />
+<link href="~/css/buttons.css" rel="stylesheet" asp-append-version="true" />
 
 <div class="container">
 
@@ -30,8 +30,7 @@
 
 
         <div class="forum_topic">
-
-            <a class="forum_topic_overlay" href="https://steamcommunity.com/discussions/forum/30/5501694039541288651/"></a>
+            <a class="forum_topic_overlay" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"></a>
             <div class="forum_topic_details ">
                 <div class="forum_topic_reply_count">
                     <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> @post.CommentsCount
@@ -41,12 +40,12 @@
                 </div>
             </div>
             <div class="forum_topic_icon">
-                <a href="https://steamcommunity.com/discussions/forum/30/5501694039541288651/?tscn=1626435611" onclick="Forum_CancelEvent(event);">
+                <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">
                     <img src="https://community.akamai.steamstatic.com/public/images/skin_1/forum_topicicon_unread.png?v=1">
                 </a>
             </div>
             <div class="forum_topic_name">@post.Title</div>
-            <div class="forum_topic_op">username here</div>
+            <div class="forum_topic_op">@post.UserUserName</div>
         </div>
     }
 

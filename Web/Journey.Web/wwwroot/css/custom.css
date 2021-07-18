@@ -742,7 +742,12 @@ select#Languages.form-control, select#Tags.form-control {
     }
 
 /* FORUM */
-.new-discussion-div{
+#post-success{
+    color: #48b433 !important;
+    margin-top: 0.3em
+}
+
+.new-discussion-div {
     float: right
 }
 

@@ -24,6 +24,5 @@
         public int VotesCount { get; set; }
 
         public IEnumerable<ForumPostCommentViewModel> Comments { get; set; }
-
     }
 }

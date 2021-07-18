@@ -9,8 +9,6 @@
 
         T GetById<T>(int id);
 
-        IEnumerable<T> GetByCategoryId<T>(int categoryId, int? take = null, int skip = 0);
-
         int GetCountByCategoryId(int categoryId);
 
         int GetCount(int categoryId);
