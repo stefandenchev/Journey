@@ -3,6 +3,8 @@
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Forum;
+    using Journey.Web.ViewModels.Forum.Categories;
+    using Journey.Web.ViewModels.Forum.Posts;
     using Microsoft.AspNetCore.Mvc;
 
     public class ForumController : BaseController

@@ -2,7 +2,7 @@
 
 namespace Journey.Web.ViewModels.Votes
 {
-    public class PostVoteViewModel
+    public class GameVoteInputModel
     {
         public int GameId { get; set; }
 

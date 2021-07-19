@@ -291,6 +291,38 @@ namespace Journey.Data.Migrations
                     b.ToTable("ForumPosts");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.ForumVote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ForumVotes");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
                     b.Property<int>("Id")
@@ -751,6 +783,7 @@ namespace Journey.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<byte>("Value")
@@ -956,6 +989,25 @@ namespace Journey.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.ForumVote", b =>
+                {
+                    b.HasOne("Journey.Data.Models.ForumPost", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Game", b =>
                 {
                     b.HasOne("Journey.Data.Models.Genre", "Genre")
@@ -1089,7 +1141,9 @@ namespace Journey.Data.Migrations
 
                     b.HasOne("Journey.Data.Models.ApplicationUser", "User")
                         .WithMany("Votes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Game");
 

@@ -6,6 +6,7 @@
 
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Forum.Categories;
 
     public class ForumPostCreateInputModel : IMapTo<ForumPost>
     {

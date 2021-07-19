@@ -21,13 +21,13 @@
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<PostVoteResponseModel>> Post(PostVoteViewModel input)
+        public async Task<ActionResult<GameVoteResponseModel>> Post(GameVoteInputModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.votesService.SetVoteAsync(input.GameId, userId, input.Value);
             var averageVotes = this.votesService.GetAverageVotes(input.GameId);
 
-            return new PostVoteResponseModel { AverageVote = averageVotes };
+            return new GameVoteResponseModel { AverageVote = averageVotes };
         }
     }
 }

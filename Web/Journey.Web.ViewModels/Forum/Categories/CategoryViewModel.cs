@@ -1,9 +1,10 @@
-﻿namespace Journey.Web.ViewModels.Forum
+﻿namespace Journey.Web.ViewModels.Forum.Categories
 {
     using System.Collections.Generic;
 
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Forum.Posts;
 
     public class CategoryViewModel : PagingViewModel, IMapFrom<Category>
     {

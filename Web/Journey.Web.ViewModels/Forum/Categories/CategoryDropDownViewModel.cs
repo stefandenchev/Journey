@@ -1,4 +1,4 @@
-﻿namespace Journey.Web.ViewModels.Forum
+﻿namespace Journey.Web.ViewModels.Forum.Categories
 {
     using Journey.Data.Models;
     using Journey.Services.Mapping;

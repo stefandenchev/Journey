@@ -62,7 +62,7 @@
             services.AddControllersWithViews(
                 options =>
                     {
-                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                        //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -96,6 +96,7 @@
             services.AddTransient<IForumService, ForumService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Journey.Web.ViewModels.Votes
 {
-    public class PostVoteResponseModel
+    public class GameVoteResponseModel
     {
         public double AverageVote { get; set; }
     }

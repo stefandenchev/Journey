@@ -45,56 +45,58 @@
 }
 
 <div class="container">
+    <div class="wrapper">
 
-    @if (this.TempData["InfoMessage"] != null)
-    {
-        <div class="alert alert-success" id="post-success" >
-            @this.TempData["InfoMessage"]
-        </div>
-    }
+        @if (this.TempData["InfoMessage"] != null)
+        {
+            <div class="alert alert-success" id="post-success">
+                @this.TempData["InfoMessage"]
+            </div>
+        }
 
-    <h1>@Model.Title</h1>
-    <div class="container-fluid mt-100">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <div class="media flex-wrap w-100 align-items-center">
-                            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
-                            <div class="media-body ml-3">
-                                @Model.UserUserName
-                                <div class="text-muted small">
-                                    <time datetime="@Model.CreatedOn.ToString("O")"></time>
+        <h1>@Model.Title</h1>
+        <div class="container-fluid mt-100">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="media flex-wrap w-100 align-items-center">
+                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                                <div class="media-body ml-3">
+                                    @Model.UserUserName
+                                    <div class="text-muted small">
+                                        <time datetime="@Model.CreatedOn.ToString("O")"></time>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-muted small ml-3">
-                                <form id="votesForm" method="post"></form>
-                                <div>
-                                    <a href="#" onclick="sendVote(@Model.Id, true)">
-                                        <i class="fa fa-thumbs-up"></i>
-                                    </a>
-                                </div>
-                                <div id="votesCount">@Model.VotesCount</div>
-                                <div>
-                                    <a href="#" onclick="sendVote(@Model.Id, false)">
-                                        <i class="fa fa-thumbs-down"></i>
-                                    </a>
+                                <div class="text-muted small ml-3">
+                                    <form id="votesForm" method="post"></form>
+                                    <div>
+                                        <a href="#" onclick="sendVote(@Model.Id, true)">
+                                            <i class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </div>
+                                    <div id="votesCount">@Model.VotesCount</div>
+                                    <div>
+                                        <a href="#" onclick="sendVote(@Model.Id, false)">
+                                            <i class="fa fa-thumbs-down"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <article>
-                            @Html.Raw(Model.SanitizedContent)
-                        </article>
+                        <div class="card-body">
+                            <article>
+                                @Html.Raw(Model.SanitizedContent)
+                            </article>
 
-                        @if (this.User.Identity.IsAuthenticated)
-                        {
-                            <div class="px-4 pt-3"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Comment</button> </div>
-                            <div class="clearfix"></div>
-                        }
-                        @{ DisplayComments(null);
-                        }
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                <div class="px-4 pt-3"> <button type="button" class="btn btn-primary float-right" onclick="showAddCommentForm(0)"><i class="fa fa-plus"></i>&nbsp; Comment</button> </div>
+                                <div class="clearfix"></div>
+                            }
+                            @{ DisplayComments(null);
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,22 +133,32 @@
             $("#AddCommentForm").show();
             $([document.documentElement, document.body]).animate({
                 scrollTop: $("#AddCommentForm").offset().top
-            }, 1000);
+            }, 700);
         }
 
         function sendVote(postId, isUpVote) {
-            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
-            var json = { postId: postId, isUpVote: isUpVote };
+            var data = { postId: postId, isUpVote: isUpVote };
+
+            var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
+
             $.ajax({
-                url: "/api/votes",
                 type: "POST",
-                data: JSON.stringify(json),
-                contentType: "application/json; charset=utf-8",
+                url: "/api/Test",
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': antiForgeryToken
+                },
                 dataType: "json",
-                headers: { 'X-CSRF-TOKEN': token },
                 success: function (data) {
                     $("#votesCount").html(data.votesCount);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                    console.log(ajaxOptions);
                 }
-            });
-        }</script>
+            });      
+        }
+    </script>
 }

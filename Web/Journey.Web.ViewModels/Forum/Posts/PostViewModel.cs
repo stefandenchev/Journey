@@ -1,4 +1,4 @@
-﻿namespace Journey.Web.ViewModels.Forum
+﻿namespace Journey.Web.ViewModels.Forum.Posts
 {
     using System;
     using System.Collections.Generic;
