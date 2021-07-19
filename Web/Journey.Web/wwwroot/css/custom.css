@@ -751,6 +751,11 @@ select#Languages.form-control, select#Tags.form-control {
     float: right
 }
 
+#forum-thumb, #votesCount {
+    font-size: 16px
+}
+
+
 /* RESPONSIVE PAGES */
 .lg-view {
     display: inline-block;

@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using AutoMapper;
     using Ganss.XSS;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class PostViewModel : IMapFrom<ForumPost>, IMapTo<ForumPost>
+    public class PostViewModel : IMapFrom<ForumPost>, IMapTo<ForumPost>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -24,5 +26,14 @@
         public int VotesCount { get; set; }
 
         public IEnumerable<ForumPostCommentViewModel> Comments { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<ForumPost, PostViewModel>()
+                .ForMember(x => x.VotesCount, options =>
+                {
+                    options.MapFrom(p => p.Votes.Sum(v => (int)v.Type));
+                });
+        }
     }
 }

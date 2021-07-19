@@ -10,23 +10,23 @@
 
     [ApiController]
     [Route("api/[controller]")]
-    public class TestController : BaseController
+    public class ForumVotesController : ControllerBase
     {
         private readonly IForumVotesService forumVotesService;
 
-        public TestController(IForumVotesService forumVotesService)
+        public ForumVotesController(IForumVotesService forumVotesService)
         {
             this.forumVotesService = forumVotesService;
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<ForumVoteResponseModel>> Post(ForumVoteInputModel input)
+
+        public async Task<ActionResult<ForumVoteResponseModel>> ForumPost(ForumVoteInputModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.forumVotesService.VoteAsync(input.PostId, userId, input.IsUpVote);
             var votes = this.forumVotesService.GetVotes(input.PostId);
-
             return new ForumVoteResponseModel { VotesCount = votes };
         }
     }

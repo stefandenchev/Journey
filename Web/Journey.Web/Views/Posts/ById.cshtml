@@ -72,13 +72,13 @@
                                     <form id="votesForm" method="post"></form>
                                     <div>
                                         <a href="#" onclick="sendVote(@Model.Id, true)">
-                                            <i class="fa fa-thumbs-up"></i>
+                                            <i id="forum-thumb" class="fa fa-thumbs-up"></i>
                                         </a>
                                     </div>
-                                    <div id="votesCount">@Model.VotesCount</div>
+                                    <div id="votesCount" >@Model.VotesCount</div>
                                     <div>
                                         <a href="#" onclick="sendVote(@Model.Id, false)">
-                                            <i class="fa fa-thumbs-down"></i>
+                                            <i id="forum-thumb" class="fa fa-thumbs-down"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -126,6 +126,8 @@
         </form>
     </div>
 </div>
+
+
 @section Scripts {
     <script>
         function showAddCommentForm(parentId) {
@@ -133,32 +135,25 @@
             $("#AddCommentForm").show();
             $([document.documentElement, document.body]).animate({
                 scrollTop: $("#AddCommentForm").offset().top
-            }, 700);
+            }, 1000);
         }
 
         function sendVote(postId, isUpVote) {
-            var data = { postId: postId, isUpVote: isUpVote };
-
-            var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
-
+            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
+            var json = { postId: postId, isUpVote: isUpVote };
+            console.log(json);
             $.ajax({
                 type: "POST",
-                url: "/api/Test",
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                headers: {
-                    'X-CSRF-TOKEN': antiForgeryToken
-                },
+                url: "/api/ForumVotes",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                headers: { 'X-CSRF-TOKEN': token },
                 success: function (data) {
                     $("#votesCount").html(data.votesCount);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                    console.log(ajaxOptions);
+                    console.log(data.votesCount);
                 }
-            });      
+            });
         }
     </script>
 }
