@@ -75,7 +75,7 @@
                                             <i id="forum-thumb" class="fa fa-thumbs-up"></i>
                                         </a>
                                     </div>
-                                    <div id="votesCount" >@Model.VotesCount</div>
+                                    <div id="votesCount">@Model.VotesCount</div>
                                     <div>
                                         <a href="#" onclick="sendVote(@Model.Id, false)">
                                             <i id="forum-thumb" class="fa fa-thumbs-down"></i>
@@ -139,16 +139,19 @@
         }
 
         function sendVote(postId, isUpVote) {
-            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
+            var antiForgeryToken = $("#votesForm input[name=__RequestVerificationToken]").val();
+
             var json = { postId: postId, isUpVote: isUpVote };
             console.log(json);
             $.ajax({
                 type: "POST",
-                url: "/api/ForumVotes",
+                url: "/api/votes/forum",
                 data: JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                headers: { 'X-CSRF-TOKEN': token },
+                headers: {
+                    'X-CSRF-TOKEN': antiForgeryToken
+                },
                 success: function (data) {
                     $("#votesCount").html(data.votesCount);
                     console.log(data.votesCount);
