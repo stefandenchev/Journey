@@ -1,6 +1,6 @@
 ﻿@model SalesViewModel
 @{
-    ViewData["Title"] = "Games on Sale";
+    this.ViewBag.Title = "Games on Sale";
     this.Layout = "/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,17 +11,17 @@
 
 <div class="container">
 
-    <h1>@ViewData["Title"]</h1>
+    <h1>@this.ViewBag.Title</h1>
     <h4>@this.Model.Games.Count() matching games</h4>
 
     <div class="row">
-        @if (ViewBag.TitleSortParam.Contains("title_desc"))
+        @if (this.ViewBag.TitleSortParam.Contains("title_desc"))
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-down"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-down"></i></a>
         }
         else
         {
-            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-up"></i></a>
+            <a class="btn btn-primary" id="order-button" asp-action="Sales" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-up"></i></a>
         }
 
         @if (ViewBag.PriceSortParam.Contains("price_asc"))

@@ -9,16 +9,13 @@
 
     public class ForumController : BaseController
     {
-        private readonly IForumService forumService;
         private readonly ICategoriesService categoriesService;
         private readonly IPostsService postsService;
 
         public ForumController(
-            IForumService forumService,
             ICategoriesService categoriesService,
             IPostsService postsService)
         {
-            this.forumService = forumService;
             this.categoriesService = categoriesService;
             this.postsService = postsService;
         }

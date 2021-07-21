@@ -1,5 +1,5 @@
 ﻿@model PostViewModel
-@{ this.ViewData["Title"] = Model.Title;
+@{ this.ViewBag.Title = Model.Title;
     void DisplayComments(int? parentId)
     {
         var comments = this.Model.Comments.Where(x => x.ParentId == parentId);

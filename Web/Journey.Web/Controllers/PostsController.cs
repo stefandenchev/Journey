@@ -1,32 +1,26 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using AutoMapper;
-    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels.Forum;
     using Journey.Web.ViewModels.Forum.Categories;
     using Journey.Web.ViewModels.Forum.Posts;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class PostsController : BaseController
     {
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly IMapper mapper;
 
         public PostsController(
             IPostsService postsService,
-            ICategoriesService categoriesService,
-            UserManager<ApplicationUser> userManager)
+            ICategoriesService categoriesService)
         {
             this.postsService = postsService;
             this.categoriesService = categoriesService;
-            this.userManager = userManager;
         }
 
         public IActionResult ById(int id)
@@ -55,13 +49,13 @@
         [Authorize]
         public async Task<IActionResult> Create(ForumPostCreateInputModel input)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
             }
 
-            var postId = await this.postsService.CreateAsync(input.Title, input.Content, input.CategoryId, user.Id);
+            var postId = await this.postsService.CreateAsync(input.Title, input.Content, input.CategoryId, userId);
             this.TempData["InfoMessage"] = "Forum post created!";
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
         }

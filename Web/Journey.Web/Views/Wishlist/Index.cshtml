@@ -1,10 +1,10 @@
-﻿@model GamesListViewModel
+﻿@model WishlistIndexViewModel
 @{
-    ViewBag.Title = "Your Wish List";
+    this.ViewBag.Title = "Your Wish List";
 }
 
 <div class="container">
-    <h2>@ViewBag.Title</h2>
+    <h2>@this.ViewBag.Title</h2>
     <br />
 
     @if (Model.Games.Any())
@@ -21,7 +21,7 @@
                                     <td class="details">
                                         <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
                                     </td>
-                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.Price</em></span></td>
+                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.CurrentPrice</em></span></td>
                                     <td id="buttons">
                                         <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id"><i class="fas fa-cart-plus"></i></a>
                                         <a class="btn btn-danger" asp-controller="Wishlist" asp-action="RemoveFromList" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>

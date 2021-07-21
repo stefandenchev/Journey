@@ -1,11 +1,11 @@
 ﻿@model GameLibraryViewModel
 @{
-    ViewBag.Title = "My Games Library";
+    this.ViewBag.Title = "My Games Library";
 }
 
 <div class="page-container">
     <div class="container">
-        <h2>@ViewBag.Title</h2>
+        <h2>@this.ViewBag.Title</h2>
 
         <br />
 
@@ -13,13 +13,13 @@
             if (Model.Collection.Any())
             {
                 <div class="row">
-                    @if (ViewBag.TitleSortParam.Contains("title_desc"))
+                    @if (this.ViewBag.TitleSortParam.Contains("title_desc"))
                     {
-                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
                     }
                     else
                     {
-                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
                     }
                 </div>
 

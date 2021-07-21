@@ -98,6 +98,7 @@
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IForumVotesService, ForumVotesService>();
+            services.AddTransient<IWishlistService, WishlistService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

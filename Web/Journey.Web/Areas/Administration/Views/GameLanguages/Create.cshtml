@@ -1,12 +1,12 @@
 ﻿@model GameLanguageAdminInputModel
 
 @{
-    ViewData["Title"] = "Create";
+    this.ViewBag.Title = "Create";
     var languageItems = this.Model.LanguagesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var gameItems = this.Model.GamesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<h1>Create</h1>
+<h1>this.ViewBag.Title</h1>
 
 <h4>GameLanguage</h4>
 <hr />

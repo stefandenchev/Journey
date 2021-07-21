@@ -1,6 +1,6 @@
 ﻿@model OrdersListViewModel
 @{
-    ViewBag.Title = "My Orders";
+    this.ViewBag.Title = "My Orders";
 }
 <style>
     hr {
@@ -15,7 +15,7 @@
 
 <div class="page-container">
     <div class="container">
-        <h2>@ViewBag.Title</h2>
+        <h2>@this.ViewBag.Title</h2>
         <br />
         <h5>
             TOTAL SPENT: €@Model.Total

@@ -1,12 +1,12 @@
 ﻿@model EditGameInputModel
 @{
-    ViewData["Title"] = "Edit game";
+    this.ViewBag.Title = "Edit game";
     var genreItems = this.Model.GenresItems.Select(x => new SelectListItem(x.Value, x.Key));
     var publisherItems = this.Model.PublisherItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <div class="container">
-    <h1>@ViewData["Title"]</h1>
+    <h1>@this.ViewBag.Title</h1>
 
     <form method="post">
         <div class="row">

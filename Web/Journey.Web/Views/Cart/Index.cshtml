@@ -1,13 +1,13 @@
 ﻿@model CartViewModel
 @{
-    ViewBag.Title = "Shopping Cart";
+    this.ViewBag.Title = "Shopping Cart";
 }
 
 <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
 
 <div class="container">
-    <h2>Your @ViewBag.Title</h2>
+    <h2>Your @this.ViewBag.Title</h2>
     <br />
 
     @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)

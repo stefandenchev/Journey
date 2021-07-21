@@ -1,20 +1,23 @@
-﻿namespace Journey.Web.ViewModels.Games
+﻿namespace Journey.Web.ViewModels.Wishlist
 {
     using System.Linq;
 
     using AutoMapper;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Games;
 
-    public abstract class GameBaseViewModel : IMapFrom<Game>, IHaveCustomMappings
+    public class GameInWishlistServiceModel : GameBaseViewModel, IHaveCustomMappings
     {
-        public int Id { get; set; }
+        public string Title { get; set; }
 
-        public string ImageUrl { get; set; }
+        public decimal Price { get; set; }
 
-        public virtual void CreateMappings(IProfileExpression configuration)
+        public decimal CurrentPrice { get; set; }
+
+        public override void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Game, GameBaseViewModel>()
+            configuration.CreateMap<Game, GameInWishlistServiceModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                 opt.MapFrom(x => x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl != null ?
                 x.Images.FirstOrDefault(x => x.OriginalUrl.Contains("boxshots")).OriginalUrl :

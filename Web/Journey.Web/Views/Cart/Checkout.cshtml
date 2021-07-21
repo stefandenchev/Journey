@@ -1,6 +1,6 @@
 ﻿@model CheckoutViewModel
 @{
-    ViewBag.Title = "Checkout";
+    this.ViewBag.Title = "Checkout";
 }
 
 <link rel="stylesheet" href="~/css/gamestore_globalweb.css" asp-append-version="true" />
@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
     <div class="container">
-        <h2>Your @ViewBag.Title</h2>
+        <h2>Your @this.ViewBag.Title</h2>
 
         <div class="container">
             <section id="core-guts" class="stringy fatty">

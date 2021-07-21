@@ -84,34 +84,41 @@ using Journey.Web.ViewModels.Cart;
 #nullable disable
 #nullable restore
 #line 11 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum;
+using Journey.Web.ViewModels.Wishlist;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 12 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum.Categories;
+using Journey.Web.ViewModels.Forum;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum.Posts;
+using Journey.Web.ViewModels.Forum.Categories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Forum.Posts;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
 using Journey.Web.ViewModels.Games.Home.ViewComponents;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b9f955135fb22dad07ad6b4fe93f58e78a78e22f", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"404f04a28fcecda8449b025ca4d467928b3f4017", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a292761b6c19d93441046178f1a52ef1f91a5473", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

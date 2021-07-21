@@ -1,7 +1,7 @@
 ﻿@model GameLanguageAdminViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    this.ViewBag.Title = "Index";
 }
 
 <style>
@@ -13,7 +13,7 @@
 
 <div class="page-container">
     <div class="container">
-        <h1>Index</h1>
+        <h1>this.ViewBag.Title</h1>
 
         <p>
             <a asp-action="Create">Create New</a>
@@ -22,7 +22,7 @@
             <thead>
                 <tr>
                     <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSortParam">Title</a>
+                        <a asp-action="Index" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Title</a>
                     </th>
                     <th>
                         <a asp-action="Index" asp-route-sortOrder="@ViewBag.LanguageSortParam">Language</a>
