@@ -13,6 +13,6 @@
 
         IEnumerable<T> GetAllForUser<T>(string userId);
 
-        bool CheckWish(string userId, int gameId);
+        bool IsInWish(string userId, int gameId);
     }
 }

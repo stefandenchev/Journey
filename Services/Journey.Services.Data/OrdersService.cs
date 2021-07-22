@@ -56,7 +56,7 @@
             return this.orderItemsRepository.All().To<T>().ToList();
         }
 
-        public bool CheckLibrary(string userId, int gameId)
+        public bool IsInLibrary(string userId, int gameId)
         {
             List<string> allOrderIds = new();
             var allOrders = this.ordersRepository.All().Where(o => o.UserId == userId);

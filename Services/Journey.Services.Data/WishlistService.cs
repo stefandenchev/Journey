@@ -65,7 +65,7 @@
             return games;
         }
 
-        public bool CheckWish(string userId, int gameId)
+        public bool IsInWish(string userId, int gameId)
         {
             var isWished = this.wishListRepository.All().Any(x => x.UserId == userId && x.GameId == gameId);
             return isWished;

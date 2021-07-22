@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Cart;
     using Journey.Web.ViewModels.Export;
     using Microsoft.AspNetCore.Authorization;
@@ -24,22 +24,25 @@
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
         private readonly ICreditCardsService creditCardsService;
+        private readonly ICartService cartService;
 
         public CartController(
             ApplicationDbContext db,
             IGamesService gamesService,
             IOrdersService ordersService,
-            ICreditCardsService creditCardsService)
+            ICreditCardsService creditCardsService,
+            ICartService cartService)
         {
             this.db = db;
             this.gamesService = gamesService;
             this.ordersService = ordersService;
             this.creditCardsService = creditCardsService;
+            this.cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var viewModel = new CartViewModel();
 
@@ -53,19 +56,17 @@
 
         public async Task<ActionResult> Add(int id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
-            if (this.db.UserCartItems.Any(c => c.UserId == userId && c.GameId == id))
+            if (this.cartService.IsInCart(userId, id))
             {
                 return this.RedirectToAction("Index", "Cart");
             }
 
-            var newCartItem = new UserCartItem() { UserId = userId, GameId = id };
-            this.db.UserCartItems.Add(newCartItem);
-            await this.db.SaveChangesAsync();
+            await this.cartService.CreateAsync(userId, id);
 
-            var a = this.HttpContext.Session.GetString("cart");
-            this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
+/*            var a = this.HttpContext.Session.GetString("cart");
+            this.HttpContext.Session.SetString("cart", this.cartService.GetCount(userId).ToString());*/
 
             return this.RedirectToAction("Index");
         }
@@ -73,16 +74,16 @@
         [HttpGet]
         public IActionResult Remove(int gameId)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
-            var gameInCart = this.db.UserCartItems.FirstOrDefault(c => c.UserId == userId && c.GameId == gameId);
+            var gameInCart = this.cartService.Get<CartItemInputModel>(userId, gameId);
+
             if (gameInCart != null)
             {
-                this.db.UserCartItems.Remove(gameInCart);
-                this.db.SaveChanges();
-
+                this.cartService.RemoveAsync(userId, gameId);
+/*
                 var a = this.HttpContext.Session.GetString("cart");
-                this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
+                this.HttpContext.Session.SetString("cart", this.cartService.GetCount(userId).ToString());*/
 
                 return this.Json(new { Success = true });
             }
@@ -94,7 +95,7 @@
 
         public IActionResult ClearAll()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var gamesInCart = this.db.UserCartItems.Where(c => c.UserId == userId);
             foreach (var game in gamesInCart)
@@ -103,15 +104,15 @@
             }
 
             this.db.SaveChanges();
-            var a = this.HttpContext.Session.GetString("cart");
-            this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());
+/*            var a = this.HttpContext.Session.GetString("cart");
+            this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());*/
             return this.RedirectToAction("Index", "Cart");
         }
 
         [HttpGet]
         public IActionResult Checkout()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var viewModel = new CheckoutViewModel();
 
@@ -128,7 +129,7 @@
         [HttpPost]
         public async Task<ActionResult> Checkout(CheckoutViewModel model)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             try
             {
@@ -191,7 +192,7 @@
         [HttpGet]
         public IActionResult OrderComplete()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var model = new CheckoutViewModel();
 
@@ -215,7 +216,7 @@
         [HttpGet]
         public IActionResult ViewOrder(string id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
             var model = new CheckoutViewModel();
 
             var order = this.db.Orders.FirstOrDefault(o => o.Id == id);

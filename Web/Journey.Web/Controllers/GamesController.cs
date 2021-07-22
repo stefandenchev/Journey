@@ -1,15 +1,11 @@
 ﻿namespace Journey.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Common;
-    using Journey.Data;
-    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Export;
@@ -80,7 +76,6 @@
                 return this.View(input);
             }
 
-            // return this.Json(input);
             try
             {
                 await this.gamesService.CreateAsync(input, $"{this.environment.WebRootPath}/images/games");
@@ -160,9 +155,9 @@
             {
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                game.IsInUserCart = this.cartService.CheckCart(userId, id);
-                game.IsInUserWishlist = this.wishlistService.CheckWish(userId, id);
-                game.IsInUserLibrary = this.ordersService.CheckLibrary(userId, id);
+                game.IsInUserCart = this.cartService.IsInCart(userId, id);
+                game.IsInUserWishlist = this.wishlistService.IsInWish(userId, id);
+                game.IsInUserLibrary = this.ordersService.IsInLibrary(userId, id);
 
                 return this.View(game);
             }

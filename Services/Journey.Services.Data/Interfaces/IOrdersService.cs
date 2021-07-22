@@ -15,6 +15,6 @@
 
         public IEnumerable<T> GetAllOrderItems<T>();
 
-        bool CheckLibrary(string userId, int gameId);
+        bool IsInLibrary(string userId, int gameId);
     }
 }
