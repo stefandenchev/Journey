@@ -71,7 +71,7 @@
         }
 
         [HttpGet]
-        public IActionResult RemoveItem(int gameId)
+        public IActionResult Remove(int gameId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 

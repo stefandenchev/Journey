@@ -29,7 +29,9 @@
         private readonly ITagsService tagsService;
         private readonly IPublishersService publishersService;
         private readonly IWebHostEnvironment environment;
-        private readonly ApplicationDbContext db;
+        private readonly IWishlistService wishlistService;
+        private readonly IOrdersService ordersService;
+        private readonly ICartService cartService;
 
         public GamesController(
             IGamesService gamesService,
@@ -38,7 +40,9 @@
             ITagsService tagsService,
             IPublishersService publishersService,
             IWebHostEnvironment environment,
-            ApplicationDbContext db)
+            IWishlistService wishlistService,
+            IOrdersService ordersService,
+            ICartService cartService)
         {
             this.gamesService = gamesService;
             this.genresService = genresService;
@@ -46,7 +50,9 @@
             this.tagsService = tagsService;
             this.publishersService = publishersService;
             this.environment = environment;
-            this.db = db;
+            this.wishlistService = wishlistService;
+            this.ordersService = ordersService;
+            this.cartService = cartService;
         }
 
         [Authorize]
@@ -154,16 +160,9 @@
             {
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                List<string> allOrderIds = new();
-                var allOrders = this.db.Orders.Where(o => o.UserId == userId);
-                foreach (Order o in allOrders)
-                {
-                    allOrderIds.Add(o.Id);
-                }
-
-                game.IsInUserCart = this.db.UserCartItems.Any(x => x.UserId == userId && x.GameId == id);
-                game.IsInUserWishlist = this.db.Wishlists.Any(x => x.UserId == userId && x.GameId == id);
-                game.IsInUserLibrary = this.db.OrderItems.Any(x => x.GameId == id && allOrderIds.Contains(x.OrderId));
+                game.IsInUserCart = this.cartService.CheckCart(userId, id);
+                game.IsInUserWishlist = this.wishlistService.CheckWish(userId, id);
+                game.IsInUserLibrary = this.ordersService.CheckLibrary(userId, id);
 
                 return this.View(game);
             }

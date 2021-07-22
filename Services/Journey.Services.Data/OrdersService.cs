@@ -55,5 +55,18 @@
         {
             return this.orderItemsRepository.All().To<T>().ToList();
         }
+
+        public bool CheckLibrary(string userId, int gameId)
+        {
+            List<string> allOrderIds = new();
+            var allOrders = this.ordersRepository.All().Where(o => o.UserId == userId);
+            foreach (Order o in allOrders)
+            {
+                allOrderIds.Add(o.Id);
+            }
+
+            var isBought = this.orderItemsRepository.All().Any(x => x.GameId == gameId && allOrderIds.Contains(x.OrderId));
+            return isBought;
+        }
     }
 }

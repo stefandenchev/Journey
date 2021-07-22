@@ -14,5 +14,7 @@
         public IEnumerable<T> GetAll<T>();
 
         public IEnumerable<T> GetAllOrderItems<T>();
+
+        bool CheckLibrary(string userId, int gameId);
     }
 }

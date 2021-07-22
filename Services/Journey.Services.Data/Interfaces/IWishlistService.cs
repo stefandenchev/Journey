@@ -12,5 +12,7 @@
         Task RemoveFromWishlist(string userId, int gameId);
 
         IEnumerable<T> GetAllForUser<T>(string userId);
+
+        bool CheckWish(string userId, int gameId);
     }
 }

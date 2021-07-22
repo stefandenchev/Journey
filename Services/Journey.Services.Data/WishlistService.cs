@@ -8,7 +8,6 @@
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
-    using Journey.Web.ViewModels.Wishlist;
 
     public class WishlistService : IWishlistService
     {
@@ -64,6 +63,12 @@
             var games = this.gamesRepository.All().Where(x => ids.Contains(x.Id)).To<T>();
 
             return games;
+        }
+
+        public bool CheckWish(string userId, int gameId)
+        {
+            var isWished = this.wishListRepository.All().Any(x => x.UserId == userId && x.GameId == gameId);
+            return isWished;
         }
     }
 }

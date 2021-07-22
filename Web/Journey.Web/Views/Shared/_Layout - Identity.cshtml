@@ -122,11 +122,11 @@
                                 </ul>
 
                                 @*@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                    {
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
-                    </li>
-                    }*@
+                                    {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
+                                    </li>
+                                    }*@
 
 
                             <li class="nav-item">
@@ -135,6 +135,10 @@
 
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Home" asp-controller="News" asp-action="All">News</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Home" asp-controller="Forum" asp-action="Index">Forum</a>
                             </li>
 
                         </ul>
