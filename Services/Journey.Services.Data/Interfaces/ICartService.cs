@@ -12,6 +12,9 @@
 
         Task RemoveAsync(string userId, int gameId);
 
+        Task ClearAllAsync(string userId);
+
         int GetCount(string userId);
+
     }
 }

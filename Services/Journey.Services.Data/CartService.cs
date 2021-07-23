@@ -54,6 +54,25 @@
             await this.userCartItemsRepository.SaveChangesAsync();
         }
 
+        public async Task ClearAllAsync(string userId)
+        {
+            var gamesInCart = this.userCartItemsRepository.All().Where(c => c.UserId == userId);
+            foreach (var game in gamesInCart)
+            {
+                this.userCartItemsRepository.HardDelete(game);
+            }
+
+            await this.userCartItemsRepository.SaveChangesAsync();
+
+/*            var gamesInCart = this.db.UserCartItems.Where(c => c.UserId == userId);
+            foreach (var game in gamesInCart)
+            {
+                this.db.UserCartItems.Remove(game);
+            }
+
+            this.db.SaveChanges();*/
+        }
+
         public int GetCount(string userId)
         {
             return this.userCartItemsRepository

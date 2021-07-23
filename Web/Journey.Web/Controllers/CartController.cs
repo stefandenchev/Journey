@@ -64,10 +64,6 @@
             }
 
             await this.cartService.CreateAsync(userId, id);
-
-/*            var a = this.HttpContext.Session.GetString("cart");
-            this.HttpContext.Session.SetString("cart", this.cartService.GetCount(userId).ToString());*/
-
             return this.RedirectToAction("Index");
         }
 
@@ -81,9 +77,6 @@
             if (gameInCart != null)
             {
                 this.cartService.RemoveAsync(userId, gameId);
-/*
-                var a = this.HttpContext.Session.GetString("cart");
-                this.HttpContext.Session.SetString("cart", this.cartService.GetCount(userId).ToString());*/
 
                 return this.Json(new { Success = true });
             }
@@ -96,16 +89,7 @@
         public IActionResult ClearAll()
         {
             var userId = this.User.GetId();
-
-            var gamesInCart = this.db.UserCartItems.Where(c => c.UserId == userId);
-            foreach (var game in gamesInCart)
-            {
-                this.db.UserCartItems.Remove(game);
-            }
-
-            this.db.SaveChanges();
-/*            var a = this.HttpContext.Session.GetString("cart");
-            this.HttpContext.Session.SetString("cart", this.db.UserCartItems.Where(c => c.UserId == userId).Count().ToString());*/
+            this.cartService.ClearAllAsync(userId);
             return this.RedirectToAction("Index", "Cart");
         }
 
