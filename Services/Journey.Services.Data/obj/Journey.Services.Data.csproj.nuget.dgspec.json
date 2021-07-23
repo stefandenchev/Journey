@@ -112,7 +112,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.8, )"
             },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
@@ -195,7 +195,7 @@
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.8, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -342,7 +342,7 @@
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[5.0.8, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
