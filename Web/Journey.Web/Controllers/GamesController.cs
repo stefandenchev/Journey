@@ -1,12 +1,12 @@
 ﻿namespace Journey.Web.Controllers
 {
     using System;
-    using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Common;
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Export;
     using Journey.Web.ViewModels.Games;
@@ -153,7 +153,7 @@
             }
             else
             {
-                var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var userId = this.User.GetId();
 
                 game.IsInUserCart = this.cartService.IsInCart(userId, id);
                 game.IsInUserWishlist = this.wishlistService.IsInWish(userId, id);

@@ -3,10 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using System.Threading.Tasks;
 
     using Journey.Data;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Cart;
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Profile;
@@ -35,7 +37,7 @@
 
         public IActionResult Payment()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var creditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId);
 
@@ -74,12 +76,12 @@
             }
         }
 
-        public IActionResult DeleteCreditCard(int id)
+        public async Task<ActionResult> DeleteCreditCard(int id)
         {
             var card = this.creditCardsService.GetByIdToModel<CreditCardViewModel>(id);
             if (card != null)
             {
-                this.creditCardsService.RemoveById(id);
+                await this.creditCardsService.RemoveById(id);
             }
             else
             {
@@ -94,7 +96,7 @@
             this.ViewBag.DateSortParam = string.IsNullOrEmpty(sortOrder) ? "date_asc" : string.Empty;
             this.ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
 
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var orders = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(x => x.PurchaseDate);
             var orderItems = this.db.OrderItems;
@@ -152,7 +154,7 @@
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
 
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             var viewModel = this.GetPurchasedGames(userId);
 

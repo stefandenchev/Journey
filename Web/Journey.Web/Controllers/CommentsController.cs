@@ -1,9 +1,9 @@
 ﻿namespace Journey.Web.Controllers
 {
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Forum.Comments;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,7 @@
                 }
             }
 
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
 
             await this.commentsService.Create(input.PostId, userId, input.Content, parentId);
             return this.RedirectToAction("ById", "Posts", new { id = input.PostId });

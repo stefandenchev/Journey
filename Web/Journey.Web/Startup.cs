@@ -37,8 +37,6 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(20);
@@ -144,7 +142,6 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-                        //endpoints.MapControllerRoute("forumCategory", "f/{title:minlength(3)}", new { controller = "Forum", action = "ByTitle" });
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

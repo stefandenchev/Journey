@@ -1,9 +1,9 @@
 ﻿namespace Journey.Web.Controllers
 {
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Forum.Votes;
     using Journey.Web.ViewModels.Votes;
     using Microsoft.AspNetCore.Authorization;
@@ -28,7 +28,7 @@
 
         public async Task<ActionResult<GameVoteResponseModel>> GamePost(GameVoteInputModel input)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
             await this.votesService.SetVoteAsync(input.GameId, userId, input.Value);
             var averageVotes = this.votesService.GetAverageVotes(input.GameId);
 
@@ -41,7 +41,7 @@
 
         public async Task<ActionResult<ForumVoteResponseModel>> ForumPost(ForumVoteInputModel input)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
             await this.forumVotesService.VoteAsync(input.PostId, userId, input.IsUpVote);
             var votes = this.forumVotesService.GetVotes(input.PostId);
             return new ForumVoteResponseModel { VotesCount = votes };

@@ -1,9 +1,9 @@
 ﻿namespace Journey.Web.Controllers
 {
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Forum;
     using Journey.Web.ViewModels.Forum.Categories;
     using Journey.Web.ViewModels.Forum.Posts;
@@ -49,7 +49,7 @@
         [Authorize]
         public async Task<IActionResult> Create(ForumPostCreateInputModel input)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetId();
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);

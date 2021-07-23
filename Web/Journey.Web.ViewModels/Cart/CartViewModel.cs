@@ -6,7 +6,7 @@
     {
         public string Id { get; set; }
 
-        public List<GameInCartViewModel> GamesInCart { get; set; }
+        public IEnumerable<GameInCartViewModel> GamesInCart { get; set; }
 
         public decimal Total { get; set; }
     }
