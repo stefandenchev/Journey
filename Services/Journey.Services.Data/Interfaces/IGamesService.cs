@@ -25,5 +25,7 @@
         Task UpdateAsync(int id, EditGameInputModel input);
 
         IEnumerable<T> GetCurated<T>(int count = 12);
+
+        IEnumerable<T> GetGamesFromOrder<T>(IEnumerable<int> ids);
     }
 }

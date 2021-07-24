@@ -133,13 +133,13 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     padding-left: 0.8em
 }
 
-#GenreId, #PublisherId, #PaymentMethodId, #SalePercentage, #CategoryId {
+#GenreId, #PublisherId, #CreditCardId, #SalePercentage, #CategoryId {
     border: 1px solid #3b3048;
     height: 45px;
     background: #141022;
 }
 
-    #PublisherId > option, #GenreId > option, #PaymentMethodId > option, #CategoryId > option {
+    #PublisherId > option, #GenreId > option, #CreditCardId > option, #CategoryId > option {
         color: #BBC3C0
     }
 

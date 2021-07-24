@@ -12,6 +12,7 @@
     using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Cart;
     using Journey.Web.ViewModels.Export;
+    using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
@@ -69,7 +70,7 @@
         {
             var userId = this.User.GetId();
 
-            var gameInCart = this.cartService.Get<CartItemInputModel>(userId, gameId);
+            var gameInCart = this.cartService.Get<CartItemViewModel>(userId, gameId);
 
             if (gameInCart != null)
             {
@@ -119,7 +120,7 @@
                     Id = orderId,
                     UserId = userId,
                     PurchaseDate = DateTime.Now,
-                    CreditCardId = model.PaymentMethodId,
+                    CreditCardId = model.CreditCardId,
                     Total = model.GamesInCart.Sum(x => x.CurrentPrice),
                 };
 
@@ -171,53 +172,33 @@
         public IActionResult OrderComplete()
         {
             var userId = this.User.GetId();
+            var latestOrder = this.ordersService.GetLatest<OrderCompleteViewModel>(userId);
+            var latestCardNumer = this.creditCardsService.GetLatestCardNumber(latestOrder.CreditCardId);
 
-            var model = new CheckoutViewModel();
+            latestOrder.CreditCardLast4 = latestCardNumer.Substring(latestCardNumer.Length - 5);
+            latestOrder.GamesInCart = this.GetGamesFromOrder(userId, latestOrder);
 
-            Order latestOrder = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(o => o.PurchaseDate).FirstOrDefault();
-            model.Id = latestOrder.Id;
+            latestOrder.Total = latestOrder.GamesInCart.Sum(g => g.PriceOnPurchase);
 
-            string cardNumber = this.db.CreditCards.Where(cc => cc.Id == latestOrder.CreditCardId).FirstOrDefault().CardNumber;
-
-            if (cardNumber != null)
-            {
-                model.CreditCardLast4 = cardNumber.Substring(cardNumber.Length - 5);
-            }
-
-            model.GamesInCart = this.GetGamesFromLastOrder(userId, latestOrder);
-
-            model.Total = model.GamesInCart.Sum(g => g.PriceOnPurchase);
-
-            return this.View(model);
+            return this.View(latestOrder);
         }
 
         [HttpGet]
         public IActionResult ViewOrder(string id)
         {
             var userId = this.User.GetId();
-            var model = new CheckoutViewModel();
-
-            var order = this.db.Orders.FirstOrDefault(o => o.Id == id);
+            var order = this.ordersService.GetById<OrderCompleteViewModel>(id);
             if (order == null)
             {
                 return this.RedirectToAction("Orders", "Home");
             }
 
-            model.Id = order.Id;
-
             var card = this.creditCardsService.GetById(order.CreditCardId);
-            var cardNumber = card.CardNumber;
+            order.CreditCardLast4 = card.CardNumber.Substring(card.CardNumber.Length - 5);
+            order.GamesInCart = this.GetGamesFromOrder(userId, order);
+            order.Total = order.GamesInCart.Sum(g => g.PriceOnPurchase);
 
-            if (cardNumber != null)
-            {
-                model.CreditCardLast4 = cardNumber.Substring(cardNumber.Length - 5);
-            }
-
-            model.GamesInCart = this.GetGamesFromLastOrder(userId, order);
-
-            model.Total = model.GamesInCart.Sum(g => g.PriceOnPurchase);
-
-            return this.View("OrderComplete", model);
+            return this.View("OrderComplete", order);
         }
 
         public IActionResult ExportToJson(string id)
@@ -260,17 +241,12 @@
             return finalString;
         }
 
-        private List<GameInCartViewModel> GetGamesFromLastOrder(string userId, Order lastestOrder)
+        private IEnumerable<GameInCartViewModel> GetGamesFromOrder(string userId, OrderCompleteViewModel order)
         {
-            List<OrderItem> orderItems = this.db.OrderItems.Where(oi => oi.OrderId == lastestOrder.Id).ToList();
-            List<int> gameIds = new();
+            var orderItems = this.ordersService.GetOrderItems<OrderItemViewModel>(order.Id);
+            var gameIds = this.ordersService.GetGameIdsFromOrder(order.Id);
+            var gamesToReturn = this.gamesService.GetGamesFromOrder<GameInCartViewModel>(gameIds);
 
-            foreach (var oi in orderItems)
-            {
-                gameIds.Add(oi.GameId);
-            }
-
-            var gamesToReturn = this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id)).ToList();
             foreach (var game in gamesToReturn)
             {
                 game.GameKey = orderItems.FirstOrDefault(x => x.GameId == game.Id).GameKey;

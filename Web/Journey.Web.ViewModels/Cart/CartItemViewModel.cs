@@ -3,7 +3,7 @@
     using Journey.Data.Models;
     using Journey.Services.Mapping;
 
-    public class CartItemInputModel : IMapFrom<UserCartItem>
+    public class CartItemViewModel : IMapFrom<UserCartItem>
     {
         public string UserId { get; set; }
 

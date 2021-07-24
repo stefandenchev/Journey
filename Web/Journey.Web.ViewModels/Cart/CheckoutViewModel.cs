@@ -4,7 +4,7 @@
 
     public class CheckoutViewModel : CartViewModel
     {
-        public int PaymentMethodId { get; set; }
+        public int CreditCardId { get; set; }
 
         public string CreditCardLast4 { get; set; }
 

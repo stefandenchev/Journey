@@ -42,12 +42,12 @@
         @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
         {
             <div class="col-md-3">
-                @Html.DropDownListFor(m => m.PaymentMethodId, Model.CreditCards.Select(item => new SelectListItem
+                @Html.DropDownListFor(m => m.CreditCardId, Model.CreditCards.Select(item => new SelectListItem
                 {
                     Value = item.Id.ToString(),
                     Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
                 }), new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PaymentMethodId)
+                @Html.ValidationMessageFor(m => m.CreditCardId)
             </div>
             <br />
             <hr>

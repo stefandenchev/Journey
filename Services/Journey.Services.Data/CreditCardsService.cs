@@ -64,5 +64,14 @@
             await this.creditCardsRepository.AddAsync(card);
             await this.creditCardsRepository.SaveChangesAsync();
         }
+
+        public string GetLatestCardNumber(int id)
+        {
+            string cardNumber = this.creditCardsRepository
+                .AllAsNoTracking()
+                .Where(cc => cc.Id == id).FirstOrDefault().CardNumber;
+
+            return cardNumber;
+        }
     }
 }

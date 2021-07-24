@@ -9,6 +9,8 @@
 
         public int GameId { get; set; }
 
+        public string GameKey { get; set; }
+
         public decimal PriceOnPurchase { get; set; }
     }
 }

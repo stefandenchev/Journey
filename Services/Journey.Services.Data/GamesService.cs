@@ -198,5 +198,12 @@
 
             return games;
         }
+
+        public IEnumerable<T> GetGamesFromOrder<T>(IEnumerable<int> ids)
+        {
+            var gamesToReturn = this.gamesRepository.AllAsNoTracking().Where(g => ids.Contains(g.Id)).To<T>().ToList();
+            return gamesToReturn;
+        }
+
     }
 }

@@ -51,6 +51,16 @@
             return order;
         }
 
+        public T GetLatest<T>(string userId)
+        {
+            var order = this.ordersRepository.AllAsNoTracking()
+                .Where(x => x.UserId == userId)
+                .OrderByDescending(o => o.PurchaseDate)
+                .To<T>().FirstOrDefault();
+
+            return order;
+        }
+
         public IEnumerable<T> GetAllOrderItems<T>()
         {
             return this.orderItemsRepository.All().To<T>().ToList();
@@ -67,6 +77,25 @@
 
             var isBought = this.orderItemsRepository.All().Any(x => x.GameId == gameId && allOrderIds.Contains(x.OrderId));
             return isBought;
+        }
+
+        public IEnumerable<int> GetGameIdsFromOrder(string orderId)
+        {
+            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).ToList();
+            List<int> gameIds = new();
+
+            foreach (var oi in orderItems)
+            {
+                gameIds.Add(oi.GameId);
+            }
+
+            return gameIds;
+        }
+
+        public IEnumerable<T> GetOrderItems<T>(string orderId)
+        {
+            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).To<T>().ToList();
+            return orderItems;
         }
     }
 }

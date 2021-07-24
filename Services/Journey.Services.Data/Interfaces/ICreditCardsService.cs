@@ -12,6 +12,8 @@
 
         CreditCard GetById(int id);
 
+        string GetLatestCardNumber(int id);
+
         T GetByIdToModel<T>(int id);
 
         Task RemoveById(int id);
