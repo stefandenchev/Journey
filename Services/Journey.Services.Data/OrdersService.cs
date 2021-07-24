@@ -24,14 +24,15 @@
             this.orderItemsRepository = orderItemsRepository;
         }
 
-        public async Task CreateAsync(OrderViewModel input)
+        public async Task CreateAsync(string orderId, string userId, int creditCardId, decimal total)
         {
             var order = new Order
             {
-                Id = input.Id,
-                UserId = input.UserId,
+                Id = orderId,
+                UserId = userId,
                 PurchaseDate = DateTime.Now,
-                CreditCardId = input.CreditCardId,
+                CreditCardId = creditCardId,
+                Total = total,
             };
             await this.ordersRepository.AddAsync(order);
             await this.ordersRepository.SaveChangesAsync();
@@ -46,7 +47,8 @@
         {
             var order = this.ordersRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return order;
         }
@@ -56,7 +58,8 @@
             var order = this.ordersRepository.AllAsNoTracking()
                 .Where(x => x.UserId == userId)
                 .OrderByDescending(o => o.PurchaseDate)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return order;
         }
@@ -96,6 +99,40 @@
         {
             var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).To<T>().ToList();
             return orderItems;
+        }
+
+        public async Task CreateOrderItems(IEnumerable<GameInCartViewModel> games, string orderId)
+        {
+            foreach (var game in games)
+            {
+                await this.orderItemsRepository.AddAsync(new OrderItem
+                {
+                    OrderId = orderId,
+                    GameId = game.Id,
+                    GameKey = RandomKeyGen(),
+                    PriceOnPurchase = game.CurrentPrice,
+                });
+            }
+        }
+
+        private static string RandomKeyGen()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var stringChars = new List<char>();
+            var random = new Random();
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (i % 4 == 0 && i != 0)
+                {
+                    stringChars.Add('-');
+                }
+
+                stringChars.Add(chars[random.Next(chars.Length)]);
+            }
+
+            var finalString = new string(stringChars.ToArray());
+            return finalString;
         }
     }
 }

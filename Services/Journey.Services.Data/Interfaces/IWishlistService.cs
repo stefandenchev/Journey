@@ -11,6 +11,8 @@
 
         Task RemoveFromWishlist(string userId, int gameId);
 
+        Task ClearBoughtGamesFromWishlist(string userId, List<int> gameIds);
+
         IEnumerable<T> GetAllForUser<T>(string userId);
 
         bool IsInWish(string userId, int gameId);

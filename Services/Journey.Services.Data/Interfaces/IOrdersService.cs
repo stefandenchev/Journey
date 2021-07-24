@@ -7,7 +7,7 @@
 
     public interface IOrdersService
     {
-        Task CreateAsync(OrderViewModel input);
+        Task CreateAsync(string orderId, string userId, int creditCardId, decimal total);
 
         T GetById<T>(string id);
 
@@ -22,5 +22,7 @@
         IEnumerable<int> GetGameIdsFromOrder(string orderId);
 
         IEnumerable<T> GetOrderItems<T>(string orderId);
+
+        Task CreateOrderItems(IEnumerable<GameInCartViewModel> games, string orderId);
     }
 }

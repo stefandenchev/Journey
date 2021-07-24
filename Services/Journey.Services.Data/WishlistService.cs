@@ -47,6 +47,17 @@
             await this.wishListRepository.SaveChangesAsync();
         }
 
+        public async Task ClearBoughtGamesFromWishlist(string userId, List<int> gameIds)
+        {
+            var wishes = this.wishListRepository.All().Where(c => c.UserId == userId && gameIds.Contains(c.GameId));
+            foreach (var wish in wishes)
+            {
+                this.wishListRepository.HardDelete(wish);
+            }
+
+            await this.wishListRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAllForUser<T>(string userId)
         {
             var wishlist = this.wishListRepository

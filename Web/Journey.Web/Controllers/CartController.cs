@@ -20,24 +20,24 @@
     [Authorize]
     public class CartController : BaseController
     {
-        private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
         private readonly ICreditCardsService creditCardsService;
         private readonly ICartService cartService;
+        private readonly IWishlistService wishlistService;
 
         public CartController(
-            ApplicationDbContext db,
             IGamesService gamesService,
             IOrdersService ordersService,
             ICreditCardsService creditCardsService,
-            ICartService cartService)
+            ICartService cartService,
+            IWishlistService wishlistService)
         {
-            this.db = db;
             this.gamesService = gamesService;
             this.ordersService = ordersService;
             this.creditCardsService = creditCardsService;
             this.cartService = cartService;
+            this.wishlistService = wishlistService;
         }
 
         public IActionResult Index()
@@ -115,36 +115,11 @@
                 string orderId = Guid.NewGuid().ToString();
                 model.GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId);
 
-                var newOrder = new Order
-                {
-                    Id = orderId,
-                    UserId = userId,
-                    PurchaseDate = DateTime.Now,
-                    CreditCardId = model.CreditCardId,
-                    Total = model.GamesInCart.Sum(x => x.CurrentPrice),
-                };
-
-                this.db.Orders.Add(newOrder);
-
-                foreach (var game in model.GamesInCart)
-                {
-                    this.db.OrderItems.Add(new OrderItem { OrderId = orderId, GameId = game.Id, GameKey = RandomKeyGen(), PriceOnPurchase = game.CurrentPrice });
-                }
-
-                // if any of the games bought were in the user's wish list, remove them from there
-                var userWishList = this.db.Wishlists.Where(i => i.UserId == userId);
-                foreach (var game in model.GamesInCart)
-                {
-                    var gameInWishList = userWishList.FirstOrDefault(i => i.GameId == game.Id);
-                    if (gameInWishList != null)
-                    {
-                        this.db.Wishlists.Remove(gameInWishList);
-                    }
-                }
+                await this.ordersService.CreateAsync(orderId, userId, model.CreditCardId, model.GamesInCart.Sum(x => x.CurrentPrice));
+                await this.ordersService.CreateOrderItems(model.GamesInCart, orderId);
 
                 // remove all items from cart
-                var cartItem = this.db.UserCartItems.Where(c => c.UserId == userId).ToList();
-                this.db.UserCartItems.RemoveRange(cartItem);
+                await this.cartService.ClearAllAsync(userId);
 
                 List<int> gameIds = new();
 
@@ -154,10 +129,7 @@
                 }
 
                 // remove the games from wishlist
-                var wishes = this.db.Wishlists.Where(c => c.UserId == userId && gameIds.Contains(c.GameId));
-                this.db.Wishlists.RemoveRange(wishes);
-
-                await this.db.SaveChangesAsync();
+                await this.wishlistService.ClearBoughtGamesFromWishlist(userId, gameIds);
             }
             catch (Exception)
             {
@@ -176,7 +148,7 @@
             var latestCardNumer = this.creditCardsService.GetLatestCardNumber(latestOrder.CreditCardId);
 
             latestOrder.CreditCardLast4 = latestCardNumer.Substring(latestCardNumer.Length - 5);
-            latestOrder.GamesInCart = this.GetGamesFromOrder(userId, latestOrder);
+            latestOrder.GamesInCart = this.GetGamesFromOrder(latestOrder);
 
             latestOrder.Total = latestOrder.GamesInCart.Sum(g => g.PriceOnPurchase);
 
@@ -195,7 +167,7 @@
 
             var card = this.creditCardsService.GetById(order.CreditCardId);
             order.CreditCardLast4 = card.CardNumber.Substring(card.CardNumber.Length - 5);
-            order.GamesInCart = this.GetGamesFromOrder(userId, order);
+            order.GamesInCart = this.GetGamesFromOrder(order);
             order.Total = order.GamesInCart.Sum(g => g.PriceOnPurchase);
 
             return this.View("OrderComplete", order);
@@ -221,27 +193,7 @@
             };
         }
 
-        private static string RandomKeyGen()
-        {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var stringChars = new List<char>();
-            var random = new Random();
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (i % 4 == 0 && i != 0)
-                {
-                    stringChars.Add('-');
-                }
-
-                stringChars.Add(chars[random.Next(chars.Length)]);
-            }
-
-            var finalString = new string(stringChars.ToArray());
-            return finalString;
-        }
-
-        private IEnumerable<GameInCartViewModel> GetGamesFromOrder(string userId, OrderCompleteViewModel order)
+        private IEnumerable<GameInCartViewModel> GetGamesFromOrder(OrderCompleteViewModel order)
         {
             var orderItems = this.ordersService.GetOrderItems<OrderItemViewModel>(order.Id);
             var gameIds = this.ordersService.GetGameIdsFromOrder(order.Id);
