@@ -13,17 +13,16 @@
         public string Id { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM dd, yyyy, h:mm tt}")]
+        [DisplayFormat(DataFormatString = "{dd, MMM, yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Order Placed")]
-        public DateTime OrderPlaced { get; set; }
+        public DateTime PurchaseDate { get; set; }
 
         [Display(Name = "Items")]
-        public int ItemNumber { get; set; }
+        public int OrderItemsCount { get; set; }
 
         [DataType(DataType.Currency)]
-        [Display(Name = "Total")]
         public decimal Total { get; set; }
 
-        public List<GameThumbViewModel> Games { get; set; }
+        public IEnumerable<GameThumbViewModel> Games { get; set; }
     }
 }

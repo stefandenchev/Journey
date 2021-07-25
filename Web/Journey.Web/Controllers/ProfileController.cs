@@ -18,20 +18,20 @@
     [Authorize]
     public class ProfileController : BaseController
     {
-        private readonly ApplicationDbContext db;
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
+        private readonly IOrderItemsService orderItemsService;
         private readonly ICreditCardsService creditCardsService;
 
         public ProfileController(
-            ApplicationDbContext db,
             IGamesService gamesService,
             IOrdersService ordersService,
+            IOrderItemsService orderItemsService,
             ICreditCardsService creditCardsService)
         {
-            this.db = db;
             this.gamesService = gamesService;
             this.ordersService = ordersService;
+            this.orderItemsService = orderItemsService;
             this.creditCardsService = creditCardsService;
         }
 
@@ -98,33 +98,18 @@
 
             var userId = this.User.GetId();
 
-            var orders = this.db.Orders.Where(o => o.UserId == userId).OrderByDescending(x => x.PurchaseDate);
-            var orderItems = this.db.OrderItems;
-            var games = this.db.Games;
-
-            OrdersListViewModel viewModel = new();
-            viewModel.Orders = new List<ProfileOrderViewModel>();
-
-            foreach (var order in orders)
+            OrdersListViewModel viewModel = new()
             {
-                var gameIds = this.db.OrderItems.Where(x => x.OrderId == order.Id).Select(x => x.GameId).ToList();
+                Orders = this.ordersService.GetOrders<ProfileOrderViewModel>(userId),
+            };
 
-                var orderGames = this.gamesService.GetAll<GameInCartViewModel>().Where(g => gameIds.Contains(g.Id));
+            foreach (var order in viewModel.Orders)
+            {
+                var gameIds = this.orderItemsService.GetGameIdsFromOrder(order.Id);
+                var orderGames = this.gamesService.GetGamesFromOrder<GameThumbViewModel>(gameIds);
+
                 var total = orderGames.Sum(g => g.PriceOnPurchase);
-
-                var currentOrderItems = this.ordersService.GetAllOrderItems<OrderItemViewModel>().Where(g => gameIds.Contains(g.GameId));
-                var currentTotal = currentOrderItems.Sum(g => g.PriceOnPurchase);
-
-                List<GameThumbViewModel> gameThumbs = orderGames.Select(g => new GameThumbViewModel { Id = g.Id, ImageUrl = g.ImageUrl }).ToList();
-
-                viewModel.Orders.Add(new ViewModels.Profile.ProfileOrderViewModel
-                {
-                    Id = order.Id,
-                    OrderPlaced = order.PurchaseDate,
-                    ItemNumber = orderItems.Where(oi => oi.OrderId == order.Id).Count(),
-                    Total = currentTotal,
-                    Games = gameThumbs,
-                });
+                order.Games = orderGames;
 
                 viewModel.Total = viewModel.Orders.Sum(x => x.Total);
             }
@@ -132,7 +117,7 @@
             if (sortOrder == "date_asc")
             {
                 viewModel.Orders = viewModel.Orders
-                .OrderBy(x => x.OrderPlaced).ToList();
+                .OrderBy(x => x.PurchaseDate).ToList();
             }
 
             if (sortOrder == "price_desc")
@@ -156,10 +141,16 @@
 
             var userId = this.User.GetId();
 
-            var viewModel = this.GetPurchasedGames(userId);
+            var orderIds = this.ordersService.GetOrderIds(userId);
+            List<int> gameIds = new();
 
-            viewModel.Collection = viewModel.Collection
-                .OrderBy(x => x.Title).ToList();
+            foreach (var orderId in orderIds)
+            {
+                gameIds.AddRange(this.orderItemsService.GetGameIdsFromOrder(orderId));
+            }
+
+            var games = this.gamesService.GetGamesFromOrder<GameInLibraryViewModel>(gameIds).OrderBy(x => x.Title);
+            var viewModel = new GameLibraryViewModel { Collection = games, };
 
             if (sortOrder == "title_desc")
             {
@@ -168,27 +159,6 @@
             }
 
             return this.View(viewModel);
-        }
-
-        private GameLibraryViewModel GetPurchasedGames(string userId)
-        {
-            var orderIds = this.db.Orders.Where(o => o.UserId == userId).Select(o => o.Id).ToList();
-            var gameIds = this.db.OrderItems.Where(oi => orderIds.Contains(oi.OrderId)).Select(oi => oi.GameId).ToList();
-
-            var games = new GameLibraryViewModel
-            {
-                Collection = new List<GameInLibraryViewModel>(),
-            };
-
-            List<Game> purchasedGames = this.db.Games.Where(g => gameIds.Contains(g.Id)).ToList();
-            foreach (var purchasedGame in purchasedGames)
-            {
-                var gameToAdd = this.gamesService.GetById<GameInLibraryViewModel>(purchasedGame.Id);
-
-                games.Collection.Add(gameToAdd);
-            }
-
-            return games;
         }
     }
 }

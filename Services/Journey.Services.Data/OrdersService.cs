@@ -9,7 +9,6 @@
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
-    using Journey.Web.ViewModels.Cart;
 
     public class OrdersService : IOrdersService
     {
@@ -64,11 +63,6 @@
             return order;
         }
 
-        public IEnumerable<T> GetAllOrderItems<T>()
-        {
-            return this.orderItemsRepository.All().To<T>().ToList();
-        }
-
         public bool IsInLibrary(string userId, int gameId)
         {
             List<string> allOrderIds = new();
@@ -82,57 +76,16 @@
             return isBought;
         }
 
-        public IEnumerable<int> GetGameIdsFromOrder(string orderId)
+        public IEnumerable<T> GetOrders<T>(string userId)
         {
-            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).ToList();
-            List<int> gameIds = new();
-
-            foreach (var oi in orderItems)
-            {
-                gameIds.Add(oi.GameId);
-            }
-
-            return gameIds;
+            var orders = this.ordersRepository.AllAsNoTracking().Where(x => x.UserId == userId).To<T>().ToList();
+            return orders;
         }
 
-        public IEnumerable<T> GetOrderItems<T>(string orderId)
+        public IEnumerable<string> GetOrderIds(string userId)
         {
-            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).To<T>().ToList();
-            return orderItems;
-        }
-
-        public async Task CreateOrderItems(IEnumerable<GameInCartViewModel> games, string orderId)
-        {
-            foreach (var game in games)
-            {
-                await this.orderItemsRepository.AddAsync(new OrderItem
-                {
-                    OrderId = orderId,
-                    GameId = game.Id,
-                    GameKey = RandomKeyGen(),
-                    PriceOnPurchase = game.CurrentPrice,
-                });
-            }
-        }
-
-        private static string RandomKeyGen()
-        {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var stringChars = new List<char>();
-            var random = new Random();
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (i % 4 == 0 && i != 0)
-                {
-                    stringChars.Add('-');
-                }
-
-                stringChars.Add(chars[random.Next(chars.Length)]);
-            }
-
-            var finalString = new string(stringChars.ToArray());
-            return finalString;
+            var orderIds = this.ordersRepository.AllAsNoTracking().Where(x => x.UserId == userId).Select(x => x.Id).ToList();
+            return orderIds;
         }
     }
 }

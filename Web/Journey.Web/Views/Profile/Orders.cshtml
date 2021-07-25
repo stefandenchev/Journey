@@ -43,29 +43,36 @@
                 }
             </div>
 
+            <div class="row header">
+                <div class="col-md-2">Date</div>
+                <div class="col-md-4">Games</div>
+                <div class="col-md-2">Total</div>
+                <div class="col-md-2"></div>
+            </div>
             <hr />
-            foreach (var item in Model.Orders)
+            foreach (var order in Model.Orders)
             {
-                <div class="row header">
-                    <div class="col-md-4">OrderPlaced</div>
-                    <div class="col-md-2">Games</div>
-                    <div class="col-md-2">Total</div>
-                    <div class="col-md-2"></div>
-                </div>
                 <div class="row">
-                    <div class="col-md-4">@item.OrderPlaced</div>
-                    <div class="col-md-2">@item.ItemNumber</div>
-                    <div class="col-md-2">€@item.Total</div>
-                    <div class="col-md-2" id="view-btn"><a asp-controller="Cart" asp-action="ViewOrder" asp-route-id="@item.Id" class="btn btn-danger" title="View Order"><i class="far fa-list-alt"></i> VIEW ORDER</a></div>
+                    <div class="col-md-2">@order.PurchaseDate.ToString("dd MMM, yyyy")</div>
+                    <div class="col-md-4">
+
+                        @foreach (var game in order.Games)
+                        {
+                            <div class="col">
+                                <a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">
+                                    @*<img src="@(game.ImageUrl)" class="img-thumbnail" alt="Game Cover" width="120" title="To Game Page" />*@
+                                    @game.Title
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="col-md-2">€@order.Total</div>
+                    <div class="col-md-2" id="view-btn"><a asp-controller="Cart" asp-action="ViewOrder" asp-route-id="@order.Id" class="btn btn-danger" title="View Order"><i class="far fa-list-alt"></i> VIEW ORDER</a></div>
 
                 </div>
-                <div class="row row-cols-3 w-50">
-                    @foreach (var tile in item.Games)
-                    {
-                        <div class="col">
-                            <a asp-controller="Games" asp-action="ById" asp-route-id="@tile.Id"><img src="@(tile.ImageUrl)" class="img-thumbnail" alt="Game Cover" width="120" title="To Game Page" /></a>
-                        </div>
-                    }
+                <div class="row row-cols-1 w-50">
+
                 </div>
 
                 <hr />

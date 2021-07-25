@@ -22,6 +22,7 @@
     {
         private readonly IGamesService gamesService;
         private readonly IOrdersService ordersService;
+        private readonly IOrderItemsService orderItemsService;
         private readonly ICreditCardsService creditCardsService;
         private readonly ICartService cartService;
         private readonly IWishlistService wishlistService;
@@ -29,12 +30,14 @@
         public CartController(
             IGamesService gamesService,
             IOrdersService ordersService,
+            IOrderItemsService orderItemsService,
             ICreditCardsService creditCardsService,
             ICartService cartService,
             IWishlistService wishlistService)
         {
             this.gamesService = gamesService;
             this.ordersService = ordersService;
+            this.orderItemsService = orderItemsService;
             this.creditCardsService = creditCardsService;
             this.cartService = cartService;
             this.wishlistService = wishlistService;
@@ -116,7 +119,7 @@
                 model.GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId);
 
                 await this.ordersService.CreateAsync(orderId, userId, model.CreditCardId, model.GamesInCart.Sum(x => x.CurrentPrice));
-                await this.ordersService.CreateOrderItems(model.GamesInCart, orderId);
+                await this.orderItemsService.CreateOrderItems(model.GamesInCart, orderId);
 
                 // remove all items from cart
                 await this.cartService.ClearAllAsync(userId);
@@ -176,7 +179,7 @@
         public IActionResult ExportToJson(string id)
         {
             var order = this.ordersService.GetById<OrderJsonExportModel>(id);
-            order.OrderItems = this.ordersService.GetAllOrderItems<OrderItemJsonExportModel>()
+            order.OrderItems = this.orderItemsService.GetAllOrderItems<OrderItemJsonExportModel>()
                 .Where(x => x.OrderId == order.Id);
 
             string jsonResult = JsonConvert.SerializeObject(order, Formatting.Indented);
@@ -195,8 +198,8 @@
 
         private IEnumerable<GameInCartViewModel> GetGamesFromOrder(OrderCompleteViewModel order)
         {
-            var orderItems = this.ordersService.GetOrderItems<OrderItemViewModel>(order.Id);
-            var gameIds = this.ordersService.GetGameIdsFromOrder(order.Id);
+            var orderItems = this.orderItemsService.GetOrderItems<OrderItemViewModel>(order.Id);
+            var gameIds = this.orderItemsService.GetGameIdsFromOrder(order.Id);
             var gamesToReturn = this.gamesService.GetGamesFromOrder<GameInCartViewModel>(gameIds);
 
             foreach (var game in gamesToReturn)

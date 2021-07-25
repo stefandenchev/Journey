@@ -90,6 +90,7 @@
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<ICreditCardsService, CreditCardsService>();
             services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IOrderItemsService, OrderItemsService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<INewsUrlGenerator, NewsUrlGenerator>();
             services.AddTransient<INewsService, NewsService>();

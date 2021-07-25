@@ -4,6 +4,6 @@
 
     public class GameLibraryViewModel
     {
-        public ICollection<GameInLibraryViewModel> Collection { get; set; }
+        public IEnumerable<GameInLibraryViewModel> Collection { get; set; }
     }
 }
