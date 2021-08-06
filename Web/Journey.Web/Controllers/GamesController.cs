@@ -15,7 +15,10 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using Newtonsoft.Json;
+
+    using static Journey.Common.GlobalConstants.Cache;
 
     public class GamesController : BaseController
     {
@@ -28,6 +31,7 @@
         private readonly IWishlistService wishlistService;
         private readonly IOrdersService ordersService;
         private readonly ICartService cartService;
+        private readonly IMemoryCache cache;
 
         public GamesController(
             IGamesService gamesService,
@@ -38,7 +42,8 @@
             IWebHostEnvironment environment,
             IWishlistService wishlistService,
             IOrdersService ordersService,
-            ICartService cartService)
+            ICartService cartService,
+            IMemoryCache cache)
         {
             this.gamesService = gamesService;
             this.genresService = genresService;
@@ -49,16 +54,19 @@
             this.wishlistService = wishlistService;
             this.ordersService = ordersService;
             this.cartService = cartService;
+            this.cache = cache;
         }
 
         [Authorize]
         public IActionResult Create()
         {
-            var viewModel = new CreateGameInputModel();
-            viewModel.GenresItems = this.genresService.GetAllAsKeyValuePairs();
-            viewModel.LanguagesItems = this.languagesService.GetAllAsKeyValuePairs();
-            viewModel.TagsItems = this.tagsService.GetAllAsKeyValuePairs();
-            viewModel.PublisherItems = this.publishersService.GetAllAsKeyValuePairs();
+            var viewModel = new CreateGameInputModel
+            {
+                GenresItems = this.genresService.GetAllAsKeyValuePairs(),
+                LanguagesItems = this.languagesService.GetAllAsKeyValuePairs(),
+                TagsItems = this.tagsService.GetAllAsKeyValuePairs(),
+                PublisherItems = this.publishersService.GetAllAsKeyValuePairs(),
+            };
 
             return this.View(viewModel);
         }
