@@ -143,7 +143,7 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-                        endpoints.MapControllerRoute(
+/*                        endpoints.MapControllerRoute(
                             name: "gameDetails",
                             pattern: "/Games/{id}/{details}",
                             defaults: new { controller = "Games", action = "ById" });
@@ -156,7 +156,7 @@
                         endpoints.MapControllerRoute(
                             name: "publisherSearch",
                             pattern: "/Search/Publisher/{publisher}",
-                            defaults: new { controller = "Search", action = "Publisher" });
+                            defaults: new { controller = "Search", action = "Publisher" });*/
 
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

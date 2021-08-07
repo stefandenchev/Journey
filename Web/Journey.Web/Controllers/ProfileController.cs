@@ -85,7 +85,7 @@
             }
             else
             {
-                return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+               // return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
             }
 
             return this.RedirectToAction("Payment", "Profile");

@@ -150,9 +150,9 @@
         public IActionResult ById(int id, string details)
         {
             var game = this.gamesService.GetById<SingleGameViewModel>(id);
-            if (game == null || details != game.GetDetails())
+            if (game == null)
             {
-                return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+                 return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
             }
 
             if (!this.User.Identity.IsAuthenticated)

@@ -117,15 +117,8 @@ using Journey.Web.ViewModels.Games.Home.ViewComponents;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 16 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using static Journey.Web.Infrastructure.ModelExtensions;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f7f4c73850dae2e79d56494c2793385cb35f65be", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8fcd5b842cf5dbb8b69ab33ed5fe21f569af894", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a292761b6c19d93441046178f1a52ef1f91a5473", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

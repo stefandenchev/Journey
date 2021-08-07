@@ -59,7 +59,7 @@
                         @foreach (var game in order.Games)
                         {
                             <div class="col">
-                                <a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" asp-route-details="@game.GetDetails()">
+                                <a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">
                                     @*<img src="@(game.ImageUrl)" class="img-thumbnail" alt="Game Cover" width="120" title="To Game Page" />*@
                                     @game.Title
                                 </a>
