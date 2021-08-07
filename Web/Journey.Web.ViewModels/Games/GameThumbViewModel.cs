@@ -7,8 +7,6 @@
 
     public class GameThumbViewModel : GameBaseViewModel
     {
-        public string Title { get; set; }
-
         public decimal PriceOnPurchase { get; set; }
 
         public override void CreateMappings(IProfileExpression configuration)

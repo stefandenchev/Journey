@@ -67,37 +67,37 @@
         }
 
         [HttpGet]
-        public IActionResult Genre(string g, string sortOrder)
+        public IActionResult Genre(string genre, string sortOrder)
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
             this.ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
 
             var viewModel = new GenreListViewModel
             {
-                GenreName = g,
+                GenreName = genre,
                 Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.GenreName == g)
+                .Where(x => x.GenreName == genre)
                 .OrderBy(x => x.Title),
             };
 
             if (sortOrder == "title_desc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.GenreName == g)
+                .Where(x => x.GenreName == genre)
                 .OrderByDescending(x => x.Title);
             }
 
             if (sortOrder == "price_desc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.GenreName == g)
+                .Where(x => x.GenreName == genre)
                 .OrderByDescending(x => x.Price);
             }
 
             if (sortOrder == "price_asc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.GenreName == g)
+                .Where(x => x.GenreName == genre)
                 .OrderBy(x => x.Price);
             }
 
@@ -105,37 +105,37 @@
         }
 
         [HttpGet]
-        public IActionResult Publisher(string p, string sortOrder)
+        public IActionResult Publisher(string publisher, string sortOrder)
         {
             this.ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "title_desc" : string.Empty;
             this.ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
 
             var viewModel = new PublisherListViewModel
             {
-                PublisherName = p,
+                PublisherName = publisher,
                 Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.PublisherName == p)
+                .Where(x => x.PublisherName == publisher)
                 .OrderBy(x => x.Title),
             };
 
             if (sortOrder == "title_desc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.PublisherName == p)
+                .Where(x => x.PublisherName == publisher)
                 .OrderByDescending(x => x.Title);
             }
 
             if (sortOrder == "price_desc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.PublisherName == p)
+                .Where(x => x.PublisherName == publisher)
                 .OrderByDescending(x => x.Price);
             }
 
             if (sortOrder == "price_asc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
-                .Where(x => x.PublisherName == p)
+                .Where(x => x.PublisherName == publisher)
                 .OrderBy(x => x.Price);
             }
 

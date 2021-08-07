@@ -39,7 +39,7 @@
                 {
                     <tr>
                         <td>
-                            <a asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-p="@item.Name">@Html.DisplayFor(modelItem => item.Name)</a>
+                            <a asp-area="Home" asp-controller="Search" asp-action="Publisher" asp-route-publisher="@item.Name">@Html.DisplayFor(modelItem => item.Name)</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CreatedOn)

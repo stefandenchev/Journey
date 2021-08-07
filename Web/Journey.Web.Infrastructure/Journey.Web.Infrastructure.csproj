@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Journey.Web.ViewModels\Journey.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

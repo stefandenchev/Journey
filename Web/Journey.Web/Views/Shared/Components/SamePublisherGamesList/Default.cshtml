@@ -3,7 +3,7 @@
 <div id="detail-others" class="antiboxed runt">
     <h3>
         More By
-        <a class="txt" asp-controller="Search" asp-action="Publisher" asp-route-p="@Model.PublisherName">@Model.PublisherName</a>
+        <a class="txt" asp-controller="Search" asp-action="Publisher" asp-route-publisher="@Model.PublisherName">@Model.PublisherName</a>
     </h3>
     @if (this.Model.Games.Count() > 0)
     {
@@ -13,7 +13,7 @@
                 <li>
                     <div class="boxhole img16x9" title="@game.Title"><img src="" srcset="@game.ImageUrl" sizes="160px" alt="@game.Title" /></div>
                     <div class="baseflap"><span class="prodtitle">@game.Title</span><span class="costblock"><span class="price"><em><i>€</i>@game.Price</em></span></span></div>
-                    <a class="overclick rad3" asp-action="ById" asp-route-id="@game.Id" title="@game.Title">@game.Title</a>
+                    <a class="overclick rad3" asp-action="ById" asp-route-id="@game.Id" asp-route-details="@game.GetDetails()" title="@game.Title">@game.Title</a>
                 </li>
             }
         </ul>

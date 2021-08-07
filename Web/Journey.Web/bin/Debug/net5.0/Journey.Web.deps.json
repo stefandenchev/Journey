@@ -2284,6 +2284,9 @@
         }
       },
       "Journey.Web.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Journey.Web.ViewModels": "1.0.0"
+        },
         "runtime": {
           "Journey.Web.Infrastructure.dll": {}
         },

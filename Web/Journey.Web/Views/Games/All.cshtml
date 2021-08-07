@@ -24,9 +24,9 @@
                     <li class="product">
                         <div class="tilebox-main">
                             <span class="boxshot" title="@game.Title">
-                                <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                                <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" asp-route-details="@game.GetDetails()" asp-route-details="@game.GetDetails()" title="@game.Title"><img src="@game.ImageUrl" /></a>
                             </span>
-                            <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
+                            <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" asp-route-details="@game.GetDetails()">@game.Title</a>
                             @*                        <div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
                             @if (game.IsOnSale)
                             {

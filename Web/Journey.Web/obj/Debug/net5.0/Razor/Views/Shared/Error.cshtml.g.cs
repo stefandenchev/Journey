@@ -117,8 +117,15 @@ using Journey.Web.ViewModels.Games.Home.ViewComponents;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using static Journey.Web.Infrastructure.ModelExtensions;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6f4fdf094411e4d3500c4505a092b41c9f22adf6", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a292761b6c19d93441046178f1a52ef1f91a5473", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8fcd5b842cf5dbb8b69ab33ed5fe21f569af894", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998

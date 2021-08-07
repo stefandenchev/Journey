@@ -147,10 +147,10 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int id)
+        public IActionResult ById(int id, string details)
         {
             var game = this.gamesService.GetById<SingleGameViewModel>(id);
-            if (game == null)
+            if (game == null || details != game.GetDetails())
             {
                 return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
             }

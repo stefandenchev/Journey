@@ -10,8 +10,6 @@
 
     public class GameInListViewModel : GameBaseViewModel, IHaveCustomMappings
     {
-        public string Title { get; set; }
-
         public decimal Price { get; set; }
 
         public decimal CurrentPrice { get; set; }
