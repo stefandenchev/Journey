@@ -35,8 +35,13 @@
 
         public async Task AddToWishlist(string userId, int gameId)
         {
-            Wishlist wish = new Wishlist() { UserId = userId, GameId = gameId };
-            await this.wishListRepository.AddAsync(wish);
+            Wishlist wish = this.wishListRepository.All().FirstOrDefault(x => x.UserId == userId && x.GameId == gameId);
+            if (wish == null)
+            {
+                wish = new Wishlist() { UserId = userId, GameId = gameId };
+                await this.wishListRepository.AddAsync(wish);
+            }
+
             await this.wishListRepository.SaveChangesAsync();
         }
 

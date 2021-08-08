@@ -31,12 +31,6 @@
         public async Task<ActionResult> Add(int id)
         {
             var userId = this.User.GetId();
-            var wishListItem = this.wishlistService.GetById<WishlistGameFormModel>(userId, id);
-
-            if (wishListItem != null)
-            {
-                return this.RedirectToAction("ById", "Games", new { Id = id });
-            }
 
             await this.wishlistService.AddToWishlist(userId, id);
             return this.RedirectToAction("ById", "Games", new { Id = id });
@@ -45,12 +39,6 @@
         public async Task<ActionResult> Remove(int id)
         {
             var userId = this.User.GetId();
-            var wishListItem = this.wishlistService.GetById<WishlistGameFormModel>(userId, id);
-
-            if (wishListItem == null)
-            {
-                return this.RedirectToAction("ById", "Games", new { Id = id });
-            }
 
             await this.wishlistService.RemoveFromWishlist(userId, id);
             return this.RedirectToAction("ById", "Games", new { Id = id });
@@ -59,12 +47,6 @@
         public async Task<ActionResult> RemoveFromList(int id)
         {
             var userId = this.User.GetId();
-            var wishListItem = this.wishlistService.GetById<WishlistGameFormModel>(userId, id);
-
-            if (wishListItem == null)
-            {
-                return this.RedirectToAction("Index");
-            }
 
             await this.wishlistService.RemoveFromWishlist(userId, id);
             return this.RedirectToAction("Index");

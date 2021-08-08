@@ -55,7 +55,7 @@
             this.cache = cache;
         }
 
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             var viewModel = new CreateGameInputModel
@@ -70,7 +70,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CreateGameInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -148,9 +148,10 @@
         public IActionResult ById(int id)
         {
             var game = this.gamesService.GetById<SingleGameViewModel>(id);
+
             if (game == null)
             {
-                 return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+                 return this.Redirect("/Home/NotFound");
             }
 
             if (!this.User.Identity.IsAuthenticated)
