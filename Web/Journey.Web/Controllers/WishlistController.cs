@@ -18,6 +18,8 @@
             this.wishlistService = wishlistService;
         }
 
+        [Authorize]
+
         public IActionResult Index()
         {
             var userId = this.User.GetId();

@@ -18,8 +18,6 @@
     using Microsoft.Extensions.Caching.Memory;
     using Newtonsoft.Json;
 
-    using static Journey.Common.GlobalConstants.Cache;
-
     public class GamesController : BaseController
     {
         private readonly IGamesService gamesService;
@@ -147,7 +145,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int id, string details)
+        public IActionResult ById(int id)
         {
             var game = this.gamesService.GetById<SingleGameViewModel>(id);
             if (game == null)

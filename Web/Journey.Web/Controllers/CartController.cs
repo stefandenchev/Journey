@@ -6,8 +6,6 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using Journey.Data;
-    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Cart;
@@ -43,12 +41,15 @@
             this.wishlistService = wishlistService;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var userId = this.User.GetId();
 
-            var viewModel = new CartViewModel();
-            viewModel.GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId);
+            var viewModel = new CartViewModel
+            {
+                GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId),
+            };
 
             viewModel.Total = viewModel.GamesInCart.Sum(g => g.CurrentPrice);
 
@@ -99,10 +100,12 @@
         {
             var userId = this.User.GetId();
 
-            var viewModel = new CheckoutViewModel();
+            var viewModel = new CheckoutViewModel
+            {
+                GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId),
+                CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList(),
+            };
 
-            viewModel.GamesInCart = this.cartService.GetAllInCart<GameInCartViewModel>(userId);
-            viewModel.CreditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId).ToList();
             viewModel.Total = viewModel.GamesInCart.Sum(g => g.CurrentPrice);
 
             return this.View(viewModel);

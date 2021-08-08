@@ -16,11 +16,6 @@
             this.searchService = searchService;
         }
 
-        public IActionResult Index()
-        {
-            return this.View();
-        }
-
         [HttpGet]
         public IActionResult Results(string s, string sortOrder)
         {

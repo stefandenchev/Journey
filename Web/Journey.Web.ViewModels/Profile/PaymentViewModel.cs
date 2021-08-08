@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Journey.Data.Models;
     using Journey.Web.ViewModels.Cart;
 
     public class PaymentViewModel

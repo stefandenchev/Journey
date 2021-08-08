@@ -5,8 +5,6 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using Journey.Data;
-    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Cart;
