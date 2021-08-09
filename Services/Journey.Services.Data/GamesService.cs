@@ -37,6 +37,7 @@
             {
                 Title = input.Title,
                 Price = input.Price,
+                CurrentPrice = input.Price,
                 Description = input.Description,
                 ReleaseDate = input.ReleaseDate,
                 GenreId = input.GenreId,
@@ -204,6 +205,5 @@
             var gamesToReturn = this.gamesRepository.AllAsNoTracking().Where(g => ids.Contains(g.Id)).To<T>().ToList();
             return gamesToReturn;
         }
-
     }
 }

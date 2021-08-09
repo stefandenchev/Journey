@@ -1,4 +1,4 @@
-﻿namespace Journey.Tests.Controllers
+﻿namespace Journey.Tests.Services
 {
     using System.Collections.Generic;
     using System.Linq;

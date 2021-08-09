@@ -1,4 +1,4 @@
-﻿namespace Journey.Tests.Controllers
+﻿namespace Journey.Tests.Services
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
     public class WishlistControllerTest
     {
         [Fact]
-        public async Task WhenUserVotes2TimesOnly1VoteShouldBeCounted()
+        public async Task AddingGamesToWishlistShouldWorkCorrectly()
         {
             var list = new List<Wishlist>();
 
