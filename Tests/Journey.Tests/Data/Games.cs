@@ -11,7 +11,19 @@
 
     public static class Games
     {
-        public static CreateGameInputModel GetGame()
+        public static IEnumerable<Game> TenGames
+               => Enumerable.Range(1, 10).Select(i => new Game
+               {
+                   Id = i,
+               });
+
+        public static Game OneGame
+               => new Game
+               {
+                   Id = 1,
+               };
+
+        public static CreateGameInputModel GetGameInModel()
         {
             var languagesList = new List<int> { 1 };
             var tagsList = new List<int> { 1 };

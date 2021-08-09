@@ -11,7 +11,7 @@
     using Moq;
     using Xunit;
 
-    public class WishlistControllerTest
+    public class WishlistServiceTest
     {
         [Fact]
         public async Task AddingGamesToWishlistShouldWorkCorrectly()

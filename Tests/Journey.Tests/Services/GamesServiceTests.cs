@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
@@ -16,7 +17,7 @@
 
     using static Journey.Tests.Data.Games;
 
-    public class GamesControllerTests
+    public class GamesServiceTests
     {
         private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly Mock<IDeletableEntityRepository<Language>> languagesRepo;
@@ -24,7 +25,7 @@
         private readonly List<Game> gamesList;
         private readonly GamesService service;
 
-        public GamesControllerTests()
+        public GamesServiceTests()
         {
             this.gamesRepo = new Mock<IDeletableEntityRepository<Game>>();
             this.languagesRepo = new Mock<IDeletableEntityRepository<Language>>();
@@ -40,7 +41,7 @@
         [Fact]
         public async Task GameCreateWorksCorrectly()
         {
-            CreateGameInputModel game = GetGame();
+            CreateGameInputModel game = GetGameInModel();
 
             await this.service.CreateAsync(game, string.Empty);
 
@@ -61,7 +62,7 @@
         [Fact]
         public async Task GameCreateThrowsExceptionForInvalidImageExtension()
         {
-            CreateGameInputModel game = GetGame();
+            CreateGameInputModel game = GetGameInModel();
             IFormFile file = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("This is a dummy file")), 0, 0, "Data", "dummy.txt");
 
             game.Images = new List<IFormFile>
@@ -78,8 +79,8 @@
         [Fact]
         public async Task GetCountWorksCorrectly()
         {
-            CreateGameInputModel game = GetGame();
-            CreateGameInputModel game2 = GetGame();
+            CreateGameInputModel game = GetGameInModel();
+            CreateGameInputModel game2 = GetGameInModel();
 
             await this.service.CreateAsync(game, string.Empty);
             await this.service.CreateAsync(game2, string.Empty);

@@ -50,7 +50,8 @@
         {
             var cartItem = this.userCartItemsRepository.AllAsNoTracking()
                 .Where(x => x.UserId == userId && x.GameId == gameId)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return cartItem;
         }
@@ -80,7 +81,7 @@
         public async Task ClearAllAsync(string userId)
         {
             var gamesInCart = this.userCartItemsRepository.All().Where(c => c.UserId == userId);
-            foreach (var game in gamesInCart)
+            foreach (var game in gamesInCart.ToList())
             {
                 this.userCartItemsRepository.HardDelete(game);
             }

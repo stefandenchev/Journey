@@ -10,7 +10,7 @@
     using Moq;
     using Xunit;
 
-    public class VotesControllerTests
+    public class VotesServiceTests
     {
         [Fact]
         public async Task WhenUserVotes2TimesOnly1VoteShouldBeCounted()
