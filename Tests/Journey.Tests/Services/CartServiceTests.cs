@@ -1,24 +1,17 @@
 ﻿namespace Journey.Tests.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Security.Claims;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
-    using Journey.Web.ViewModels.Games.Create;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Moq;
     using Xunit;
 
     using static Journey.Tests.Data.Games;
-    using static Journey.Tests.Data.User;
 
     public class CartServiceTests
     {
@@ -26,8 +19,6 @@
         private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly List<UserCartItem> cartItemsList;
         private readonly CartService service;
-
-        protected Mock<UserManager<ApplicationUser>> UserManager;
 
         public CartServiceTests()
         {
@@ -43,8 +34,6 @@
                 (UserCartItem item) => this.cartItemsList.Remove(item));
             this.userCartItemsRepo.Setup(x => x.HardDelete(It.IsAny<UserCartItem>())).Callback(
                 (UserCartItem item) => this.cartItemsList.Remove(item));
-
-            this.UserManager = New;
         }
 
         [Fact]

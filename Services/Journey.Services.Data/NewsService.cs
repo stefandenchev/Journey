@@ -24,14 +24,14 @@
 
         public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 6)
         {
-            var games = this.newsRepository.AllAsNoTracking()
+            var news = this.newsRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
 
-            return games;
+            return news;
         }
 
         public T GetById<T>(int id)

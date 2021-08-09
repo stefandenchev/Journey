@@ -18,6 +18,5 @@
         Task ClearAllAsync(string userId);
 
         int GetCount(string userId);
-
     }
 }
