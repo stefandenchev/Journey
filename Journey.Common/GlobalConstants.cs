@@ -6,6 +6,10 @@
 
         public const string AdministratorRoleName = "Administrator";
 
+        public const string GlobalSuccessMessageKey = "GlobalSuccessMessage";
+
+        public const string GlobalErrorMessageKey = "GlobalErrorMessage";
+
         public class Cache
         {
             public const string HomeGamesCacheKey = nameof(HomeGamesCacheKey);

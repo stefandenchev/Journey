@@ -52,28 +52,6 @@ body {
     body.microheader {
     }
 
-
-
-body *::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-}
-
-body *::-webkit-scrollbar-track {
-    border-radius: 9px;
-    background: #201a2b;
-}
-
-body *::-webkit-scrollbar-thumb {
-    border-radius: 9px;
-    background: #857c9b;
-}
-
-body .scroll-sm::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-}
-
 @media not all and (hover:none) {
     .wilburr {
         filter: blur(2px);

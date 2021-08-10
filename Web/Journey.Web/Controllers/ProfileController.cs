@@ -13,6 +13,8 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static Journey.Common.GlobalConstants;
+
     [Authorize]
     public class ProfileController : BaseController
     {
@@ -35,6 +37,8 @@
 
         public IActionResult Payment()
         {
+            this.TempData.Keep();
+
             var userId = this.User.GetId();
 
             var creditCards = this.creditCardsService.GetAll<CreditCardViewModel>().Where(c => c.UserId == userId);
@@ -44,34 +48,33 @@
                 CreditCards = creditCards ?? new List<CreditCardViewModel>(),
             };
 
+            this.TempData.Keep();
             return this.View(model);
         }
 
         [HttpPost]
-        public IActionResult AddCreditCard([FromBody] CreateCardInputModel creditCard)
+        public async Task<ActionResult> AddCreditCard([FromBody] CreateCardInputModel creditCard)
         {
             creditCard.UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            try
+            string cardNumberFormatted = creditCard.CardNumber.Replace(" ", string.Empty);
+            cardNumberFormatted = string.Format("{0:0000 0000 0000 0000}", long.Parse(cardNumberFormatted));
+
+            if (this.creditCardsService.CardExists(cardNumberFormatted))
             {
-                string cardNumberFormatted = creditCard.CardNumber.Replace(" ", string.Empty);
-                cardNumberFormatted = string.Format("{0:0000 0000 0000 0000}", long.Parse(cardNumberFormatted));
-
-                if (this.creditCardsService.GetAll<CreditCardViewModel>().Any(x => x.CardNumber == cardNumberFormatted))
-                {
-                    return this.RedirectToAction("Payment");
-                }
-
+                this.TempData.Keep();
+                this.TempData[GlobalErrorMessageKey] = "This card already exists! Please try again!";
+                this.TempData.Keep();
+            }
+            else
+            {
                 creditCard.CardNumber = cardNumberFormatted;
-
-                this.creditCardsService.CreateAsync(creditCard);
-
-                return this.Json(new { Success = true });
+                await this.creditCardsService.CreateAsync(creditCard);
+                this.TempData[GlobalSuccessMessageKey] = "Card successfully added!";
             }
-            catch
-            {
-                return this.Json(new { Success = false, Error = "Error occurred while saving card information" });
-            }
+
+            this.TempData.Keep();
+            return this.RedirectToAction("Payment");
         }
 
         public async Task<ActionResult> DeleteCreditCard(int id)
@@ -79,14 +82,15 @@
             var card = this.creditCardsService.GetByIdToModel<CreditCardViewModel>(id);
             if (card != null)
             {
+                this.TempData[GlobalSuccessMessageKey] = "Card successfully deleted!";
                 await this.creditCardsService.RemoveById(id);
             }
             else
             {
-               // return this.RedirectToPage("/NotFound", new { Area = "Home", Controller = "Home" });
+                this.TempData[GlobalErrorMessageKey] = "Such card doesn't exist in your profile. Please try again!";
             }
 
-            return this.RedirectToAction("Payment", "Profile");
+            return this.RedirectToAction("Payment");
         }
 
         public IActionResult Orders(string sortOrder)

@@ -14,111 +14,125 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web;
+using Journey.Common;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 2 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels;
+using Journey.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 3 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Search;
+using Journey.Web.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Profile;
+using Journey.Web.ViewModels.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.News;
+using Journey.Web.ViewModels.Profile;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 6 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Games;
+using Journey.Web.ViewModels.News;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Games.Home;
+using Journey.Web.ViewModels.Games;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Games.Create;
+using Journey.Web.ViewModels.Games.Home;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Games.Edit;
+using Journey.Web.ViewModels.Games.Create;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 10 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Cart;
+using Journey.Web.ViewModels.Games.Edit;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Wishlist;
+using Journey.Web.ViewModels.Cart;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 12 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum;
+using Journey.Web.ViewModels.Wishlist;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum.Categories;
+using Journey.Web.ViewModels.Forum;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
-using Journey.Web.ViewModels.Forum.Posts;
+using Journey.Web.ViewModels.Forum.Categories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using Journey.Web.ViewModels.Forum.Posts;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
 using Journey.Web.ViewModels.Games.Home.ViewComponents;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "D:\Journey\Web\Journey.Web\Views\_ViewImports.cshtml"
+using static Journey.Common.GlobalConstants;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b9f955135fb22dad07ad6b4fe93f58e78a78e22f", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a292761b6c19d93441046178f1a52ef1f91a5473", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a498424adc963ffabab0b9c70cd758cd2d164498", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

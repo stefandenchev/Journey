@@ -10,29 +10,29 @@ body {
     line-height: 1.5;
     color: #C5C3C0;
     text-align: left;
-    background: #161226;
+    background: #1A2A3D;
     height: max-content !important;
 }
 
 .tilebox-main {
-    background: #362946;
+    background: #304052;
 }
 
     .tilebox-main:hover {
-        background: #443457;
+        background: #3c5674;
     }
 
 #roundabout, #detail-badge, #detail-main, #detail-stars, #detail-bits, #detail-sysreqs,
 #cart-block-wrap, .baseflap {
-    background: #362946;
+    background: #304052;
 }
 
 #cart-table > tbody > tr.product.hovcolor:hover, #cart-table > tbody > tr.product.hovcolor:hover > td, #cart-table > tbody > tr.product.hovcolor > td.remove > a {
-    background: #443457 !important;
+    background: #3c5674 !important;
 }
 
     #cart-table > tbody > tr.product.hovcolor > td.remove > a:hover {
-        background: #362946 !important;
+        background: #304052 !important;
     }
 
 h1, h2 {
@@ -60,7 +60,7 @@ body > div.page-container > header > nav {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     font-size: 17px;
 }
-
+#core-guts-title > span > b:nth-child(1) > img
 .form-control, .form-control-language {
     margin-bottom: 15px;
 }
@@ -76,10 +76,6 @@ div.validation-summary-errors {
 
 #cart-icon-main > label > img {
     margin-top: 6px
-}
-
-#whoops {
-    font-size: 8px
 }
 
 a:hover {
@@ -113,6 +109,9 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     font-size: 1.3em;
 }
 
+#small-price {
+    margin-left:3em !important
+}
 /* CREATE/EDIT GAME (NOT ALL)*/
 #ReleaseDate {
     color: #BBC3C0;
@@ -124,20 +123,24 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 15px;
 }
 
-#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images, #SalePercentage, #CategoryId {
-    background: #141022 !important;
-    border: 1px solid #3b3048 !important;
+#Languages, #Tags, #ReleaseDate, #Description, #Title, #Price, #Images, #SalePercentage, #CategoryId, #MininumRequirements, #RecommendedRequirements {
+    background: #172637 !important;
+    border: 1px solid #304052 !important;
 }
 
-#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price, #SalePercentage, #CategoryId {
-    padding-left: 0.8em
+#Title, #Description, #GenreId, #PublisherId, #MininumRequirements, #RecommendedRequirements, #Price, #SalePercentage, #CategoryId, #ReleaseDate, #Languages, #Tags {
+    padding-left: 0.8em;
 }
 
-#GenreId, #PublisherId, #CreditCardId, #SalePercentage, #CategoryId {
-    border: 1px solid #3b3048;
-    height: 45px;
-    background: #141022;
+#Languages, #Tags {
+    margin-bottom: 1em
 }
+
+    #GenreId, #PublisherId, #CreditCardId, #SalePercentage, #CategoryId {
+        border: 1px solid #304052;
+        height: 45px;
+        background: #172637;
+    }
 
     #PublisherId > option, #GenreId > option, #CreditCardId > option, #CategoryId > option {
         color: #BBC3C0
@@ -159,6 +162,26 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     height: 25px
 }
 
+body *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+body *::-webkit-scrollbar-track {
+    border-radius: 9px;
+    background: #171A21;
+}
+
+body *::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    background: #304052;
+}
+
+body .scroll-sm::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
 /*---------------------*/
 span.price {
     margin-right: 5px
@@ -174,7 +197,7 @@ li.nav-item {
 }
 
 .navbar-dark {
-    background: #121015;
+    background: #171A21;
 }
 
 nav a {
@@ -200,7 +223,7 @@ nav a {
     bottom: 0 !important;
     left: auto !important;
     right: auto !important;
-    background: #121015;
+    background: #171A21;
     height: 4rem;
     margin-top: 2em !important
 }
@@ -724,7 +747,7 @@ a:hover {
 
 select#Languages.form-control, select#Tags.form-control {
     height: 17.5em;
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 #editMultiButton {
@@ -755,6 +778,13 @@ select#Languages.form-control, select#Tags.form-control {
     font-size: 16px
 }
 
+#Title {
+    margin-bottom: 1em;
+}
+
+#container-main > main > div > form > div:nth-child(3) > label {
+    margin-top: 1em;
+}
 
 /* RESPONSIVE PAGES */
 .lg-view {
@@ -825,20 +855,24 @@ select#Languages.form-control, select#Tags.form-control {
 }
 
 
-
 /* MANAGE/PROFILE */
+#container-main > main > div > div.alert.alert-success.text-center {
+    background: #1E7E34 !important;
+    color: white !important
+}
+
 #dwn-btn {
     border-radius: 6px;
 }
 
 #Input_PhoneNumber {
-    background: #141022 !important;
+    background: #172637 !important;
     border: 1px solid #303B48 !important;
     padding: 10px;
 }
 
 body > div.page-container > div.container > main > div > div > div.col-md-9 > div {
-    background-color: #161226;
+    background-color: #1A2A3D;
 }
 
 #email-verification {
@@ -997,7 +1031,7 @@ img.img-circle {
     }
 
 .wrapper {
-    background: #362946;
+    background: #304052;
     padding: 1em 2em;
 }
 
@@ -1213,8 +1247,12 @@ img.img-circle {
 }
 
 /* ADMIN AREA*/
+.new-discussion-div-admin{
+    float:left;
+}
+
 #GameId, #LanguageId, #TagId {
-    background: #2f253b;
+    background: #293747;
     height: 3em;
 }
 
@@ -1559,7 +1597,7 @@ select.form-control[multiple] option {
 .nk-form-control-number {
     padding: 4px;
     white-space: nowrap;
-    background-color: #0e0e0e;
+    background-color: #304052;
     border-radius: 2px;
 }
 

@@ -19,5 +19,7 @@
         Task RemoveById(int id);
 
         Task CreateAsync(CreateCardInputModel input);
+
+        bool CardExists(string cardNumber);
     }
 }

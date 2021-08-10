@@ -4,8 +4,19 @@
     this.ViewBag.Title = "News";
 }
 
+<link href="~/css/buttons.css" rel="stylesheet" />
+
 <div class="container">
     <div class="wrapper">
+
+        <div class="new-discussion-div">
+            <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Create" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+                <span>
+                    Add New Article
+                </span>
+            </a>
+        </div>
+
         <div class="blog margin-bottom-40">
 
             @if (Model.News.Any())
@@ -15,6 +26,7 @@
                     var timePassed = ((DateTime.UtcNow).Subtract(post.CreatedOn).TotalMinutes);
 
                     <h1>@post.Title</h1>
+
                     <div class="blog-post-tags">
                         <ul class="list-unstyled list-inline blog-info">
 

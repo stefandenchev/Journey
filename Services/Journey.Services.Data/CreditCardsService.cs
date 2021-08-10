@@ -73,5 +73,11 @@
 
             return cardNumber;
         }
+
+        public bool CardExists(string cardNumber)
+        {
+            var result = this.creditCardsRepository.AllWithDeleted().Any(x => x.CardNumber == cardNumber);
+            return result;
+        }
     }
 }

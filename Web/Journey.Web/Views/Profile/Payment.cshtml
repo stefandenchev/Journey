@@ -32,6 +32,20 @@
 
 <div class="container">
 
+
+    @if (TempData.ContainsKey(GlobalSuccessMessageKey))
+    {
+        <div class="alert alert-success text-center" role="alert">
+            @TempData[GlobalSuccessMessageKey]
+        </div>
+    }
+    @if (TempData.ContainsKey(GlobalErrorMessageKey))
+    {
+        <div class="alert alert-danger text-center" role="alert">
+            @TempData[GlobalErrorMessageKey]
+        </div>
+    }
+
     <h2>Credit Card Information</h2>
     <p>Please note that only Visa and MasterCard credit cards are accepted.</p>
 

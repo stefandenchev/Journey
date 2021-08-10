@@ -1,7 +1,7 @@
 ﻿@model CategoryViewModel
 
 <div class="nk-pagination nk-pagination-center" id="paginationMain">
-    <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-publisherage="@Model.PreviousPageNumber" class="nk-pagination-prev @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
+    <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-page="@Model.PreviousPageNumber" class="nk-pagination-prev @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
         <span class="nk-icon-arrow-left"></span>
     </a>
     <nav>
@@ -9,7 +9,7 @@
         {
             if (i > 0)
             {
-                <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-publisherage="@i">@i</a>
+                <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-page="@i">@i</a>
             }
         }
 
@@ -19,12 +19,12 @@
         {
             if (i <= Model.PagesCount)
             {
-                <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-publisherage="@i">@i</a>
+                <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-page="@i">@i</a>
             }
         }
 
     </nav>
-    <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-publisherage="@Model.NextPageNumber" class="nk-pagination-next @if (!Model.HasNextPage) { <text>disabled</text> } ">
+    <a asp-action="ByTitle" asp-route-title="@this.Model.Title" asp-route-page="@Model.NextPageNumber" class="nk-pagination-next @if (!Model.HasNextPage) { <text>disabled</text> } ">
         <span class="nk-icon-arrow-right"></span>
     </a>
 </div>

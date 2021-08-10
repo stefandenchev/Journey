@@ -2,14 +2,44 @@
 
 @{ this.ViewBag.Title = "Admin dashboard"; }
 
+<link href="~/css/buttons.css" rel="stylesheet" />
+
 <h1>@this.ViewBag.Title</h1>
 <hr />
 <h3>Select category:</h3>
 
-<a class="btn btn-info" asp-area="Home" asp-controller="Games" asp-action="Create">Add New Game</a>
-<a class="btn btn-info" asp-controller="GameLanguages" asp-action="Index">GameLanguages</a>
-<a class="btn btn-info" asp-controller="GameTags" asp-action="Index">GameTags</a>
-<a class="btn btn-info" asp-controller="Publishers" asp-action="Index">Publishers</a>
-<a class="btn btn-info" asp-controller="NewsPosts" asp-action="Index">News</a>
+<div class="new-discussion-div-admin">
+    <a asp-area="Home" asp-controller="Games" asp-action="Create" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+        <span>
+            Add New Game
+        </span>
+    </a>
+
+    <a asp-controller="NewsPosts" asp-action="Index" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+        <span>
+            Add new News Article
+        </span>
+    </a>
+
+    <a asp-controller="GameLanguages" asp-action="Index" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+        <span>
+            Languages
+        </span>
+    </a>
+
+    <a asp-controller="GameTags" asp-action="Index" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+        <span>
+            Game Tags
+        </span>
+    </a>
+
+    <a asp-controller="Publishers" asp-action="Index" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+        <span>
+            Publishers
+        </span>
+    </a>
+</div>
+
+
 
 
