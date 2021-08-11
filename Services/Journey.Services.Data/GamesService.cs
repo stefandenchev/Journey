@@ -5,11 +5,13 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Journey.Web.ViewModels.Games.Edit;
 
@@ -132,7 +134,8 @@
         {
             var game = this.gamesRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return game;
         }

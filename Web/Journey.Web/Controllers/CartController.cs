@@ -92,7 +92,7 @@
         {
             var userId = this.User.GetId();
             await this.cartService.ClearAllAsync(userId);
-            return this.RedirectToAction("Index", "Cart");
+            return this.RedirectToAction("Index");
         }
 
         [HttpGet]

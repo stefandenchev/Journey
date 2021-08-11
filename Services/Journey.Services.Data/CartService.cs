@@ -24,7 +24,8 @@
 
         public bool IsInCart(string userId, int gameId)
         {
-            var isInCart = this.userCartItemsRepository.All().Any(x => x.UserId == userId && x.GameId == gameId);
+            var isInCart = this.userCartItemsRepository.All()
+                .Any(x => x.UserId == userId && x.GameId == gameId);
             return isInCart;
         }
 

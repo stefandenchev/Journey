@@ -5,17 +5,20 @@
 }
 
 <link href="~/css/buttons.css" rel="stylesheet" />
-
+<br />  
 <div class="container">
     <div class="wrapper">
 
-        <div class="new-discussion-div">
-            <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Create" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
-                <span>
-                    Add New Article
-                </span>
-            </a>
-        </div>
+        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <div class="new-discussion-div">
+                <a asp-area="Administration" asp-controller="NewsPosts" asp-action="Create" class="btn_darkblue_white_innerfade btn_medium responsive_OnClickDismissMenu">
+                    <span>
+                        Add New Article
+                    </span>
+                </a>
+            </div>
+        }
 
         <div class="blog margin-bottom-40">
 

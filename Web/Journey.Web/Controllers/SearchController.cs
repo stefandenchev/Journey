@@ -48,14 +48,14 @@
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                .OrderByDescending(x => x.Price);
+                .OrderByDescending(x => x.CurrentPrice);
             }
 
             if (sortOrder == "price_asc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.Title.ToLower().Contains(s.ToLower()))
-                .OrderBy(x => x.Price);
+                .OrderBy(x => x.CurrentPrice);
             }
 
             return this.View(viewModel);
@@ -86,14 +86,14 @@
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.GenreName == genre)
-                .OrderByDescending(x => x.Price);
+                .OrderByDescending(x => x.CurrentPrice);
             }
 
             if (sortOrder == "price_asc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.GenreName == genre)
-                .OrderBy(x => x.Price);
+                .OrderBy(x => x.CurrentPrice);
             }
 
             return this.View(viewModel);
@@ -124,14 +124,14 @@
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.PublisherName == publisher)
-                .OrderByDescending(x => x.Price);
+                .OrderByDescending(x => x.CurrentPrice);
             }
 
             if (sortOrder == "price_asc")
             {
                 viewModel.Games = this.searchService.GetAll<GameInListViewModel>()
                 .Where(x => x.PublisherName == publisher)
-                .OrderBy(x => x.Price);
+                .OrderBy(x => x.CurrentPrice);
             }
 
             return this.View(viewModel);

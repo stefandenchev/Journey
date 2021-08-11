@@ -6,7 +6,9 @@
 
 <div class="container">
     <div class="blog-post-tags">
-        <ul class="list-unstyled list-inline blog-info">
+        <ul class="list-inline blog-info">
+            <li><h1>@Model.Title</h1></li>
+            <li><br /></li>
             <li><i class="fa fa-calendar"></i> @Model.CreatedOn.ToString("MMMM dd, yyyy")</li>
             @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
@@ -15,7 +17,7 @@
         </ul>
 
     </div>
-    @Html.Raw(Model.Content)
+        @Html.Raw(Model.Content)
     <br />
 
 </div>
