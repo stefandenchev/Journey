@@ -13,14 +13,14 @@
 
     using static Journey.Tests.Data.Games;
 
-    public class CartServiceTests
+    public class CartServiceTest
     {
         private readonly Mock<IDeletableEntityRepository<UserCartItem>> userCartItemsRepo;
         private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly List<UserCartItem> cartItemsList;
         private readonly CartService service;
 
-        public CartServiceTests()
+        public CartServiceTest()
         {
             this.userCartItemsRepo = new Mock<IDeletableEntityRepository<UserCartItem>>();
             this.gamesRepo = new Mock<IDeletableEntityRepository<Game>>();
@@ -122,6 +122,23 @@
             await this.service.RemoveAsync(user.Identity.Name, 6);
 
             Assert.Equal(8, this.service.GetCount(user.Identity.Name));
+        }
+
+        [Fact]
+        public async Task IsInCartWorksCorrectly()
+        {
+            var user = new ClaimsPrincipal(new ClaimsIdentity(
+                new Claim[]
+                {
+                     new Claim(ClaimTypes.NameIdentifier, "TestValue"),
+                     new Claim(ClaimTypes.Name, "kal@dunno.com"),
+                }));
+
+            var game = OneGame;
+
+            await this.service.CreateAsync(user.Identity.Name, game.Id);
+
+            Assert.True(this.service.IsInCart(user.Identity.Name, game.Id));
         }
     }
 }

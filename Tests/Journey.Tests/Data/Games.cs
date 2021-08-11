@@ -1,5 +1,6 @@
 ﻿namespace Journey.Tests.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -13,6 +14,12 @@
     {
         public static IEnumerable<Game> TenGames
                => Enumerable.Range(1, 10).Select(i => new Game
+               {
+                   Id = i,
+               });
+
+        public static IEnumerable<Game> ThreeGames
+               => Enumerable.Range(1, 3).Select(i => new Game
                {
                    Id = i,
                });
@@ -45,6 +52,8 @@
                 {
                     file,
                 },
+                Drm = "Steam",
+                ReleaseDate = new DateTime(2020, 10, 10),
             };
 
             return game;
