@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -11,6 +12,7 @@
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
+    using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
@@ -49,6 +51,7 @@
             this.service = new GamesService(this.gamesRepo.Object, this.languagesRepo.Object, this.tagsRepo.Object);
 
             this.gamesRepo.Setup(x => x.All()).Returns(this.gamesList.AsQueryable());
+            this.gamesRepo.Setup(x => x.AllAsNoTracking()).Returns(this.gamesList.AsQueryable());
             this.gamesRepo.Setup(x => x.AddAsync(It.IsAny<Game>())).Callback(
                 (Game game) => this.gamesList.Add(game));
         }
@@ -105,36 +108,52 @@
             Assert.Equal(2, result);
         }
 
-/*        [Fact]
-        public void GetAllAsKeyValuePairsWorksCorrectly()
-        {
-            CreateGameInputModel game1 = GetGameInModel();
-            CreateGameInputModel game2 = GetGameInModel();
-
-            this.service.CreateAsync(game1, string.Empty);
-            this.service.CreateAsync(game2, string.Empty);
-
-            var games = ThreeGames;
-            foreach (var game in games)
-            {
-                this.gamesRepo.Object.AddAsync(game);
-            }
-
-            var result = this.service.GetAllAsKeyValuePairs();
-
-            Assert.Equal(3, result.Count());
-        }*/
-
         /*        [Fact]
-                public void ProductService_Given_Product_Id_Should_Get_Product_Name()
+                public void GetAllAsKeyValuePairsWorksCorrectly()
                 {
-                    CreateGameInputModel game = GetGameInModel();
+                    CreateGameInputModel game1 = GetGameInModel();
+                    CreateGameInputModel game2 = GetGameInModel();
 
-                    this.service.CreateAsync(game, string.Empty);
-                    var result = this.service.GetById<SingleGameViewModel>(1);
+                    this.service.CreateAsync(game1, string.Empty);
+                    this.service.CreateAsync(game2, string.Empty);
 
-                    Assert.NotNull(result); // assert that a result was returned
+                    var games = ThreeGames;
+                    foreach (var game in games)
+                    {
+                        this.gamesRepo.Object.AddAsync(game);
+                    }
+
+                    var result = this.service.GetAllAsKeyValuePairs();
+
+                    Assert.Equal(3, result.Count());
                 }*/
+
+        [Fact]
+        public void ProductService_Given_Product_Id_Should_Get_Product_Name()
+        {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
+            this.gamesRepo.Object.AddAsync(new Game
+            {
+                Id = 1,
+                Title = $"Game Test",
+                Description = $"Game Description Test",
+                PublisherId = 1,
+                MininumRequirements = "min",
+                RecommendedRequirements = "rec",
+                Price = 9.99m,
+                CurrentPrice = 9.99m,
+                IsOnSale = false,
+                OriginalUrl = "https://www.wingamestore.com/",
+                GenreId = 1,
+                Drm = "Steam",
+                ReleaseDate = new DateTime(2020, 10, 10),
+            });
+
+            var result = this.service.GetAll<GameInListViewModel>();
+
+            Assert.NotNull(result); // assert that a result was returned
+        }
 
         /* [Fact]
          public void Test()

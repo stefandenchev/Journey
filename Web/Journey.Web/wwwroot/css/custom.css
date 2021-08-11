@@ -856,6 +856,14 @@ select#Languages.form-control, select#Tags.form-control {
 
 
 /* MANAGE/PROFILE */
+.btn_blue_steamui{
+    align-content: center
+}
+span.btn_blue_steamui.reg-btn {
+    padding: 10px 20px;
+    text-align: center
+}
+
 #container-main > main > div > div.alert.alert-success.text-center {
     background: #1E7E34 !important;
     color: white !important
