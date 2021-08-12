@@ -36,18 +36,28 @@
 
         public IEnumerable<T> GetOrderItems<T>(string orderId)
         {
-            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).To<T>().ToList();
-            return orderItems;
+            return this.orderItemsRepository
+                .All()
+                .Where(oi => oi.OrderId == orderId)
+                .To<T>()
+                .ToList();
         }
 
         public IEnumerable<T> GetAllOrderItems<T>()
         {
-            return this.orderItemsRepository.All().To<T>().ToList();
+            return this.orderItemsRepository
+                .All()
+                .To<T>()
+                .ToList();
         }
 
         public IEnumerable<int> GetGameIdsFromOrder(string orderId)
         {
-            var orderItems = this.orderItemsRepository.AllAsNoTracking().Where(oi => oi.OrderId == orderId).ToList();
+            var orderItems = this.orderItemsRepository
+                .All()
+                .Where(oi => oi.OrderId == orderId)
+                .ToList();
+
             List<int> gameIds = new();
 
             foreach (var oi in orderItems)

@@ -39,12 +39,16 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.ordersRepository.All().To<T>().ToList();
+            return this.ordersRepository
+                .All()
+                .To<T>()
+                .ToList();
         }
 
         public T GetById<T>(string id)
         {
-            var order = this.ordersRepository.AllAsNoTracking()
+            var order = this.ordersRepository
+                .All()
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
@@ -54,7 +58,8 @@
 
         public T GetLatest<T>(string userId)
         {
-            var order = this.ordersRepository.AllAsNoTracking()
+            var order = this.ordersRepository
+                .All()
                 .Where(x => x.UserId == userId)
                 .OrderByDescending(o => o.PurchaseDate)
                 .To<T>()
@@ -72,19 +77,31 @@
                 allOrderIds.Add(o.Id);
             }
 
-            var isBought = this.orderItemsRepository.All().Any(x => x.GameId == gameId && allOrderIds.Contains(x.OrderId));
+            var isBought = this.orderItemsRepository
+                .All()
+                .Any(x => x.GameId == gameId && allOrderIds.Contains(x.OrderId));
             return isBought;
         }
 
         public IEnumerable<T> GetOrders<T>(string userId)
         {
-            var orders = this.ordersRepository.AllAsNoTracking().Where(x => x.UserId == userId).To<T>().ToList();
+            var orders = this.ordersRepository
+                .All()
+                .Where(x => x.UserId == userId)
+                .To<T>()
+                .ToList();
+
             return orders;
         }
 
         public IEnumerable<string> GetOrderIds(string userId)
         {
-            var orderIds = this.ordersRepository.AllAsNoTracking().Where(x => x.UserId == userId).Select(x => x.Id).ToList();
+            var orderIds = this.ordersRepository
+                .All()
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Id)
+                .ToList();
+
             return orderIds;
         }
     }

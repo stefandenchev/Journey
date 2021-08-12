@@ -2,11 +2,15 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
+    using Journey.Services.Mapping;
+    using Journey.Web.ViewModels;
     using Moq;
     using Xunit;
 
@@ -18,6 +22,8 @@
 
         public GenresServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.genresRepo = new Mock<IDeletableEntityRepository<Genre>>();
 
             this.genresList = new List<Genre>();

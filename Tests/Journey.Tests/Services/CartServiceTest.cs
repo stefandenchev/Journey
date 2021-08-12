@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Security.Claims;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
@@ -167,6 +168,8 @@
         [Fact]
         public async Task GetItemFromCartShouldWorkCorrectly()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {
@@ -181,34 +184,5 @@
             Assert.NotNull(this.cartService.Get<CartItemViewModel>(user.Identity.Name, game.Id));
             Assert.Equal(1, this.cartService.Get<CartItemViewModel>(user.Identity.Name, game.Id).GameId);
         }
-
-        /*[Fact]
-        public async Task GetAllInCartWorksCorrectly()
-        {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            var user = new ClaimsPrincipal(new ClaimsIdentity(
-                new Claim[]
-                {
-                     new Claim(ClaimTypes.NameIdentifier, "TestValue"),
-                     new Claim(ClaimTypes.Name, "kal@dunno.com"),
-                }));
-
-            var games = ThreeGames;
-
-            foreach (var game in games)
-            {
-                await this.userCartItemsRepo.Object.AddAsync(new UserCartItem
-                {
-                    GameId = game.Id,
-                    UserId = user.Identity.Name,
-                });
-                await this.gamesRepo.Object.AddAsync(game);
-            }
-
-            var result = this.cartService.GetAllInCart<GameInCartViewModel>(user.Identity.Name);
-
-            Assert.Equal(3, result.Count());
-        }*/
     }
 }

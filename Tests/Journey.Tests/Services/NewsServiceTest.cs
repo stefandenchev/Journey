@@ -23,6 +23,8 @@
 
         public NewsServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.newsRepo = new Mock<IDeletableEntityRepository<NewsPost>>();
             this.news = new List<NewsPost>();
             this.service = new NewsService(this.newsRepo.Object);
@@ -59,7 +61,7 @@
             Assert.Equal(2, result);
         }
 
-/*        [Fact]
+        [Fact]
         public async Task GetAllShouldWorkCorrectly()
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
@@ -84,6 +86,6 @@
             var result = this.service.GetAll<NewsPostsInListViewModel>();
 
             Assert.Equal(2, result.Count());
-        }*/
+        }
     }
 }

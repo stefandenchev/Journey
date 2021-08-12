@@ -19,7 +19,10 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.newsRepository.AllAsNoTracking().To<T>().ToList();
+            return this.newsRepository
+                .All()
+                .To<T>()
+                .ToList();
         }
 
         public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 6)

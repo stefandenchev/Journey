@@ -35,33 +35,30 @@
 
         public T GetById<T>(int id)
         {
-            var post = this.postsRepository.All().Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
-
-            return post;
-        }
-
-        public int GetCountByCategoryId(int categoryId)
-        {
-            return this.postsRepository.All().Count(x => x.CategoryId == categoryId);
+            return this.postsRepository
+                .All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
         }
 
         public IEnumerable<T> GetAllInList<T>(int categoryId, int page, int itemsPerPage = 16)
         {
-            var posts = this.postsRepository.AllAsNoTracking()
+            return this.postsRepository.AllAsNoTracking()
                 .Where(x => x.CategoryId == categoryId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
-
-            return posts;
         }
 
         public int GetCount(int categoryId)
         {
-            return this.postsRepository.All().Where(x => x.CategoryId == categoryId).Count();
+            return this.postsRepository
+                .All()
+                .Where(x => x.CategoryId == categoryId)
+                .Count();
         }
     }
 }

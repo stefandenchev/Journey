@@ -2,12 +2,15 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
+    using Journey.Services.Mapping;
+    using Journey.Web.ViewModels;
     using Moq;
     using Xunit;
 
@@ -19,6 +22,8 @@
 
         public ForumVotesServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.votesRepo = new Mock<IRepository<ForumVote>>();
             this.votes = new List<ForumVote>();
             this.service = new ForumVotesService(this.votesRepo.Object);

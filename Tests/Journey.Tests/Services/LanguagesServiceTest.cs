@@ -49,6 +49,8 @@
         [Fact]
         public async Task GetAllGenresAsKeyValuePairsShoulsWorkCorrectly()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             await this.languagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
@@ -69,6 +71,8 @@
         [Fact]
         public async Task GetByIdShouldReturnCorrectLanguage()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             await this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
@@ -91,6 +95,8 @@
         [Fact]
         public async Task GetAllShouldReturnWorkCorrectly()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             await this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,

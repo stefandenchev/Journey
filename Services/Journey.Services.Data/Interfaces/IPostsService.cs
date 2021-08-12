@@ -9,8 +9,6 @@
 
         T GetById<T>(int id);
 
-        int GetCountByCategoryId(int categoryId);
-
         int GetCount(int categoryId);
 
         IEnumerable<T> GetAllInList<T>(int categoryId, int page, int itemsPerPage = 12);
