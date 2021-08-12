@@ -36,9 +36,11 @@
 
         public T GetById<T>(int id)
         {
-            var gameLanguage = this.gamesLanguagesRepository.AllAsNoTracking()
+            var gameLanguage = this.gamesLanguagesRepository
+                .AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return gameLanguage;
         }

@@ -5,13 +5,11 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
+
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
-    using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Journey.Web.ViewModels.Games.Edit;
 
@@ -100,7 +98,8 @@
 
         public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 16)
         {
-            var games = this.gamesRepository.AllAsNoTracking()
+            var games = this.gamesRepository
+                .AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -112,7 +111,8 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            var games = this.gamesRepository.AllAsNoTracking()
+            var games = this.gamesRepository
+                .All()
                 .To<T>()
                 .ToList();
 
@@ -121,7 +121,8 @@
 
         public IEnumerable<T> GetLatest<T>(int count = 12)
         {
-            var games = this.gamesRepository.AllAsNoTracking()
+            var games = this.gamesRepository
+                .All()
                 .OrderByDescending(x => x.ReleaseDate)
                 .Take(count)
                 .To<T>()
@@ -132,7 +133,8 @@
 
         public T GetById<T>(int id)
         {
-            var game = this.gamesRepository.AllAsNoTracking()
+            var game = this.gamesRepository
+                .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
@@ -142,7 +144,9 @@
 
         public int GetCount()
         {
-            return this.gamesRepository.All().Count();
+            return this.gamesRepository
+                .All()
+                .Count();
         }
 
         public async Task UpdateAsync(int id, EditGameInputModel input)
@@ -179,7 +183,9 @@
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.gamesRepository.AllAsNoTracking().Select(x => new
+            return this.gamesRepository
+                .AllAsNoTracking()
+                .Select(x => new
             {
                 x.Id,
                 x.Title,
@@ -194,7 +200,8 @@
                 580, 581, 583, 585, 586, 587,
             };
 
-            var games = this.gamesRepository.AllAsNoTracking()
+            var games = this.gamesRepository
+                .AllAsNoTracking()
                 .Where(t => idList.Contains(t.Id))
                 .Take(count)
                 .To<T>()
@@ -205,7 +212,12 @@
 
         public IEnumerable<T> GetGamesFromOrder<T>(IEnumerable<int> ids)
         {
-            var gamesToReturn = this.gamesRepository.AllAsNoTracking().Where(g => ids.Contains(g.Id)).To<T>().ToList();
+            var gamesToReturn = this.gamesRepository
+                .AllAsNoTracking()
+                .Where(g => ids.Contains(g.Id))
+                .To<T>()
+                .ToList();
+
             return gamesToReturn;
         }
     }

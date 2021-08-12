@@ -22,10 +22,19 @@
                => Enumerable.Range(1, 3).Select(i => new Game
                {
                    Id = i,
+                   Title = $"Game Test {i}",
+                   Description = $"Game Description Test {i}",
+                   PublisherId = 1,
+                   MininumRequirements = $"min {i}",
+                   RecommendedRequirements = $"rec {i}",
+                   Price = 9.99m,
+                   GenreId = 1,
+                   Drm = $"Steam",
+                   ReleaseDate = new DateTime(2020, 10, 10),
                });
 
         public static Game OneGame
-               => new Game
+               => new()
                {
                    Id = 1,
                };

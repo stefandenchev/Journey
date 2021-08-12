@@ -21,7 +21,10 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.creditCardsRepository.All().To<T>().ToList();
+            return this.creditCardsRepository
+                .All()
+                .To<T>()
+                .ToList();
         }
 
         public CreditCard GetById(int id)
@@ -35,9 +38,11 @@
 
         public T GetByIdToModel<T>(int id)
         {
-            var card = this.creditCardsRepository.AllAsNoTrackingWithDeleted()
+            var card = this.creditCardsRepository
+                .AllWithDeleted()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return card;
         }

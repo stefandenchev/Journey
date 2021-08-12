@@ -19,7 +19,8 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            var categories = this.categoriesRepository.AllAsNoTracking()
+            var categories = this.categoriesRepository
+                 .All()
                  .To<T>()
                  .ToList();
 
@@ -28,18 +29,22 @@
 
         public T GetById<T>(int id)
         {
-            var category = this.categoriesRepository.AllAsNoTracking()
+            var category = this.categoriesRepository
+                .All()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return category;
         }
 
         public T GetByTitle<T>(string title)
         {
-            var category = this.categoriesRepository.All()
+            var category = this.categoriesRepository
+                .All()
                 .Where(x => x.Title.Replace(" ", "-") == title.Replace(" ", "-"))
-                .To<T>().FirstOrDefault();
+                .To<T>()
+                .FirstOrDefault();
 
             return category;
         }

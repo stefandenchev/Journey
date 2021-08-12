@@ -23,7 +23,7 @@
         {
             ForumViewModel viewModel = new()
             {
-                Categories = this.categoriesService.GetAll<CategoriesViewModel>(),
+                Categories = this.categoriesService.GetAll<CategoriesListViewModel>(),
             };
 
             return this.View(viewModel);

@@ -93,7 +93,6 @@
             services.AddTransient<IOrderItemsService, OrderItemsService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<INewsService, NewsService>();
-            services.AddTransient<IForumService, ForumService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICommentsService, CommentsService>();

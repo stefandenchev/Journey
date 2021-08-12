@@ -1,6 +1,5 @@
 ﻿namespace Journey.Tests.Controllers
 {
-
     using Journey.Web.Controllers;
     using Journey.Web.ViewModels.Cart;
     using MyTested.AspNetCore.Mvc;

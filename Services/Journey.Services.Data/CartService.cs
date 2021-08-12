@@ -42,14 +42,17 @@
                 ids.Add(game.GameId);
             }
 
-            var games = this.gamesRepository.All().Where(x => ids.Contains(x.Id)).To<T>();
+            var games = this.gamesRepository
+                .All()
+                .Where(x => ids.Contains(x.Id))
+                .To<T>();
 
             return games;
         }
 
         public T Get<T>(string userId, int gameId)
         {
-            var cartItem = this.userCartItemsRepository.AllAsNoTracking()
+            var cartItem = this.userCartItemsRepository.All()
                 .Where(x => x.UserId == userId && x.GameId == gameId)
                 .To<T>()
                 .FirstOrDefault();

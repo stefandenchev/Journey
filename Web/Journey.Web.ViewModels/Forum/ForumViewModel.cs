@@ -6,6 +6,6 @@
 
     public class ForumViewModel
     {
-        public IEnumerable<CategoriesViewModel> Categories { get; set; }
+        public IEnumerable<CategoriesListViewModel> Categories { get; set; }
     }
 }

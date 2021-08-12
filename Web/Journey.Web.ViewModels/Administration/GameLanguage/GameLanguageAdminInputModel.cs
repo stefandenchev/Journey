@@ -18,7 +18,7 @@
 
         [Display(Name = "Language")]
         public int LanguageId { get; set; }
-        
+
         public IEnumerable<KeyValuePair<string, string>> LanguagesItems { get; set; }
 
         public DateTime CreatedOn { get; set; }

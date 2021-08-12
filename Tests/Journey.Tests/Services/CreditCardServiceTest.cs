@@ -2,12 +2,16 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
+    using Journey.Services.Mapping;
+    using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Cart;
     using Journey.Web.ViewModels.Profile;
     using Moq;
     using Xunit;
@@ -22,6 +26,8 @@
 
         public CreditCardServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.creditCardsRepository = new Mock<IDeletableEntityRepository<CreditCard>>();
             this.creditCards = new List<CreditCard>();
             this.service = new CreditCardsService(this.creditCardsRepository.Object);
@@ -110,6 +116,34 @@
             var result = this.service.GetById(3);
 
             Assert.Equal("4444555566667773", result.CardNumber);
+        }
+
+        [Fact]
+        public void GetByIdToModelWorksCorrectly()
+        {
+            var cards = ThreeCards;
+            foreach (var card in cards)
+            {
+                this.creditCards.Add(card);
+            }
+
+            var result = this.service.GetByIdToModel<CreditCardViewModel>(3);
+
+            Assert.Equal("4444555566667773", result.CardNumber);
+        }
+
+        [Fact]
+        public void GetAllWorksCorrectly()
+        {
+            var cards = ThreeCards;
+            foreach (var card in cards)
+            {
+                this.creditCards.Add(card);
+            }
+
+            var result = this.service.GetAll<CreditCardViewModel>();
+
+            Assert.Equal(3, result.Count());
         }
     }
 }
