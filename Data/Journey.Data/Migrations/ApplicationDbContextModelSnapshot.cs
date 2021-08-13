@@ -16,7 +16,7 @@ namespace Journey.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Journey.Data.Models.ApplicationRole", b =>
@@ -113,6 +113,9 @@ namespace Journey.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfilePictureId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -763,6 +766,43 @@ namespace Journey.Data.Migrations
                     b.ToTable("UserCartItems");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.UserImage", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UploadName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("UserImages");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Vote", b =>
                 {
                     b.Property<int>("Id")
@@ -1122,6 +1162,15 @@ namespace Journey.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Journey.Data.Models.UserImage", b =>
+                {
+                    b.HasOne("Journey.Data.Models.ApplicationUser", "User")
+                        .WithOne("ProfilePicture")
+                        .HasForeignKey("Journey.Data.Models.UserImage", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Journey.Data.Models.Vote", b =>
                 {
                     b.HasOne("Journey.Data.Models.Game", "Game")
@@ -1218,6 +1267,8 @@ namespace Journey.Data.Migrations
                     b.Navigation("ForumPosts");
 
                     b.Navigation("Logins");
+
+                    b.Navigation("ProfilePicture");
 
                     b.Navigation("Roles");
 

@@ -99,6 +99,7 @@
             services.AddTransient<IForumVotesService, ForumVotesService>();
             services.AddTransient<IWishlistService, WishlistService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
         }

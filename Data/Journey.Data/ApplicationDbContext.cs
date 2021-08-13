@@ -64,6 +64,8 @@
 
         public DbSet<ForumVote> ForumVotes { get; set; }
 
+        public DbSet<UserImage> UserImages { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -110,6 +112,11 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<ApplicationUser>()
+           .HasOne<UserImage>(x => x.ProfilePicture)
+           .WithOne(x => x.User)
+           .HasForeignKey<UserImage>(x => x.UserId);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

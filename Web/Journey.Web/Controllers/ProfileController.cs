@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
@@ -11,6 +12,8 @@
     using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     using static Journey.Common.GlobalConstants;
@@ -22,17 +25,23 @@
         private readonly IOrdersService ordersService;
         private readonly IOrderItemsService orderItemsService;
         private readonly ICreditCardsService creditCardsService;
+        private readonly IUsersService usersService;
+        private readonly IWebHostEnvironment environment;
 
         public ProfileController(
             IGamesService gamesService,
             IOrdersService ordersService,
             IOrderItemsService orderItemsService,
-            ICreditCardsService creditCardsService)
+            ICreditCardsService creditCardsService,
+            IUsersService usersService,
+            IWebHostEnvironment environment)
         {
             this.gamesService = gamesService;
             this.ordersService = ordersService;
             this.orderItemsService = orderItemsService;
             this.creditCardsService = creditCardsService;
+            this.usersService = usersService;
+            this.environment = environment;
         }
 
         public IActionResult Payment()
@@ -161,6 +170,28 @@
             }
 
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfilePicture(IFormFile image)
+        {
+            var userId = this.User.GetId();
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            try
+            {
+                await this.usersService.AddProfilePicture(image, userId, $"{this.environment.WebRootPath}/images/games");
+            }
+            catch (Exception ex)
+            {
+                return this.View();
+            }
+
+            return this.RedirectToAction("Manage", "Account", new { area = "Identity" });
         }
     }
 }

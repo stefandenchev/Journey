@@ -7,6 +7,7 @@
     using Journey.Web.ViewModels.Forum;
     using Journey.Web.ViewModels.Forum.Categories;
     using Journey.Web.ViewModels.Forum.Posts;
+    using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -14,23 +15,34 @@
     {
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
+        private readonly IUsersService usersService;
 
         public PostsController(
             IPostsService postsService,
-            ICategoriesService categoriesService)
+            ICategoriesService categoriesService,
+            IUsersService usersService)
         {
             this.postsService = postsService;
             this.categoriesService = categoriesService;
+            this.usersService = usersService;
         }
 
         public IActionResult ById(int id)
         {
+            var userId = this.User.GetId();
+
             var postViewModel = this.postsService.GetById<PostViewModel>(id);
             if (postViewModel == null)
             {
                 return this.NotFound();
             }
 
+            foreach (var comment in postViewModel.Comments)
+            {
+                comment.UserProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(comment.UserId);
+            }
+
+            postViewModel.UserProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(postViewModel.UserId);
             return this.View(postViewModel);
         }
 

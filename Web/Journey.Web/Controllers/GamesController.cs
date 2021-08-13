@@ -84,7 +84,7 @@
 
             try
             {
-                await this.gamesService.CreateAsync(input, $"{this.environment.WebRootPath}/images/games");
+                await this.gamesService.CreateAsync(input, $"{this.environment.WebRootPath}/images/users");
             }
             catch (Exception ex)
             {

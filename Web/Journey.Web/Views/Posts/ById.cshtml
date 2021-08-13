@@ -16,7 +16,14 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <div class="media flex-wrap w-100 align-items-center">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                                    @if (comment.UserProfilePicture == null)
+                                    {
+                                        <img src="/images/users/default-user.png" class="profile-picture" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@comment.UserProfilePicture.ImageUrl" class="profile-picture" alt="">
+                                    }
                                     <div class="media-body ml-3">
                                         @comment.UserUserName
                                         <div class="text-muted small">
@@ -61,28 +68,35 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
-                                <div class="media-body ml-3">
-                                    @Model.UserUserName
-                                    <div class="text-muted small">
-                                        <time datetime="@Model.CreatedOn.ToString("O")"></time>
+                                @if (Model.UserProfilePicture == null)
+                                {
+                                    <img src="/images/users/default-user.png" class="profile-picture" alt="">
+                                }
+                                else
+                                {
+                                    <img src="@Model.UserProfilePicture.ImageUrl" class="profile-picture" alt="">
+                                }
+                                    <div class="media-body ml-3">
+                                        @Model.UserUserName
+                                        <div class="text-muted small">
+                                            <time datetime="@Model.CreatedOn.ToString("O")"></time>
+                                        </div>
+                                    </div>
+                                    <div class="text-muted small ml-3">
+                                        <form id="votesForm" method="post"></form>
+                                        <div>
+                                            <a href="#" onclick="sendVote(@Model.Id, true)">
+                                                <i id="forum-thumb" class="fa fa-thumbs-up"></i>
+                                            </a>
+                                        </div>
+                                        <div id="votesCount">@Model.VotesCount</div>
+                                        <div>
+                                            <a href="#" onclick="sendVote(@Model.Id, false)">
+                                                <i id="forum-thumb" class="fa fa-thumbs-down"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="text-muted small ml-3">
-                                    <form id="votesForm" method="post"></form>
-                                    <div>
-                                        <a href="#" onclick="sendVote(@Model.Id, true)">
-                                            <i id="forum-thumb" class="fa fa-thumbs-up"></i>
-                                        </a>
-                                    </div>
-                                    <div id="votesCount">@Model.VotesCount</div>
-                                    <div>
-                                        <a href="#" onclick="sendVote(@Model.Id, false)">
-                                            <i id="forum-thumb" class="fa fa-thumbs-down"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="card-body">
                             <article>

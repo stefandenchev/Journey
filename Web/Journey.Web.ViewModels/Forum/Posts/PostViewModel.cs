@@ -8,6 +8,7 @@
     using Ganss.XSS;
     using Journey.Data.Models;
     using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Profile;
 
     public class PostViewModel : IMapFrom<ForumPost>, IMapTo<ForumPost>, IHaveCustomMappings
     {
@@ -21,7 +22,11 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
+        public string UserId { get; set; }
+
         public string UserUserName { get; set; }
+
+        public ProfilePictureViewModel UserProfilePicture { get; set; }
 
         public int VotesCount { get; set; }
 

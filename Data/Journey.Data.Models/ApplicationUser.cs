@@ -28,6 +28,10 @@
 
         public DateTime? DeletedOn { get; set; }
 
+        public string ProfilePictureId { get; set; }
+
+        public UserImage ProfilePicture { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
