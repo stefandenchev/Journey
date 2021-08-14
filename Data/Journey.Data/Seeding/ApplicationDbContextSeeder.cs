@@ -28,6 +28,7 @@
                               new RolesSeeder(),
                               new CategoriesSeeder(),
                               new DefaultUserImageSeeder(),
+                              new AdminSeeder(),
                           };
 
             foreach (var seeder in seeders)
