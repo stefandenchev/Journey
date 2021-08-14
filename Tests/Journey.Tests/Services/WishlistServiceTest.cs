@@ -13,28 +13,71 @@
 
     public class WishlistServiceTest
     {
+        private readonly Mock<IDeletableEntityRepository<Wishlist>> wishRepo;
+        private readonly Mock<IDeletableEntityRepository<Game>> gameRepo;
+        private readonly List<Wishlist> list;
+        private readonly WishlistService service;
+
+        public WishlistServiceTest()
+        {
+            this.wishRepo = new Mock<IDeletableEntityRepository<Wishlist>>();
+            this.gameRepo = new Mock<IDeletableEntityRepository<Game>>();
+
+            this.list = new List<Wishlist>();
+            this.service = new WishlistService(this.wishRepo.Object, this.gameRepo.Object);
+
+            this.wishRepo.Setup(x => x.All()).Returns(this.list.AsQueryable());
+            this.wishRepo.Setup(x => x.AddAsync(It.IsAny<Wishlist>())).Callback(
+                (Wishlist wish) => this.list.Add(wish));
+            this.wishRepo.Setup(x => x.Delete(It.IsAny<Wishlist>())).Callback(
+                (Wishlist wish) => this.list.Remove(wish));
+            var service = new WishlistService(this.wishRepo.Object, this.gameRepo.Object);
+        }
+
         [Fact]
         public async Task AddingGamesToWishlistShouldWorkCorrectly()
         {
-            var list = new List<Wishlist>();
-
-            var gameRepo = new Mock<IDeletableEntityRepository<Game>>();
-            var wishRepo = new Mock<IDeletableEntityRepository<Wishlist>>();
-
-            wishRepo.Setup(x => x.All()).Returns(list.AsQueryable());
-            wishRepo.Setup(x => x.AddAsync(It.IsAny<Wishlist>())).Callback(
-                (Wishlist wish) => list.Add(wish));
-            var service = new WishlistService(wishRepo.Object, gameRepo.Object);
-
             var userId = Guid.NewGuid().ToString();
 
-            await service.AddToWishlist(userId, 1);
-            await service.AddToWishlist(userId, 2);
-            await service.AddToWishlist(userId, 3);
-            await service.AddToWishlist(userId, 2);
-            await service.AddToWishlist(userId, 1);
+            await this.service.AddToWishlist(userId, 1);
+            await this.service.AddToWishlist(userId, 2);
+            await this.service.AddToWishlist(userId, 3);
+            await this.service.AddToWishlist(userId, 2);
+            await this.service.AddToWishlist(userId, 1);
 
-            Assert.Equal(3, list.Count());
+            Assert.Equal(3, this.list.Count());
+        }
+
+        [Fact]
+        public async Task RemovingGamesFromWishlistShouldWorkCorrectly()
+        {
+            var userId = Guid.NewGuid().ToString();
+
+            await this.service.AddToWishlist(userId, 1);
+            await this.service.AddToWishlist(userId, 2);
+            await this.service.AddToWishlist(userId, 3);
+            await this.service.AddToWishlist(userId, 4);
+            await this.service.AddToWishlist(userId, 5);
+
+            await this.service.RemoveFromWishlist(userId, 1);
+
+            Assert.Equal(4, this.list.Count());
+        }
+
+        [Fact]
+        public async Task IsInWishShouldWorkCorrectly()
+        {
+            var userId = Guid.NewGuid().ToString();
+
+            await this.service.AddToWishlist(userId, 1);
+            await this.service.AddToWishlist(userId, 2);
+            await this.service.AddToWishlist(userId, 3);
+            await this.service.AddToWishlist(userId, 2);
+            await this.service.AddToWishlist(userId, 1);
+
+            await this.service.RemoveFromWishlist(userId, 1);
+
+            Assert.True(this.service.IsInWish(userId, 3));
         }
     }
 }

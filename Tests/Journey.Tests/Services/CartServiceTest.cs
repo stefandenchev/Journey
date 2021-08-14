@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Reflection;
     using System.Security.Claims;
-    using System.Threading;
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;

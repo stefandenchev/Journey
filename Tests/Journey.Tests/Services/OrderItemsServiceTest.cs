@@ -3,17 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Security.Claims;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
-    using Journey.Web.ViewModels.Cart;
-    using Journey.Web.ViewModels.Export;
     using Journey.Web.ViewModels.Profile;
     using Moq;
     using Xunit;
@@ -26,6 +21,8 @@
 
         public OrderItemsServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.orderItemsRepo = new Mock<IDeletableEntityRepository<OrderItem>>();
             this.orderItemsList = new List<OrderItem>();
             this.service = new OrderItemsService(this.orderItemsRepo.Object);

@@ -11,7 +11,6 @@
     using Journey.Services.Data;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
-    using Journey.Web.ViewModels.Forum.Posts;
     using Moq;
     using Xunit;
 

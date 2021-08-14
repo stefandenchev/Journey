@@ -1,11 +1,8 @@
 ﻿namespace Journey.Tests.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     using FakeItEasy;
-    using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
     using Journey.Web.Controllers;
     using Journey.Web.ViewModels;
