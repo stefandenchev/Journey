@@ -9,26 +9,22 @@
 
     <h1>@Model.Title</h1>
 
+    @if (Model.ForumPosts.Count() == 0)
+    {
+        <div class="alert alert-empty text-center">
+            <p>There are currently no open discussions on this topic!</p>
+            <p>Be the first to make one!</p>
+
+            <a asp-controller="Posts" asp-action="Create" class="btn_darkred_white_innerfade btn_medium">
+                <span>
+                    Start a New Discussion
+                </span>
+            </a>
+        </div>
+    }
 
     @foreach (var post in Model.ForumPosts)
     {
-        @*        <div class="media-body">
-                <h4 class="media-heading"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Title</a></h4>
-                <p>@post.ShortContent</p>
-                <ul class="list-inline list-unstyled text-right">
-                    <li class="list-inline-item">
-                        <i class="fas fa-user-edit"></i> @post.UserUserName
-                    </li>
-                    <li class="list-inline-item">
-                        <i class="fas fa-calendar-alt"></i> @post.CreatedOn
-                    </li>
-                    <li class="list-inline-item">
-                        <i class="fas fa-comment-dots"></i> @post.CommentsCount comments
-                    </li>
-                </ul>
-            </div>*@
-
-
         <div class="forum_topic">
             <a class="forum_topic_overlay" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"></a>
             <div class="forum_topic_details ">
@@ -36,7 +32,7 @@
                     <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> @post.CommentsCount
                 </div>
                 <div class="forum_topic_lastpost">
-                    @post.CreatedOn
+                    <i class="fas fa-calendar-alt">&nbsp;</i>@post.CreatedOn
                 </div>
             </div>
             <div class="forum_topic_icon">
@@ -45,7 +41,7 @@
                 </a>
             </div>
             <div class="forum_topic_name">@post.Title</div>
-            <div class="forum_topic_op">@post.UserUserName</div>
+            <div class="forum_topic_op"><i class="fas fa-user-edit">&nbsp;</i>@post.UserUserName</div>
         </div>
     }
 

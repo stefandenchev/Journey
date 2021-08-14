@@ -29,8 +29,6 @@
 
         public IActionResult ById(int id)
         {
-            var userId = this.User.GetId();
-
             var postViewModel = this.postsService.GetById<PostViewModel>(id);
             if (postViewModel == null)
             {

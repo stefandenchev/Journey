@@ -43,16 +43,26 @@
         <p>Your shopping cart is empty.</p>
     }
 
-    <div class="row">
-        <div class="row"><a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop</a></div>
+    <a asp-controller="Games" asp-action="All" class="btn_darkblue_white_innerfade btn_large ml-3">
+        <span>
+            <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop
+        </span>
+    </a>
 
-        @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
-        {
-            <div class="row"><a href="@Url.Action("ClearAll", "Cart")" class="btn btn-primary" id="clear-shopping-button">Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i></a></div>
+    @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0)
+    {
+        <a asp-controller="Cart" asp-action="ClearAll" class="btn_darkred_white_innerfade btn_large ml-5">
+            <span>
+                Clear Cart&nbsp;&nbsp;<i class="fas fa-trash"></i>
+            </span>
+        </a>
 
-            <div class="row"><a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary" id="checkout-shopping-button">Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i></a></div>
-        }
-    </div>
+        <a asp-controller="Cart" asp-action="Checkout" class="btn_green_white_innerfade btn_large ml-5">
+            <span>
+                Checkout&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
+            </span>
+        </a>
+    }
 </div>
 
 
@@ -67,22 +77,19 @@
             console.log(itemId);
             console.log(JSON.stringify(obj));
 
-                $.ajax({
-                    url: `/Cart/Remove?gameId=${itemId}`,
-                    type: "GET",
+            $.ajax({
+                url: `/Cart/Remove?gameId=${itemId}`,
+                type: "GET",
                 contentType: "application/json",
                 dataType: "json",
-                    success: function (result) {
+                success: function (result) {
                     location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown);
                 },
-                });
-
+            });
         }
-
-
     </script>
 }
 

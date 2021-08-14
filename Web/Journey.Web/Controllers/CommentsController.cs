@@ -1,6 +1,5 @@
 ﻿namespace Journey.Web.Controllers
 {
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Journey.Services.Data.Interfaces;

@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
 
-    using Journey.Data.Models;
     using Microsoft.AspNetCore.Http;
 
     public interface IUsersService

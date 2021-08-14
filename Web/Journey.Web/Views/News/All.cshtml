@@ -4,8 +4,7 @@
     this.ViewBag.Title = "News";
 }
 
-<link href="~/css/buttons.css" rel="stylesheet" />
-<br />  
+<br />
 <div class="container">
     <div class="wrapper">
 
@@ -72,8 +71,14 @@
 
                     @Html.Raw(post.Content)
 
-                    <p><a class="btn" id="btn-full-news" asp-controller="News" asp-action="Post" asp-route-id="@post.Id"><i class="fa fa-plus"></i> Read More</a></p>
-                    <br />
+
+                    <a asp-controller="News" asp-action="Post" asp-route-id="@post.Id" class="btn_blue_white_innerfade btn_large">
+                        <span>
+                            <i class="fa fa-plus"></i> Read More
+                        </span>
+                    </a>
+
+                    <hr />
                 }
             }
             else

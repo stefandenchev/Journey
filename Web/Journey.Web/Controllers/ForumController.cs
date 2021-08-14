@@ -39,7 +39,7 @@
             viewModel.ItemsCount = this.postsService.GetCount(viewModel.Id);
             viewModel.ForumPosts = this.postsService.GetAllInList<PostInCategoryViewModel>(viewModel.Id, page, itemsPerPage);
 
-            if (page <= 0 || page > viewModel.PagesCount)
+            if (page <= 0)
             {
                 return this.NotFound();
             }

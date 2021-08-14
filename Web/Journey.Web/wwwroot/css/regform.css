@@ -52,14 +52,14 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     color: #eee;
 }
 
-.nav-item a:hover {
+#side-bar:hover {
     background-color: #ddd;
 }
 
-.nav-item a:active {
+/*.nav-item a:active {
     background-color: white !important;
     color: white !important;
-}
+}*/
 
 #update-profile-button {
     color: white;
@@ -68,4 +68,15 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
 
 #Input_PhoneNumber {
     padding: 5px 7px;
+}
+
+img {
+    line-height: 140px;
+    text-align: center;
+}
+
+.card {
+    padding: 0.5em;
+    width: 15rem;
+    background: #304052 !important;
 }

@@ -47,7 +47,10 @@
 
         public async Task RemoveFromWishlist(string userId, int gameId)
         {
-            Wishlist wish = this.wishListRepository.All().FirstOrDefault(c => c.UserId == userId && c.GameId == gameId);
+            Wishlist wish = this.wishListRepository
+                .All()
+                .FirstOrDefault(c => c.UserId == userId && c.GameId == gameId);
+
             this.wishListRepository.Delete(wish);
             await this.wishListRepository.SaveChangesAsync();
         }
@@ -83,7 +86,10 @@
 
         public bool IsInWish(string userId, int gameId)
         {
-            var isWished = this.wishListRepository.All().Any(x => x.UserId == userId && x.GameId == gameId);
+            var isWished = this.wishListRepository
+                .All()
+                .Any(x => x.UserId == userId && x.GameId == gameId);
+
             return isWished;
         }
     }

@@ -18,5 +18,6 @@
         IEnumerable<T> GetOrders<T>(string userId);
 
         IEnumerable<string> GetOrderIds(string userId);
+        int GetGamesBoughtCount(string userId);
     }
 }

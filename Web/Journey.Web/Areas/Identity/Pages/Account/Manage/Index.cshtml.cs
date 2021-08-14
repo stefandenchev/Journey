@@ -17,25 +17,22 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IUsersService usersService;
+        private readonly IOrdersService ordersService;
         private readonly IWebHostEnvironment environment;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IUsersService usersService,
+            IOrdersService ordersService,
             IWebHostEnvironment environment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.usersService = usersService;
+            this.ordersService = ordersService;
             this.environment = environment;
         }
-
-        [Display(Name = "Profile Picture")]
-
-        public IFormFile ProfilePictureUpload { get; set; }
-
-        public ProfilePictureViewModel ProfilePicture { get; set; }
 
         public string Username { get; set; }
 
@@ -46,6 +43,15 @@
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        [Display(Name = "Picture")]
+        public IFormFile ProfilePictureUpload { get; set; }
+
+        public ProfilePictureViewModel ProfilePicture { get; set; }
+
+        public int GamesBought { get; set; }
+
+        public string ProfileRank { get; set; }
 
         public class InputModel
         {
@@ -77,6 +83,26 @@
 
             await this.LoadAsync(user);
             this.ProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(user.Id);
+            if (this.ProfilePicture == null)
+            {
+                this.ProfilePicture = new ProfilePictureViewModel { ImageUrl = "/images/users/default-user.png" };
+            }
+
+            var gamesBought = this.ordersService.GetGamesBoughtCount(user.Id);
+            this.GamesBought = gamesBought;
+            if (gamesBought >= 5)
+            {
+                this.ProfileRank = "Bronze";
+            }
+            else if (gamesBought >= 25)
+            {
+                this.ProfileRank = "Silver";
+            }
+            else if (gamesBought >= 50)
+            {
+                this.ProfileRank = "Gold";
+            }
+
             return this.Page();
         }
 

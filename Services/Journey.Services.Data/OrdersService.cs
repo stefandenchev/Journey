@@ -80,6 +80,7 @@
             var isBought = this.orderItemsRepository
                 .All()
                 .Any(x => x.GameId == gameId && allOrderIds.Contains(x.OrderId));
+
             return isBought;
         }
 
@@ -103,6 +104,25 @@
                 .ToList();
 
             return orderIds;
+        }
+
+        public int GetGamesBoughtCount(string userId)
+        {
+            var orderIds = this.GetOrderIds(userId).ToList();
+
+            var userItems = this.orderItemsRepository
+                .All()
+                .Where(x => orderIds.Contains(x.OrderId))
+                .ToList();
+
+            int counter = 0;
+
+            foreach (var order in userItems)
+            {
+                counter++;
+            }
+
+            return counter;
         }
     }
 }

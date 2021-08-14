@@ -40,9 +40,10 @@
         <p>You currently do not have any games in your wish list.</p>
     }
 
-    <div class="row">
-        <div class="row">
-            <a href="@Url.Action("All", "Games")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop</a>
-        </div>
-    </div>
+    <a asp-controller="Games" asp-action="All" class="btn_darkblue_white_innerfade btn_large">
+        <span>
+            <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Shop
+        </span>
+    </a>
 </div>
+

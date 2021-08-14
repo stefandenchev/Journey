@@ -60,6 +60,7 @@ body > div.page-container > header > nav {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     font-size: 17px;
 }
+
 #core-guts-title > span > b:nth-child(1) > img
 .form-control, .form-control-language {
     margin-bottom: 15px;
@@ -110,7 +111,7 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
 }
 
 #small-price {
-    margin-left:3em !important
+    margin-left: 3em !important
 }
 /* CREATE/EDIT GAME (NOT ALL)*/
 #ReleaseDate {
@@ -136,11 +137,11 @@ input.text, input[type='text'], input[type='email'], input[type='password'], inp
     margin-bottom: 1em
 }
 
-    #GenreId, #PublisherId, #CreditCardId, #SalePercentage, #CategoryId {
-        border: 1px solid #304052;
-        height: 45px;
-        background: #172637;
-    }
+#GenreId, #PublisherId, #CreditCardId, #SalePercentage, #CategoryId {
+    border: 1px solid #304052;
+    height: 45px;
+    background: #172637;
+}
 
     #PublisherId > option, #GenreId > option, #CreditCardId > option, #CategoryId > option {
         color: #BBC3C0
@@ -774,7 +775,22 @@ select#Languages.form-control, select#Tags.form-control {
     border-radius: 50%;
 }
 
-#post-success{
+.profile-picture-main {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: right;
+}
+
+.alert-empty {
+    background: #e08821;
+    color: black
+}
+
+#post-success {
     color: #48b433 !important;
     margin-top: 0.3em
 }
@@ -824,8 +840,6 @@ select#Languages.form-control, select#Tags.form-control {
     #journey-title {
         font-size: 1em;
     }
-
-
 }
 
 @media (min-width:576px) and (max-width: 1022px) {
@@ -847,11 +861,10 @@ select#Languages.form-control, select#Tags.form-control {
     h1 {
         font-size: 2rem;
     }
+
     #journey-title {
         font-size: 1.3em;
     }
-
-
 }
 
 /* PAGINATION */
@@ -859,15 +872,25 @@ select#Languages.form-control, select#Tags.form-control {
     background-color: #e08821;
 }
 
-#paginationMain > nav > a.nk-pagination-current-white:hover {
-    background-color: #bd7d32;
-}
+    #paginationMain > nav > a.nk-pagination-current-white:hover {
+        background-color: #bd7d32;
+    }
 
 
 /* MANAGE/PROFILE */
-.btn_blue_steamui{
+
+.profile-name {
+    font-family: 'Zen Dots', cursive !important;
+}
+
+.alert-success {
+    background: #36a429
+}
+
+.btn_blue_steamui {
     align-content: center
 }
+
 span.btn_blue_steamui.reg-btn {
     padding: 10px 20px;
     text-align: center
@@ -1157,9 +1180,9 @@ img.img-circle {
     background: #e08821;
 }
 
-#btn-full-news:hover {
-    background: #bd7d32;
-}
+    #btn-full-news:hover {
+        background: #bd7d32;
+    }
 
 /*Blog Content Tags*/
 .blog-post-tags {
@@ -1263,8 +1286,8 @@ img.img-circle {
 }
 
 /* ADMIN AREA*/
-.new-discussion-div-admin{
-    float:left;
+.new-discussion-div-admin {
+    float: left;
 }
 
 #GameId, #LanguageId, #TagId {

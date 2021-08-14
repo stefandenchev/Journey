@@ -153,12 +153,7 @@
             var userId = this.User.GetId();
 
             var orderIds = this.ordersService.GetOrderIds(userId);
-            List<int> gameIds = new();
-
-            foreach (var orderId in orderIds)
-            {
-                gameIds.AddRange(this.orderItemsService.GetGameIdsFromOrder(orderId));
-            }
+            List<int> gameIds = this.GetGameIds(orderIds);
 
             var games = this.gamesService.GetGamesFromOrder<GameInLibraryViewModel>(gameIds).OrderBy(x => x.Title);
             var viewModel = new GameLibraryViewModel { Collection = games, };
@@ -170,6 +165,18 @@
             }
 
             return this.View(viewModel);
+        }
+
+        private List<int> GetGameIds(IEnumerable<string> orderIds)
+        {
+            List<int> gameIds = new();
+
+            foreach (var orderId in orderIds)
+            {
+                gameIds.AddRange(this.orderItemsService.GetGameIdsFromOrder(orderId));
+            }
+
+            return gameIds;
         }
 
         [HttpPost]
