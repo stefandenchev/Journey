@@ -4,6 +4,8 @@
     this.ViewBag.Title = "Index";
 }
 
+<link rel="stylesheet" href="~/css/buttons.css" asp-append-version="true" />
+
 <style>
     body > div.page-container {
         padding-bottom: 5em;
@@ -14,10 +16,15 @@
     <div class="container">
         <h1>@this.ViewBag.Title</h1>
 
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-        <table class="table table-bordered table-hover table-striped">
+        <div class="new-discussion-div float-left">
+            <a asp-action="Create" class="btn_royal_blue btn_medium">
+                <span>
+                    Create New
+                </span>
+            </a>
+        </div>
+        <br />
+        <table class="table table-bordered table-hover table-striped mt-4">
             <thead>
                 <tr>
                     <th>
