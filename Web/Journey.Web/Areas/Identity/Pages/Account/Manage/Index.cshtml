@@ -11,26 +11,27 @@
 <br />
 
 <div class="card float-right text-center">
-    @if (Model.ProfileRank == "Bronze")
+    @if (Model.ProfileInfo.ProfileRank == "Bronze")
     {
-        <img class="profile-picture-main mx-auto" src="@Model.ProfilePicture.ImageUrl" alt="Picture Picture" style="border: 6px inset #B08D57" />
+        <img class="profile-picture-main mx-auto" src="@Model.ProfileInfo.ImageUrl" alt="Picture Picture" style="border: 6px inset #B08D57" />
     }
-    else if (Model.ProfileRank == "Silver")
+    else if (Model.ProfileInfo.ProfileRank == "Silver")
     {
-        <img class="profile-picture-main mx-auto" src="@Model.ProfilePicture.ImageUrl" alt="Profile Picture" style="border: 6px inset #C0C0C0" />
+        <img class="profile-picture-main mx-auto" src="@Model.ProfileInfo.ImageUrl" alt="Profile Picture" style="border: 6px inset #C0C0C0" />
     }
-    else if (Model.ProfileRank == "Gold")
+    else if (Model.ProfileInfo.ProfileRank == "Gold")
     {
-        <img class="profile-picture-main mx-auto" src="@Model.ProfilePicture.ImageUrl" alt="Profile Picture" style="border: 6px inset #FFD700" />
+        <img class="profile-picture-main mx-auto" src="@Model.ProfileInfo.ImageUrl" alt="Profile Picture" style="border: 6px inset #FFD700" />
     }
     else
     {
-        <img class="profile-picture-main mx-auto" src="@Model.ProfilePicture.ImageUrl" alt="Profile Picture" />
+        <img class="profile-picture-main mx-auto" src="@Model.ProfileInfo.ImageUrl" alt="Profile Picture" />
     }
     <hr />
     <div class="card-body">
         <h5 class="card-title profile-name">@User.Identity.Name</h5>
-        <p class="card-text text-center profile-name">Games: @Model.GamesBought</p>
+        <p class="card-text text-center profile-name">Games: @Model.ProfileInfo.GamesBought</p>
+        <img class="profile-picture" src="@Model.ProfileInfo.Badge" alt="Profile Picture" />
     </div>
 </div>
 

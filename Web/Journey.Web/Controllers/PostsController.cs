@@ -16,15 +16,18 @@
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
         private readonly IUsersService usersService;
+        private readonly IOrdersService ordersService;
 
         public PostsController(
             IPostsService postsService,
             ICategoriesService categoriesService,
-            IUsersService usersService)
+            IUsersService usersService,
+            IOrdersService ordersService)
         {
             this.postsService = postsService;
             this.categoriesService = categoriesService;
             this.usersService = usersService;
+            this.ordersService = ordersService;
         }
 
         public IActionResult ById(int id)
@@ -37,10 +40,27 @@
 
             foreach (var comment in postViewModel.Comments)
             {
-                comment.UserProfile = this.usersService.GetProfilePicture<ProfilePictureViewModel>(comment.UserId);
+                var commenterGamesBought = this.ordersService.GetGamesBoughtCount(comment.UserId);
+
+                comment.UserProfile = new ProfileViewModel
+                {
+                    ImageUrl = this.usersService.GetProfilePicturePath(comment.UserId),
+                    GamesBought = commenterGamesBought,
+                    ProfileRank = this.usersService.GetProfileRank(commenterGamesBought),
+                    Badge = this.usersService.GetProfileBadge(commenterGamesBought),
+                };
             }
 
-            postViewModel.UserProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(postViewModel.UserId);
+            var gamesBought = this.ordersService.GetGamesBoughtCount(postViewModel.UserId);
+
+            postViewModel.UserProfile = new ProfileViewModel
+            {
+                ImageUrl = this.usersService.GetProfilePicturePath(postViewModel.UserId),
+                GamesBought = gamesBought,
+                ProfileRank = this.usersService.GetProfileRank(gamesBought),
+                Badge = this.usersService.GetProfileBadge(gamesBought),
+            };
+
             return this.View(postViewModel);
         }
 

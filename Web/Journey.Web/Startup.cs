@@ -100,13 +100,13 @@
             services.AddTransient<IWishlistService, WishlistService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUsersService, UsersService>();
-
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
@@ -142,21 +142,6 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-/*                        endpoints.MapControllerRoute(
-                            name: "gameDetails",
-                            pattern: "/Games/{id}/{details}",
-                            defaults: new { controller = "Games", action = "ById" });
-
-                        endpoints.MapControllerRoute(
-                            name: "genreSearch",
-                            pattern: "/Search/Genre/{genre}",
-                            defaults: new { controller = "Search", action = "Genre" });
-
-                        endpoints.MapControllerRoute(
-                            name: "publisherSearch",
-                            pattern: "/Search/Publisher/{publisher}",
-                            defaults: new { controller = "Search", action = "Publisher" });*/
-
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

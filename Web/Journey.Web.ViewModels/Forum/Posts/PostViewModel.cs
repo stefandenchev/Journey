@@ -26,7 +26,7 @@
 
         public string UserUserName { get; set; }
 
-        public ProfilePictureViewModel UserProfilePicture { get; set; }
+        public ProfileViewModel UserProfile { get; set; }
 
         public int VotesCount { get; set; }
 

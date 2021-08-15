@@ -16,24 +16,39 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <div class="media flex-wrap w-100 align-items-center">
-                                    @if (comment.UserProfile == null)
+
+                                    @if (comment.UserProfile.ProfileRank == "Bronze")
                                     {
-                                        <img src="/images/users/default-user.png" class="profile-picture" alt="">
+                                        <img src="@comment.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #B08D57">
+                                    }
+                                    else if (comment.UserProfile.ProfileRank == "Silver")
+                                    {
+                                        <img src="@comment.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #C0C0C0">
+                                    }
+                                    else if (comment.UserProfile.ProfileRank == "Gold")
+                                    {
+                                        <img src="@comment.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #FFD700">
                                     }
                                     else
                                     {
-                                        <img src="@comment.UserProfile.ImageUrl" class="profile-picture" alt="">
+                                        <img src="@comment.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture">
                                     }
-                                    <div class="media-body ml-3">
-                                        @comment.UserUserName
-                                        <div class="text-muted small">
+
+                                    <p class="mt-4 ml-3">@comment.UserUserName</p>
+                                    <div class="media-body ml-2">
+                                        @if (comment.UserProfile.Badge != string.Empty)
+                                        {
+                                            <img src="@comment.UserProfile.Badge" class="badge-games ml-2" alt="Badge">
+                                        }
+                                        <div class="">
                                             <time datetime="@comment.CreatedOn.ToString("O")"></time>
                                         </div>
                                     </div>
                                     <div class="text-muted small ml-3">
                                         @if (this.User.Identity.IsAuthenticated)
                                         {
-                                            <div class="px-4 pt-3"> <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="fa fa-plus"></i>&nbsp; Answer</button> </div>}
+                                            <div class="px-4 pt-3"> <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="fa fa-plus"></i>&nbsp; Answer</button> </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -68,35 +83,45 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <div class="media flex-wrap w-100 align-items-center">
-                                @if (Model.UserProfilePicture == null)
+
+                                @if (Model.UserProfile.ProfileRank == "Bronze")
                                 {
-                                    <img src="/images/users/default-user.png" class="profile-picture" alt="">
+                                    <img src="@Model.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #B08D57">
+                                }
+                                else if (Model.UserProfile.ProfileRank == "Silver")
+                                {
+                                    <img src="@Model.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #C0C0C0">
+                                }
+                                else if (Model.UserProfile.ProfileRank == "Gold")
+                                {
+                                    <img src="@Model.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture" style="border: 5px inset #FFD700">
                                 }
                                 else
                                 {
-                                    <img src="@Model.UserProfilePicture.ImageUrl" class="profile-picture" alt="">
+                                    <img src="@Model.UserProfile.ImageUrl" class="profile-picture" alt="Picture Picture">
                                 }
-                                    <div class="media-body ml-3">
-                                        @Model.UserUserName
-                                        <div class="text-muted small">
-                                            <time datetime="@Model.CreatedOn.ToString("O")"></time>
-                                        </div>
-                                    </div>
-                                    <div class="text-muted small ml-3">
-                                        <form id="votesForm" method="post"></form>
-                                        <div>
-                                            <a href="#" onclick="sendVote(@Model.Id, true)">
-                                                <i id="forum-thumb" class="fa fa-thumbs-up"></i>
-                                            </a>
-                                        </div>
-                                        <div id="votesCount">@Model.VotesCount</div>
-                                        <div>
-                                            <a href="#" onclick="sendVote(@Model.Id, false)">
-                                                <i id="forum-thumb" class="fa fa-thumbs-down"></i>
-                                            </a>
-                                        </div>
+
+                                <div class="media-body ml-3">
+                                    @Model.UserUserName
+                                    <div class="text-muted small">
+                                        <time datetime="@Model.CreatedOn.ToString("O")"></time>
                                     </div>
                                 </div>
+                                <div class="text-muted small ml-3">
+                                    <form id="votesForm" method="post"></form>
+                                    <div>
+                                        <a href="#" onclick="sendVote(@Model.Id, true)">
+                                            <i id="forum-thumb" class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </div>
+                                    <div id="votesCount">@Model.VotesCount</div>
+                                    <div>
+                                        <a href="#" onclick="sendVote(@Model.Id, false)">
+                                            <i id="forum-thumb" class="fa fa-thumbs-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <article>

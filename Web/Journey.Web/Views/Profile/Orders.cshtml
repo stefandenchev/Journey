@@ -26,20 +26,20 @@
             <div class="row">
                 @if (ViewBag.DateSortParam.Contains("date_asc"))
                 {
-                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-ascending <i class="fas fa-arrow-up"></i></a>
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date <i class="fas fa-arrow-up"></i></a>
                 }
                 else
                 {
-                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date-descending <i class="fas fa-arrow-down"></i></a>
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.DateSortParam">Sort by date <i class="fas fa-arrow-down"></i></a>
                 }
 
                 @if (ViewBag.PriceSortParam.Contains("price_asc"))
                 {
-                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-ascending <i class="fas fa-arrow-up"></i></a>
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price <i class="fas fa-arrow-up"></i></a>
                 }
                 else
                 {
-                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price-descending <i class="fas fa-arrow-down"></i></a>
+                    <a class="btn btn-primary" id="order-button" asp-action="Orders" asp-route-sortOrder="@ViewBag.PriceSortParam">Sort by price <i class="fas fa-arrow-down"></i></a>
                 }
             </div>
 

@@ -15,11 +15,11 @@
                 <div class="row">
                     @if (this.ViewBag.TitleSortParam.Contains("title_desc"))
                     {
-                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title-descending <i class="fas fa-arrow-down"></i></a>
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-down"></i></a>
                     }
                     else
                     {
-                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title-ascending <i class="fas fa-arrow-up"></i></a>
+                        <a class="btn btn-primary" id="order-button" asp-action="Library" asp-route-sortOrder="@this.ViewBag.TitleSortParam">Sort by title <i class="fas fa-arrow-up"></i></a>
                     }
                 </div>
 

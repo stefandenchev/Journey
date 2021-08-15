@@ -8,7 +8,6 @@
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data.Interfaces;
-    using Journey.Services.Mapping;
     using Microsoft.AspNetCore.Http;
 
     public class UsersService : IUsersService
@@ -52,15 +51,71 @@
             await this.imagesRepository.SaveChangesAsync();
         }
 
-        public T GetProfilePicture<T>(string userId)
+        public string GetProfilePicturePath(string userId)
         {
             var image = this.imagesRepository
                 .All()
                 .Where(x => x.UserId == userId)
-                .To<T>()
                 .FirstOrDefault();
 
-            return image;
+            if (image != null)
+            {
+                return "/images/users/" + image.Id + "." + image.Extension;
+            }
+            else
+            {
+                return "/images/users/default-user.png";
+            }
+        }
+
+        public string GetProfileRank(int games)
+        {
+            var rank = string.Empty;
+            if (games >= 5)
+            {
+                rank = "Bronze";
+            }
+            else if (games >= 25)
+            {
+                rank = "Silver";
+            }
+            else if (games >= 50)
+            {
+                rank = "Gold";
+            }
+
+            return rank;
+        }
+
+        public string GetProfileBadge(int games)
+        {
+            var badge = string.Empty;
+            if (games >= 1 && games < 5)
+            {
+                badge = "/images/badges/games-1.png";
+            }
+            else if (games >= 5 && games < 10)
+            {
+                badge = "/images/badges/games-5.png";
+            }
+            else if (games >= 10 && games < 25)
+            {
+                badge = "/images/badges/games-10.png";
+            }
+            else if (games >= 25 && games < 50)
+            {
+                badge = "/images/badges/games-25.png";
+            }
+            else if (games >= 50 && games < 100)
+            {
+                badge = "/images/badges/games-50.png";
+            }
+            else if (games >= 100)
+            {
+                badge = "/images/badges/games-100.png";
+            }
+
+            return badge;
         }
     }
 }

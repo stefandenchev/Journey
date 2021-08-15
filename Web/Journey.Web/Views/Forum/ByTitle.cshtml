@@ -22,28 +22,31 @@
             </a>
         </div>
     }
-
-    @foreach (var post in Model.ForumPosts)
+    else
     {
-        <div class="forum_topic">
-            <a class="forum_topic_overlay" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"></a>
-            <div class="forum_topic_details ">
-                <div class="forum_topic_reply_count">
-                    <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> @post.CommentsCount
+        @foreach (var post in Model.ForumPosts)
+        {
+            <div class="forum_topic">
+                <a class="forum_topic_overlay" asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"></a>
+                <div class="forum_topic_details ">
+                    <div class="forum_topic_reply_count">
+                        <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> @post.CommentsCount
+                    </div>
+                    <div class="forum_topic_lastpost">
+                        <i class="fas fa-calendar-alt">&nbsp;</i>@post.CreatedOn
+                    </div>
                 </div>
-                <div class="forum_topic_lastpost">
-                    <i class="fas fa-calendar-alt">&nbsp;</i>@post.CreatedOn
+                <div class="forum_topic_icon">
+                    <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">
+                        <img src="https://community.akamai.steamstatic.com/public/images/skin_1/forum_topicicon_unread.png?v=1">
+                    </a>
                 </div>
+                <div class="forum_topic_name">@post.Title</div>
+                <div class="forum_topic_op"><i class="fas fa-user-edit">&nbsp;</i>@post.UserUserName</div>
             </div>
-            <div class="forum_topic_icon">
-                <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">
-                    <img src="https://community.akamai.steamstatic.com/public/images/skin_1/forum_topicicon_unread.png?v=1">
-                </a>
-            </div>
-            <div class="forum_topic_name">@post.Title</div>
-            <div class="forum_topic_op"><i class="fas fa-user-edit">&nbsp;</i>@post.UserUserName</div>
-        </div>
+
+        }
+        <partial name="_ForumPagingPartial" model="@Model" />
     }
 
-    <partial name="_ForumPagingPartial" model="@Model" />
 </div>

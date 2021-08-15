@@ -8,6 +8,10 @@
     {
         Task AddProfilePicture(IFormFile image, string userId, string imagePath);
 
-        T GetProfilePicture<T>(string userId);
+        string GetProfilePicturePath(string userId);
+
+        string GetProfileRank(int games);
+
+        string GetProfileBadge(int games);
     }
 }

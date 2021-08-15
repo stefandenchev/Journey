@@ -47,30 +47,13 @@
         [Display(Name = "Picture")]
         public IFormFile ProfilePictureUpload { get; set; }
 
-        public ProfilePictureViewModel ProfilePicture { get; set; }
-
-        public int GamesBought { get; set; }
-
-        public string ProfileRank { get; set; }
+        public ProfileViewModel ProfileInfo { get; set; }
 
         public class InputModel
         {
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-        }
-
-        private async Task LoadAsync(ApplicationUser user)
-        {
-            var userName = await this.userManager.GetUserNameAsync(user);
-            var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
-
-            this.Username = userName;
-
-            this.Input = new InputModel
-            {
-                PhoneNumber = phoneNumber,
-            };
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -81,27 +64,16 @@
                 return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
-            await this.LoadAsync(user);
-            this.ProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(user.Id);
-            if (this.ProfilePicture == null)
-            {
-                this.ProfilePicture = new ProfilePictureViewModel { ImageUrl = "/images/users/default-user.png" };
-            }
-
             var gamesBought = this.ordersService.GetGamesBoughtCount(user.Id);
-            this.GamesBought = gamesBought;
-            if (gamesBought >= 5)
+
+            await this.LoadAsync(user);
+            this.ProfileInfo = new ProfileViewModel
             {
-                this.ProfileRank = "Bronze";
-            }
-            else if (gamesBought >= 25)
-            {
-                this.ProfileRank = "Silver";
-            }
-            else if (gamesBought >= 50)
-            {
-                this.ProfileRank = "Gold";
-            }
+                ImageUrl = this.usersService.GetProfilePicturePath(user.Id),
+                GamesBought = gamesBought,
+                ProfileRank = this.usersService.GetProfileRank(gamesBought),
+                Badge = this.usersService.GetProfileBadge(gamesBought),
+            };
 
             return this.Page();
         }
@@ -136,6 +108,18 @@
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";
             return this.RedirectToPage();
+        }
+        private async Task LoadAsync(ApplicationUser user)
+        {
+            var userName = await this.userManager.GetUserNameAsync(user);
+            var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
+
+            this.Username = userName;
+
+            this.Input = new InputModel
+            {
+                PhoneNumber = phoneNumber,
+            };
         }
     }
 }

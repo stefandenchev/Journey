@@ -766,11 +766,17 @@ select#Languages.form-control, select#Tags.form-control {
     }
 
 /* FORUM */
+.badge-games {
+    border-radius: 30px;
+    width: 45px;
+    height: 45px;
+}
+
 .profile-picture {
     display: inline-block;
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     overflow: hidden;
     border-radius: 50%;
 }
