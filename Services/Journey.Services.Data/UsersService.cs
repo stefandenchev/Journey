@@ -71,17 +71,18 @@
         public string GetProfileRank(int games)
         {
             var rank = string.Empty;
-            if (games >= 5)
+
+            if (games >= 50)
             {
-                rank = "Bronze";
+                rank = "Gold";
             }
             else if (games >= 25)
             {
                 rank = "Silver";
             }
-            else if (games >= 50)
+            else if (games >= 5)
             {
-                rank = "Gold";
+                rank = "Bronze";
             }
 
             return rank;
