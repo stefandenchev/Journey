@@ -80,7 +80,7 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "SendGrid/9.24.1": {
+      "SendGrid/9.24.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
@@ -694,10 +694,10 @@
         "tools/install.ps1"
       ]
     },
-    "SendGrid/9.24.1": {
-      "sha512": "381S6vABlaA12T7MeoaqErx4kHlX/d/rvOJPxjWYePCPEFfP2rmmWfGd51KEkjKMHIBGNxzgUV+DnI9LWJT3aA==",
+    "SendGrid/9.24.2": {
+      "sha512": "b1nyXPIJxHm7+je26poHsDjqyK3WCBkKPEydLv2xFOgdjUyEOAS/ZaZq+3usM4J9Sx9Zayq2V1KfJYuse8Cbfg==",
       "type": "package",
-      "path": "sendgrid/9.24.1",
+      "path": "sendgrid/9.24.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -713,7 +713,7 @@
         "lib/netstandard2.0/SendGrid.dll",
         "lib/netstandard2.0/SendGrid.pdb",
         "lib/netstandard2.0/SendGrid.xml",
-        "sendgrid.9.24.1.nupkg.sha512",
+        "sendgrid.9.24.2.nupkg.sha512",
         "sendgrid.nuspec"
       ]
     },
@@ -2784,7 +2784,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Sendgrid >= 9.24.1",
+      "Sendgrid >= 9.24.2",
       "StyleCop.Analyzers >= 1.2.0-beta.312"
     ]
   },
@@ -2829,7 +2829,7 @@
         "dependencies": {
           "Sendgrid": {
             "target": "Package",
-            "version": "[9.24.1, )"
+            "version": "[9.24.2, )"
           },
           "StyleCop.Analyzers": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers",

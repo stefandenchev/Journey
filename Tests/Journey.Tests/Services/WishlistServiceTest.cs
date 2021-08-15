@@ -31,6 +31,8 @@
                 (Wishlist wish) => this.list.Add(wish));
             this.wishRepo.Setup(x => x.Delete(It.IsAny<Wishlist>())).Callback(
                 (Wishlist wish) => this.list.Remove(wish));
+            this.wishRepo.Setup(x => x.HardDelete(It.IsAny<Wishlist>())).Callback(
+                (Wishlist wish) => this.list.Remove(wish));
             var service = new WishlistService(this.wishRepo.Object, this.gameRepo.Object);
         }
 

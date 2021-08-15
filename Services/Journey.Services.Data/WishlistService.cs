@@ -51,7 +51,7 @@
                 .All()
                 .FirstOrDefault(c => c.UserId == userId && c.GameId == gameId);
 
-            this.wishListRepository.Delete(wish);
+            this.wishListRepository.HardDelete(wish);
             await this.wishListRepository.SaveChangesAsync();
         }
 

@@ -10,71 +10,77 @@
 @using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+<div class="container">
+    <h2>@this.ViewBag.Title</h2>
+
     <div class="container">
-        <h2>Your @this.ViewBag.Title</h2>
-
-        <div class="container">
-            <section id="core-guts" class="stringy fatty">
-                <div id="cart-block-wrap" class="contentbox raft">
-                    <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tbody class="boxoom">
-                            @foreach (var item in Model.GamesInCart)
-                            {
-                                <tr class="product hovcolor">
-                                    <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
-                                    <td class="details">
-                                        <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
-                                    </td>
-                                    <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.CurrentPrice</em></span></td>
-                                </tr>
-                            }
-                            <tr class="grandtotal bortop">
-                                <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
-                                <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
+        <section id="core-guts" class="stringy fatty">
+            <div id="cart-block-wrap" class="contentbox raft">
+                <table id="cart-table" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody class="boxoom">
+                        @foreach (var item in Model.GamesInCart)
+                        {
+                            <tr class="product hovcolor">
+                                <td class="boxshot"><a class="boxhole img16x9" asp-controller="Games" asp-action="ById" asp-route-id="@item.Id" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title" /></a></td>
+                                <td class="details">
+                                    <div class="product-title"><a asp-controller="Games" asp-action="ById" asp-route-id="@item.Id">@item.Title</a></div>
+                                </td>
+                                <td class="amount"><input type="hidden"><span class="price"><em><i>€</i>@item.CurrentPrice</em></span></td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-
-        <h4 id="payment-select">Select a Payment Method</h4>
-        @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
-        {
-            <div class="col-md-3">
-                @Html.DropDownListFor(m => m.CreditCardId, Model.CreditCards.Select(item => new SelectListItem
-                {
-                    Value = item.Id.ToString(),
-                    Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
-                }), new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.CreditCardId)
+                        }
+                        <tr class="grandtotal bortop">
+                            <td colspan="2" class="label" nowrap>Total<span class="currency"></span></td>
+                            <td class="amount" nowrap><span class="price"><em><i>€</i>@Model.Total</em></span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <br />
-            <hr>
-        }
-        else
-        {
-            <div style="padding-left:2%">
-                A payment method is required to place an order. Click <a href="@Url.Action("Payment", "Profile")">here</a> to add a credit card.
-            </div>
-            <hr>
-        }
-
-        <div class="row">
-            <div class="row">
-                <a href="@Url.Action("Index", "Cart")" class="btn btn-primary" id="continue-shopping-button"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Cart</a>
-            </div>
-            @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0 && Model.CreditCards != null && Model.CreditCards.Count() > 0)
-            {
-                <form asp-action="Checkout">
-                    <div class="row">
-                        <input type="submit" value="Place Order" class="btn btn-primary" id="checkout-shopping-button">
-                    </div>
-                </form>
-            }
-
-        </div>
-
+        </section>
     </div>
+
+    <h4 class="mb-2" id="payment-select">Payment Method</h4>
+    @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
+    {
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.CreditCardId, Model.CreditCards.Select(item => new SelectListItem
+            {
+                Value = item.Id.ToString(),
+                Text = "xxxx-xxxx-xxxx-" + item.CardNumber.Substring(item.CardNumber.Length - 4, 4)
+            }), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CreditCardId)
+        </div>
+        <br />
+        <hr>
+    }
+    else
+    {
+        <div style="padding-left:2%">
+            A payment method is required to place an order. Click <a href="@Url.Action("Payment", "Profile")">here</a> to add a credit card.
+        </div>
+        <hr>
+    }
+    <div class="row">
+        <a asp-controller="Cart" asp-action="Index" class="btn_darkblue_white_innerfade btn_large ml-3">
+            <span>
+                <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back To Cart
+            </span>
+        </a>
+
+
+
+
+        @if (Model != null && Model.GamesInCart != null && Model.GamesInCart.Count() > 0 && Model.CreditCards != null && Model.CreditCards.Count() > 0)
+        {
+            <form asp-action="Checkout">
+                <div class="row">
+                    <input type="submit" value="Place Order" class="btn_green_white_innerfade btn_large ml-5">
+                </div>
+            </form>
+        }
+    </div>
+
+
+
+</div>
 
 }

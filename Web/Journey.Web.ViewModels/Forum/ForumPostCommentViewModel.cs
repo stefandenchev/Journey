@@ -23,6 +23,6 @@
 
         public string UserId { get; set; }
 
-        public ProfilePictureViewModel UserProfilePicture { get; set; }
+        public ProfilePictureViewModel UserProfile { get; set; }
     }
 }

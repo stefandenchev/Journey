@@ -37,7 +37,7 @@
 
             foreach (var comment in postViewModel.Comments)
             {
-                comment.UserProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(comment.UserId);
+                comment.UserProfile = this.usersService.GetProfilePicture<ProfilePictureViewModel>(comment.UserId);
             }
 
             postViewModel.UserProfilePicture = this.usersService.GetProfilePicture<ProfilePictureViewModel>(postViewModel.UserId);

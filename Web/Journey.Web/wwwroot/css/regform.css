@@ -2,8 +2,17 @@ body, html {
     height: 100%;
 }
 
-.bg {
+.bg-reg {
     background-image: url("../images/WoK-wallpaper-2560x1600-noLogo.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #808080
+}
+
+.bg-log {
+    background-image: url("../images/Chasm Kata.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
