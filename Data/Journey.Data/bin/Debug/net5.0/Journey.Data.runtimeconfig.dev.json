@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Stormlight\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Stormlight\\.nuget\\packages"
-    ]
-  }
-}
