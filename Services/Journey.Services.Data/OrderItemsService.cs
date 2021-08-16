@@ -14,10 +14,12 @@
     public class OrderItemsService : IOrderItemsService
     {
         private readonly IRepository<OrderItem> orderItemsRepository;
+        private readonly IDeletableEntityRepository<Game> gamesRepository;
 
-        public OrderItemsService(IRepository<OrderItem> orderItemsRepository)
+        public OrderItemsService(IRepository<OrderItem> orderItemsRepository, IDeletableEntityRepository<Game> gamesRepository)
         {
             this.orderItemsRepository = orderItemsRepository;
+            this.gamesRepository = gamesRepository;
         }
 
         public async Task CreateOrderItems(IEnumerable<GameInCartViewModel> games, string orderId)

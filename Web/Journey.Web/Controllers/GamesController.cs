@@ -134,7 +134,7 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 ItemsCount = this.gamesService.GetCount(),
-                Games = this.gamesService.GetAllInList<GameInListViewModel>(id, itemsPerPage),
+                Games = this.gamesService.All<GameInListViewModel>(id, itemsPerPage),
             };
 
             if (id <= 0)

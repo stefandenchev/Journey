@@ -45,7 +45,7 @@
             var fakeCartService = A.Fake<ICartService>();
             var fakeCache = A.Fake<IMemoryCache>();
 
-            A.CallTo(() => fakeGamesService.GetAllInList<GameInListViewModel>(1, 16))
+            A.CallTo(() => fakeGamesService.All<GameInListViewModel>(1, 16))
                     .Returns(A.CollectionOfFake<GameInListViewModel>(20));
 
             var gamesController = new GamesController(

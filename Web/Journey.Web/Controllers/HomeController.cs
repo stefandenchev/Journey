@@ -15,13 +15,16 @@
     {
         private readonly IGamesService gamesService;
         private readonly IMemoryCache cache;
+        private readonly IOrderItemsService orderItemsService;
 
         public HomeController(
             IGamesService gamesService,
-            IMemoryCache cache)
+            IMemoryCache cache,
+            IOrderItemsService orderItemsService)
         {
             this.gamesService = gamesService;
             this.cache = cache;
+            this.orderItemsService = orderItemsService;
         }
 
         public IActionResult Index()
@@ -33,6 +36,7 @@
                 viewModel = new HomeGamesViewModel
                 {
                     Lastest = new LatestReleasesViewModel { Games = this.gamesService.GetLatest<GameInListViewModel>() },
+                    Bestsellers = new BestsellersViewModel { Games = this.gamesService.GetBestsellers<GameInListViewModel>() },
                     Curated = new CuratedGamesViewModel { Games = this.gamesService.GetCurated<GameInListViewModel>() },
                 };
 

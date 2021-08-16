@@ -4,6 +4,8 @@
     {
         public LatestReleasesViewModel Lastest { get; set; }
 
+        public BestsellersViewModel Bestsellers { get; set; }
+
         public CuratedGamesViewModel Curated { get; set; }
     }
 }

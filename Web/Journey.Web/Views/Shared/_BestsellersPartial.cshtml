@@ -1,0 +1,31 @@
+﻿@model Journey.Web.ViewModels.Games.Home.BestsellersViewModel
+
+<h1 id="LatestGamesTitle">Bestsellers</h1>
+<hr />
+<div id="tile-view" class="blockcontent resp4">
+    <div id="tile-results">
+        <ul id="latest-releases" class="products">
+
+            @foreach (var game in this.Model.Games)
+            {
+                <li class="product">
+                    <div class="tilebox-main">
+                        <span class="boxshot" title="@game.Title">
+                            <a class="boxhole img16x9" a asp-controller="Games" asp-action="ById" asp-route-id="@game.Id" title="@game.Title"><img src="@game.ImageUrl" /></a>
+                        </span>
+                        <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
+                        @if (game.IsOnSale)
+                        {
+                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                        }
+                        else
+                        {
+                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

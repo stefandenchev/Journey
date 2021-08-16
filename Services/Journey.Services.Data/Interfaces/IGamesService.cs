@@ -8,9 +8,9 @@
 
     public interface IGamesService
     {
-        IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 16);
-
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> All<T>(
+            int page,
+            int itemsPerPage = 16);
 
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
 
@@ -25,6 +25,8 @@
         Task UpdateAsync(int id, EditGameInputModel input);
 
         IEnumerable<T> GetCurated<T>(int count = 12);
+
+        IEnumerable<T> GetBestsellers<T>(int count = 12);
 
         IEnumerable<T> GetGamesFromOrder<T>(IEnumerable<int> ids);
     }

@@ -15,20 +15,36 @@
 
     public class GamesService : IGamesService
     {
-        private readonly string[] allowedExtensions = new[] { "jpg", "jpeg", "png" };
+        private readonly string[] allowedExtensions = new[] { "jpg", "jpeg", "png", ".PNG" };
 
         private readonly IDeletableEntityRepository<Game> gamesRepository;
         private readonly IDeletableEntityRepository<Language> languagesRepository;
         private readonly IDeletableEntityRepository<Tag> tagsRepository;
+        private readonly IRepository<OrderItem> orderItemsRepository;
 
         public GamesService(
             IDeletableEntityRepository<Game> gamesRepository,
             IDeletableEntityRepository<Language> languagesRepository,
-            IDeletableEntityRepository<Tag> tagsRepository)
+            IDeletableEntityRepository<Tag> tagsRepository,
+            IRepository<OrderItem> orderItemsRepository)
         {
             this.gamesRepository = gamesRepository;
             this.languagesRepository = languagesRepository;
             this.tagsRepository = tagsRepository;
+            this.orderItemsRepository = orderItemsRepository;
+        }
+
+        public IEnumerable<T> All<T>(int page, int itemsPerPage = 16)
+        {
+            var games = this.gamesRepository
+                .AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+
+            return games;
         }
 
         public async Task CreateAsync(CreateGameInputModel input, string imagePath)
@@ -94,29 +110,6 @@
 
             await this.gamesRepository.AddAsync(game);
             await this.gamesRepository.SaveChangesAsync();
-        }
-
-        public IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 16)
-        {
-            var games = this.gamesRepository
-                .AllAsNoTracking()
-                .OrderByDescending(x => x.Id)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-
-            return games;
-        }
-
-        public IEnumerable<T> GetAll<T>()
-        {
-            var games = this.gamesRepository
-                .All()
-                .To<T>()
-                .ToList();
-
-            return games;
         }
 
         public IEnumerable<T> GetLatest<T>(int count = 12)
@@ -204,6 +197,32 @@
                 .AllAsNoTracking()
                 .Where(t => idList.Contains(t.Id))
                 .Take(count)
+                .To<T>()
+                .ToList();
+
+            return games;
+        }
+
+        public IEnumerable<T> GetBestsellers<T>(int count = 12)
+        {
+            var result = this.orderItemsRepository
+                 .All()
+                 .GroupBy(x => x.GameId)
+                 .Select(x => new { Id = x.Key, Total = x.Count() })
+                 .OrderByDescending(x => x.Total)
+                 .Take(count)
+                 .ToList();
+
+            List<int> gameIds = new();
+            foreach (var item in result)
+            {
+                gameIds.Add(item.Id);
+            }
+
+            var games = this.gamesRepository
+                .All()
+                .Where(x => gameIds.Contains(x.Id))
+                .OrderByDescending(x => x.Id)
                 .To<T>()
                 .ToList();
 
