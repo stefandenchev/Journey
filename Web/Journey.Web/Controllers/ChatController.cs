@@ -46,6 +46,12 @@
         [HttpGet]
         public async Task<IActionResult> JoinRoom(int id)
         {
+            var roomPrivate = this.chatService.CheckRoomPrivacy(id);
+            if (roomPrivate)
+            {
+                return this.BadRequest();
+            }
+
             var userId = this.User.GetId();
 
             await this.chatService.JoinRoom(id, userId);

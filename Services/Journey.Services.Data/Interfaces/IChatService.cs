@@ -23,5 +23,7 @@
         Task<Message> CreateMessage(int chatId, string message, string userId);
 
         IEnumerable<Chat> GetUserChats(string userId);
+
+        bool CheckRoomPrivacy(int chatId);
     }
 }

@@ -1,6 +1,8 @@
 @model ChatViewModel
 @{ Layout = "_Layout - Chat";}
-
+@{
+    this.ViewBag.Title = "Journey - Chat";
+}
 <div class="chat-body">
 
     @foreach (var message in Model.Messages)

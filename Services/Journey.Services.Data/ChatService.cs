@@ -33,7 +33,8 @@
             return this.chatsRepository.All()
                 .Include(x => x.Users)
                 .Where(x => !x.Users
-                    .Any(y => y.UserId == userId))
+                    .Any(y => y.UserId == userId)
+                 && x.Type != ChatType.Private)
                 .ToList();
         }
 
@@ -150,6 +151,17 @@
                     && x.Chat.Type == ChatType.Room)
                 .Select(x => x.Chat)
                 .ToList();
+        }
+
+        public bool CheckRoomPrivacy(int chatId)
+        {
+            var chat = this.chatsRepository.All().Where(x => x.Id == chatId).FirstOrDefault();
+            if (chat.Type == ChatType.Private)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
