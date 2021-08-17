@@ -9,7 +9,7 @@ namespace Journey.Data.Models.Chat
         public Chat()
         {
             this.Messages = new List<Message>();
-            this.Users = new List<ApplicationUser>();
+            this.Users = new List<ChatUser>();
         }
 
         public string Name { get; set; }
@@ -18,6 +18,6 @@ namespace Journey.Data.Models.Chat
 
         public ICollection<Message> Messages { get; set; }
 
-        public ICollection<ApplicationUser> Users { get; set; }
+        public ICollection<ChatUser> Users { get; set; }
     }
 }

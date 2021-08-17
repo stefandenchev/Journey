@@ -100,6 +100,7 @@
             services.AddTransient<IWishlistService, WishlistService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IChatService, ChatService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
