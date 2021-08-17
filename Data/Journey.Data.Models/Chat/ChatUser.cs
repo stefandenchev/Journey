@@ -2,7 +2,7 @@ namespace Journey.Data.Models.Chat
 {
     using Journey.Data.Common.Models;
 
-    public class ChatUser : BaseModel<int>
+    public class ChatUser
     {
         public string UserId { get; set; }
 

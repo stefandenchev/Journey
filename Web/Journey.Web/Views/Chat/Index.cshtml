@@ -1,37 +1,14 @@
-﻿@using Journey.Data.Models.Chat
+﻿@model IEnumerable<Chat>
 
-@model IEnumerable<Chat>
+@{ Layout = "_Layout - Chat";}
 
 <link href="~/css/chat.css" rel="stylesheet" />
 <script src="~/js/chat.js"></script>
 <script src="~/js/messageBuilder.js"></script>
 
-
-<div class="main">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <vc:room></vc:room>}
-    <div class="chat">
-        <div class="chat-body">
-            @foreach (var chat in Model)
-            {
-                <a class="room-button" asp-controller="Chat" asp-action="JoinRoom" asp-route-id="@chat.Id">
-                    @chat.Name
-                </a>
-            }
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="create-room-modal">
-    <form asp-controller="Home" asp-action="CreateRoom" class="modal-body">
-        <button type="button" class="close" onclick="closeModal()">X</button>
-        <header>Create Room</header>
-        <div>
-            <input name="name">
-        </div>
-        <footer>
-            <button>Create</button>
-        </footer>
-    </form>
-</div>
+@foreach (var chat in Model)
+{
+    <a class="room-button" asp-controller="Chat" asp-action="JoinRoom" asp-route-id="@chat.Id">
+        @chat.Name
+    </a>
+}

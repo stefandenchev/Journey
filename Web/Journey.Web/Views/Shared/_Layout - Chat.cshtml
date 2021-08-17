@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChatApp</title>
+
+    <link rel="stylesheet" href="~/css/chat.css">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a asp-controller="Chat" asp-action="Index">Home</a>
+        <a asp-controller="Chat" asp-action="Find">Find</a>
+        <a asp-controller="Chat" asp-action="Private">Private</a>
+    </div>
+
+    <div class="main">
+        @if(User.Identity.IsAuthenticated)
+        {
+            <vc:room></vc:room>
+        }
+        <div class="chat">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="modal" id="create-room-modal">
+        <form asp-controller="Chat" asp-action="CreateRoom" class="modal-body">
+            <button type="button" class="close" onclick="closeModal()">X</button>
+            <header>Create Room</header>
+            <div>
+                <input name="name">
+            </div>
+            <footer>
+                <button>Create</button>
+            </footer>
+        </form>
+    </div>
+
+    <script src="~/js/chat.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

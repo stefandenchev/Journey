@@ -14,8 +14,8 @@
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
     using Journey.Services.Messaging;
+    using Journey.Web.Hubs;
     using Journey.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -101,6 +101,8 @@
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IChatService, ChatService>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -146,6 +148,8 @@
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
+
+                        endpoints.MapHub<ChatHub>("/chatHub");
                     });
         }
     }

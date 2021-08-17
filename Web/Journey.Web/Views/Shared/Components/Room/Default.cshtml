@@ -1,10 +1,9 @@
-﻿@using Journey.Data.Models.Chat 
-@model IEnumerable<Chat>
+﻿@model IEnumerable<Chat>
 
 <div class="side-menu">
     @foreach (var chat in Model)
     {
-        <a class="room-button" asp-controller="Home" asp-action="Chat" asp-route-id="@chat.Id">
+        <a class="room-button" asp-controller="Chat" asp-action="Chat" asp-route-id="@chat.Id">
             @chat.Name
         </a>
     }
