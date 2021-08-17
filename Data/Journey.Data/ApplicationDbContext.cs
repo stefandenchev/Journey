@@ -8,7 +8,7 @@
 
     using Journey.Data.Common.Models;
     using Journey.Data.Models;
-
+    using Journey.Data.Models.Chat;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -66,6 +66,12 @@
 
         public DbSet<UserImage> UserImages { get; set; }
 
+        public DbSet<Chat> Chats { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<ChatUser> ChatUsers { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -114,9 +120,12 @@
             }
 
             builder.Entity<ApplicationUser>()
-           .HasOne<UserImage>(x => x.ProfilePicture)
-           .WithOne(x => x.User)
-           .HasForeignKey<UserImage>(x => x.UserId);
+                .HasOne<UserImage>(x => x.ProfilePicture)
+                .WithOne(x => x.User)
+                .HasForeignKey<UserImage>(x => x.UserId);
+
+            builder.Entity<ChatUser>()
+                .HasKey(x => new { x.ChatId, x.UserId });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

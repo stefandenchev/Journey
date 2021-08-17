@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using Journey.Data.Common.Models;
-
+    using Journey.Data.Models.Chat;
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -18,6 +18,7 @@
             this.Votes = new HashSet<Vote>();
             this.ForumPosts = new HashSet<ForumPost>();
             this.Comments = new HashSet<Comment>();
+            this.Chats = new HashSet<ChatUser>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -43,5 +44,7 @@
         public virtual ICollection<ForumPost> ForumPosts { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<ChatUser> Chats { get; set; }
     }
 }
