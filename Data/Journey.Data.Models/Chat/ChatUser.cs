@@ -1,7 +1,5 @@
 namespace Journey.Data.Models.Chat
 {
-    using Journey.Data.Common.Models;
-
     public class ChatUser
     {
         public string UserId { get; set; }

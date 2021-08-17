@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Journey.Data.Models.Chat;
+    using Journey.Web.ViewModels.Chat;
 
     public interface IChatService
     {
@@ -11,7 +12,7 @@
 
         Task CreateRoom(string name, string userId);
 
-        Chat GetChat(int id);
+        T GetChat<T>(int id);
 
         Task JoinRoom(int chatId, string userId);
 

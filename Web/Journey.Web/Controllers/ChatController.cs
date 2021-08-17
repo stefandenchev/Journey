@@ -7,9 +7,12 @@
     using Journey.Services.Data.Interfaces;
     using Journey.Web.Hubs;
     using Journey.Web.Infrastructure;
+    using Journey.Web.ViewModels.Chat;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SignalR;
+
+    using static Journey.Common.GlobalConstants;
 
     [Authorize]
     public class ChatController : Controller
@@ -29,6 +32,8 @@
 
             return this.View(chats);
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
 
         public async Task<IActionResult> CreateRoom(string name)
         {
@@ -60,12 +65,13 @@
                 {
                     Text = msg.Text,
                     Name = msg.Name,
-                    Timestamp = msg.Timestamp.ToString("dd/MM/yyyy hh:mm:ss"),
+                    Timestamp = msg.Timestamp.ToString("M/dd/yyyy h:mm:ss tt"),
                 });
 
             return this.Ok();
         }
 
+        [HttpGet("/Chat/Find")]
         public IActionResult Find([FromServices] ApplicationDbContext ctx)
         {
             var users = ctx.Users
@@ -75,6 +81,7 @@
             return this.View(users);
         }
 
+        [HttpGet("/Chat/Private")]
         public IActionResult Private()
         {
             var userId = this.User.GetId();
@@ -84,6 +91,7 @@
             return this.View(chats);
         }
 
+        [HttpGet("/Chat/CreatePrivateRoom")]
         public async Task<IActionResult> CreatePrivateRoom(string userId)
         {
             var currentUserId = this.User.GetId();
@@ -96,7 +104,7 @@
         [HttpGet("/Chat/{id}")]
         public IActionResult Chat(int id)
         {
-            return this.View(this.chatService.GetChat(id));
+            return this.View(this.chatService.GetChat<ChatViewModel>(id));
         }
     }
 }

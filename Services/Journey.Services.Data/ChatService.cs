@@ -8,6 +8,8 @@
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models.Chat;
     using Journey.Services.Data.Interfaces;
+    using Journey.Services.Mapping;
+    using Journey.Web.ViewModels.Chat;
     using Microsoft.EntityFrameworkCore;
 
     public class ChatService : IChatService
@@ -70,34 +72,39 @@
 
         public async Task<int> CreatePrivateRoom(string rootId, string targetId)
         {
-            var chat = new Chat
-            {
-                Type = ChatType.Private,
-            };
+            var chatCheck = this.chatsRepository
+                .All()
+                .Where(x => x.Type == ChatType.Private && (x.Name == rootId + targetId || x.Name == targetId + rootId)).FirstOrDefault();
 
-            chat.Users.Add(new ChatUser
-            {
-                UserId = targetId,
-            });
+            var chat = new Chat();
 
-            chat.Users.Add(new ChatUser
+            if (chatCheck == null)
             {
-                UserId = rootId,
-            });
+                chat = new Chat
+                {
+                    Type = ChatType.Private,
+                    Name = rootId + targetId,
+                };
 
-            await this.chatsRepository.AddAsync(chat);
-            await this.chatsRepository.SaveChangesAsync();
+                chat.Users.Add(new ChatUser
+                {
+                    UserId = targetId,
+                });
+
+                chat.Users.Add(new ChatUser
+                {
+                    UserId = rootId,
+                });
+
+                await this.chatsRepository.AddAsync(chat);
+                await this.chatsRepository.SaveChangesAsync();
+            }
+            else
+            {
+                chat = chatCheck;
+            }
 
             return chat.Id;
-        }
-
-        public Chat GetChat(int id)
-        {
-            var chat = this.chatsRepository.All()
-                .Include(x => x.Messages)
-                .FirstOrDefault(x => x.Id == id);
-
-            return chat;
         }
 
         public IEnumerable<Chat> GetPrivateChats(string userId)
@@ -109,6 +116,18 @@
                        && x.Users
                            .Any(y => y.UserId == userId))
                    .ToList();
+        }
+
+        public T GetChat<T>(int id)
+        {
+            var chat = this.chatsRepository
+                .All()
+                .Include(x => x.Messages)
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return chat;
         }
 
         public async Task JoinRoom(int chatId, string userId)

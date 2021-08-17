@@ -8,7 +8,10 @@
         </a>
     }
 
-    <a class="room-button" id="create-room-btn" href="#">
-        <strong>+</strong>
-    </a>
+    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+    {
+        <a class="room-button" id="create-room-btn" href="#">
+            <strong>+</strong>
+        </a>
+    }
 </div>
