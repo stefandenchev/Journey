@@ -7,6 +7,6 @@
     {
         public string UserId { get; set; }
 
-        public int ChatId { get; set; }
+        public string ChatId { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Journey.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@
     using Journey.Web.Hubs;
     using Journey.Web.Infrastructure;
     using Journey.Web.ViewModels.Chat;
+    using Journey.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SignalR;
@@ -18,10 +20,14 @@
     public class ChatController : Controller
     {
         private readonly IChatService chatService;
+        private readonly IUsersService usersService;
 
-        public ChatController(IChatService chatService)
+        public ChatController(
+            IChatService chatService,
+            IUsersService usersService)
         {
             this.chatService = chatService;
+            this.usersService = usersService;
         }
 
         public IActionResult Index()
@@ -38,13 +44,14 @@
         public async Task<IActionResult> CreateRoom(string name)
         {
             var userId = this.User.GetId();
+            string chatId = Guid.NewGuid().ToString();
 
-            await this.chatService.CreateRoom(name, userId);
+            await this.chatService.CreateRoom(name, chatId, userId);
             return this.RedirectToAction("Index");
         }
 
         [HttpGet]
-        public async Task<IActionResult> JoinRoom(int id)
+        public async Task<IActionResult> JoinRoom(string id)
         {
             var roomPrivate = this.chatService.CheckRoomPrivacy(id);
             if (roomPrivate)
@@ -56,11 +63,11 @@
 
             await this.chatService.JoinRoom(id, userId);
 
-            return this.RedirectToAction("Chat", "Chat", new { id = id });
+            return this.RedirectToAction("Chat", new { id = id });
         }
 
         public async Task<IActionResult> SendMessage(
-            int roomId,
+            string roomId,
             string message,
             [FromServices] IHubContext<ChatHub> chat)
         {
@@ -77,17 +84,22 @@
             return this.Ok();
         }
 
-        [HttpGet("/Chat/Find")]
-        public IActionResult Find([FromServices] ApplicationDbContext ctx)
+        public IActionResult Find()
         {
-            var users = ctx.Users
-                .Where(x => x.Id != this.User.GetId())
-                .ToList();
+            var userId = this.User.GetId();
+
+            var users = this.chatService.GetOtherUsers<UserViewModel>(userId);
+            foreach (var user in users)
+            {
+                user.Profile = new BaseProfileViewModel
+                {
+                    ImageUrl = this.usersService.GetProfilePicturePath(user.Id),
+                };
+            }
 
             return this.View(users);
         }
 
-        [HttpGet("/Chat/Private")]
         public IActionResult Private()
         {
             var userId = this.User.GetId();
@@ -97,18 +109,18 @@
             return this.View(chats);
         }
 
-        [HttpGet("/Chat/CreatePrivateRoom")]
         public async Task<IActionResult> CreatePrivateRoom(string userId)
         {
             var currentUserId = this.User.GetId();
+            string chatId = Guid.NewGuid().ToString();
 
-            var id = await this.chatService.CreatePrivateRoom(currentUserId, userId);
+            var id = await this.chatService.CreatePrivateRoom(currentUserId, chatId, userId);
 
             return this.RedirectToAction("Chat", new { id });
         }
 
-        [HttpGet("/Chat/{id}")]
-        public IActionResult Chat(int id)
+        [HttpGet("/Chat/Room/{id}")]
+        public IActionResult Chat(string id)
         {
             return this.View(this.chatService.GetChat<ChatViewModel>(id));
         }

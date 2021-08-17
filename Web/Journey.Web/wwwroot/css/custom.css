@@ -44,7 +44,7 @@ body > div.page-container > header > nav {
     padding: 2.3em !important
 }
 
-#journey-title {
+#journey-title, #LatestGamesTitle {
     font-family: 'Zen Dots', cursive !important;
     font-size: 1.3em;
 }

@@ -3,22 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Journey.Data.Migrations
 {
-    public partial class ChatModels : Migration
+    public partial class EverythingChatInOne : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "ChatId",
-                table: "AspNetUsers",
-                type: "int",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Chats",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -36,10 +29,7 @@ namespace Journey.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ChatId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ChatId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +45,7 @@ namespace Journey.Data.Migrations
                         column: x => x.ChatId,
                         principalTable: "Chats",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,7 +57,7 @@ namespace Journey.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ChatId = table.Column<int>(type: "int", nullable: false),
+                    ChatId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -83,11 +73,6 @@ namespace Journey.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ChatId",
-                table: "AspNetUsers",
-                column: "ChatId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Chats_IsDeleted",
@@ -108,22 +93,10 @@ namespace Journey.Data.Migrations
                 name: "IX_Messages_IsDeleted",
                 table: "Messages",
                 column: "IsDeleted");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Chats_ChatId",
-                table: "AspNetUsers",
-                column: "ChatId",
-                principalTable: "Chats",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Chats_ChatId",
-                table: "AspNetUsers");
-
             migrationBuilder.DropTable(
                 name: "ChatUsers");
 
@@ -132,14 +105,6 @@ namespace Journey.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Chats");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ChatId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "ChatId",
-                table: "AspNetUsers");
         }
     }
 }

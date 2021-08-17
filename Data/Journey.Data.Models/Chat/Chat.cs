@@ -4,7 +4,7 @@ namespace Journey.Data.Models.Chat
 
     using Journey.Data.Common.Models;
 
-    public class Chat : BaseDeletableModel<int>
+    public class Chat : BaseDeletableModel<string>
     {
         public Chat()
         {

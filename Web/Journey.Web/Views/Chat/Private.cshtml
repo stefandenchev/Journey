@@ -1,4 +1,4 @@
-@model IEnumerable<Chat>
+@*@model IEnumerable<Chat>
 @{ Layout = "_Layout - Chat";}
 
 @{ var userId = User.GetId();}
@@ -10,4 +10,4 @@
             @chat.Users.FirstOrDefault(x => x.UserId != userId).User.UserName
         </a>
     }
-</div>
+</div>*@

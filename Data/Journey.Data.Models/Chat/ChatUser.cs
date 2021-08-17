@@ -6,7 +6,7 @@ namespace Journey.Data.Models.Chat
 
         public ApplicationUser User { get; set; }
 
-        public int ChatId { get; set; }
+        public string ChatId { get; set; }
 
         public Chat Chat { get; set; }
     }

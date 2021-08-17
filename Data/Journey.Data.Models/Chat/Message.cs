@@ -12,7 +12,7 @@ namespace Journey.Data.Models.Chat
 
         public DateTime Timestamp { get; set; }
 
-        public int ChatId { get; set; }
+        public string ChatId { get; set; }
 
         public Chat Chat { get; set; }
     }

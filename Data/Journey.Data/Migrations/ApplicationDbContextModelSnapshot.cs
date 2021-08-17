@@ -173,10 +173,8 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.Chat.Chat", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -205,8 +203,8 @@ namespace Journey.Data.Migrations
 
             modelBuilder.Entity("Journey.Data.Models.Chat.ChatUser", b =>
                 {
-                    b.Property<int>("ChatId")
-                        .HasColumnType("int");
+                    b.Property<string>("ChatId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -225,8 +223,8 @@ namespace Journey.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ChatId")
-                        .HasColumnType("int");
+                    b.Property<string>("ChatId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -1067,7 +1065,7 @@ namespace Journey.Data.Migrations
                     b.HasOne("Journey.Data.Models.Chat.Chat", "Chat")
                         .WithMany("Users")
                         .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Journey.Data.Models.ApplicationUser", "User")
@@ -1085,9 +1083,7 @@ namespace Journey.Data.Migrations
                 {
                     b.HasOne("Journey.Data.Models.Chat.Chat", "Chat")
                         .WithMany("Messages")
-                        .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("ChatId");
 
                     b.Navigation("Chat");
                 });

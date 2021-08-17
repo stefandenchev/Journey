@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
 
     using Journey.Data.Common.Repositories;
+    using Journey.Data.Models;
     using Journey.Data.Models.Chat;
     using Journey.Services.Data.Interfaces;
     using Journey.Services.Mapping;
-    using Journey.Web.ViewModels.Chat;
     using Microsoft.EntityFrameworkCore;
 
     public class ChatService : IChatService
@@ -17,15 +17,18 @@
         private readonly IDeletableEntityRepository<Chat> chatsRepository;
         private readonly IDeletableEntityRepository<Message> messagesRepository;
         private readonly IRepository<ChatUser> chatUsersRepository;
+        private readonly IRepository<ApplicationUser> usersRepository;
 
         public ChatService(
             IDeletableEntityRepository<Chat> chatsRepository,
             IDeletableEntityRepository<Message> messagesRepository,
-            IRepository<ChatUser> chatUsersRepository)
+            IRepository<ChatUser> chatUsersRepository,
+            IRepository<ApplicationUser> usersRepository)
         {
             this.chatsRepository = chatsRepository;
             this.messagesRepository = messagesRepository;
             this.chatUsersRepository = chatUsersRepository;
+            this.usersRepository = usersRepository;
         }
 
         public IEnumerable<Chat> GetChats(string userId)
@@ -38,10 +41,11 @@
                 .ToList();
         }
 
-        public async Task CreateRoom(string name, string userId)
+        public async Task CreateRoom(string name, string chatId, string userId)
         {
             var chat = new Chat
             {
+                Id = chatId,
                 Name = name,
                 Type = ChatType.Room,
             };
@@ -55,7 +59,7 @@
             await this.chatsRepository.SaveChangesAsync();
         }
 
-        public async Task<Message> CreateMessage(int chatId, string message, string userId)
+        public async Task<Message> CreateMessage(string chatId, string message, string userId)
         {
             var msg = new Message
             {
@@ -71,7 +75,7 @@
             return msg;
         }
 
-        public async Task<int> CreatePrivateRoom(string rootId, string targetId)
+        public async Task<string> CreatePrivateRoom(string rootId, string chatId, string targetId)
         {
             var chatCheck = this.chatsRepository
                 .All()
@@ -83,8 +87,8 @@
             {
                 chat = new Chat
                 {
+                    Id = chatId,
                     Type = ChatType.Private,
-                    Name = rootId + targetId,
                 };
 
                 chat.Users.Add(new ChatUser
@@ -119,7 +123,7 @@
                    .ToList();
         }
 
-        public T GetChat<T>(int id)
+        public T GetChat<T>(string id)
         {
             var chat = this.chatsRepository
                 .All()
@@ -131,7 +135,7 @@
             return chat;
         }
 
-        public async Task JoinRoom(int chatId, string userId)
+        public async Task JoinRoom(string chatId, string userId)
         {
             var chatUser = new ChatUser
             {
@@ -153,7 +157,7 @@
                 .ToList();
         }
 
-        public bool CheckRoomPrivacy(int chatId)
+        public bool CheckRoomPrivacy(string chatId)
         {
             var chat = this.chatsRepository.All().Where(x => x.Id == chatId).FirstOrDefault();
             if (chat.Type == ChatType.Private)
@@ -162,6 +166,15 @@
             }
 
             return false;
+        }
+
+        public IEnumerable<T> GetOtherUsers<T>(string userId)
+        {
+            return this.usersRepository
+                .All()
+                .Where(x => x.Id != userId)
+                .To<T>()
+                .ToList();
         }
     }
 }

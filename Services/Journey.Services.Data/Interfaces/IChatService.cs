@@ -10,20 +10,22 @@
     {
         IEnumerable<Chat> GetChats(string userId);
 
-        Task CreateRoom(string name, string userId);
+        Task CreateRoom(string name, string chatId, string userId);
 
-        T GetChat<T>(int id);
+        T GetChat<T>(string id);
 
-        Task JoinRoom(int chatId, string userId);
+        Task JoinRoom(string chatId, string userId);
 
-        Task<int> CreatePrivateRoom(string rootId, string targetId);
+        Task<string> CreatePrivateRoom(string rootId, string chatId, string targetId);
 
         IEnumerable<Chat> GetPrivateChats(string userId);
 
-        Task<Message> CreateMessage(int chatId, string message, string userId);
+        Task<Message> CreateMessage(string chatId, string message, string userId);
 
         IEnumerable<Chat> GetUserChats(string userId);
 
-        bool CheckRoomPrivacy(int chatId);
+        bool CheckRoomPrivacy(string chatId);
+
+        IEnumerable<T> GetOtherUsers<T>(string userId);
     }
 }
