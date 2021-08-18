@@ -16,11 +16,11 @@
                         <a class="atitle" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.Title</a>
                         @if (game.IsOnSale)
                         {
-                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart inactiveLink"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
                         }
                         else
                         {
-                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                            <span class="right"><span class="costblock"><a class="btn-buy add-to-cart inactiveLink"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
                         }
                     </div>
                 </li>

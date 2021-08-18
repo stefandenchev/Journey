@@ -8,23 +8,23 @@
 
     public interface IChatService
     {
-        IEnumerable<Chat> GetChats(string userId);
+        IEnumerable<T> GetChats<T>(string userId);
 
-        Task CreateRoom(string name, string chatId, string userId);
+        Task CreateChat(string name, string chatId, string userId);
 
         T GetChat<T>(string id);
 
-        Task JoinRoom(string chatId, string userId);
+        Task JoinChat(string chatId, string userId);
 
-        Task<string> CreatePrivateRoom(string rootId, string chatId, string targetId);
+        Task<string> CreatePrivateChat(string rootId, string chatId, string targetId);
 
-        IEnumerable<Chat> GetPrivateChats(string userId);
+        IEnumerable<T> GetPrivateChats<T>(string userId);
 
         Task<Message> CreateMessage(string chatId, string message, string userId);
 
-        IEnumerable<Chat> GetUserChats(string userId);
+        IEnumerable<T> GetUserChats<T>(string userId);
 
-        bool CheckRoomPrivacy(string chatId);
+        bool CheckChatPrivacy(string chatId);
 
         IEnumerable<T> GetOtherUsers<T>(string userId);
     }

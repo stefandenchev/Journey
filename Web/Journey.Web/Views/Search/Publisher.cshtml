@@ -50,11 +50,11 @@
                             @*                        <div class="tags"><span class="right"><span class="costblock"><label><span class="percentoff">-90<i>%</i></span><span class="price"><em><i>€</i>@game.Price</em></span></label></span></span></div>*@
                             @if (game.IsOnSale)
                             {
-                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart inactiveLink"><span class="percentoff">-@game.SalePercentage<i>%</i></span><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
                             }
                             else
                             {
-                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
+                                <span class="right"><span class="costblock"><a class="btn-buy add-to-cart inactiveLink"><label><span class="price"><em><i>€</i>@game.CurrentPrice</em></span></label></a></span></span>
                             }
                         </div>
                     </li>

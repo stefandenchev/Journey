@@ -111,5 +111,19 @@
 
             Assert.NotNull(chat);
         }
+
+        [Fact]
+        public async Task CheckPrivacyShouldReturnCorrectResult()
+        {
+            var firstUserId = "kaladin";
+            var secondUserId = "shallan";
+            var roomId = "TestRoomId";
+
+            await this.chatService.CreatePrivateChat(firstUserId, roomId, secondUserId);
+            var chat = this.chatService.GetChat<ChatViewModel>(roomId);
+
+            Assert.True(chat.Type == ChatType.Private);
+            Assert.False(chat.Type == ChatType.Room);
+        }
     }
 }

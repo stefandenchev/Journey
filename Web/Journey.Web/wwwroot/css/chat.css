@@ -2,29 +2,43 @@
     box-sizing: border-box;
 }
 
+#journey-title {
+    font-family: 'Zen Dots', cursive !important;
+    font-size: 1.3em;
+    margin-top:-4px
+}
+
 body {
     margin: 0;
     height: 100vh;
-    width: 100wh;
+    /*width: 100wh;*/
     display: flex;
     flex-direction: column;
+    background-color: #e1ded9;
 }
 
 .navbar {
-    background-color: #342742;
+    background-color: #171A21;
     min-height: 50px;
     z-index: 100;
     box-shadow: 0 1px 2px 0 #333;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
 }
 
-    .navbar > a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        padding-top: 0.8rem;
-        padding-left: 1rem;
+a.nav-link.chat-nav {
+    color: #C5C3C0 !important;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-size: 17px;
+    padding-top: 0.8rem;
+    padding-left: 2rem;
+    margin-right: 1.2em
+}
+
+    a.nav-link.chat-nav:hover {
+        color: #e08821 !important;
     }
 
 .main {
@@ -34,9 +48,9 @@ body {
 }
 
 .side-menu {
-    background-color: #443554;
-    min-width: 100px;
-    max-width: 100px;
+    background-color: #1A2A3D;
+    min-width: 150px;
+    max-width: 150px;
     z-index: 50;
     box-shadow: 1px 0 2px 0 #333;
     display: flex;
@@ -53,7 +67,7 @@ body {
     height: 68px;
     border-radius: 5px;
     box-shadow: 0 1px 3px 1px #333;
-    background-color: #57446b;
+    background-color: #304052;
     text-align: center;
 }
 
@@ -63,6 +77,8 @@ body {
 
     .room-button:hover {
         box-shadow: 0 2px 3px 1px #222;
+        text-decoration: none;
+        color: #e08821;
     }
 
 .chat {
@@ -73,7 +89,7 @@ body {
 }
 
 .chat-body {
-    background-color: #eee;
+    background-color: #e1ded9;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -114,7 +130,7 @@ body {
     }
 
 .chat-input {
-    background-color: #443554;
+    background-color: #1A2A3D;
     min-height: 70px;
     max-height: 70px;
     z-index: 25;
@@ -129,8 +145,26 @@ body {
     }
 
     .chat-input > button {
-        flex-grow: 1;
+        flex-grow: 0.5;
+        border-radius: 2px;
+        border: none;
+        padding: 1px;
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none !important;
+        color: #A4D7F5 !important;
+        background: rgba(79,78,181,1);
+        background: -webkit-linear-gradient( top, rgba(79,78,181,1) 5%, rgba(49,48,151,1) 95%);
+        background: linear-gradient( to bottom, rgba(79,78,181,1) 5%, rgba(49,48,151,1) 95%);
     }
+
+        .chat-input > button:hover {
+            text-decoration: none !important;
+            color: #ffffff !important;
+            background: rgba(109,108,211,1);
+            background: -webkit-linear-gradient( top, rgba(109,108,211,1) 5%, rgba(79,78,181,1) 95%);
+            background: linear-gradient( to bottom, rgba(109,108,211,1) 5%, rgba(79,78,181,1) 95%);
+        }
 
 .modal {
     display: none;
@@ -141,12 +175,14 @@ body {
     top: 0;
     left: 0;
     background-color: rgba(0.2, 0.2, 0.2, 0.8);
+    margin: 0, 30em, 0, 30em !important;
 }
 
     .modal.active {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0, 30em, 0, 30em !important;
     }
 
 .modal-body > .close {
@@ -158,15 +194,17 @@ body {
 
 .modal-body {
     position: relative;
-    min-width: 300px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #5c4773;
+    background-color: #1A2A3D;
     padding: 1rem;
+    margin: 0, 30em, 0, 30em !important;
 }
 
     .modal-body > * {
         margin-top: 0.75rem;
+        margin: 0, 30em, 0, 30em !important;
     }
 
     .modal-body > header {
@@ -181,3 +219,25 @@ body {
     .modal-body > footer {
         text-align: center;
     }
+
+.profile-picture-main {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: right;
+}
+
+.user-thumb:hover{
+    color:red
+}
+
+.user-thumb {
+    text-align: center;
+}
+
+.card-body > h5 {
+    color: #304052;
+}

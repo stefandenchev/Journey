@@ -34,7 +34,7 @@
         {
             var userId = this.User.GetId();
 
-            var chats = this.chatService.GetChats(userId);
+            var chats = this.chatService.GetChats<ChatViewModel>(userId);
 
             return this.View(chats);
         }
@@ -46,14 +46,14 @@
             var userId = this.User.GetId();
             string chatId = Guid.NewGuid().ToString();
 
-            await this.chatService.CreateRoom(name, chatId, userId);
+            await this.chatService.CreateChat(name, chatId, userId);
             return this.RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> JoinRoom(string id)
         {
-            var roomPrivate = this.chatService.CheckRoomPrivacy(id);
+            var roomPrivate = this.chatService.CheckChatPrivacy(id);
             if (roomPrivate)
             {
                 return this.BadRequest();
@@ -61,7 +61,7 @@
 
             var userId = this.User.GetId();
 
-            await this.chatService.JoinRoom(id, userId);
+            await this.chatService.JoinChat(id, userId);
 
             return this.RedirectToAction("Chat", new { id = id });
         }
@@ -104,7 +104,7 @@
         {
             var userId = this.User.GetId();
 
-            var chats = this.chatService.GetPrivateChats(userId);
+            var chats = this.chatService.GetPrivateChats<ChatViewModel>(userId);
 
             return this.View(chats);
         }
@@ -114,7 +114,7 @@
             var currentUserId = this.User.GetId();
             string chatId = Guid.NewGuid().ToString();
 
-            var id = await this.chatService.CreatePrivateRoom(currentUserId, chatId, userId);
+            var id = await this.chatService.CreatePrivateChat(currentUserId, chatId, userId);
 
             return this.RedirectToAction("Chat", new { id });
         }

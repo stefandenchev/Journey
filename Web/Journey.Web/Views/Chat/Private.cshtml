@@ -1,13 +1,13 @@
-@*@model IEnumerable<Chat>
+@model IEnumerable<ChatViewModel>
 @{ Layout = "_Layout - Chat";}
 
 @{ var userId = User.GetId();}
 
-<div class="chat-body">
+<div>
     @foreach (var chat in Model)
     {
         <a class="room-button" asp-controller="Chat" asp-action="Chat" asp-route-id="@chat.Id">
-            @chat.Users.FirstOrDefault(x => x.UserId != userId).User.UserName
+            @chat.Users.FirstOrDefault(x => x.UserId != userId).UserUserName
         </a>
     }
-</div>*@
+</div>

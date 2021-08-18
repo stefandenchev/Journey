@@ -2,23 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ChatApp</title>
+    <title>Chat - @GlobalConstants.SystemName</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="~/css/chat.css">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" asp-append-version="true">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" asp-append-version="true">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon-16x16.png">
+    <link rel="manifest" href="~/images/site.webmanifest">
 </head>
 
 <body>
 
-    <div class="navbar">
-        <a asp-controller="Home" asp-action="Index">< Back To Store</a>
-        <a asp-controller="Chat" asp-action="Index">Home</a>
-        <a asp-controller="Chat" asp-action="Find">Find</a>
-        <a asp-controller="Chat" asp-action="Private">Private</a>
-    </div>
+    <nav class="navbar navbar-expand-sm navbar-dark">
+
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link chat-nav" id="journey-title" asp-controller="Home" asp-action="Index">Go Back</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link chat-nav" asp-controller="Chat" asp-action="Index">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link chat-nav" asp-controller="Chat" asp-action="Find">Find</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link chat-nav" asp-controller="Chat" asp-action="Private">Private</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="main">
         @if (User.Identity.IsAuthenticated)

@@ -263,6 +263,11 @@ nav a {
     }
 }
 
+.inactiveLink {
+    pointer-events: none;
+    cursor: default;
+}
+
 #latest {
     padding-top: 45px;
 }

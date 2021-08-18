@@ -1,22 +1,16 @@
 @model IEnumerable<UserViewModel>
 @{ Layout = "_Layout - Chat";}
 
-@foreach (var user in Model)
-{
-    <div class="card">
-        <a asp-controller="Chat" asp-action="CreatePrivateRoom" asp-route-userId="@user.Id">
-            <img class="card-img-top" src="@user.Profile.ImageUrl" alt="Profile Picture" style="width:100px; height:100px" />
-            <hr />
-            <div class="card-body">
-                <h5 class="card-title profile-name">@user.UserName</h5>
-            </div>
-        </a>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="container row">
+    @foreach (var user in Model)
+    {
+        <div class="user-thumb column mt-3 ml-3 p-2">
+            <a asp-controller="Chat" asp-action="CreatePrivateRoom" asp-route-userId="@user.Id">
+                <img class="profile-picture-main" src="@user.Profile.ImageUrl" alt="Profile Picture" style="width:150px; height:150px" />
+                <div class="card-body">
+                    <h5 class="profile-name">@user.UserName</h5>
+                </div>
+            </a>
         </div>
-    </div>
-}
+    }
+</div>

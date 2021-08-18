@@ -1,22 +1,17 @@
 ﻿namespace Journey.Web.ViewComponents
 {
-    using System.Linq;
     using System.Security.Claims;
 
-    using Journey.Data;
-    using Journey.Data.Models.Chat;
     using Journey.Services.Data.Interfaces;
+    using Journey.Web.ViewModels.Chat;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     public class RoomViewComponent : ViewComponent
     {
-        private ApplicationDbContext db;
         private readonly IChatService chatService;
 
-        public RoomViewComponent(ApplicationDbContext db, IChatService chatService)
+        public RoomViewComponent(IChatService chatService)
         {
-            this.db = db;
             this.chatService = chatService;
         }
 
@@ -24,7 +19,7 @@
         {
             var userId = this.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var chats = this.chatService.GetUserChats(userId);
+            var chats = this.chatService.GetUserChats<ChatViewModel>(userId);
 
             return this.View(chats);
         }

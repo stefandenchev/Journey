@@ -31,17 +31,18 @@
             this.usersRepository = usersRepository;
         }
 
-        public IEnumerable<Chat> GetChats(string userId)
+        public IEnumerable<T> GetChats<T>(string userId)
         {
-            return this.chatsRepository.All()
-                .Include(x => x.Users)
+            return this.chatsRepository
+                .All()
                 .Where(x => !x.Users
                     .Any(y => y.UserId == userId)
                  && x.Type != ChatType.Private)
+                .To<T>()
                 .ToList();
         }
 
-        public async Task CreateRoom(string name, string chatId, string userId)
+        public async Task CreateChat(string name, string chatId, string userId)
         {
             var chat = new Chat
             {
@@ -75,11 +76,11 @@
             return msg;
         }
 
-        public async Task<string> CreatePrivateRoom(string rootId, string chatId, string targetId)
+        public async Task<string> CreatePrivateChat(string rootId, string chatId, string targetId)
         {
             var chatCheck = this.chatsRepository
                 .All()
-                .Where(x => x.Type == ChatType.Private && (x.Name == rootId + targetId || x.Name == targetId + rootId)).FirstOrDefault();
+                .Where(x => x.Type == ChatType.Private && (x.Name == rootId + "-" + targetId || x.Name == targetId + "-" + rootId)).FirstOrDefault();
 
             var chat = new Chat();
 
@@ -89,6 +90,7 @@
                 {
                     Id = chatId,
                     Type = ChatType.Private,
+                    Name = rootId + "-" + targetId,
                 };
 
                 chat.Users.Add(new ChatUser
@@ -112,15 +114,15 @@
             return chat.Id;
         }
 
-        public IEnumerable<Chat> GetPrivateChats(string userId)
+        public IEnumerable<T> GetPrivateChats<T>(string userId)
         {
-            return this.chatsRepository.All()
-                   .Include(x => x.Users)
-                       .ThenInclude(x => x.User)
-                   .Where(x => x.Type == ChatType.Private
-                       && x.Users
-                           .Any(y => y.UserId == userId))
-                   .ToList();
+            return this.chatsRepository
+                .All()
+                .Where(x => x.Type == ChatType.Private
+                    && x.Users
+                        .Any(y => y.UserId == userId))
+                .To<T>()
+                .ToList();
         }
 
         public T GetChat<T>(string id)
@@ -135,7 +137,7 @@
             return chat;
         }
 
-        public async Task JoinRoom(string chatId, string userId)
+        public async Task JoinChat(string chatId, string userId)
         {
             var chatUser = new ChatUser
             {
@@ -147,19 +149,23 @@
             await this.chatUsersRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<Chat> GetUserChats(string userId)
+        public IEnumerable<T> GetUserChats<T>(string userId)
         {
             return this.chatUsersRepository.All()
-                .Include(x => x.Chat)
                 .Where(x => x.UserId == userId
                     && x.Chat.Type == ChatType.Room)
                 .Select(x => x.Chat)
+                .To<T>()
                 .ToList();
         }
 
-        public bool CheckRoomPrivacy(string chatId)
+        public bool CheckChatPrivacy(string chatId)
         {
-            var chat = this.chatsRepository.All().Where(x => x.Id == chatId).FirstOrDefault();
+            var chat = this.chatsRepository
+                .All()
+                .Where(x => x.Id == chatId)
+                .FirstOrDefault();
+
             if (chat.Type == ChatType.Private)
             {
                 return true;
