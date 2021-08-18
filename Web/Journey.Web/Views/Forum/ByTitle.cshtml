@@ -31,6 +31,9 @@
                 <div class="forum_topic_details ">
                     <div class="forum_topic_reply_count">
                         <img src="https://community.akamai.steamstatic.com/public/images/skin_1/comment_quoteicon.png"> @post.CommentsCount
+                    </div>  
+                    <div class="forum_topic_reply_count mr-2">
+                        <i class="fas fa-thumbs-up"></i> @post.VotesCount
                     </div>
                     <div class="forum_topic_lastpost">
                         <i class="fas fa-calendar-alt">&nbsp;</i>@post.CreatedOn
@@ -44,7 +47,6 @@
                 <div class="forum_topic_name">@post.Title</div>
                 <div class="forum_topic_op"><i class="fas fa-user-edit">&nbsp;</i>@post.UserUserName</div>
             </div>
-
         }
         <partial name="_ForumPagingPartial" model="@Model" />
     }

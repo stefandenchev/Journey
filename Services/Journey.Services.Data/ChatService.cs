@@ -129,7 +129,6 @@
         {
             var chat = this.chatsRepository
                 .All()
-                .Include(x => x.Messages)
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();

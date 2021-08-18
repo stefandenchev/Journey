@@ -29,9 +29,19 @@
     }
     <hr />
     <div class="card-body">
-        <h5 class="card-title profile-name">@User.Identity.Name</h5>
-        <p class="card-text text-center profile-name">Games: @Model.ProfileInfo.GamesBought</p>
-        <img class="profile-picture" src="@Model.ProfileInfo.Badge" alt="Profile Picture" />
+        <h5 class="card-title profile-name">
+            @User.Identity.Name
+            @if (User.IsInRole(AdministratorRoleName))
+            {
+                <i class="fas fa-user-shield"></i>
+            }
+        </h5>
+        @if (Model.ProfileInfo.GamesBought != 0)
+        {
+            <p class="card-text text-center profile-name">Games: @Model.ProfileInfo.GamesBought</p>
+            <img class="profile-picture" src="@Model.ProfileInfo.Badge" alt="Profile Picture" />
+        }
+
     </div>
 </div>
 

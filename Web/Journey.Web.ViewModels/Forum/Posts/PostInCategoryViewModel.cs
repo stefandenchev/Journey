@@ -31,5 +31,7 @@
         public string UserUserName { get; set; }
 
         public int CommentsCount { get; set; }
+
+        public int VotesCount { get; set; }
     }
 }
