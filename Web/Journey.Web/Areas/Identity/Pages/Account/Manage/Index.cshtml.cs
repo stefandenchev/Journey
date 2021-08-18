@@ -109,6 +109,7 @@
             this.StatusMessage = "Your profile has been updated";
             return this.RedirectToPage();
         }
+
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await this.userManager.GetUserNameAsync(user);

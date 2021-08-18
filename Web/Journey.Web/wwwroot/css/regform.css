@@ -89,3 +89,12 @@ img {
     width: 15rem;
     background: #304052 !important;
 }
+
+
+@media (min-width: 200px) and (max-width:992px) {
+
+    div.signup-content {
+        padding: 1em 0px 1em 0px;
+        margin: 1em 0px 1em 0px;
+    }
+}
