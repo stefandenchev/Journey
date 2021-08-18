@@ -11,6 +11,7 @@
     using Journey.Services.Data;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Forum.Posts;
     using Moq;
     using Xunit;
 
@@ -22,6 +23,8 @@
 
         public PostsServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.postsRepo = new Mock<IDeletableEntityRepository<ForumPost>>();
             this.postsList = new List<ForumPost>();
             this.service = new PostsService(this.postsRepo.Object);

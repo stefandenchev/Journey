@@ -5,6 +5,5 @@
     public class NewsPostsListViewModel
     {
         public IEnumerable<NewsPostsInListViewModel> News { get; set; }
-
     }
 }

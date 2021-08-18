@@ -81,5 +81,28 @@
             Assert.NotNull(result);
             Assert.Equal(2, result.Count());
         }
+
+        [Fact]
+        public void GetAllOrderItemsShouldWorkCorrectly()
+        {
+            this.orderItemsRepo.Object.AddAsync(new OrderItem
+            {
+                Id = 1,
+                GameId = 1,
+                OrderId = "Order1",
+            });
+
+            this.orderItemsRepo.Object.AddAsync(new OrderItem
+            {
+                Id = 2,
+                GameId = 2,
+                OrderId = "Order1",
+            });
+
+            var result = this.service.GetAllOrderItems<OrderItemViewModel>();
+
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count());
+        }
     }
 }

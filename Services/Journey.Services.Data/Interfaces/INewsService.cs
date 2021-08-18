@@ -11,6 +11,5 @@
         int GetCount();
 
         IEnumerable<T> GetAllInList<T>(int page, int itemsPerPage = 6);
-
     }
 }

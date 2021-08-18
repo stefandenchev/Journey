@@ -42,6 +42,17 @@
                 .ToList();
         }
 
+        public IEnumerable<T> GetUserChats<T>(string userId)
+        {
+            return this.chatUsersRepository
+                .All()
+                .Where(x => x.UserId == userId
+                    && x.Chat.Type == ChatType.Room)
+                .Select(x => x.Chat)
+                .To<T>()
+                .ToList();
+        }
+
         public async Task CreateChat(string name, string chatId, string userId)
         {
             var chat = new Chat
@@ -146,16 +157,6 @@
 
             await this.chatUsersRepository.AddAsync(chatUser);
             await this.chatUsersRepository.SaveChangesAsync();
-        }
-
-        public IEnumerable<T> GetUserChats<T>(string userId)
-        {
-            return this.chatUsersRepository.All()
-                .Where(x => x.UserId == userId
-                    && x.Chat.Type == ChatType.Room)
-                .Select(x => x.Chat)
-                .To<T>()
-                .ToList();
         }
 
         public bool CheckChatPrivacy(string chatId)

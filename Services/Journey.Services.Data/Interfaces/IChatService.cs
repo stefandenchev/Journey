@@ -10,6 +10,8 @@
     {
         IEnumerable<T> GetChats<T>(string userId);
 
+        IEnumerable<T> GetUserChats<T>(string userId);
+
         Task CreateChat(string name, string chatId, string userId);
 
         T GetChat<T>(string id);
@@ -21,8 +23,6 @@
         IEnumerable<T> GetPrivateChats<T>(string userId);
 
         Task<Message> CreateMessage(string chatId, string message, string userId);
-
-        IEnumerable<T> GetUserChats<T>(string userId);
 
         bool CheckChatPrivacy(string chatId);
 

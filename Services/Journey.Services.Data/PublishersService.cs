@@ -19,12 +19,17 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.publishersRepository.AllAsNoTracking().To<T>().ToList();
+            return this.publishersRepository
+                .All()
+                .To<T>()
+                .ToList();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.publishersRepository.AllAsNoTracking().Select(x => new
+            return this.publishersRepository
+                .AllAsNoTracking()
+                .Select(x => new
             {
                 x.Id,
                 x.Name,
@@ -35,7 +40,8 @@
 
         public T GetById<T>(int id)
         {
-            var publisher = this.publishersRepository.AllAsNoTracking()
+            var publisher = this.publishersRepository
+                .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .To<T>().FirstOrDefault();
 

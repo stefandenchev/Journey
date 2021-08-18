@@ -35,11 +35,13 @@
 
         public T GetById<T>(int id)
         {
-            return this.postsRepository
+            var post = this.postsRepository
                 .All()
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
+
+            return post;
         }
 
         public IEnumerable<T> GetAllInList<T>(int categoryId, int page, int itemsPerPage = 16)

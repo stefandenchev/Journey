@@ -109,5 +109,34 @@
 
             Assert.Equal(2, result.Count());
         }
+
+        [Fact]
+        public async Task UpdateShouldReturnWorkCorrectly()
+        {
+            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            {
+                Id = 1,
+                GameId = 21,
+                LanguageId = 23,
+            });
+
+            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            {
+                Id = 2,
+                GameId = 11,
+                LanguageId = 13,
+            });
+
+            GameLanguageAdminInputModel input = new GameLanguageAdminInputModel
+            {
+                GameId = 21,
+                LanguageId = 24,
+            };
+
+            await this.service.UpdateAsync(1, input);
+            var result = this.service.GetById<GameLanguageAdminInputModel>(1);
+
+            Assert.Equal(24, result.LanguageId);
+        }
     }
 }

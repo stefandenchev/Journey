@@ -47,7 +47,10 @@
 
         public async Task UpdateAsync(int id, GameLanguageAdminInputModel input)
         {
-            var gameLanguage = this.gamesLanguagesRepository.All().FirstOrDefault(x => x.Id == id);
+            var gameLanguage = this.gamesLanguagesRepository
+                .All()
+                .FirstOrDefault(x => x.Id == id);
+
             gameLanguage.GameId = input.GameId;
             gameLanguage.LanguageId = input.LanguageId;
 

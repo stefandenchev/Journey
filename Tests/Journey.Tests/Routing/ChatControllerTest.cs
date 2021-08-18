@@ -33,6 +33,5 @@
         .Configuration()
         .ShouldMap("/Chat/Room/Test123")
         .To<ChatController>(c => c.Chat("Test123"));
-
     }
 }

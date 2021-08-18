@@ -232,7 +232,7 @@
         public IEnumerable<T> GetGamesFromOrder<T>(IEnumerable<int> ids)
         {
             var gamesToReturn = this.gamesRepository
-                .AllAsNoTracking()
+                .All()
                 .Where(g => ids.Contains(g.Id))
                 .To<T>()
                 .ToList();

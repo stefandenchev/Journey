@@ -13,6 +13,7 @@
     using Journey.Services.Data;
     using Journey.Services.Mapping;
     using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Games;
     using Journey.Web.ViewModels.Games.Create;
     using Microsoft.AspNetCore.Http;
     using Moq;

@@ -2,11 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
+    using System.Reflection;
 
     using Journey.Data.Common.Repositories;
     using Journey.Data.Models;
     using Journey.Services.Data;
+    using Journey.Services.Mapping;
+    using Journey.Web.ViewModels;
+    using Journey.Web.ViewModels.Administration.Publishers;
     using Moq;
     using Xunit;
 
@@ -18,6 +21,8 @@
 
         public PublishersServiceTest()
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             this.publishersRepo = new Mock<IDeletableEntityRepository<Publisher>>();
 
             this.publishersList = new List<Publisher>();
@@ -29,7 +34,7 @@
         }
 
         [Fact]
-        public void GetAllGenresAsKeyValuePairsWorksCorrectly()
+        public void GetAllGenresAsKeyValuePairsShouldWorkCorrectly()
         {
             this.publishersRepo.Object.AddAsync(new()
             {
@@ -53,5 +58,32 @@
 
             Assert.Equal(3, result.Count());
         }
+
+        [Fact]
+        public void GetAllShouldWorkCorrectly()
+        {
+            this.publishersRepo.Object.AddAsync(new()
+            {
+                Id = 1,
+                Name = "2K",
+            });
+
+            this.publishersRepo.Object.AddAsync(new()
+            {
+                Id = 2,
+                Name = "CDPR",
+            });
+
+            this.publishersRepo.Object.AddAsync(new()
+            {
+                Id = 3,
+                Name = "Giant Games",
+            });
+
+            var result = this.service.GetAll<PublishersInListViewModel>();
+
+            Assert.Equal(3, result.Count());
+        }
+
     }
 }
