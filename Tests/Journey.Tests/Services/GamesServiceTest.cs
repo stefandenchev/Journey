@@ -25,20 +25,24 @@
         private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly Mock<IDeletableEntityRepository<Language>> languagesRepo;
         private readonly Mock<IDeletableEntityRepository<Tag>> tagsRepo;
+        private readonly Mock<IRepository<OrderItem>> orderItemsRepo;
 
         private readonly List<Game> gamesList;
         private readonly GamesService service;
 
         public GamesServiceTest()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.gamesRepo = new Mock<IDeletableEntityRepository<Game>>();
             this.languagesRepo = new Mock<IDeletableEntityRepository<Language>>();
             this.tagsRepo = new Mock<IDeletableEntityRepository<Tag>>();
+            this.orderItemsRepo = new Mock<IRepository<OrderItem>>();
 
             this.gamesList = new List<Game>();
-            this.service = new GamesService(this.gamesRepo.Object, this.languagesRepo.Object, this.tagsRepo.Object);
+            this.service = new GamesService(
+                this.gamesRepo.Object,
+                this.languagesRepo.Object,
+                this.tagsRepo.Object,
+                this.orderItemsRepo.Object);
 
             this.gamesRepo.Setup(x => x.All()).Returns(this.gamesList.AsQueryable());
             this.gamesRepo.Setup(x => x.AllAsNoTracking()).Returns(this.gamesList.AsQueryable());
@@ -71,18 +75,18 @@
         }
 
         [Fact]
-        public async Task GameCreateShouldThrowExceptionWithIncompleteInput()
+        public void GameCreateShouldThrowExceptionWithIncompleteInput()
         {
             var game = new CreateGameInputModel
             {
                 Title = $"Game Test",
             };
 
-            await Assert.ThrowsAsync<NullReferenceException>(async () => await this.service.CreateAsync(game, string.Empty));
+            Assert.ThrowsAsync<NullReferenceException>(async () => await this.service.CreateAsync(game, string.Empty));
         }
 
         [Fact]
-        public async Task GameCreateShouldThrowExceptionForInvalidImageExtension()
+        public void GameCreateShouldThrowExceptionForInvalidImageExtension()
         {
             CreateGameInputModel game = GetGameInModel();
             IFormFile file = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("This is a dummy file")), 0, 0, "Data", "dummy.txt");
@@ -94,7 +98,7 @@
 
             var exception = Assert.ThrowsAsync<Exception>(async () => await this.service.CreateAsync(game, string.Empty));
 
-            await Assert.ThrowsAsync<Exception>(async () => await this.service.CreateAsync(game, string.Empty));
+            Assert.ThrowsAsync<Exception>(async () => await this.service.CreateAsync(game, string.Empty));
             Assert.Equal("Invalid image extension txt", exception.Result.Message);
         }
 

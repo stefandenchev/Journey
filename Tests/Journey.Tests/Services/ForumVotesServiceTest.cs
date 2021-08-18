@@ -22,8 +22,6 @@
 
         public ForumVotesServiceTest()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.votesRepo = new Mock<IRepository<ForumVote>>();
             this.votes = new List<ForumVote>();
             this.service = new ForumVotesService(this.votesRepo.Object);

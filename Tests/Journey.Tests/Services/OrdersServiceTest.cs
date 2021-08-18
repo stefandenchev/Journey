@@ -57,8 +57,6 @@
         [Fact]
         public async Task GetOrdersShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {
@@ -77,8 +75,6 @@
         [Fact]
         public async Task GetAllShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {
@@ -115,8 +111,6 @@
         [Fact]
         public async Task GetByIdShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {

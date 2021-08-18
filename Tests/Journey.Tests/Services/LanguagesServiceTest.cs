@@ -47,17 +47,15 @@
         }
 
         [Fact]
-        public async Task GetAllGenresAsKeyValuePairsShoulsWorkCorrectly()
+        public void GetAllGenresAsKeyValuePairsShoulsWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            await this.languagesRepo.Object.AddAsync(new()
+            this.languagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 Name = "English",
             });
 
-            await this.languagesRepo.Object.AddAsync(new()
+            this.languagesRepo.Object.AddAsync(new()
             {
                 Id = 2,
                 Name = "Japanese",
@@ -69,18 +67,16 @@
         }
 
         [Fact]
-        public async Task GetByIdShouldReturnCorrectLanguage()
+        public void GetByIdShouldReturnCorrectLanguage()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 GameId = 21,
                 LanguageId = 23,
             });
 
-            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 GameId = 11,
@@ -93,18 +89,16 @@
         }
 
         [Fact]
-        public async Task GetAllShouldReturnWorkCorrectly()
+        public void GetAllShouldReturnWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 GameId = 21,
                 LanguageId = 23,
             });
 
-            await this.gamesLanguagesRepo.Object.AddAsync(new()
+            this.gamesLanguagesRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 GameId = 11,

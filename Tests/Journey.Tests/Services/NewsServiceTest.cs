@@ -37,7 +37,7 @@
         }
 
         [Fact]
-        public async Task VoteAsyncShouldWorkCorrectly()
+        public void VoteAsyncShouldWorkCorrectly()
         {
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
@@ -46,12 +46,12 @@
                      new Claim(ClaimTypes.Name, "kal@dunno.com"),
                 }));
 
-            await this.newsRepo.Object.AddAsync(new NewsPost
+            this.newsRepo.Object.AddAsync(new NewsPost
             {
                 Id = 1,
             });
 
-            await this.newsRepo.Object.AddAsync(new NewsPost
+            this.newsRepo.Object.AddAsync(new NewsPost
             {
                 Id = 2,
             });
@@ -62,10 +62,8 @@
         }
 
         [Fact]
-        public async Task GetAllShouldWorkCorrectly()
+        public void GetAllShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {
@@ -73,12 +71,12 @@
                      new Claim(ClaimTypes.Name, "kal@dunno.com"),
                 }));
 
-            await this.newsRepo.Object.AddAsync(new NewsPost
+            this.newsRepo.Object.AddAsync(new NewsPost
             {
                 Id = 1,
             });
 
-            await this.newsRepo.Object.AddAsync(new NewsPost
+            this.newsRepo.Object.AddAsync(new NewsPost
             {
                 Id = 2,
             });

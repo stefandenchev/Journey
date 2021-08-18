@@ -37,8 +37,6 @@
         [Fact]
         public void GetAllShouldReturnAllCategories()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.categoriesRepo.Object.AddAsync(new Category
             {
                 Id = 1,
@@ -60,8 +58,6 @@
         [Fact]
         public void GetByIdShouldReturnCorrectCategory()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.categoriesRepo.Object.AddAsync(new Category
             {
                 Id = 1,
@@ -83,8 +79,6 @@
         [Fact]
         public void GetByTitleShouldReturnCorrectCategory()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.categoriesRepo.Object.AddAsync(new Category
             {
                 Id = 1,

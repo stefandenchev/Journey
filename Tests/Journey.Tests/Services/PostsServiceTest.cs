@@ -22,8 +22,6 @@
 
         public PostsServiceTest()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.postsRepo = new Mock<IDeletableEntityRepository<ForumPost>>();
             this.postsList = new List<ForumPost>();
             this.service = new PostsService(this.postsRepo.Object);
@@ -67,8 +65,6 @@
         [Fact]
         public async Task CreateShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                  new Claim[]
                  {

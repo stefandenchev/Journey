@@ -31,21 +31,21 @@
         }
 
         [Fact]
-        public async Task GetAllGenresAsKeyValuePairsWorksCorrectly()
+        public void GetAllGenresAsKeyValuePairsWorksCorrectly()
         {
-            await this.tagsRepo.Object.AddAsync(new()
+            this.tagsRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 Name = "Singleplayer",
             });
 
-            await this.tagsRepo.Object.AddAsync(new()
+            this.tagsRepo.Object.AddAsync(new()
             {
                 Id = 2,
                 Name = "Multiplayer",
             });
 
-            await this.tagsRepo.Object.AddAsync(new()
+            this.tagsRepo.Object.AddAsync(new()
             {
                 Id = 3,
                 Name = "VR Support",

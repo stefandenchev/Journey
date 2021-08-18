@@ -16,6 +16,7 @@
     public class OrderItemsServiceTest
     {
         private readonly Mock<IDeletableEntityRepository<OrderItem>> orderItemsRepo;
+        private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly List<OrderItem> orderItemsList;
         private readonly OrderItemsService service;
 
@@ -24,8 +25,9 @@
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             this.orderItemsRepo = new Mock<IDeletableEntityRepository<OrderItem>>();
+            this.gamesRepo = new Mock<IDeletableEntityRepository<Game>>();
             this.orderItemsList = new List<OrderItem>();
-            this.service = new OrderItemsService(this.orderItemsRepo.Object);
+            this.service = new OrderItemsService(this.orderItemsRepo.Object, this.gamesRepo.Object);
 
             this.orderItemsRepo.Setup(x => x.All()).Returns(this.orderItemsList.AsQueryable());
             this.orderItemsRepo.Setup(x => x.AddAsync(It.IsAny<OrderItem>())).Callback(
@@ -60,8 +62,6 @@
         [Fact]
         public void GetOrderItemsShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.orderItemsRepo.Object.AddAsync(new OrderItem
             {
                 Id = 1,

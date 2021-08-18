@@ -121,8 +121,6 @@
         [Fact]
         public void GetByIdToModelWorksCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var cards = ThreeCards;
             foreach (var card in cards)
             {
@@ -137,8 +135,6 @@
         [Fact]
         public void GetAllWorksCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var cards = ThreeCards;
             foreach (var card in cards)
             {

@@ -29,21 +29,21 @@
         }
 
         [Fact]
-        public async Task GetAllGenresAsKeyValuePairsWorksCorrectly()
+        public void GetAllGenresAsKeyValuePairsWorksCorrectly()
         {
-            await this.publishersRepo.Object.AddAsync(new()
+            this.publishersRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 Name = "2K",
             });
 
-            await this.publishersRepo.Object.AddAsync(new()
+            this.publishersRepo.Object.AddAsync(new()
             {
                 Id = 2,
                 Name = "CDPR",
             });
 
-            await this.publishersRepo.Object.AddAsync(new()
+            this.publishersRepo.Object.AddAsync(new()
             {
                 Id = 3,
                 Name = "Giant Games",

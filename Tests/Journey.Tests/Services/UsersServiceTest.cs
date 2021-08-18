@@ -21,8 +21,6 @@
 
         public UsersServiceTest()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.userImagesRepo = new Mock<IDeletableEntityRepository<UserImage>>();
             this.userImages = new List<UserImage>();
             this.service = new UsersService(this.userImagesRepo.Object);

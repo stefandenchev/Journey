@@ -26,6 +26,7 @@
         private readonly Mock<IDeletableEntityRepository<Game>> gamesRepo;
         private readonly Mock<IDeletableEntityRepository<Language>> languagesRepo;
         private readonly Mock<IDeletableEntityRepository<Tag>> tagsRepo;
+        private readonly Mock<IRepository<OrderItem>> orderItemsRepo;
         private readonly List<Game> gamesList;
         private readonly GamesService gamesService;
 
@@ -49,9 +50,14 @@
             this.gamesRepo = new Mock<IDeletableEntityRepository<Game>>();
             this.languagesRepo = new Mock<IDeletableEntityRepository<Language>>();
             this.tagsRepo = new Mock<IDeletableEntityRepository<Tag>>();
+            this.orderItemsRepo = new Mock<IRepository<OrderItem>>();
 
             this.gamesList = new List<Game>();
-            this.gamesService = new GamesService(this.gamesRepo.Object, this.languagesRepo.Object, this.tagsRepo.Object);
+            this.gamesService = new GamesService(
+                this.gamesRepo.Object,
+                this.languagesRepo.Object,
+                this.tagsRepo.Object,
+                this.orderItemsRepo.Object);
 
             this.gamesRepo.Setup(x => x.All()).Returns(this.gamesList.AsQueryable());
             this.gamesRepo.Setup(x => x.AllAsNoTracking()).Returns(this.gamesList.AsQueryable());
@@ -167,8 +173,6 @@
         [Fact]
         public async Task GetItemFromCartShouldWorkCorrectly()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
                 {

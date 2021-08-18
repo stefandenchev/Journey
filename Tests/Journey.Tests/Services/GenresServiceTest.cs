@@ -21,8 +21,6 @@
 
         public GenresServiceTest()
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             this.genresRepo = new Mock<IDeletableEntityRepository<Genre>>();
 
             this.genresList = new List<Genre>();
@@ -35,15 +33,15 @@
         }
 
         [Fact]
-        public async Task GetAllGenresAsKeyValuePairsWorksCorrectly()
+        public void GetAllGenresAsKeyValuePairsWorksCorrectly()
         {
-            await this.genresRepo.Object.AddAsync(new()
+            this.genresRepo.Object.AddAsync(new()
             {
                 Id = 1,
                 Name = "RPG",
             });
 
-            await this.genresRepo.Object.AddAsync(new()
+            this.genresRepo.Object.AddAsync(new()
             {
                 Id = 2,
                 Name = "Strategy",

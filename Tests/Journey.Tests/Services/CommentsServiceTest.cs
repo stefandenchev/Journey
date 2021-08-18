@@ -47,7 +47,7 @@
         }
 
         [Fact]
-        public async Task IsInPostIdReturnsTrueWhenCorrect()
+        public void IsInPostIdReturnsTrueWhenCorrect()
         {
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
@@ -56,7 +56,7 @@
                      new Claim(ClaimTypes.Name, "kal@dunno.com"),
                 }));
 
-            await this.commentsRepository.Object.AddAsync(new Comment
+            this.commentsRepository.Object.AddAsync(new Comment
             {
                 Content = "hi",
                 ForumPostId = 1,
@@ -69,7 +69,7 @@
         }
 
         [Fact]
-        public async Task IsInPostIdReturnsFalseWhenWrong()
+        public void IsInPostIdReturnsFalseWhenWrong()
         {
             var user = new ClaimsPrincipal(new ClaimsIdentity(
                 new Claim[]
@@ -78,7 +78,7 @@
                      new Claim(ClaimTypes.Name, "kal@dunno.com"),
                 }));
 
-            await this.commentsRepository.Object.AddAsync(new Comment
+            this.commentsRepository.Object.AddAsync(new Comment
             {
                 Content = "hi",
                 ForumPostId = 1,
