@@ -1,10 +1,16 @@
 # Journey
 Game Store
 
+You can also find the site here:
+https://journeystore.azurewebsites.net/
+
 ![Project Image](Web/Journey.Web/wwwroot/images/preview.PNG)
 
 > Title page.
+> 
+![Project Image](Web/Journey.Web/wwwroot/images/JourneyDB.PNG)
 
+> Database diagram.
 ---
 
 ### Table of Contents
@@ -20,6 +26,7 @@ Game Store
 - ASP.NET Core MVC
 - SQL Server
 - Entity Framework Core
+- SignalR
 
 ---
 
@@ -35,6 +42,8 @@ On the admin side, you can add a new game, filling the forms for its Title, Pric
 Additionally, you can edit the game's Title, Price, Description, Genre, Publisher and Requirements. You can also add additional languages and tags (e.g. "Crossplatform", "Co-op" etc.) The admin has the ability to put any game on sale, choosing what percentage to cut from the base price. Finally, the admin can add a new Publisher, if the game/s they want to add aren't by an already existing one.
 
 Journey also has a Newsletter section where the admins can add the latest news including images and videos. There is also a forum system where everyone can discuss different topics and rate the posts.
+
+Finally there is Chat system with Public and Private rooms implemented with SignalR. Users can freely chat there asking any question they may have in a public room which only admins can create or add a user to a Private chat.
 
 ---
 
