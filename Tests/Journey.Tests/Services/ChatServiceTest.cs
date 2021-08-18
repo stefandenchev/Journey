@@ -26,6 +26,8 @@
         private readonly Mock<IRepository<ApplicationUser>> appUsersRepo;
         private readonly List<Chat> chatList;
         private readonly List<Message> messageList;
+        private readonly List<ChatUser> chatUserList;
+        private readonly List<ApplicationUser> userList;
 
         public ChatServiceTest()
         {
@@ -38,6 +40,8 @@
 
             this.chatList = new List<Chat>();
             this.messageList = new List<Message>();
+            this.chatUserList = new List<ChatUser>();
+            this.userList = new List<ApplicationUser>();
 
             this.chatService = new ChatService(
                 this.chatsRepo.Object,
@@ -55,6 +59,14 @@
             this.messagesRepo.Setup(x => x.AllAsNoTracking()).Returns(this.messageList.AsQueryable());
             this.messagesRepo.Setup(x => x.AddAsync(It.IsAny<Message>())).Callback(
                 (Message item) => this.messageList.Add(item));
+
+            this.chatUsersRepo.Setup(x => x.All()).Returns(this.chatUserList.AsQueryable());
+            this.chatUsersRepo.Setup(x => x.AddAsync(It.IsAny<ChatUser>())).Callback(
+                (ChatUser item) => this.chatUserList.Add(item));
+
+            this.appUsersRepo.Setup(x => x.All()).Returns(this.userList.AsQueryable());
+            this.appUsersRepo.Setup(x => x.AddAsync(It.IsAny<ApplicationUser>())).Callback(
+                (ApplicationUser item) => this.userList.Add(item));
         }
 
         [Fact]
@@ -73,6 +85,23 @@
             await this.chatService.CreateChat(roomName, roomId, user.Identity.Name);
 
             Assert.Single(this.chatList);
+        }
+
+        [Fact]
+        public async Task JoinChatShouldWorkCorrectly()
+        {
+            var user = new ClaimsPrincipal(new ClaimsIdentity(
+                new Claim[]
+                {
+                     new Claim(ClaimTypes.NameIdentifier, "TestValue"),
+                     new Claim(ClaimTypes.Name, "kal@dunno.com"),
+                }));
+
+            var roomId = "TestRoomId";
+
+            await this.chatService.JoinChat(roomId, user.Identity.Name);
+
+            Assert.Single(this.chatUserList);
         }
 
         [Fact]
@@ -113,17 +142,50 @@
         }
 
         [Fact]
-        public async Task CheckPrivacyShouldReturnCorrectResult()
+        public void CheckPrivacyShouldReturnTrueWhenPrivate()
         {
-            var firstUserId = "kaladin";
-            var secondUserId = "shallan";
-            var roomId = "TestRoomId";
+            this.chatList.Add(new Chat
+            {
+                Id = "TestRoomId",
+                Type = ChatType.Private,
+            });
 
-            await this.chatService.CreatePrivateChat(firstUserId, roomId, secondUserId);
-            var chat = this.chatService.GetChat<ChatViewModel>(roomId);
+            Assert.True(this.chatService.CheckChatPrivacy(this.chatList[0].Id));
+        }
 
-            Assert.True(chat.Type == ChatType.Private);
-            Assert.False(chat.Type == ChatType.Room);
+        [Fact]
+        public void CheckPrivacyShouldReturnFalseWhenPublic()
+        {
+            this.chatList.Add(new Chat
+            {
+                Id = "TestRoomId",
+                Type = ChatType.Room,
+            });
+
+            Assert.False(this.chatService.CheckChatPrivacy(this.chatList[0].Id));
+        }
+
+        [Fact]
+        public void GetOtherUsersShouldWorkCorrectly()
+        {
+            this.userList.Add(new ApplicationUser
+            {
+                Id = "User1",
+            });
+
+            this.userList.Add(new ApplicationUser
+            {
+                Id = "User2",
+            });
+
+            this.userList.Add(new ApplicationUser
+            {
+                Id = "User3",
+            });
+
+            var result = this.chatService.GetOtherUsers<UserViewModel>("User2");
+
+            Assert.Equal(2, result.Count());
         }
     }
 }
