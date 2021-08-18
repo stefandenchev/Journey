@@ -28,14 +28,15 @@
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
             return this.publishersRepository
-                .AllAsNoTracking()
+                .All()
                 .Select(x => new
             {
                 x.Id,
                 x.Name,
             })
             .OrderBy(x => x.Name)
-            .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+            .ToList()
+            .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
         public T GetById<T>(int id)

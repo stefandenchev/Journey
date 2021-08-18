@@ -4,8 +4,10 @@
     using Journey.Web.ViewModels;
     using Journey.Web.ViewModels.Forum.Categories;
     using Journey.Web.ViewModels.Forum.Posts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class ForumController : BaseController
     {
         private readonly ICategoriesService categoriesService;

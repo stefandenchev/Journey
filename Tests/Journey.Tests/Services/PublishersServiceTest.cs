@@ -28,7 +28,7 @@
             this.publishersList = new List<Publisher>();
             this.service = new PublishersService(this.publishersRepo.Object);
 
-            this.publishersRepo.Setup(x => x.AllAsNoTracking()).Returns(this.publishersList.AsQueryable());
+            this.publishersRepo.Setup(x => x.All()).Returns(this.publishersList.AsQueryable());
             this.publishersRepo.Setup(x => x.AddAsync(It.IsAny<Publisher>())).Callback(
                 (Publisher item) => this.publishersList.Add(item));
         }
