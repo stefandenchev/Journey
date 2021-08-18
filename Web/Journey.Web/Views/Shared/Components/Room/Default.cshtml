@@ -3,15 +3,15 @@
 <div class="side-menu">
     @foreach (var chat in Model)
     {
-        <a class="room-button" asp-controller="Chat" asp-action="Chat" asp-route-id="@chat.Id">
-            @chat.Name
-        </a>
+    <a class="room-button" asp-controller="Chat" asp-action="Chat" asp-route-id="@chat.Id">
+        @chat.Name
+    </a>
     }
 
-    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-    {
-        <a class="room-button" id="create-room-btn" href="#">
-            <strong>+</strong>
-        </a>
-    }
+    @*    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {*@
+    <a class="room-button" id="create-room-btn" href="#">
+        <strong>+</strong>
+    </a>
+
 </div>
